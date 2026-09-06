@@ -1,0 +1,86 @@
+{
+  "ano": 2027,
+  "fuente": "diashabiles.es",
+  "nacionales": [
+    {
+      "fecha": "2027-01-01",
+      "nombre": "Año Nuevo"
+    },
+    {
+      "fecha": "2027-01-06",
+      "nombre": "Epifanía del Señor"
+    },
+    {
+      "fecha": "2027-03-25",
+      "nombre": "Viernes Santo"
+    },
+    {
+      "fecha": "2027-05-01",
+      "nombre": "Día del Trabajo"
+    },
+    {
+      "fecha": "2027-08-15",
+      "nombre": "Asunción de la Virgen"
+    },
+    {
+      "fecha": "2027-10-12",
+      "nombre": "Fiesta Nacional de España"
+    },
+    {
+      "fecha": "2027-11-01",
+      "nombre": "Día de Todos los Santos"
+    },
+    {
+      "fecha": "2027-12-06",
+      "nombre": "Día de la Constitución"
+    },
+    {
+      "fecha": "2027-12-08",
+      "nombre": "Inmaculada Concepción"
+    },
+    {
+      "fecha": "2027-12-25",
+      "nombre": "Navidad"
+    }
+  ],
+  "comunidades": {
+    "andalucia": {
+      "nombre": "Andalucía",
+      "festivos": [
+        {
+          "fecha": "2027-02-28",
+          "nombre": "Día de Andalucía"
+        },
+        {
+          "fecha": "2027-03-01",
+          "nombre": "Día de Andalucía (traslado)"
+        },
+        {
+          "fecha": "2027-08-16",
+          "nombre": "Asunción de la Virgen (traslado)"
+        },
+        {
+          "fecha": "2027-10-12",
+          "nombre": "Fiesta Nacional (traslado pendiente)"
+        }
+      ]
+    },
+    "castilla_y_leon": {
+      "nombre": "Castilla y León",
+      "festivos": [
+        {
+          "fecha": "2027-04-23",
+          "nombre": "Día de Castilla y León"
+        },
+        {
+          "fecha": "2027-08-16",
+          "nombre": "Asunción de la Virgen (traslado)"
+        },
+        {
+          "fecha": "2027-10-12",
+          "nombre": "Fiesta Nacional (traslado pendiente)"
+        }
+      ]
+    }
+  }
+}

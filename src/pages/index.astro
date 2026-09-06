@@ -1,0 +1,235 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { COMUNIDADES } from '../lib/calculadora';
+---
+
+<Layout
+  title="Calculadora de días laborables y hábiles 2027 — diashabiles.es"
+  description="Calcula los días laborables y hábiles entre dos fechas para 2027. Incluye festivos nacionales y de tu comunidad autónoma. Herramienta gratuita."
+>
+  <Fragment slot="json-ld">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Calculadora de días laborables 2027",
+      "url": "https://diashabiles.es",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Web",
+      "description": "Calcula días laborables y hábiles entre fechas con festivos nacionales y autonómicos",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+    }
+    </script>
+  </Fragment>
+
+  <header>
+    <h1>Calculadora de días laborables 2027</h1>
+    <p>Sabemos cuántos días trabajas. Incluye festivos nacionales y de tu comunidad.</p>
+  </header>
+
+  <div class="provisional">
+    ⚠️ <strong>Datos provisionales.</strong> El BOE de festivos 2027 se publica en octubre. Los festivos autonómicos son orientativos hasta entonces.
+  </div>
+
+  <div class="calculator">
+    <form id="calc-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="inicio">Fecha inicio</label>
+          <input type="date" id="inicio" name="inicio" value="2027-01-01" required />
+        </div>
+        <div class="form-group">
+          <label for="fin">Fecha fin</label>
+          <input type="date" id="fin" name="fin" value="2027-12-31" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="comunidad">Comunidad autónoma</label>
+        <select id="comunidad" name="comunidad">
+          <option value="">Solo festivos nacionales</option>
+          {COMUNIDADES.map(c => (
+            <option value={c.id}>{c.nombre}</option>
+          ))}
+        </select>
+      </div>
+
+      <button type="submit">Calcular</button>
+    </form>
+  </div>
+
+  <div id="results" class="results hidden">
+    <h2>Resultado para <span id="res-periodo"></span></h2>
+
+    <div class="result-grid">
+      <div class="result-item">
+        <div class="number" id="res-laborables">—</div>
+        <div class="label">Días laborables</div>
+      </div>
+      <div class="result-item">
+        <div class="number" id="res-habiles">—</div>
+        <div class="label">Días hábiles*</div>
+      </div>
+      <div class="result-item">
+        <div class="number" id="res-calendario">—</div>
+        <div class="label">Días de calendario</div>
+      </div>
+    </div>
+
+    <div id="festivos-rango" class="festivos-list hidden">
+      <h3>Festivos en el rango seleccionado</h3>
+      <ul id="festivos-ul"></ul>
+    </div>
+
+    <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--color-muted);">
+      * <strong>Días hábiles</strong> incluyen sábados no festivos (ámbito administrativo, 
+      <a href="/dias-habiles/" style="color: var(--color-primary);">Ley 39/2015</a>).
+      Los días laborables solo cuentan lunes a viernes.
+    </p>
+  </div>
+
+  <section style="margin-top: 2rem;">
+    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">¿Qué es un día hábil vs laborable?</h2>
+    <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 0.5rem;">
+      <strong>Día laborable</strong>: lunes a viernes que no es festivo. Es lo que la mayoría de gente entiende por "día de trabajo".
+    </p>
+    <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 0.5rem;">
+      <strong>Día hábil</strong>: incluye además los sábados no festivos. En el ámbito administrativo (plazos de la Ley 39/2015), 
+      los sábados cuentan como días hábiles salvo que sean festivos.
+    </p>
+    <p style="font-size: 0.9rem; color: var(--color-muted);">
+      Ejemplo concreto: en enero 2027 hay 21 días laborables pero 25 días hábiles, porque los 4 sábados no son festivos.
+    </p>
+  </section>
+
+  <footer>
+    <p>diashabiles.es — Festivos nacionales y autonómicos 2027 (provisionales)</p>
+    <p style="margin-top: 0.25rem;">
+      <a href="/dias-habiles/">¿Qué son los días hábiles?</a> · 
+      <a href="/api/2027/nacional.json">API de festivos</a>
+    </p>
+  </footer>
+
+  <script>
+    // Client-side calculator (JSON import for the browser)
+    const FESTIVOS_2027 = {
+      nacionales: [
+        { fecha: "2027-01-01", nombre: "Año Nuevo" },
+        { fecha: "2027-01-06", nombre: "Epifanía del Señor" },
+        { fecha: "2027-03-25", nombre: "Viernes Santo" },
+        { fecha: "2027-05-01", nombre: "Día del Trabajo" },
+        { fecha: "2027-08-15", nombre: "Asunción de la Virgen" },
+        { fecha: "2027-10-12", nombre: "Fiesta Nacional" },
+        { fecha: "2027-11-01", nombre: "Todos los Santos" },
+        { fecha: "2027-12-06", nombre: "Día de la Constitución" },
+        { fecha: "2027-12-08", nombre: "Inmaculada Concepción" },
+        { fecha: "2027-12-25", nombre: "Navidad" }
+      ],
+      comunidades: {
+        andalucia: {
+          nombre: "Andalucía",
+          festivos: [
+            { fecha: "2027-03-01", nombre: "Día de Andalucía (traslado)" },
+            { fecha: "2027-08-16", nombre: "Asunción (traslado)" },
+            { fecha: "2027-10-12", nombre: "Fiesta Nacional (traslado)" }
+          ]
+        },
+        castilla_y_leon: {
+          nombre: "Castilla y León",
+          festivos: [
+            { fecha: "2027-04-23", nombre: "Día de Castilla y León" },
+            { fecha: "2027-08-16", nombre: "Asunción (traslado)" },
+            { fecha: "2027-10-12", nombre: "Fiesta Nacional (traslado)" }
+          ]
+        }
+      }
+    };
+
+    function obtenerFestivos(comunidad) {
+      const mapa = new Map();
+      FESTIVOS_2027.nacionales.forEach(f => mapa.set(f.fecha, f));
+      if (comunidad && FESTIVOS_2027.comunidades[comunidad]) {
+        FESTIVOS_2027.comunidades[comunidad].festivos.forEach(f => mapa.set(f.fecha, f));
+      }
+      return mapa;
+    }
+
+    function formatearFecha(str) {
+      const [y, m, d] = str.split('-');
+      return `${d}/${m}/${y}`;
+    }
+
+    document.getElementById('calc-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const inicio = document.getElementById('inicio').value;
+      const fin = document.getElementById('fin').value;
+      const comunidad = document.getElementById('comunidad').value;
+
+      if (!inicio || !fin) return;
+      if (inicio > fin) {
+        alert('La fecha de inicio debe ser anterior a la fecha fin');
+        return;
+      }
+
+      const festivos = obtenerFestivos(comunidad);
+      const fInicio = new Date(inicio + 'T00:00:00');
+      const fFin = new Date(fin + 'T00:00:00');
+
+      let laborables = 0;
+      let habiles = 0;
+      let total = 0;
+      const festivosEnRango = [];
+
+      const cursor = new Date(fInicio);
+      while (cursor <= fFin) {
+        total++;
+        const ds = cursor.getDay();
+        const yyyy = cursor.getFullYear();
+        const mm = String(cursor.getMonth() + 1).padStart(2, '0');
+        const dd = String(cursor.getDate()).padStart(2, '0');
+        const fechaStr = `${yyyy}-${mm}-${dd}`;
+        const esFestivo = festivos.has(fechaStr);
+
+        if (esFestivo) {
+          festivosEnRango.push(festivos.get(fechaStr));
+        }
+
+        if (ds === 0 || ds === 6) {
+          if (ds === 6 && !esFestivo) habiles++;
+        } else {
+          if (!esFestivo) {
+            laborables++;
+            habiles++;
+          }
+        }
+
+        cursor.setDate(cursor.getDate() + 1);
+      }
+
+      // Update UI
+      document.getElementById('res-periodo').textContent =
+        `${formatearFecha(inicio)} — ${formatearFecha(fin)}`;
+      document.getElementById('res-laborables').textContent = laborables;
+      document.getElementById('res-habiles').textContent = habiles;
+      document.getElementById('res-calendario').textContent = total;
+
+      const festivosDiv = document.getElementById('festivos-rango');
+      const festivosUl = document.getElementById('festivos-ul');
+      festivosUl.innerHTML = '';
+
+      if (festivosEnRango.length > 0) {
+        festivosEnRango.forEach(f => {
+          const li = document.createElement('li');
+          li.textContent = `${formatearFecha(f.fecha)} — ${f.nombre}`;
+          festivosUl.appendChild(li);
+        });
+        festivosDiv.classList.remove('hidden');
+      } else {
+        festivosDiv.classList.add('hidden');
+      }
+
+      document.getElementById('results').classList.remove('hidden');
+    });
+  </script>
+</Layout>

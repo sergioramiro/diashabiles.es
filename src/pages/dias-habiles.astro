@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="¿Qué son los días hábiles? Diferencia con días laborables — diashabiles.es"
+  description="Explicación clara de la diferencia entre días hábiles y laborables en el ámbito administrativo español. Ley 39/2015, plazos y ejemplos prácticos."
+>
+  <header>
+    <h1>¿Qué son los días hábiles?</h1>
+    <p>La diferencia que importa cuando tienes un plazo administrativo</p>
+  </header>
+
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">La diferencia en una frase</h2>
+    <p style="margin-bottom: 0.5rem;">
+      <strong>Día laborable</strong> = lunes a viernes que no es festivo.
+    </p>
+    <p style="margin-bottom: 0.5rem;">
+      <strong>Día hábil</strong> = lunes a viernes que no es festivo <strong>+ sábados que no son festivos</strong>.
+    </p>
+    <p style="color: var(--color-muted); font-size: 0.9rem;">
+      En semana normal (sin festivos), de lunes a sábado hay 6 días hábiles pero solo 5 laborables. 
+      El sábado no es laborable (no trabajas), pero sí es hábil (cuenta para plazos administrativos).
+    </p>
+  </section>
+
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">¿Por qué importa?</h2>
+    <p style="margin-bottom: 0.5rem;">
+      Si un organismo público te da un plazo de 10 días hábiles para presentar un recurso, 
+      el sábado cuenta. Si te dicen 10 días <em>laborables</em>, el sábado no cuenta.
+    </p>
+    <p style="color: var(--color-muted); font-size: 0.9rem;">
+      La mayoría de la gente confunde "hábil" con "laborable" y se carga los plazos. 
+      Si vas a presentar algo en Hacienda o en tu ayuntamiento, mejor saberlo.
+    </p>
+  </section>
+
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">La Ley 39/2015</h2>
+    <p style="margin-bottom: 0.5rem;">
+      El artículo 30.1 de la Ley 39/2015 dice que los plazos se cuentan por días naturales, 
+      salvo que la norma diga "días hábiles". Cuando dice "hábiles", excluye domingos y festivos, 
+      pero <strong>incluye sábados</strong>.
+    </p>
+    <p style="color: var(--color-muted); font-size: 0.9rem;">
+      Excepción: si una norma específica dice expresamente "días laborables", 
+      entonces sí se excluyen los sábados. Pero es menos frecuente de lo que parece.
+    </p>
+  </section>
+
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Ejemplo práctico: enero 2027</h2>
+    <p style="margin-bottom: 0.5rem;">
+      Enero 2027 tiene 31 días de calendario.
+    </p>
+    <ul style="margin-left: 1.25rem; margin-bottom: 0.5rem; color: var(--color-muted); font-size: 0.9rem;">
+      <li>1 de enero (viernes) → festivo → ni hábil ni laborable</li>
+      <li>6 de enero (miércoles) → festivo → ni hábil ni laborable</li>
+      <li>Resto de días → hábiles (excepto domingos)</li>
+    </ul>
+    <p style="font-size: 0.9rem;">
+      <strong>Resultado:</strong> 21 días laborables, pero 25 días hábiles. 
+      La diferencia son los 4 sábados que no son festivos.
+    </p>
+  </section>
+
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">¿Cuándo se excluyen los sábados?</h2>
+    <p style="margin-bottom: 0.5rem;">
+      Solo cuando una norma específica dice "días laborables" o "días no sábados". 
+      En la práctica, casi todos los plazos administrativos se cuenten por días hábiles 
+      (incluyendo sábados).
+    </p>
+    <p style="color: var(--color-muted); font-size: 0.9rem;">
+      Si tienes duda, usa siempre la calculadora de días hábiles. Es más conservador.
+    </p>
+  </section>
+
+  <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1.5rem; text-align: center;">
+    <p style="margin-bottom: 0.75rem;">¿Necesitas calcular días?</p>
+    <a href="/" style="color: var(--color-primary); font-weight: 600;">Ir a la calculadora →</a>
+  </div>
+
+  <footer>
+    <p>diashabiles.es — Festivos nacionales y autonómicos 2027 (provisionales)</p>
+  </footer>
+</Layout>
