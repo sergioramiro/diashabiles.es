@@ -20,6 +20,54 @@ import { COMUNIDADES } from '../lib/calculadora';
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuántos días laborables hay en 2027?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En 2027 hay aproximadamente 252 días laborables en España (lunes a viernes sin festivos). El número exacto varía según tu comunidad autónoma por los festivos regionales."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la diferencia entre día hábil y laborable?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un día laborable es de lunes a viernes que no es festivo. Un día hábil incluye además los sábados no festivos. En plazos administrativos (Ley 39/2015) se cuentan días hábiles, por lo que los sábados sí cuentan salvo que sean festivos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se calculan los días laborables entre dos fechas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Selecciona la fecha de inicio y fin en la calculadora, elige tu comunidad autónoma (o solo festivos nacionales) y la herramienta te dará el número de días laborables, días hábiles y festivos en ese rango."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Los sábados cuentan como días laborables?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, los sábados no cuentan como días laborables. Sin embargo, en el ámbito administrativo (plazos de la Ley 39/2015), los sábados sí cuentan como días hábiles si no son festivos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo se publican los festivos oficiales de 2027?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los festivos nacionales se publican en el BOE durante el primer semestre. Los festivos autonómicos se publican en los boletines oficiales de cada comunidad, normalmente antes de octubre. Esta web actualiza los datos cuando se publican oficialmente."
+          }
+        }
+      ]
+    }
+    </script>
   </Fragment>
 
   <header>
@@ -114,6 +162,45 @@ import { COMUNIDADES } from '../lib/calculadora';
     <p style="font-size: 0.9rem; color: var(--color-muted);">
       Ejemplo concreto: en enero 2027 hay 21 días laborables pero 25 días hábiles, porque los 4 sábados no son festivos.
     </p>
+  </section>
+
+  <section style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
+    <h2 style="font-size: 1.1rem; margin-bottom: 1rem;">Preguntas frecuentes</h2>
+
+    <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 0.95rem;">¿Cuántos días laborables hay en 2027?</summary>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--color-muted);">
+        En 2027 hay aproximadamente <strong>252 días laborables</strong> en España (lunes a viernes sin festivos). El número exacto varía según tu comunidad autónoma por los festivos regionales.
+      </p>
+    </details>
+
+    <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 0.95rem;">¿Cuál es la diferencia entre día hábil y laborable?</summary>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--color-muted);">
+        Un <strong>día laborable</strong> es de lunes a viernes que no es festivo. Un <strong>día hábil</strong> incluye además los sábados no festivos. En plazos administrativos (<a href="/dias-habiles/" style="color: var(--color-primary);">Ley 39/2015</a>) se cuentan días hábiles, por lo que los sábados sí cuentan salvo que sean festivos.
+      </p>
+    </details>
+
+    <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 0.95rem;">¿Cómo se calculan los días laborables entre dos fechas?</summary>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--color-muted);">
+        Selecciona la fecha de inicio y fin en la calculadora, elige tu comunidad autónoma (o solo festivos nacionales) y la herramienta te dará el número de días laborables, días hábiles y festivos en ese rango.
+      </p>
+    </details>
+
+    <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 0.95rem;">¿Los sábados cuentan como días laborables?</summary>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--color-muted);">
+        No, los sábados no cuentan como días laborables. Sin embargo, en el ámbito administrativo (plazos de la <a href="/dias-habiles/" style="color: var(--color-primary);">Ley 39/2015</a>), los sábados sí cuentan como días hábiles si no son festivos.
+      </p>
+    </details>
+
+    <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
+      <summary style="cursor: pointer; font-weight: 600; font-size: 0.95rem;">¿Cuándo se publican los festivos oficiales de 2027?</summary>
+      <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--color-muted);">
+        Los festivos nacionales se publican en el BOE durante el primer semestre. Los festivos autonómicos se publican en los boletines oficiales de cada comunidad, normalmente antes de octubre. Esta web actualiza los datos cuando se publican oficialmente.
+      </p>
+    </details>
   </section>
 
   <footer>
