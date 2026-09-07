@@ -89,6 +89,20 @@ import { COMUNIDADES } from '../lib/calculadora';
   </div>
 
   <section style="margin-top: 2rem;">
+    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Festivos por comunidad autónoma</h2>
+    <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 1rem;">
+      Consulta los festivos autonómicos de cada comunidad para 2027:
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem;">
+      {COMUNIDADES.map(c => (
+        <a href={`/comunidad/${c.id}`} style="display: block; padding: 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); text-decoration: none; color: var(--color-text); font-weight: 500; transition: border-color 0.2s;">
+          {c.nombre}
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section style="margin-top: 2rem;">
     <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">¿Qué es un día hábil vs laborable?</h2>
     <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 0.5rem;">
       <strong>Día laborable</strong>: lunes a viernes que no es festivo. Es lo que la mayoría de gente entiende por "día de trabajo".
