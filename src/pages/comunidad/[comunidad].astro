@@ -11,12 +11,20 @@ export function getStaticPaths() {
 
 const { nombre, id } = Astro.props;
 
-// Calcular festivos del año completo
 const resultado = calcularDias('2027-01-01', '2027-12-31', id);
 const festivos = resultado.festivosEnRango;
 
-// Festivos nacionales (sin comunidad)
 const soloNacionales = calcularDias('2027-01-01', '2027-12-31');
+const festivosAutonomicos = festivos.filter(f => !soloNacionales.festivosEnRango.some(n => n.fecha === f.fecha));
+
+const siglas: Record<string, string> = {
+  andalucia: 'AN', aragon: 'AR', asturias: 'AS', baleares: 'IB', canarias: 'CN',
+  cantabria: 'CB', castillaleon: 'CL', castillamancha: 'CM', cataluna: 'CT',
+  ceuta: 'CE', extremadura: 'EX', galicia: 'GA', madrid: 'MD', melilla: 'ML',
+  murcia: 'MC', navarra: 'NC', paisvasco: 'PV', larioja: 'LR', valencia: 'VC',
+  nacional: 'NA'
+};
+const sigla = siglas[id] || id.slice(0, 2).toUpperCase();
 ---
 
 <Layout
@@ -42,148 +50,234 @@ const soloNacionales = calcularDias('2027-01-01', '2027-12-31');
     </script>
   </Fragment>
 
-  <header>
-    <nav style="font-size: 0.85rem; color: var(--color-muted); margin-bottom: 1rem;">
-      <a href="/" style="color: var(--color-primary); text-decoration: none;">Inicio</a> → {nombre}
-    </nav>
-    <h1>Festivos {nombre} 2027</h1>
-    <p>Días laborables, hábiles y festivos en {nombre} para el año 2027</p>
+  <!-- Fixed Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-16 max-w-[72rem] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md">
+      <div class="flex items-center gap-space-sm shrink-0">
+        <a href="/" class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight no-underline">diashabiles<span class="text-primary">.es</span></a>
+      </div>
+      <a href="/" class="inline-flex items-center gap-1.5 px-space-sm py-space-xs rounded-lg bg-primary-container text-on-primary font-label-md text-label-md transition-colors">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        Volver a calculadora
+      </a>
+    </div>
   </header>
 
-  <div class="provisional">
-    ⚠️ <strong>Datos provisionales.</strong> El BOE de festivos 2027 se publica en octubre. Los festivos autonómicos son orientativos.
-  </div>
+  <div class="h-16"></div>
 
-  <section class="summary">
-    <div class="summary-grid">
-      <div class="summary-item">
-        <span class="number">{resultado.diasLaborables}</span>
-        <span class="label">Días laborables</span>
+  <main>
+    <!-- Breadcrumb -->
+    <div class="max-w-[72rem] mx-auto px-gutter-desktop pt-space-lg">
+      <nav class="font-body-sm text-body-sm text-text-muted flex items-center gap-1">
+        <a href="/" class="text-primary hover:underline no-underline">Inicio</a>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-on-surface font-semibold">{nombre}</span>
+      </nav>
+    </div>
+
+    <!-- Hero -->
+    <section class="relative w-full overflow-hidden pb-space-2xl pt-space-md">
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[58rem] h-[28rem] bg-gradient-to-b from-surface-container/60 via-surface-container-low/40 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
+      <div class="max-w-[72rem] mx-auto px-gutter-desktop">
+        <!-- Provisional Alert -->
+        <div class="mb-space-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm p-space-sm sm:px-space-md bg-status-warning-bg/60 border border-status-warning/40 rounded-xl shadow-sm text-status-warning-text">
+          <div class="flex items-center gap-space-sm">
+            <div class="w-8 h-8 rounded-lg bg-status-warning/20 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-status-warning-text text-[20px]">warning</span>
+            </div>
+            <p class="font-body-sm text-body-sm font-medium">
+              <strong class="font-bold">Datos provisionales 2027:</strong> Los festivos autonómicos se actualizan conforme se publiquen en los boletines oficiales.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-space-sm mb-space-sm">
+          <span class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold text-sm font-display">{sigla}</span>
+          <div>
+            <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+              Festivos {nombre} 2027
+            </h1>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Días laborables, hábiles y festivos en {nombre} para el año 2027
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="summary-item">
-        <span class="number">{resultado.diasHabiles}</span>
-        <span class="label">Días hábiles</span>
+    </section>
+
+    <!-- Summary KPI Cards -->
+    <section class="max-w-[72rem] mx-auto px-gutter-desktop pb-space-2xl">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-xl">
+        <!-- Laborables -->
+        <div class="bg-surface-card border border-border-subtle rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+          <div>
+            <span class="font-label-md text-label-md text-text-secondary uppercase tracking-wider block">Días laborables</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted mt-0.5 block">Lunes a viernes no festivos</span>
+          </div>
+          <div class="my-space-md">
+            <span class="text-metric-display-mobile md:text-metric-display text-on-surface tracking-tight font-display">{resultado.diasLaborables}</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-text-secondary">Jornadas laborales en {nombre}</p>
+        </div>
+
+        <!-- Hábiles -->
+        <div class="bg-surface-card border-2 border-primary-container/40 rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-primary-fixed/30 rounded-bl-full pointer-events-none"></div>
+          <div class="flex items-start justify-between relative z-10">
+            <div>
+              <span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider block">Días hábiles</span>
+              <span class="font-caption-legal text-caption-legal text-text-muted mt-0.5 block">Incluye sábados no festivos</span>
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm font-bold inline-flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">gavel</span> Ley 39/2015
+            </span>
+          </div>
+          <div class="my-space-md relative z-10">
+            <span class="text-metric-display-mobile md:text-metric-display text-primary tracking-tight font-display">{resultado.diasHabiles}</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant relative z-10">
+            Para plazos administrativos en {nombre}
+          </p>
+        </div>
+
+        <!-- Festivos -->
+        <div class="bg-surface-card border border-border-subtle rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+          <div>
+            <span class="font-label-md text-label-md text-text-secondary uppercase tracking-wider block">Festivos totales</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted mt-0.5 block">Nacionales + autonómicos</span>
+          </div>
+          <div class="my-space-md">
+            <span class="text-metric-display-mobile md:text-metric-display text-on-surface tracking-tight font-display">{festivos.length}</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-text-secondary">
+            {festivosAutonomicos.length} festivos autonómicos de {nombre}
+          </p>
+        </div>
       </div>
-      <div class="summary-item">
-        <span class="number">{festivos.length}</span>
-        <span class="label">Festivos</span>
+
+      <p class="font-caption-legal text-caption-legal text-text-muted mb-space-xl">
+        Año completo (1 enero – 31 diciembre 2027). Los sábados cuentan como días hábiles (Ley 39/2015).
+      </p>
+
+      <!-- CTA to Calculator -->
+      <div class="bg-surface-container-low rounded-xl p-space-lg border border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-space-sm mb-space-2xl">
+        <div class="flex items-center gap-space-sm">
+          <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary shrink-0">
+            <span class="material-symbols-outlined">calculate</span>
+          </div>
+          <div>
+            <span class="font-label-md text-label-md text-on-surface font-bold">Calculadora personalizada</span>
+            <p class="font-caption-legal text-caption-legal text-on-surface-variant">Calcula días laborables con festivos de {nombre} en fechas concretas</p>
+          </div>
+        </div>
+        <a href={`/?comunidad=${id}`} class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md font-bold transition-all shadow-md hover:shadow-lg">
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          Ir a la calculadora
+        </a>
+      </div>
+
+      <!-- National Holidays -->
+      <div class="mb-space-2xl">
+        <h2 class="font-headline-md text-headline-md text-on-surface mb-space-md flex items-center gap-2">
+          <span class="w-7 h-7 rounded-full bg-error-container text-on-error-container flex items-center justify-center text-xs font-bold">
+            <span class="material-symbols-outlined text-[16px]">flag</span>
+          </span>
+          Festivos nacionales
+        </h2>
+        <div class="bg-surface-card rounded-xl border border-border-subtle shadow-sm divide-y divide-border-subtle">
+          {soloNacionales.festivosEnRango.map(f => (
+            <div class="flex items-center gap-space-sm p-space-md">
+              <span class="w-2 h-2 rounded-full bg-error shrink-0"></span>
+              <div class="flex-1">
+                <span class="font-label-md text-label-md text-on-surface font-semibold">
+                  {new Date(f.fecha + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
+                </span>
+                <span class="text-text-muted mx-1">—</span>
+                <span class="font-body-md text-body-md text-on-surface-variant">{f.nombre}</span>
+              </div>
+              <span class="text-[10px] px-1.5 py-0.5 bg-error-container text-on-error-container rounded font-bold uppercase">Nacional</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Regional Holidays -->
+      <div class="mb-space-2xl">
+        <h2 class="font-headline-md text-headline-md text-on-surface mb-space-md flex items-center gap-2">
+          <span class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-xs font-bold">
+            <span class="material-symbols-outlined text-[16px]">location_on</span>
+          </span>
+          Festivos autonómicos de {nombre}
+        </h2>
+        {festivosAutonomicos.length > 0 ? (
+          <div class="bg-surface-card rounded-xl border border-border-subtle shadow-sm divide-y divide-border-subtle">
+            {festivosAutonomicos.map(f => (
+              <div class="flex items-center gap-space-sm p-space-md">
+                <span class="w-2 h-2 rounded-full bg-status-warning shrink-0"></span>
+                <div class="flex-1">
+                  <span class="font-label-md text-label-md text-on-surface font-semibold">
+                    {new Date(f.fecha + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
+                  </span>
+                  <span class="text-text-muted mx-1">—</span>
+                  <span class="font-body-md text-body-md text-on-surface-variant">{f.nombre}</span>
+                  {f.nota && <span class="font-caption-legal text-caption-legal text-text-muted"> ({f.nota})</span>}
+                </div>
+                <span class="text-[10px] px-1.5 py-0.5 bg-surface-container text-secondary rounded font-bold uppercase">Autonómico</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="bg-surface-card rounded-xl border border-border-subtle shadow-sm p-space-lg text-center">
+            <p class="font-body-md text-body-md text-on-surface-variant">No hay festivos autonómicos específicos registrados para {nombre} en este momento.</p>
+          </div>
+        )}
+      </div>
+
+      <!-- What are laborable vs hábil -->
+      <div class="bg-surface-card p-space-lg rounded-xl border border-border-subtle shadow-sm mb-space-xl">
+        <h2 class="font-headline-md text-headline-md text-on-surface mb-space-md">¿Qué son los días laborables y hábiles?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+          <div class="p-space-md bg-surface-container-low rounded-lg">
+            <h3 class="font-label-md text-label-md text-tertiary font-bold mb-space-xs">Día laborable</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Lunes a viernes que no es festivo. Es el concepto empleado en contratos de empleo, convenios colectivos y nóminas.
+            </p>
+          </div>
+          <div class="p-space-md bg-primary-fixed/10 rounded-lg border-l-4 border-primary">
+            <h3 class="font-label-md text-label-md text-primary font-bold mb-space-xs">Día hábil</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Lunes a viernes + sábados no festivos. En plazos administrativos (Ley 39/2015) se cuentan días hábiles.
+            </p>
+          </div>
+        </div>
+        <p class="font-caption-legal text-caption-legal text-text-muted mt-space-md">
+          En plazos administrativos se cuentan días hábiles (incluyendo sábados) salvo que la norma diga expresamente "laborables".
+          <a href="/dias-habiles/" class="text-primary hover:underline">Más información →</a>
+        </p>
+      </div>
+
+      <!-- All communities link -->
+      <div class="bg-surface-container-low rounded-xl p-space-lg border border-border-subtle text-center">
+        <p class="font-body-md text-body-md text-on-surface-variant mb-space-sm">¿Necesitas calcular días laborables en otra comunidad?</p>
+        <a href="/" class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md font-bold transition-all shadow-md">
+          Ver todas las comunidades y ciudades
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-surface-container-low mt-space-3xl py-space-2xl">
+    <div class="max-w-[72rem] mx-auto px-gutter-desktop">
+      <div class="border-t border-border-subtle pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-sm">
+        <p class="font-caption-legal text-caption-legal text-text-muted">
+          © 2027 diashabiles.es — Plataforma de referencia para el cómputo de plazos laborales y administrativos en España.
+        </p>
+        <p class="font-caption-legal text-caption-legal text-text-muted">
+          Los datos de festivos son provisionales hasta la publicación oficial en el BOE.
+        </p>
       </div>
     </div>
-    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--color-muted);">
-      Año completo (1 enero – 31 diciembre 2027). Los sábados cuentan como días hábiles (Ley 39/2015).
-    </p>
-  </section>
-
-  <section style="margin-bottom: 2rem;">
-    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Calcular con otros datos</h2>
-    <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 0.5rem;">
-      Usa la calculadora para fechas personalizadas con festivos de {nombre}:
-    </p>
-    <a href={`/?comunidad=${id}`} class="cta">Ir a la calculadora con {nombre} →</a>
-  </section>
-
-  <section style="margin-bottom: 2rem;">
-    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Festivos en {nombre} 2027</h2>
-
-    <h3 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--color-primary);">Festivos nacionales</h3>
-    <ul class="festivos-list">
-      {soloNacionales.festivosEnRango.map(f => (
-        <li>
-          <strong>{new Date(f.fecha + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}</strong>
-          — {f.nombre}
-        </li>
-      ))}
-    </ul>
-
-    <h3 style="font-size: 0.95rem; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--color-primary);">Festivos autonómicos de {nombre}</h3>
-    <ul class="festivos-list">
-      {festivos.filter(f => !soloNacionales.festivosEnRango.some(n => n.fecha === f.fecha)).map(f => (
-        <li>
-          <strong>{new Date(f.fecha + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}</strong>
-          — {f.nombre}
-          {f.nota && <span style="font-size: 0.85rem; color: var(--color-muted);"> ({f.nota})</span>}
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <section style="margin-bottom: 2rem;">
-    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">¿Qué son los días laborables y hábiles?</h2>
-    <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">
-      <strong>Día laborable</strong> = lunes a viernes que no es festivo.
-    </p>
-    <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">
-      <strong>Día hábil</strong> = lunes a viernes que no es festivo <strong>+ sábados no festivos</strong>.
-    </p>
-    <p style="font-size: 0.85rem; color: var(--color-muted);">
-      En plazos administrativos se cuentan días hábiles (incluyendo sábados) salvo que la norma diga expresamente "laborables".
-      <a href="/dias-habiles" style="color: var(--color-primary);">Más información →</a>
-    </p>
-  </section>
-
-  <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1.5rem; text-align: center;">
-    <p style="margin-bottom: 0.75rem;">¿Necesitas calcular días laborables en otra comunidad?</p>
-    <a href="/" style="color: var(--color-primary); font-weight: 600;">Ver todas las comunidades y ciudades →</a>
-  </div>
-
-  <footer>
-    <p>diashabiles.es — Festivos nacionales y autonómicos 2027 (provisionales)</p>
   </footer>
-
-  <style>
-    .summary {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      text-align: center;
-    }
-    .summary-item .number {
-      display: block;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--color-primary);
-    }
-    .summary-item .label {
-      font-size: 0.8rem;
-      color: var(--color-muted);
-    }
-    .festivos-list {
-      list-style: none;
-      padding: 0;
-      font-size: 0.9rem;
-    }
-    .festivos-list li {
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--color-border);
-    }
-    .festivos-list li:last-child {
-      border-bottom: none;
-    }
-    .cta {
-      display: inline-block;
-      background: var(--color-primary);
-      color: #fff;
-      padding: 0.6rem 1.2rem;
-      border-radius: var(--radius);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: background 0.2s;
-    }
-    .cta:hover {
-      background: var(--color-primary-hover);
-    }
-    @media (max-width: 480px) {
-      .summary-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </Layout>

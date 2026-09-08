@@ -70,382 +70,1092 @@ import { COMUNIDADES } from '../lib/calculadora';
     </script>
   </Fragment>
 
-  <header>
-    <h1>Calculadora de días laborables 2027</h1>
-    <p>Sabemos cuántos días trabajas. Incluye festivos nacionales y de tu comunidad.</p>
+  <!-- ===================== FIXED HEADER ===================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-16 max-w-[72rem] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md">
+      <div class="flex items-center gap-space-sm shrink-0">
+        <span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">diashabiles<span class="text-primary">.es</span></span>
+        <span class="hidden xl:inline-flex items-center px-space-xs py-space-2xs rounded-full bg-status-warning-bg text-status-warning-text font-label-sm text-label-sm font-semibold border border-status-warning/30">Calendario BOE 2027 Provisionales</span>
+      </div>
+      <nav class="hidden lg:flex items-center gap-space-md">
+        <a class="transition-colors bg-primary-container text-on-primary font-bold rounded-lg px-space-sm py-space-xs" href="#calculadora">Calculadora</a>
+        <a class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" href="#habiles-vs-laborables">Días Hábiles vs Laborables</a>
+        <a class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" href="#festivos-2027-ccaa">Festivos 2027 por CCAA</a>
+        <a class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" href="#guia-legal">Guía Legal &amp; Plazos</a>
+      </nav>
+      <div class="flex items-center gap-space-sm">
+        <a href="https://boe.es" target="_blank" rel="noopener" class="hidden md:inline-flex px-space-sm py-space-xs rounded-lg bg-surface-container border border-border-subtle text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+          Consultar BOE
+        </a>
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-surface-container transition-colors" aria-label="Menú">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <div class="provisional">
-    ⚠️ <strong>Datos provisionales.</strong> El BOE de festivos 2027 se publica en octubre. Los festivos autonómicos son orientativos hasta entonces.
-  </div>
+  <!-- Spacer for fixed header -->
+  <div class="h-16"></div>
 
-  <div class="calculator">
-    <form id="calc-form">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="inicio">Fecha inicio</label>
-          <input type="date" id="inicio" name="inicio" value="2027-01-01" required />
+  <main>
+    <!-- ===================== HERO + CALCULATOR ===================== -->
+    <section class="relative w-full overflow-hidden pb-space-2xl pt-space-md" id="calculadora">
+      <!-- Ambient background gradients -->
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[58rem] h-[28rem] bg-gradient-to-b from-surface-container/60 via-surface-container-low/40 to-transparent rounded-full blur-3xl pointer-events-none -z-10"></div>
+      <div class="absolute top-48 -right-32 w-80 h-80 bg-primary-fixed/20 rounded-full blur-2xl pointer-events-none -z-10"></div>
+
+      <div class="max-w-[72rem] mx-auto px-gutter-desktop">
+        <!-- Provisional Alert -->
+        <div class="mb-space-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm p-space-sm sm:px-space-md bg-status-warning-bg/60 border border-status-warning/40 rounded-xl shadow-sm text-status-warning-text">
+          <div class="flex items-center gap-space-sm">
+            <div class="w-8 h-8 rounded-lg bg-status-warning/20 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-status-warning-text text-[20px]">warning</span>
+            </div>
+            <p class="font-body-sm text-body-sm font-medium">
+              <strong class="font-bold">Datos provisionales 2027:</strong> El calendario del BOE de festivos 2027 se publica en octubre. Los festivos autonómicos se actualizan en tiempo real conforme aparezcan en los respectivos boletines oficiales.
+            </p>
+          </div>
+          <a class="shrink-0 inline-flex items-center gap-1 font-label-sm text-label-sm font-semibold underline hover:opacity-80 transition-opacity" href="#referencias-legales">
+            Ver base normativa <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </a>
         </div>
-        <div class="form-group">
-          <label for="fin">Fecha fin</label>
-          <input type="date" id="fin" name="fin" value="2027-12-31" required />
+
+        <!-- Hero Typography -->
+        <div class="max-w-3xl mb-space-xl">
+          <div class="inline-flex items-center gap-space-xs px-space-sm py-space-2xs rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold mb-space-sm">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            Cómputo Certificado conforme a Ley 39/2015 LPACAP
+          </div>
+          <h1 class="text-display-hero-mobile md:text-display-hero text-on-surface tracking-tight">
+            Calculadora de días laborables y hábiles <span class="text-primary">2027</span>
+          </h1>
+          <p class="mt-space-xs font-body-lg text-body-lg text-on-surface-variant text-balance">
+            Sabemos cuántos días trabajas y calculamos tus plazos administrativos con exactitud jurídica. Incluye festivos nacionales y autonómicos de las 17 Comunidades y 2 Ciudades Autónomas de España.
+          </p>
+        </div>
+
+        <!-- Interactive Calculator -->
+        <div class="bg-surface-card rounded-2xl shadow-xl border border-border-subtle p-space-md sm:p-space-xl relative">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-end">
+            <!-- Start Date -->
+            <div class="lg:col-span-4 flex flex-col gap-space-2xs">
+              <div class="flex items-center justify-between">
+                <label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="fecha-inicio">
+                  <span class="material-symbols-outlined text-primary text-[18px]">calendar_today</span>
+                  Fecha de inicio
+                </label>
+                <div class="flex items-center gap-1 text-[11px] text-primary">
+                  <button class="hover:underline font-semibold" id="btn-quick-hoy" type="button">Hoy</button>
+                  <span>·</span>
+                  <button class="hover:underline font-semibold" id="btn-quick-15mar" type="button">15 mar (caso)</button>
+                </div>
+              </div>
+              <input class="w-full h-11 px-space-sm rounded-lg bg-surface-base border border-border-strong text-on-surface font-label-md text-label-md focus:outline-none focus:border-primary focus:bg-surface-card transition-all" id="fecha-inicio" type="date" value="2027-03-15" />
+              <span class="font-caption-legal text-caption-legal text-text-muted">Inicia el cómputo oficial a las 00:00h</span>
+            </div>
+
+            <!-- End Date -->
+            <div class="lg:col-span-4 flex flex-col gap-space-2xs">
+              <div class="flex items-center justify-between">
+                <label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="fecha-fin">
+                  <span class="material-symbols-outlined text-primary text-[18px]">event</span>
+                  Fecha de fin
+                </label>
+                <div class="flex items-center gap-1 text-[11px] text-primary">
+                  <button class="hover:underline font-semibold" id="btn-quick-30apr" type="button">30 abr (caso)</button>
+                  <span>·</span>
+                  <button class="hover:underline font-semibold" id="btn-quick-plus30" type="button">+30 días</button>
+                </div>
+              </div>
+              <input class="w-full h-11 px-space-sm rounded-lg bg-surface-base border border-border-strong text-on-surface font-label-md text-label-md focus:outline-none focus:border-primary focus:bg-surface-card transition-all" id="fecha-fin" type="date" value="2027-04-30" />
+              <span class="font-caption-legal text-caption-legal text-text-muted">Vence el plazo legal a las 23:59h</span>
+            </div>
+
+            <!-- Region Select -->
+            <div class="lg:col-span-4 flex flex-col gap-space-2xs">
+              <label class="font-label-md text-label-md text-on-surface flex items-center gap-1" for="selector-ccaa">
+                <span class="material-symbols-outlined text-primary text-[18px]">location_on</span>
+                Comunidad autónoma / Ciudad
+              </label>
+              <div class="relative">
+                <select class="w-full h-11 px-space-sm pr-10 rounded-lg bg-surface-base border border-border-strong text-on-surface font-label-md text-label-md appearance-none focus:outline-none focus:border-primary focus:bg-surface-card transition-all cursor-pointer" id="selector-ccaa">
+                  <option selected value="madrid">Comunidad de Madrid</option>
+                  <option value="nacional">Solo festivos nacionales</option>
+                  {COMUNIDADES.map(c => (
+                    <option value={c.id}>{c.nombre}</option>
+                  ))}
+                </select>
+                <span class="material-symbols-outlined absolute right-3 top-2.5 text-secondary pointer-events-none text-[20px]">expand_more</span>
+              </div>
+              <span class="font-caption-legal text-caption-legal text-text-muted">Aplica automáticamente festivos autonómicos</span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="lg:col-span-12 pt-space-xs flex flex-wrap items-center justify-between gap-space-sm">
+              <div class="flex items-center gap-space-sm flex-wrap">
+                <span class="font-label-sm text-label-sm text-text-secondary font-semibold">Atajos rápidos:</span>
+                <button class="btn-preset px-space-xs py-1 rounded bg-surface-container text-on-secondary-container hover:bg-surface-container-high text-xs font-medium transition-colors" data-preset="15d" type="button">15 días hábiles</button>
+                <button class="btn-preset px-space-xs py-1 rounded bg-surface-container text-on-secondary-container hover:bg-surface-container-high text-xs font-medium transition-colors" data-preset="20d" type="button">20 días despido (ET)</button>
+                <button class="btn-preset px-space-xs py-1 rounded bg-surface-container text-on-secondary-container hover:bg-surface-container-high text-xs font-medium transition-colors" data-preset="30d" type="button">30 días administrativos</button>
+              </div>
+              <div class="flex items-center gap-space-sm">
+                <button class="px-space-md h-11 rounded-lg border border-border-subtle bg-surface hover:bg-surface-container-low text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1.5" id="btn-limpiar" type="button">
+                  <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+                  Limpiar
+                </button>
+                <button class="px-space-xl h-11 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md shadow-md hover:shadow-lg transition-all flex items-center gap-2" id="btn-calcular" type="button">
+                  <span class="material-symbols-outlined text-[20px]">calculate</span>
+                  Calcular días
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULTS PANEL -->
+        <div class="mt-space-xl pt-space-xs" id="panel-resultados">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs mb-space-md">
+            <div class="flex items-center gap-space-xs">
+              <span class="w-3 h-3 rounded-full bg-tertiary"></span>
+              <h2 class="font-headline-md text-headline-md text-on-surface" id="resultado-header-text">
+                Resultado para Comunidad de Madrid (15 mar 2027 — 30 abr 2027)
+              </h2>
+            </div>
+            <div class="flex items-center gap-space-xs">
+              <button class="px-space-sm py-1.5 rounded-lg bg-surface-card border border-border-subtle text-on-surface-variant hover:text-on-surface text-label-sm font-semibold flex items-center gap-1 shadow-sm transition-colors" id="btn-copiar-resumen" type="button">
+                <span class="material-symbols-outlined text-[16px]">content_copy</span>
+                Copiar informe
+              </button>
+            </div>
+          </div>
+
+          <!-- 3 KPI Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-lg">
+            <!-- Laborables -->
+            <div class="bg-surface-card border border-border-subtle rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+              <div class="flex items-start justify-between">
+                <div>
+                  <span class="font-label-md text-label-md text-text-secondary uppercase tracking-wider block">Días laborables</span>
+                  <span class="font-caption-legal text-caption-legal text-text-muted mt-0.5 block">Lunes a viernes no festivos</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-status-valid-bg text-status-valid-text font-label-sm text-label-sm font-bold inline-flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Laboral / Nómina
+                </span>
+              </div>
+              <div class="my-space-md">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-metric-display-mobile md:text-metric-display text-on-surface tracking-tight font-display" id="kpi-laborables">33</span>
+                  <span class="font-headline-sm text-headline-sm text-text-muted font-normal">jornadas</span>
+                </div>
+              </div>
+              <p class="font-body-sm text-body-sm text-text-secondary">
+                Aplicable para cómputo de contratos de trabajo, turnos laborales, horas de convenio y disfrute de vacaciones.
+              </p>
+            </div>
+
+            <!-- Hábiles -->
+            <div class="bg-surface-card border-2 border-primary-container/40 rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-primary-fixed/30 rounded-bl-full pointer-events-none"></div>
+              <div class="flex items-start justify-between relative z-10">
+                <div>
+                  <span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider block">Días hábiles*</span>
+                  <span class="font-caption-legal text-caption-legal text-text-muted mt-0.5 block">Incluye sábados no festivos</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm font-bold inline-flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px]">gavel</span> Ley 39/2015
+                </span>
+              </div>
+              <div class="my-space-md relative z-10">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-metric-display-mobile md:text-metric-display text-primary tracking-tight font-display" id="kpi-habiles">39</span>
+                  <span class="font-headline-sm text-headline-sm text-primary/70 font-semibold">días hábiles</span>
+                </div>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant relative z-10">
+                Cómputo legal imperativo para plazos de recursos administrativos, solicitudes, oposiciones y requerimientos ante la Administración.
+              </p>
+            </div>
+
+            <!-- Naturales -->
+            <div class="bg-surface-card border border-border-subtle rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+              <div class="flex items-start justify-between">
+                <div>
+                  <span class="font-label-md text-label-md text-text-secondary uppercase tracking-wider block">Días naturales</span>
+                  <span class="font-caption-legal text-caption-legal text-text-muted mt-0.5 block">Días corridos de calendario</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-surface-container text-on-secondary-container font-label-sm text-label-sm font-bold">
+                  Código Civil art. 5
+                </span>
+              </div>
+              <div class="my-space-md">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-metric-display-mobile md:text-metric-display text-on-surface tracking-tight font-display" id="kpi-naturales">47</span>
+                  <span class="font-headline-sm text-headline-sm text-text-muted font-normal">días totales</span>
+                </div>
+              </div>
+              <p class="font-body-sm text-body-sm text-text-secondary">
+                Sin exclusiones. Utilizado en contratos de arrendamiento, plazos mercantiles civiles, prescripciones y fianzas.
+              </p>
+            </div>
+          </div>
+
+          <!-- Festivos en rango -->
+          <div class="bg-surface-container-low rounded-xl p-space-md border border-border-subtle flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+            <div class="flex items-center gap-space-sm">
+              <div class="w-10 h-10 rounded-lg bg-surface-card border border-border-subtle flex items-center justify-center text-primary shrink-0 shadow-sm">
+                <span class="material-symbols-outlined">event_busy</span>
+              </div>
+              <div>
+                <span class="font-label-md text-label-md text-on-surface font-bold" id="festivos-count-label">Festivos oficiales detectados en el rango:</span>
+                <p class="font-caption-legal text-caption-legal text-on-surface-variant">Ambos festivos se descuentan de los días laborables y hábiles.</p>
+              </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-space-xs" id="festivos-tags-container">
+              <!-- Dynamic festivos tags will be inserted here -->
+            </div>
+          </div>
+
+          <div class="mt-space-xs text-right">
+            <p class="font-caption-legal text-caption-legal text-text-muted">
+              * <strong class="text-on-surface-variant">Días hábiles</strong> incluyen sábados no festivos (ámbito administrativo, <a class="text-primary underline" href="#guia-legal">Ley 39/2015 LPACAP</a>). Los días laborables solo cuentan lunes a viernes.
+            </p>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="form-group">
-        <label for="comunidad">Comunidad autónoma / ciudad</label>
-        <select id="comunidad" name="comunidad">
-          <option value="">Solo festivos nacionales</option>
-          {COMUNIDADES.map(c => (
-            <option value={c.id}>{c.nombre}</option>
-          ))}
-        </select>
+    <!-- ===================== HÁBIL VS LABORABLE SECTION ===================== -->
+    <section class="w-full bg-surface-base border-y border-border-subtle py-space-xl" id="habiles-vs-laborables">
+      <div class="max-w-[72rem] mx-auto px-gutter-desktop">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+          <div class="lg:col-span-5">
+            <div class="inline-flex items-center gap-1.5 px-space-xs py-1 rounded-md bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold mb-space-xs">
+              <span class="material-symbols-outlined text-[16px]">balance</span>
+              Criterio Legal Oficial
+            </div>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+              ¿Por qué un día hábil NO es lo mismo que un día laborable?
+            </h2>
+            <p class="mt-space-xs font-body-md text-body-md text-on-surface-variant">
+              En España existen tres formas de contar el tiempo. Una confusión entre cómputo procesal administrativo y cómputo laboral puede causar la inadmisión de un recurso o la caducidad de una acción judicial.
+            </p>
+            <div class="mt-space-md flex items-center gap-space-lg">
+              <div>
+                <span class="block font-headline-sm text-headline-sm font-bold text-on-surface">Ley 39/2015</span>
+                <span class="font-caption-legal text-caption-legal text-text-muted">Art. 30 Administración</span>
+              </div>
+              <div class="h-8 w-[1px] bg-border-strong"></div>
+              <div>
+                <span class="block font-headline-sm text-headline-sm font-bold text-on-surface">Código Civil</span>
+                <span class="font-caption-legal text-caption-legal text-text-muted">Art. 5 Regla general</span>
+              </div>
+              <div class="h-8 w-[1px] bg-border-strong"></div>
+              <div>
+                <span class="block font-headline-sm text-headline-sm font-bold text-on-surface">E.T. Art 59.2</span>
+                <span class="font-caption-legal text-caption-legal text-text-muted">Plazos Jurisdicción Social</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weekly Matrix -->
+          <div class="lg:col-span-7 bg-surface-card rounded-2xl p-space-lg border border-border-subtle shadow-sm">
+            <div class="flex items-center justify-between pb-space-sm border-b border-border-subtle mb-space-md">
+              <span class="font-label-md text-label-md text-on-surface font-bold">Esquema comparativo semanal</span>
+              <span class="font-caption-legal text-caption-legal text-text-muted">Ejemplo semana ordinaria sin festivo</span>
+            </div>
+            <div class="grid grid-cols-7 gap-2 text-center mb-space-md">
+              <div class="flex flex-col">
+                <span class="font-label-sm text-label-sm font-bold text-on-surface">L</span>
+                <div class="mt-1 h-9 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-xs">Laboral</div>
+                <div class="mt-1 h-9 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-xs">Hábil</div>
+                <div class="mt-1 h-9 rounded bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-bold text-xs">Natural</div>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-label-sm text-label-sm font-bold text-on-surface">M</span>
+                <div class="mt-1 h-9 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-xs">Laboral</div>
+                <div class="mt-1 h-9 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-xs">Hábil</div>
+                <div class="mt-1 h-9 rounded bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-bold text-xs">Natural</div>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-label-sm text-label-sm font-bold text-on-surface">X</span>
+                <div class="mt-1 h-9 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-xs">Laboral</div>
+                <div class="mt-1 h-9 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-xs">Hábil</div>
+                <div class="mt-1 h-9 rounded bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-bold text-xs">Natural</div>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-label-sm text-label-sm font-bold text-on-surface">J</span>
+                <div class="mt-1 h-9 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-xs">Laboral</div>
+                <div class="mt-1 h-9 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-xs">Hábil</div>
+                <div class="mt-1 h-9 rounded bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-bold text-xs">Natural</div>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-label-sm text-label-sm font-bold text-on-surface">V</span>
+                <div class="mt-1 h-9 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-xs">Laboral</div>
+                <div class="mt-1 h-9 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-xs">Hábil</div>
+                <div class="mt-1 h-9 rounded bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-bold text-xs">Natural</div>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-label-sm text-label-sm font-bold text-primary">S</span>
+                <div class="mt-1 h-9 rounded bg-surface-container text-text-muted flex items-center justify-center font-bold text-xs line-through">Laboral</div>
+                <div class="mt-1 h-9 rounded bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs ring-2 ring-primary">HÁBIL</div>
+                <div class="mt-1 h-9 rounded bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-bold text-xs">Natural</div>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-label-sm text-label-sm font-bold text-error">D</span>
+                <div class="mt-1 h-9 rounded bg-surface-container text-text-muted flex items-center justify-center font-bold text-xs line-through">Inhábil</div>
+                <div class="mt-1 h-9 rounded bg-error-container text-on-error-container flex items-center justify-center font-bold text-xs">Inhábil</div>
+                <div class="mt-1 h-9 rounded bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-bold text-xs">Natural</div>
+              </div>
+            </div>
+            <div class="bg-surface-base p-space-xs rounded-lg flex items-center justify-between text-xs text-on-surface-variant font-medium">
+              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-primary-container"></span> El sábado suma en plazos de la Administración</span>
+              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-error-container"></span> El domingo nunca es hábil</span>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <button type="submit">Calcular</button>
-    </form>
-  </div>
-
-  <div id="results" class="results hidden">
-    <h2>Resultado para <span id="res-periodo"></span></h2>
-
-    <div class="result-grid">
-      <div class="result-item">
-        <div class="number" id="res-laborables">—</div>
-        <div class="label">Días laborables</div>
+    <!-- ===================== COMPARISON TABLE ===================== -->
+    <section class="w-full py-space-2xl">
+      <div class="max-w-[72rem] mx-auto px-gutter-desktop">
+        <div class="text-center max-w-2xl mx-auto mb-space-xl">
+          <span class="text-primary font-label-md text-label-md font-bold uppercase tracking-wider">Claridad Jurídica</span>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">
+            Tabla comparativa: ¿Qué es un día hábil vs laborable vs natural?
+          </h2>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-2">
+            Comprende al detalle el cómputo exacto con base en el ejemplo canónico del mes de enero de 2027.
+          </p>
+        </div>
+        <div class="overflow-x-auto bg-surface-card rounded-2xl border border-border-subtle shadow-sm">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-surface-container-low border-b border-border-subtle text-on-surface font-label-md text-label-md">
+                <th class="py-space-md px-space-lg font-bold">Concepto</th>
+                <th class="py-space-md px-space-lg font-bold">Días incluidos</th>
+                <th class="py-space-md px-space-lg font-bold">Ámbito de aplicación</th>
+                <th class="py-space-md px-space-lg font-bold text-center">Ejemplo Enero 2027</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-subtle font-body-md text-body-md text-on-surface">
+              <tr class="hover:bg-surface-base transition-colors">
+                <td class="py-space-md px-space-lg">
+                  <div class="flex items-center gap-space-xs">
+                    <span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+                    <div>
+                      <strong class="font-semibold block text-on-surface">Día laborable</strong>
+                      <span class="text-xs text-text-muted">El día de trabajo efectivo</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-space-md px-space-lg text-on-surface-variant">Lunes a viernes que no sea festivo nacional, autonómico o local.</td>
+                <td class="py-space-md px-space-lg">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded bg-status-valid-bg text-status-valid-text text-label-sm font-semibold mr-1">Laboral &amp; RRHH</span>
+                  Convenios colectivos, jornada ordinaria, vacaciones y nómina.
+                </td>
+                <td class="py-space-md px-space-lg text-center">
+                  <span class="font-headline-sm text-headline-sm font-bold text-on-surface">21</span>
+                  <span class="block text-caption-legal text-caption-legal text-text-muted">días laborables</span>
+                </td>
+              </tr>
+              <tr class="bg-primary-fixed/10 hover:bg-primary-fixed/20 transition-colors">
+                <td class="py-space-md px-space-lg">
+                  <div class="flex items-center gap-space-xs">
+                    <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+                    <div>
+                      <strong class="font-semibold block text-primary">Día hábil*</strong>
+                      <span class="text-xs text-primary/80">Plazo administrativo legal</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-space-md px-space-lg font-medium text-on-surface">Lunes a sábado que no sea festivo oficial (se excluyen domingos y festivos).</td>
+                <td class="py-space-md px-space-lg">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded bg-primary-container text-on-primary text-label-sm font-semibold mr-1">Ley 39/2015 LPACAP</span>
+                  Plazos ante Ayuntamientos, Comunidades, Hacienda, Seguridad Social y oposiciones.
+                </td>
+                <td class="py-space-md px-space-lg text-center">
+                  <span class="font-headline-sm text-headline-sm font-bold text-primary">25</span>
+                  <span class="block text-caption-legal text-caption-legal text-primary/70">días hábiles (+4 sábados)</span>
+                </td>
+              </tr>
+              <tr class="hover:bg-surface-base transition-colors">
+                <td class="py-space-md px-space-lg">
+                  <div class="flex items-center gap-space-xs">
+                    <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+                    <div>
+                      <strong class="font-semibold block text-on-surface">Día natural</strong>
+                      <span class="text-xs text-text-muted">Día ordinario de almanaque</span>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-space-md px-space-lg text-on-surface-variant">Todos los días del año sin excepción (365 días).</td>
+                <td class="py-space-md px-space-lg">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-secondary-container text-label-sm font-semibold mr-1">Código Civil art. 5</span>
+                  Contratos de alquiler, preavisos mercantiles, plazos civiles.
+                </td>
+                <td class="py-space-md px-space-lg text-center">
+                  <span class="font-headline-sm text-headline-sm font-bold text-on-surface">31</span>
+                  <span class="block text-caption-legal text-caption-legal text-text-muted">días de calendario</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-space-sm flex items-center justify-between text-caption-legal text-caption-legal text-text-muted">
+          <span>* En enero 2027 hay 21 días laborables pero 25 días hábiles, porque los 4 sábados no coinciden con ningún festivo.</span>
+          <span>Referencia: Art. 30.2 Ley 39/2015</span>
+        </div>
       </div>
-      <div class="result-item">
-        <div class="number" id="res-habiles">—</div>
-        <div class="label">Días hábiles*</div>
+    </section>
+
+    <!-- ===================== FESTIVOS BY COMMUNITY ===================== -->
+    <section class="w-full bg-surface-container-low py-space-2xl" id="festivos-2027-ccaa">
+      <div class="max-w-[72rem] mx-auto px-gutter-desktop">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-sm">
+          <div>
+            <span class="text-primary font-label-md text-label-md font-bold uppercase tracking-wider">Cobertura Autonómica</span>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">
+              Festivos por comunidad y ciudad autónoma 2027
+            </h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+              Consulta los festivos autonómicos oficiales de cada región española para planificar tus vacaciones y plazos:
+            </p>
+          </div>
+          <span class="shrink-0 px-space-sm py-1 rounded-full bg-surface-card border border-border-subtle text-on-surface-variant text-label-sm font-semibold">
+            {COMUNIDADES.length} calendarios disponibles
+          </span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-space-md">
+          {COMUNIDADES.map(c => {
+            const siglas: Record<string, string> = {
+              andalucia: 'AN', aragon: 'AR', asturias: 'AS', baleares: 'IB', canarias: 'CN',
+              cantabria: 'CB', castillaleon: 'CL', castillamancha: 'CM', cataluna: 'CT',
+              ceuta: 'CE', extremadura: 'EX', galicia: 'GA', madrid: 'MD', melilla: 'ML',
+              murcia: 'MC', navarra: 'NC', paisvasco: 'PV', larioja: 'LR', valencia: 'VC',
+              nacional: 'NA', nacional_nodisponible: 'NA'
+            };
+            const sigla = siglas[c.id] || c.id.slice(0,2).toUpperCase();
+            return (
+              <a class="group bg-surface-card p-space-md rounded-xl border border-border-subtle hover:border-primary transition-all hover:shadow-md flex flex-col justify-between"
+                 href={`/comunidad/${c.id}`}>
+                <div class="flex items-center justify-between mb-space-sm">
+                  <span class="w-7 h-7 rounded-md bg-surface-container flex items-center justify-center font-bold text-xs text-primary">{sigla}</span>
+                  <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-status-valid-bg text-status-valid-text">Festivos</span>
+                </div>
+                <h3 class="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary transition-colors">{c.nombre}</h3>
+                <div class="mt-space-sm pt-space-xs border-t border-border-subtle flex items-center justify-between text-xs font-semibold text-primary">
+                  <span>Ver calendario</span>
+                  <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
       </div>
-      <div class="result-item">
-        <div class="number" id="res-calendario">—</div>
-        <div class="label">Días de calendario</div>
+    </section>
+
+    <!-- ===================== LEGAL GUIDE ===================== -->
+    <section class="w-full py-space-3xl" id="guia-legal">
+      <div class="max-w-[72rem] mx-auto px-gutter-desktop">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl">
+          <!-- Main 8-col editorial -->
+          <div class="lg:col-span-8 flex flex-col gap-space-xl">
+            <div>
+              <span class="text-primary font-label-md text-label-md font-bold uppercase tracking-wider">Manual de Cómputo 2027</span>
+              <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">
+                Guía completa: días laborables, días hábiles y días naturales en España
+              </h2>
+              <p class="font-body-lg text-body-lg text-on-surface-variant mt-space-sm leading-relaxed">
+                Si has llegado hasta aquí probablemente tengas un plazo administrativo que cumplir, un contrato mercantil que redactar o una nómina que revisar. En cualquiera de esos escenarios, la diferencia entre un día laborable, un día hábil y un día natural puede suponer perder o ganar semanas. Vamos a aclarar los conceptos de una vez por todas, con ejemplos reales y las referencias legales de rigor.
+              </p>
+            </div>
+
+            <!-- Concept 1: Día laborable -->
+            <div class="bg-surface-card p-space-lg rounded-xl border border-border-subtle shadow-sm">
+              <h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs flex items-center gap-2">
+                <span class="w-7 h-7 rounded-full bg-status-valid-bg text-status-valid-text flex items-center justify-center text-xs font-bold">1</span>
+                Día laborable: lunes a viernes sin festivos
+              </h3>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Un <strong class="text-on-surface font-semibold">día laborable</strong> es cualquier día de la semana entre lunes y viernes que no coincida con un festivo oficial. Es el concepto que la mayoría de los ciudadanos maneja en su vida cotidiana: los días en los que se acude a la empresa, operan las entidades financieras y las oficinas de atención prestan servicio presencial.
+              </p>
+              <p class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+                En el ámbito laboral español, la jornada se estructura estrictamente sobre esta base. Los convenios colectivos, los contratos y el devengo salarial se calculan excluyendo fines de semana íntegros. Si tu contrato establece 30 días naturales de vacaciones, la empresa comúnmente los convierte a <strong class="text-on-surface">22 días laborables</strong> para planificar las ausencias de la plantilla sin alterar la producción.
+              </p>
+            </div>
+
+            <!-- Concept 2: Día hábil -->
+            <div class="bg-surface-card p-space-lg rounded-xl border-l-4 border-primary shadow-sm">
+              <h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs flex items-center gap-2">
+                <span class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-xs font-bold">2</span>
+                Día hábil: incluye sábados (y los plazos administrativos lo exigen)
+              </h3>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Aquí es donde la mayoría comete costosos errores procesales. Un <strong class="text-on-surface font-semibold">día hábil</strong> en el ámbito de las Administraciones Públicas incluye todos los días de lunes a sábado que no sean festivos. Sí: los sábados cuentan.
+              </p>
+              <div class="mt-space-sm p-space-sm bg-surface-container rounded-lg font-body-sm text-body-sm text-on-surface-variant border-l-2 border-primary">
+                <span class="font-bold text-on-surface">Artículo 30 Ley 39/2015 LPACAP:</span> «Siempre que por Ley o en el Derecho de la Unión Europea no se exprese otro cómputo, cuando los plazos se señalen por días, se entiende que éstos son hábiles, excluyéndose del cómputo los sábados, los domingos y los declarados festivos.»
+              </div>
+              <p class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+                En la práctica administrativa, si tienes 30 días hábiles para subsanar un requerimiento o presentar un recurso, cada sábado no festivo computará, acortando sensiblemente el plazo de calendario frente a quien piensa erróneamente en semanas laborales.
+              </p>
+            </div>
+
+            <!-- Concept 3: Día natural -->
+            <div class="bg-surface-card p-space-lg rounded-xl border border-border-subtle shadow-sm">
+              <h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs flex items-center gap-2">
+                <span class="w-7 h-7 rounded-full bg-secondary-container text-on-secondary-fixed flex items-center justify-center text-xs font-bold">3</span>
+                Día natural: el calendario no perdona
+              </h3>
+              <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Un <strong class="text-on-surface font-semibold">día natural</strong> es simplemente un día corrido del calendario gregoriano, sin importar si es festivo, sábado o domingo. El <strong class="text-on-surface">artículo 5 del Código Civil</strong> establece con meridiana claridad que <em class="text-text-secondary">«cuando los plazos se cuentan por días, se entiende que éstos son naturales»</em>, salvo que expresamente la ley o el contrato dispongan lo contrario.
+              </p>
+              <p class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
+                Si suscribes un contrato de alquiler de vivienda habitual con una cláusula de preaviso de 30 días, son 30 días continuos. El reloj de la notificación corre incluso en festivos nacionales señalados como Navidad o Viernes Santo.
+              </p>
+            </div>
+
+            <!-- Paso a paso -->
+            <div class="bg-surface-container-low p-space-lg rounded-xl border border-border-subtle">
+              <h3 class="font-headline-md text-headline-md text-on-surface mb-space-sm">
+                Cómo calcular los días laborables entre dos fechas: paso a paso
+              </h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+                Calcular días no es un mero ejercicio aritmético de contar lunes a viernes. Para obtener un informe jurídico indubitado se debe aplicar este algoritmo:
+              </p>
+              <div class="space-y-space-sm">
+                <div class="flex items-start gap-space-sm bg-surface-card p-space-sm rounded-lg border border-border-subtle">
+                  <span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
+                  <div>
+                    <strong class="font-semibold text-on-surface block text-sm">Define las fechas de inicio y fin</strong>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">El día inicial se incluye en el cómputo salvo que sea plazo de notificación; el día de término se incluye íntegro hasta las 23:59h.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-space-sm bg-surface-card p-space-sm rounded-lg border border-border-subtle">
+                  <span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
+                  <div>
+                    <strong class="font-semibold text-on-surface block text-sm">Identifica los días de la semana</strong>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Los domingos nunca son hábiles. Los sábados son hábiles para plazos administrativos (Ley 39/2015) pero inhábiles para la jornada laboral típica.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-space-sm bg-surface-card p-space-sm rounded-lg border border-border-subtle">
+                  <span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
+                  <div>
+                    <strong class="font-semibold text-on-surface block text-sm">Descuenta los festivos nacionales</strong>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Los días fijados en la resolución de la Dirección General de Trabajo publicados anualmente en el BOE. No cuentan ni como laborables ni como hábiles.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-space-sm bg-surface-card p-space-sm rounded-lg border border-border-subtle">
+                  <span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">4</span>
+                  <div>
+                    <strong class="font-semibold text-on-surface block text-sm">Descuenta los festivos autonómicos</strong>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Cada una de las 17 Comunidades Autónomas y las 2 Ciudades Autónomas escoge hasta 4 festivos específicos de su territorio.</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-space-sm bg-surface-card p-space-sm rounded-lg border border-border-subtle">
+                  <span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">5</span>
+                  <div>
+                    <strong class="font-semibold text-on-surface block text-sm">Comprueba los festivos locales</strong>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Los 2 días asignados a cada ayuntamiento (publicados en los boletines provinciales como BOP).</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-space-sm bg-surface-card p-space-sm rounded-lg border border-border-subtle">
+                  <span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">6</span>
+                  <div>
+                    <strong class="font-semibold text-on-surface block text-sm">Realiza el cómputo final diferenciado</strong>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Obtén la triple cifra: días naturales (brutos), días hábiles administrativos (con sábados) y días netamente laborables de jornada.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 Practical Examples -->
+            <div>
+              <h3 class="font-headline-md text-headline-md text-on-surface mb-space-sm">
+                Ejemplos prácticos con fechas reales de 2027
+              </h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+                Analicemos tres supuestos concretos que afrontan letrados, departamentos de recursos humanos y ciudadanos:
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+                <!-- Case 1 -->
+                <div class="bg-surface-card p-space-md rounded-xl border border-border-subtle shadow-sm flex flex-col justify-between">
+                  <div>
+                    <div class="w-8 h-8 rounded-lg bg-primary-fixed flex items-center justify-center text-primary mb-space-xs font-bold text-xs">CASO 1</div>
+                    <h4 class="font-label-md text-label-md text-on-surface font-bold">Plazo administrativo en Madrid (15 mar — 30 abr 2027)</h4>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                      Plazo de 30 días hábiles ante el Ayuntamiento de Madrid empezando el lunes 15 de marzo de 2027. En este rango coinciden Jueves y Viernes Santo.
+                    </p>
+                  </div>
+                  <div class="mt-space-md pt-space-xs border-t border-border-subtle">
+                    <span class="block text-xs font-bold text-primary">Diferencia crítica: 9 días</span>
+                    <p class="text-caption-legal text-text-muted mt-0.5">Al contar sábados el plazo vence hacia el 26 de abril. Sin sábados se iría al 5 de mayo.</p>
+                  </div>
+                </div>
+                <!-- Case 2 -->
+                <div class="bg-surface-card p-space-md rounded-xl border border-border-subtle shadow-sm flex flex-col justify-between">
+                  <div>
+                    <div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-on-secondary-fixed font-bold text-xs mb-space-xs">CASO 2</div>
+                    <h4 class="font-label-md text-label-md text-on-surface font-bold">Contrato de trabajo y vacaciones (Junio 2027)</h4>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                      Contrato laboral con derecho a 22 días laborables. Junio de 2027 tiene exactamente 22 días laborables ordinarios.
+                    </p>
+                  </div>
+                  <div class="mt-space-md pt-space-xs border-t border-border-subtle">
+                    <span class="block text-xs font-bold text-tertiary">Impacto del festivo local</span>
+                    <p class="text-caption-legal text-text-muted mt-0.5">Si la localidad festeja San Juan o Corpus en junio, los laborables bajan a 21.</p>
+                  </div>
+                </div>
+                <!-- Case 3 -->
+                <div class="bg-surface-card p-space-md rounded-xl border border-border-subtle shadow-sm flex flex-col justify-between">
+                  <div>
+                    <div class="w-8 h-8 rounded-lg bg-error-container flex items-center justify-center text-on-error-container font-bold text-xs mb-space-xs">CASO 3</div>
+                    <h4 class="font-label-md text-label-md text-on-surface font-bold">Impugnación de despido (Diciembre 2027)</h4>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+                      Carta de despido entregada el 10 de diciembre de 2027. Plazo legal: 20 días hábiles (art. 59.2 ET).
+                    </p>
+                  </div>
+                  <div class="mt-space-md pt-space-xs border-t border-border-subtle">
+                    <span class="block text-xs font-bold text-error">Puente de la Constitución</span>
+                    <p class="text-caption-legal text-text-muted mt-0.5">El cómputo excluye festivos nacionales como el 25 de diciembre extendiendo el plazo hasta enero 2028.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Why it matters -->
+            <div class="bg-surface-card p-space-lg rounded-xl border border-border-subtle shadow-sm">
+              <h3 class="font-headline-md text-headline-md text-on-surface mb-space-sm">
+                ¿Por qué importa tanto esta distinción en el día a día?
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md font-body-sm text-body-sm text-on-surface-variant">
+                <div>
+                  <strong class="font-bold text-on-surface block text-base mb-1">🏛️ Plazos administrativos</strong>
+                  <p>Presentar un recurso de alzada o una solicitud un solo día después significa la pérdida irrevocable del derecho o la sanción en firme.</p>
+                </div>
+                <div>
+                  <strong class="font-bold text-on-surface block text-base mb-1">📄 Contratos y obligaciones civiles</strong>
+                  <p>Si firmas la opción de compra de un inmueble o un contrato de arras con plazo de 60 días, son naturales. Los bancos no abrirán sábados pero tu plazo seguirá corriendo.</p>
+                </div>
+                <div>
+                  <strong class="font-bold text-on-surface block text-base mb-1">👥 Recursos Humanos y nóminas</strong>
+                  <p>El cómputo de horas mensuales y el devengo salarial dependen de los días laborables efectivos. Un error distorsiona el abono de pluses.</p>
+                </div>
+                <div>
+                  <strong class="font-bold text-on-surface block text-base mb-1">📊 Gestión ágil de proyectos</strong>
+                  <p>Los sprint burndown charts y el capacity planning fracasan si se programan días de sprint sobre semanas que incluyen festivos imprevistos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4-col sidebar -->
+          <div class="lg:col-span-4 flex flex-col gap-space-lg">
+            <!-- Legal References -->
+            <div class="bg-surface-card p-space-lg rounded-xl border border-border-subtle shadow-sm" id="referencias-legales">
+              <div class="flex items-center gap-2 mb-space-sm">
+                <span class="material-symbols-outlined text-primary text-[22px]">verified_user</span>
+                <h4 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Referencias Legales</h4>
+              </div>
+              <p class="font-caption-legal text-caption-legal text-text-muted mb-space-sm">Normativa oficial consolidada:</p>
+              <ul class="space-y-space-sm font-body-sm text-body-sm">
+                <li class="p-space-xs rounded bg-surface-base border border-border-subtle">
+                  <strong class="text-on-surface block font-semibold">Ley 39/2015, de 1 de octubre</strong>
+                  <span class="text-xs text-text-secondary">Procedimiento Administrativo Común (art. 30).</span>
+                </li>
+                <li class="p-space-xs rounded bg-surface-base border border-border-subtle">
+                  <strong class="text-on-surface block font-semibold">Artículo 5 del Código Civil</strong>
+                  <span class="text-xs text-text-secondary">Presunción iuris tantum de días naturales.</span>
+                </li>
+                <li class="p-space-xs rounded bg-surface-base border border-border-subtle">
+                  <strong class="text-on-surface block font-semibold">Real Decreto 2001/2015</strong>
+                  <span class="text-xs text-text-secondary">Normas reglamentarias sobre sedes electrónicas.</span>
+                </li>
+                <li class="p-space-xs rounded bg-surface-base border border-border-subtle">
+                  <strong class="text-on-surface block font-semibold">Estatuto de los Trabajadores (art. 59.2)</strong>
+                  <span class="text-xs text-text-secondary">Cómputo hábil para demandas por despido.</span>
+                </li>
+                <li class="p-space-xs rounded bg-surface-base border border-border-subtle">
+                  <strong class="text-on-surface block font-semibold">Resolución Anual del BOE</strong>
+                  <span class="text-xs text-text-secondary">Publicación de fiestas laborales nacionales y autonómicas.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Quick Stat Card -->
+            <div class="bg-gradient-to-br from-primary to-primary-container p-space-lg rounded-xl text-on-primary shadow-md">
+              <span class="text-xs uppercase font-bold text-on-primary-container tracking-wider block mb-1">Resumen del Año</span>
+              <h4 class="font-headline-md text-headline-md font-bold mb-space-xs text-white">Año Laboral 2027</h4>
+              <div class="flex items-baseline gap-2 mb-space-sm">
+                <span class="text-metric-display-mobile md:text-metric-display font-extrabold text-white font-display">~252</span>
+                <span class="text-on-primary-container font-semibold">días laborables medios</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-primary-container mb-space-md">
+                En España se trabajan de media unas 1.764 horas anuales, repartidas en 252 jornadas hábiles laborales.
+              </p>
+              <a class="inline-flex w-full items-center justify-center py-2.5 px-space-sm rounded-lg bg-surface-card text-primary font-label-md text-label-md font-bold hover:bg-surface-bright transition-colors shadow-sm" href="#calculadora">
+                Personalizar para mi comunidad
+              </a>
+            </div>
+
+            <!-- API Card -->
+            <div class="bg-surface-card p-space-md rounded-xl border border-border-subtle shadow-sm">
+              <div class="flex items-center gap-space-xs mb-space-xs">
+                <span class="material-symbols-outlined text-primary text-[20px]">code</span>
+                <h4 class="font-label-md text-label-md font-bold text-on-surface">API Festivos 2027</h4>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+                Integra el cálculo de plazos en tu ERP, CRM o software legal con nuestra API REST pública JSON.
+              </p>
+              <code class="block bg-surface-base text-text-primary p-2 rounded border border-border-subtle text-xs font-mono mb-space-xs overflow-x-auto">
+                GET /api/2027/nacional.json
+              </code>
+              <a class="text-primary font-label-sm text-label-sm font-semibold hover:underline inline-flex items-center gap-1" href="#">
+                Consultar documentación <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="w-full bg-surface-base py-space-2xl border-t border-border-subtle">
+      <div class="max-w-4xl mx-auto px-gutter-desktop">
+        <div class="text-center mb-space-xl">
+          <span class="text-primary font-label-md text-label-md font-bold uppercase tracking-wider">Resolución de Dudas</span>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">
+            Preguntas frecuentes sobre días laborables y hábiles 2027
+          </h2>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Respuestas técnicas a las preguntas más habituales formuladas por empresas y particulares.
+          </p>
+        </div>
+
+        <div class="space-y-space-sm">
+          <!-- Q1 -->
+          <div class="faq-item bg-surface-card rounded-xl border border-border-subtle shadow-2xs overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-space-md text-left flex items-center justify-between gap-space-sm font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors focus:outline-none" type="button">
+              <span>¿Cuántos días laborables hay en 2027?</span>
+              <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-content hidden px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+              En 2027 hay aproximadamente <strong class="text-on-surface">252 días laborables</strong> en España (lunes a viernes que no coinciden con días festivos). El número exacto oscila entre 250 y 253 días según la Comunidad Autónoma y la localidad concreta.
+            </div>
+          </div>
+          <!-- Q2 -->
+          <div class="faq-item bg-surface-card rounded-xl border border-border-subtle shadow-2xs overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-space-md text-left flex items-center justify-between gap-space-sm font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors focus:outline-none" type="button">
+              <span>¿Cuál es la diferencia exacta entre día hábil y laborable?</span>
+              <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-content hidden px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+              Un <strong class="text-on-surface">día laborable</strong> comprende exclusivamente de lunes a viernes que no sea fiesta oficial. Un <strong class="text-on-surface">día hábil</strong> en el procedimiento administrativo común (Ley 39/2015) incluye además los sábados no festivos.
+            </div>
+          </div>
+          <!-- Q3 -->
+          <div class="faq-item bg-surface-card rounded-xl border border-border-subtle shadow-2xs overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-space-md text-left flex items-center justify-between gap-space-sm font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors focus:outline-none" type="button">
+              <span>¿Cómo se calculan los días laborables entre dos fechas?</span>
+              <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-content hidden px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+              Selecciona la fecha inicial y la fecha final en la calculadora interactiva, indica tu Comunidad Autónoma y el motor calculará automáticamente la suma descontando fines de semana e intercalando los festivos vigentes.
+            </div>
+          </div>
+          <!-- Q4 -->
+          <div class="faq-item bg-surface-card rounded-xl border border-border-subtle shadow-2xs overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-space-md text-left flex items-center justify-between gap-space-sm font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors focus:outline-none" type="button">
+              <span>¿Los sábados cuentan como días laborables?</span>
+              <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-content hidden px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+              No, en el derecho laboral estándar los sábados no cuentan como días laborables. Sin embargo, en el ámbito procesal y administrativo (Ley 39/2015), los sábados sí computan como días hábiles si no son festivos oficiales.
+            </div>
+          </div>
+          <!-- Q5 -->
+          <div class="faq-item bg-surface-card rounded-xl border border-border-subtle shadow-2xs overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-space-md text-left flex items-center justify-between gap-space-sm font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors focus:outline-none" type="button">
+              <span>¿Cuándo se publican los festivos oficiales de 2027 en el BOE?</span>
+              <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-content hidden px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+              El calendario laboral nacional suele publicarse formalmente en el BOE a lo largo del mes de octubre anterior al año de vigencia. Las Comunidades Autónomas publican sus elecciones de festivos entre junio y septiembre.
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust Signoff -->
+        <div class="mt-space-xl p-space-md bg-surface-card rounded-xl border border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left">
+          <div class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-tertiary text-[24px]">verified</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">¿Tienes una duda sobre un cómputo legal complejo o necesitas soporte para expedientes?</span>
+          </div>
+          <a class="text-primary font-label-md text-label-md font-semibold hover:underline shrink-0" href="#calculadora">
+            Volver a la calculadora ↑
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="w-full bg-surface-container-low mt-space-3xl py-space-2xl">
+    <div class="max-w-[72rem] mx-auto px-gutter-desktop">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl pb-space-2xl">
+        <!-- Brand -->
+        <div class="lg:col-span-2 flex flex-col gap-space-sm pr-space-md">
+          <div class="flex items-center gap-space-xs">
+            <span class="font-headline-sm text-headline-sm font-bold text-on-surface">diashabiles<span class="text-primary">.es</span></span>
+            <span class="px-space-xs py-space-2xs rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm font-semibold">Edición 2027</span>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">
+            Plataforma institucional de referencia para el cómputo seguro de plazos administrativos, procesales y laborales conforme a la Ley 39/2015 (LPACAP).
+          </p>
+          <div class="flex items-center gap-space-xs pt-space-xs">
+            <span class="material-symbols-outlined text-tertiary text-[20px]">verified</span>
+            <span class="font-label-sm text-label-sm font-semibold text-tertiary">Validación algorítmica con cotejo de boletines oficiales</span>
+          </div>
+        </div>
+        <!-- Tools -->
+        <div class="flex flex-col gap-space-xs">
+          <span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold mb-space-xs">Herramientas</span>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#calculadora">Calculadora de plazos</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#festivos-2027-ccaa">Festivos por CCAA</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#habiles-vs-laborables">Días naturales</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#guia-legal">Guía legal</a>
+        </div>
+        <!-- Legal -->
+        <div class="flex flex-col gap-space-xs">
+          <span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold mb-space-xs">Legal</span>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#referencias-legales">Referencias normativas</a>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Aviso legal</span>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">Política de privacidad</span>
+        </div>
+        <!-- Resources -->
+        <div class="flex flex-col gap-space-xs">
+          <span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold mb-space-xs">Recursos</span>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="https://boe.es" target="_blank" rel="noopener">Portal BOE</a>
+          <span class="font-body-sm text-body-sm text-on-surface-variant">API de festivos</span>
+        </div>
+      </div>
+      <div class="border-t border-border-subtle pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-sm">
+        <p class="font-caption-legal text-caption-legal text-text-muted">
+          © 2027 diashabiles.es — Plataforma de referencia para el cómputo de plazos laborales y administrativos en España.
+        </p>
+        <p class="font-caption-legal text-caption-legal text-text-muted">
+          Los datos de festivos son provisionales hasta la publicación oficial en el BOE.
+        </p>
       </div>
     </div>
-
-    <div id="festivos-rango" class="festivos-list hidden">
-      <h3>Festivos en el rango seleccionado</h3>
-      <ul id="festivos-ul"></ul>
-    </div>
-
-    <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--color-muted);">
-      * <strong>Días hábiles</strong> incluyen sábados no festivos (ámbito administrativo, 
-      <a href="/dias-habiles/" style="color: var(--color-primary);">Ley 39/2015</a>).
-      Los días laborables solo cuentan lunes a viernes.
-    </p>
-  </div>
-
-  <section style="margin-top: 2rem;">
-    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Festivos por comunidad y ciudad autónoma</h2>
-    <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 1rem;">
-      Consulta los festivos autonómicos de cada comunidad para 2027:
-    </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem;">
-      {COMUNIDADES.map(c => (
-        <a href={`/comunidad/${c.id}`} style="display: block; padding: 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); text-decoration: none; color: var(--color-text); font-weight: 500; transition: border-color 0.2s;">
-          {c.nombre}
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section style="margin-top: 2rem;">
-    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">¿Qué es un día hábil vs laborable?</h2>
-    <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 0.5rem;">
-      <strong>Día laborable</strong>: lunes a viernes que no es festivo. Es lo que la mayoría de gente entiende por "día de trabajo".
-    </p>
-    <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 0.5rem;">
-      <strong>Día hábil</strong>: incluye además los sábados no festivos. En el ámbito administrativo (plazos de la Ley 39/2015), 
-      los sábados cuentan como días hábiles salvo que sean festivos.
-    </p>
-    <p style="font-size: 0.9rem; color: var(--color-muted);">
-      Ejemplo concreto: en enero 2027 hay 21 días laborables pero 25 días hábiles, porque los 4 sábados no son festivos.
-    </p>
-  </section>
-
-  <section style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
-    <h2 style="font-size: 1.25rem; margin-bottom: 1rem;">Guía completa: días laborables, días hábiles y días naturales en España</h2>
-
-    <p style="font-size: 0.95rem; color: var(--color-text); margin-bottom: 1.25rem; line-height: 1.7;">
-      Si has llegado hasta aquí probablemente tengas un plazo que cumplir, un contrato que redactar o una nómina que revisar. En cualquiera de esos escenarios, la diferencia entre un día laborable, un día hábil y un día natural puede suponer perder o ganar semanas. Vamos a aclarar los conceptos de una vez por todas, con ejemplos reales y las referencias legales de rigor.
-    </p>
-
-    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">Día laborable: lunes a viernes sin festivos</h3>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
-      Un <strong>día laborable</strong> es, en términos sencillos, cualquier día de la semana entre lunes y viernes que no coincida con un festivo. Es el concepto que la mayoría de la gente maneja en su vida cotidiana: los días en los que se va a trabajar, se abren los bancos y las oficinas públicas atienden al público.
-    </p>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
-      En el ámbito laboral español, la jornada laboral se estructura sobre esta base. Los convenios colectivos, los contratos de trabajo y las nóminas se calculan pensando en días laborables. Por ejemplo, si tu contrato establece 30 días naturales de vacaciones, la empresa los convierte en días laborables para planificar tu ausencia.
-    </p>
-
-    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">Día hábil: incluye sábados (y los plazos administrativos lo exigen)</h3>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
-      Aquí es donde la mayoría comete errores. Un <strong>día hábil</strong> incluye todos los días de lunes a sábado que no sean festivos. Sí, has leído bien: los sábados cuentan. Esto no es una opinión, es la ley. La <strong>Ley 39/2015, de 1 de octubre</strong>, del Procedimiento Administrativo Común de las Administraciones Públicas, establece en su artículo 30 que los plazos se expresan en días hábiles, y que <em>se excluyen del cómputo los sábados</em> <strong>solo cuando sean festivos</strong>.
-    </p>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
-      En la práctica, esto significa que si tienes 30 días hábiles para presentar una alegación ante una administración, ese plazo incluye sábados. Si el plazo empieza un lunes, el primer sábado ya suma. Esta distinción es la que separa a quien cumple los plazos de quien los pierde por un error interpretativo.
-    </p>
-
-    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">Día natural: el calendario no perdona</h3>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
-      Un <strong>día natural</strong> es simplemente un día del calendario, sin importar si es festivo, sábado o domingo. El <strong>artículo 5 del Código Civil</strong> establece que <em>«cuando los plazos se cuentan por días, se entiende que éstos son naturales»</em>, salvo disposición expresa en contrario. Es decir, si un contrato dice «plazo de 15 días» sin más precisiones, son 15 días de calendario, festivos incluidos.
-    </p>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
-      Esto es especialmente relevante en contratos civiles y mercantiles. Si firmas un contrato de alquiler con un preaviso de 30 días naturales, no te queda margen por festivos ni fines de semana. El reloj corre sin parar.
-    </p>
-
-    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">Cómo calcular los días laborables entre dos fechas: paso a paso</h3>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
-      Calcular días laborables no es solo contar lunes a viernes. Hay que tener en cuenta los festivos —tanto nacionales como autonómicos y locales— que caen en el rango. Aquí tienes el proceso paso a paso:
-    </p>
-    <ol style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; padding-left: 1.5rem; line-height: 1.8;">
-      <li><strong>Define las fechas de inicio y fin.</strong> El día de inicio se incluye en el cómputo; el día de fin también (a menos que la norma diga lo contrario).</li>
-      <li><strong>Identifica los días de la semana.</strong> Los domingos nunca son hábiles. Los sábados son hábiles (pero no laborables) salvo que sean festivos.</li>
-      <li><strong>Descuenta los festivos nacionales.</strong> Son los 14 días publicados en el BOE cada año. No cuentan como hábiles ni laborables.</li>
-      <li><strong>Descuenta los festivos autonómicos.</strong> Cada comunidad tiene entre 2 y 4 festivos propios. Varían según la región.</li>
-      <li><strong>Comprueba los festivos locales.</strong> En municipios con festivo local propio (por ejemplo, el día del patrón), también hay que restarlo.</li>
-      <li><strong>Cuenta los días restantes.</strong> Los días hábiles incluyen sábados no festivos. Los laborables, solo lunes a viernes.</li>
-    </ol>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 1rem; line-height: 1.7;">
-      Utiliza la calculadora que tienes arriba para obtener el resultado exacto. Solo necesitas seleccionar las fechas, elegir tu comunidad o ciudad autónoma y pulsar «Calcular». La herramienta excluye automáticamente los festivos correspondientes.
-    </p>
-
-    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">Ejemplos prácticos con fechas reales</h3>
-
-    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem;">
-      <p style="font-size: 0.95rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem;">
-        Ejemplo 1: Plazo administrativo en Madrid (15 marzo — 30 abril 2027)
-      </p>
-      <p style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.7;">
-        Tienes un plazo de 30 días hábiles para presentar un escrito ante el Ayuntamiento de Madrid. Empiezas el 15 de marzo de 2027 (lunes). En este rango cae el Viernes Santo (25 de marzo), festivo nacional. Si cuentas lunes a sábado excluyendo festivos, llegas al día hábil número 30 alrededor del 26 de abril. Si solo hubieras contado lunes a viernes (sin sábados), habrías llegado el 5 de mayo. La diferencia son <strong>9 días</strong>. Un error de este tipo puede acarrear la inadmisión de tu escrito.
-      </p>
-    </div>
-
-    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem;">
-      <p style="font-size: 0.95rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem;">
-        Ejemplo 2: Contrato de trabajo y vacaciones
-      </p>
-      <p style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.7;">
-        Tu contrato establece 22 días laborables de vacaciones. Si quieres cogerlos entre el 1 de junio y el 30 de junio de 2027, necesitas saber cuántos días laborables hay en ese mes. Junio 2027 tiene 22 días laborables (sin festivos autonómicos). Si en tu comunidad hay algún festivo local en junio, esos días laborables bajan a 21. Es decir, si tu comunidad celebra un festivo adicional en junio, solo podrías disfrutar de 21 días completos de vacación en ese mes — te faltaría un día para agotar las 22 jornadas.
-      </p>
-    </div>
-
-    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem;">
-      <p style="font-size: 0.95rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem;">
-        Ejemplo 3: Plazo de empresa para contestar un despido
-      </p>
-      <p style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.7;">
-        Si recibes una carta de despido el 10 de diciembre de 2027, tienes 20 días hábiles para impugnarla ante la jurisdicción social (artículo 59.2 del Estatuto de los Trabajadores). Ten en cuenta que el 6 de diciembre (Día de la Constitución), el 8 de diciembre (Inmaculada Concepción) y el 25 de diciembre (Navidad) son festivos nacionales. El 25 de diciembre cae en sábado, pero como es festivo, no cuenta como hábil. Si empiezas a contar desde el 11 de diciembre (primer día hábil tras la recepción), el plazo se extiende hasta principios de enero de 2028. Un abogado laboralista siempre verificaría este cómputo con una herramienta como la que te ofrecemos.
-      </p>
-    </div>
-
-    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">¿Por qué importa tanto esta distinción?</h3>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
-      La confusión entre días laborables, hábiles y naturales no es solo un tema académico. Tiene consecuencias reales en múltiples ámbitos:
-    </p>
-
-    <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--color-text);">Plazos administrativos</h4>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
-      La Ley 39/2015 y su reglamento de desarrollo establecen que los plazos de las administraciones públicas se expresan en días hábiles. Presentar un recurso, una alegación o una solicitud fuera de plazo puede suponer la inadmisión del trámite. Los boletines oficiales (BOE, BOJA, DOGC, etc.) publican periódicamente los calendarios de festivos para que los ciudadanos puedan calcular sus plazos correctamente.
-    </p>
-
-    <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--color-text);">Contratos y obligaciones civiles</h4>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
-      En contratos privados, si no se especifica nada, el Código Civil presume días naturales. Pero muchas empresas y profesionales incluyen cláusulas con plazos en días laborables (para alinearse con su calendario de trabajo) o en días hábiles (para alinearse con plazos administrativos). Saber cuál aplica es fundamental para no incurrir en incumplimiento contractual.
-    </p>
-
-    <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--color-text);">Recursos humanos y nóminas</h4>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
-      En el día a día de un departamento de RRHH, saber cuántos días laborables hay en un mes es esencial para calcular nóminas, bonificaciones por presencia, productividad y encuadramiento de convenios. Un festivo caído en martes, por ejemplo, puede alterar el cómputo de horas mensuales si el convenio lo establece. Herramientas como esta calculadora evitan tener que hacerlo manualmente y cometer errores costosos.
-    </p>
-
-    <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--color-text);">Gestión de proyectos y planificación</h4>
-    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 1rem; line-height: 1.7;">
-      Si gestionas proyectos con herramientas tipo Jira o Asana, conocer los días laborables del equipo es clave para estimar sprints, compromisos de entrega y capacity planning. Un festivo en mitad de un sprint reduce la capacidad del equipo y puede hacer peligrar un milestone. Los managers que planifican con datos reales —no con suposiciones— son los que cumplen plazos de forma fiable.
-    </p>
-
-    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">Referencias legales</h3>
-    <ul style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; padding-left: 1.5rem; line-height: 1.8;">
-      <li><strong>Ley 39/2015, de 1 de octubre</strong>, del Procedimiento Administrativo Común — art. 30 (cómputo de plazos en días hábiles).</li>
-      <li><strong>Artículo 5 del Código Civil</strong> — presunción de días naturales salvo disposición expresa en contrario.</li>
-      <li><strong>Real Decreto 2001/2015</strong> — normas de desarrollo del procedimiento administrativo común.</li>
-      <li><strong>Artículo 59.2 del Estatuto de los Trabajadores</strong> — plazos de impugnación de despidos en días hábiles.</li>
-      <li><strong>BOE (Boletín Oficial del Estado)</strong> — publicación anual de festivos nacionales.</li>
-    </ul>
-
-    <p style="font-size: 0.95rem; color: var(--color-muted); line-height: 1.7; margin-top: 1rem;">
-      En resumen: no todos los días son iguales ante la ley. Aprender a distinguir entre laborables, hábiles y naturales te dará una ventaja práctica en tu vida profesional y personal. Usa la calculadora de arriba, verifica tus fechas con festivos oficiales y nunca más pierdas un plazo por no haber contado bien los días.
-    </p>
-  </section>
-
-  <section style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
-    <h2 style="font-size: 1.1rem; margin-bottom: 1rem;">Preguntas frecuentes</h2>
-
-    <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
-      <summary style="cursor: pointer; font-weight: 600; font-size: 0.95rem;">¿Cuántos días laborables hay en 2027?</summary>
-      <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--color-muted);">
-        En 2027 hay aproximadamente <strong>252 días laborables</strong> en España (lunes a viernes sin festivos). El número exacto varía según tu comunidad o ciudad autónoma por los festivos regionales.
-      </p>
-    </details>
-
-    <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
-      <summary style="cursor: pointer; font-weight: 600; font-size: 0.95rem;">¿Cuál es la diferencia entre día hábil y laborable?</summary>
-      <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--color-muted);">
-        Un <strong>día laborable</strong> es de lunes a viernes que no es festivo. Un <strong>día hábil</strong> incluye además los sábados no festivos. En plazos administrativos (<a href="/dias-habiles/" style="color: var(--color-primary);">Ley 39/2015</a>) se cuentan días hábiles, por lo que los sábados sí cuentan salvo que sean festivos.
-      </p>
-    </details>
-
-    <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
-      <summary style="cursor: pointer; font-weight: 600; font-size: 0.95rem;">¿Cómo se calculan los días laborables entre dos fechas?</summary>
-      <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--color-muted);">
-        Selecciona la fecha de inicio y fin en la calculadora, elige tu comunidad o ciudad autónoma (o solo festivos nacionales) y la herramienta te dará el número de días laborables, días hábiles y festivos en ese rango.
-      </p>
-    </details>
-
-    <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
-      <summary style="cursor: pointer; font-weight: 600; font-size: 0.95rem;">¿Los sábados cuentan como días laborables?</summary>
-      <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--color-muted);">
-        No, los sábados no cuentan como días laborables. Sin embargo, en el ámbito administrativo (plazos de la <a href="/dias-habiles/" style="color: var(--color-primary);">Ley 39/2015</a>), los sábados sí cuentan como días hábiles si no son festivos.
-      </p>
-    </details>
-
-    <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
-      <summary style="cursor: pointer; font-weight: 600; font-size: 0.95rem;">¿Cuándo se publican los festivos oficiales de 2027?</summary>
-      <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--color-muted);">
-        Los festivos nacionales se publican en el BOE durante el primer semestre. Los festivos autonómicos se publican en los boletines oficiales de cada comunidad, normalmente antes de octubre. Esta web actualiza los datos cuando se publican oficialmente.
-      </p>
-    </details>
-  </section>
-
-  <footer>
-    <p>diashabiles.es — Festivos nacionales y autonómicos 2027 (provisionales)</p>
-    <p style="margin-top: 0.25rem;">
-      <a href="/dias-habiles/">¿Qué son los días hábiles?</a> · 
-      <a href="/api/2027/nacional.json">API de festivos</a>
-    </p>
   </footer>
 
+  <!-- ===================== CLIENT-SIDE SCRIPT ===================== -->
   <script>
-    // Client-side calculator (JSON import for the browser)
-    const FESTIVOS_2027 = {
-      nacionales: [
-        { fecha: "2027-01-01", nombre: "Año Nuevo" },
-        { fecha: "2027-01-06", nombre: "Epifanía del Señor" },
-        { fecha: "2027-03-25", nombre: "Viernes Santo" },
-        { fecha: "2027-05-01", nombre: "Día del Trabajo" },
-        { fecha: "2027-08-15", nombre: "Asunción de la Virgen" },
-        { fecha: "2027-10-12", nombre: "Fiesta Nacional" },
-        { fecha: "2027-11-01", nombre: "Todos los Santos" },
-        { fecha: "2027-12-06", nombre: "Día de la Constitución" },
-        { fecha: "2027-12-08", nombre: "Inmaculada Concepción" },
-        { fecha: "2027-12-25", nombre: "Navidad" }
-      ],
-      comunidades: {
-        andalucia: {
-          nombre: "Andalucía",
-          festivos: [
-            { fecha: "2027-03-01", nombre: "Día de Andalucía (traslado)" },
-            { fecha: "2027-08-16", nombre: "Asunción (traslado)" },
-            { fecha: "2027-10-12", nombre: "Fiesta Nacional (traslado)" }
-          ]
-        },
-        castilla_y_leon: {
-          nombre: "Castilla y León",
-          festivos: [
-            { fecha: "2027-04-23", nombre: "Día de Castilla y León" },
-            { fecha: "2027-08-16", nombre: "Asunción (traslado)" },
-            { fecha: "2027-10-12", nombre: "Fiesta Nacional (traslado)" }
-          ]
-        }
-      }
-    };
+    document.addEventListener('DOMContentLoaded', function() {
+      const inputInicio = document.getElementById('fecha-inicio') as HTMLInputElement;
+      const inputFin = document.getElementById('fecha-fin') as HTMLInputElement;
+      const selectCcaa = document.getElementById('selector-ccaa') as HTMLSelectElement;
+      const btnCalcular = document.getElementById('btn-calcular')!;
+      const btnLimpiar = document.getElementById('btn-limpiar')!;
+      const headerText = document.getElementById('resultado-header-text')!;
+      const kpiLaborables = document.getElementById('kpi-laborables')!;
+      const kpiHabiles = document.getElementById('kpi-habiles')!;
+      const kpiNaturales = document.getElementById('kpi-naturales')!;
+      const btnCopiar = document.getElementById('btn-copiar-resumen')!;
+      const festivosCountLabel = document.getElementById('festivos-count-label')!;
+      const festivosTagsContainer = document.getElementById('festivos-tags-container')!;
 
-    function obtenerFestivos(comunidad) {
-      const mapa = new Map();
-      FESTIVOS_2027.nacionales.forEach(f => mapa.set(f.fecha, f));
-      if (comunidad && FESTIVOS_2027.comunidades[comunidad]) {
-        FESTIVOS_2027.comunidades[comunidad].festivos.forEach(f => mapa.set(f.fecha, f));
-      }
-      return mapa;
-    }
+      const meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
 
-    function formatearFecha(str) {
-      const [y, m, d] = str.split('-');
-      return `${d}/${m}/${y}`;
-    }
+      const festivosNacionales2027 = [
+        '2027-01-01', '2027-01-06', '2027-03-26', '2027-05-01',
+        '2027-08-15', '2027-10-12', '2027-11-01', '2027-12-06',
+        '2027-12-08', '2027-12-25'
+      ];
 
-    document.getElementById('calc-form').addEventListener('submit', function(e) {
-      e.preventDefault();
+      const festivosAutonomicos2027: Record<string, string[]> = {
+        'madrid': ['2027-03-25', '2027-05-02'],
+        'andalucia': ['2027-02-28', '2027-03-25'],
+        'cataluna': ['2027-03-29', '2027-06-24', '2027-09-11', '2027-12-26'],
+        'valencia': ['2027-03-19', '2027-03-29', '2027-10-09'],
+        'paisvasco': ['2027-03-25', '2027-03-29']
+      };
 
-      const inicio = document.getElementById('inicio').value;
-      const fin = document.getElementById('fin').value;
-      const comunidad = document.getElementById('comunidad').value;
+      const festivosNombres2027: Record<string, string> = {
+        '2027-01-01': 'Año Nuevo', '2027-01-06': 'Epifanía', '2027-03-25': 'Jueves Santo',
+        '2027-03-26': 'Viernes Santo', '2027-05-01': 'Día del Trabajo', '2027-05-02': 'Fiesta Comunidad Madrid',
+        '2027-08-15': 'Asunción', '2027-10-12': 'Fiesta Nacional', '2027-11-01': 'Todos los Santos',
+        '2027-12-06': 'Constitución', '2027-12-08': 'Inmaculada', '2027-12-25': 'Navidad',
+        '2027-02-28': 'Día de Andalucía', '2027-03-29': 'Lunes de Pascua',
+        '2027-06-24': 'Sant Joan', '2027-09-11': 'Diada', '2027-12-26': 'Sant Esteve',
+        '2027-03-19': 'San José', '2027-10-09': 'Día de Valencia'
+      };
 
-      if (!inicio || !fin) return;
-      if (inicio > fin) {
-        alert('La fecha de inicio debe ser anterior a la fecha fin');
-        return;
-      }
+      function computeDays() {
+        const startVal = inputInicio.value;
+        const endVal = inputFin.value;
+        const ccaaVal = selectCcaa.value;
+        const ccaaName = selectCcaa.options[selectCcaa.selectedIndex].text;
 
-      const festivos = obtenerFestivos(comunidad);
-      const fInicio = new Date(inicio + 'T00:00:00');
-      const fFin = new Date(fin + 'T00:00:00');
-
-      let laborables = 0;
-      let habiles = 0;
-      let total = 0;
-      const festivosEnRango = [];
-
-      const cursor = new Date(fInicio);
-      while (cursor <= fFin) {
-        total++;
-        const ds = cursor.getDay();
-        const yyyy = cursor.getFullYear();
-        const mm = String(cursor.getMonth() + 1).padStart(2, '0');
-        const dd = String(cursor.getDate()).padStart(2, '0');
-        const fechaStr = `${yyyy}-${mm}-${dd}`;
-        const esFestivo = festivos.has(fechaStr);
-
-        if (esFestivo) {
-          festivosEnRango.push(festivos.get(fechaStr));
+        if (!startVal || !endVal) return;
+        const startDate = new Date(startVal + 'T00:00:00');
+        const endDate = new Date(endVal + 'T00:00:00');
+        if (endDate < startDate) {
+          alert('La fecha de fin no puede ser anterior a la fecha de inicio.');
+          return;
         }
 
-        if (ds === 0 || ds === 6) {
-          if (ds === 6 && !esFestivo) habiles++;
-        } else {
-          if (!esFestivo) {
-            laborables++;
-            habiles++;
+        const activeRegionHolidays = festivosAutonomicos2027[ccaaVal] || [];
+        const allHolidays = new Set([...festivosNacionales2027, ...activeRegionHolidays]);
+
+        let naturales = 0, laborables = 0, habiles = 0;
+        const festivosEnRango: { fecha: string; nombre: string; tipo: string }[] = [];
+        const curDate = new Date(startDate);
+
+        while (curDate <= endDate) {
+          naturales++;
+          const dayOfWeek = curDate.getDay();
+          const isoDate = curDate.toISOString().split('T')[0];
+          const isHoliday = allHolidays.has(isoDate);
+
+          if (isHoliday) {
+            const isAuto = activeRegionHolidays.includes(isoDate);
+            festivosEnRango.push({
+              fecha: isoDate,
+              nombre: festivosNombres2027[isoDate] || 'Festivo',
+              tipo: isAuto ? 'Autonómico' : 'Nacional'
+            });
           }
+
+          if (dayOfWeek >= 1 && dayOfWeek <= 5 && !isHoliday) laborables++;
+          if (dayOfWeek >= 1 && dayOfWeek <= 6 && !isHoliday) habiles++;
+          curDate.setDate(curDate.getDate() + 1);
         }
 
-        cursor.setDate(cursor.getDate() + 1);
+        kpiLaborables.textContent = String(laborables);
+        kpiHabiles.textContent = String(habiles);
+        kpiNaturales.textContent = String(naturales);
+
+        const sDay = startDate.getDate();
+        const sMonth = meses[startDate.getMonth()];
+        const sYear = startDate.getFullYear();
+        const eDay = endDate.getDate();
+        const eMonth = meses[endDate.getMonth()];
+        const eYear = endDate.getFullYear();
+
+        headerText.textContent = `Resultado para ${ccaaName} (${sDay} ${sMonth} ${sYear} — ${eDay} ${eMonth} ${eYear})`;
+
+        // Festivos tags
+        festivosCountLabel.textContent = `Festivos oficiales detectados en el rango (${festivosEnRango.length} días):`;
+        festivosTagsContainer.innerHTML = festivosEnRango.map(f => {
+          const fecha = new Date(f.fecha + 'T00:00:00');
+          const dia = fecha.getDate();
+          const mes = meses[fecha.getMonth()];
+          const isAuto = f.tipo === 'Autonómico';
+          const borderColor = isAuto ? 'border-status-warning/40' : 'border-error/30';
+          const dotColor = isAuto ? 'bg-status-warning' : 'bg-error';
+          const badgeBg = isAuto ? 'bg-surface-container' : 'bg-error-container';
+          const badgeText = isAuto ? 'text-secondary' : 'text-on-error-container';
+          return `
+            <div class="inline-flex items-center gap-2 px-space-sm py-1 rounded-lg bg-surface-card border ${borderColor} text-on-surface text-label-sm font-medium shadow-2xs">
+              <span class="w-2 h-2 rounded-full ${dotColor}"></span>
+              <span><strong>${dia} de ${mes}</strong>: ${f.nombre}</span>
+              <span class="text-[10px] px-1.5 py-0.5 ${badgeBg} ${badgeText} rounded font-bold uppercase">${f.tipo}</span>
+            </div>
+          `;
+        }).join('');
       }
 
-      // Update UI
-      document.getElementById('res-periodo').textContent =
-        `${formatearFecha(inicio)} — ${formatearFecha(fin)}`;
-      document.getElementById('res-laborables').textContent = laborables;
-      document.getElementById('res-habiles').textContent = habiles;
-      document.getElementById('res-calendario').textContent = total;
+      // Event handlers
+      btnCalcular.addEventListener('click', function() {
+        btnCalcular.classList.add('scale-95');
+        setTimeout(() => {
+          btnCalcular.classList.remove('scale-95');
+          computeDays();
+        }, 120);
+      });
 
-      const festivosDiv = document.getElementById('festivos-rango');
-      const festivosUl = document.getElementById('festivos-ul');
-      festivosUl.innerHTML = '';
+      btnLimpiar.addEventListener('click', function() {
+        inputInicio.value = '2027-01-01';
+        inputFin.value = '2027-01-31';
+        selectCcaa.value = 'nacional';
+        computeDays();
+      });
 
-      if (festivosEnRango.length > 0) {
-        festivosEnRango.forEach(f => {
-          const li = document.createElement('li');
-          li.textContent = `${formatearFecha(f.fecha)} — ${f.nombre}`;
-          festivosUl.appendChild(li);
+      // Quick date buttons
+      document.getElementById('btn-quick-hoy')?.addEventListener('click', () => {
+        const today = new Date();
+        const yyyy = '2027';
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        inputInicio.value = `${yyyy}-${mm}-${dd}`;
+      });
+
+      document.getElementById('btn-quick-15mar')?.addEventListener('click', () => {
+        inputInicio.value = '2027-03-15';
+      });
+
+      document.getElementById('btn-quick-30apr')?.addEventListener('click', () => {
+        inputFin.value = '2027-04-30';
+      });
+
+      document.getElementById('btn-quick-plus30')?.addEventListener('click', () => {
+        if (!inputInicio.value) return;
+        const cur = new Date(inputInicio.value + 'T00:00:00');
+        cur.setDate(cur.getDate() + 30);
+        inputFin.value = cur.toISOString().split('T')[0];
+        computeDays();
+      });
+
+      // Quick presets
+      document.querySelectorAll('.btn-preset').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const type = (e.target as HTMLElement).dataset.preset;
+          inputInicio.value = '2027-03-15';
+          if (type === '15d') inputFin.value = '2027-04-03';
+          else if (type === '20d') inputFin.value = '2027-04-09';
+          else if (type === '30d') inputFin.value = '2027-04-26';
+          computeDays();
         });
-        festivosDiv.classList.remove('hidden');
-      } else {
-        festivosDiv.classList.add('hidden');
-      }
+      });
 
-      document.getElementById('results').classList.remove('hidden');
+      // Copy summary
+      btnCopiar.addEventListener('click', () => {
+        const textToCopy = `Informe Oficial diashabiles.es 2027\n${headerText.textContent}\n- Días laborables: ${kpiLaborables.textContent}\n- Días hábiles (Ley 39/2015): ${kpiHabiles.textContent}\n- Días naturales: ${kpiNaturales.textContent}`;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const original = btnCopiar.innerHTML;
+          btnCopiar.innerHTML = `<span class="material-symbols-outlined text-[16px] text-tertiary">check</span> Copiado`;
+          setTimeout(() => { btnCopiar.innerHTML = original; }, 2000);
+        });
+      });
+
+      // FAQ Accordion
+      document.querySelectorAll('.faq-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const content = btn.nextElementSibling;
+          const icon = btn.querySelector('.faq-icon');
+          const isExpanded = !content?.classList.contains('hidden');
+          if (isExpanded) {
+            content?.classList.add('hidden');
+            icon?.classList.remove('rotate-180');
+          } else {
+            content?.classList.remove('hidden');
+            icon?.classList.add('rotate-180');
+          }
+        });
+      });
+
+      // Mobile menu
+      document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+        // Simple scroll to calculator on mobile
+        document.getElementById('calculadora')?.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // Initial computation
+      computeDays();
     });
   </script>
 </Layout>

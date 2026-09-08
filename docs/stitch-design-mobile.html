@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><title>diashabiles.es - Calculadora Oficial 2027</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { 'colors': { 'secondary-fixed-dim': '#bec6e0', 'primary-fixed': '#dbe1ff', 'inverse-surface': '#213145', 'inverse-primary': '#b4c5ff', 'tertiary': '#006242', 'surface-container-highest': '#d3e4fe', 'on-tertiary-container': '#bdffdb', 'on-secondary-fixed': '#131b2e', 'surface-container-lowest': '#ffffff', 'secondary-fixed': '#dae2fd', 'on-surface': '#0b1c30', 'on-primary-fixed-variant': '#003ea8', 'error': '#ba1a1a', 'status-valid-bg': '#ECFDF5', 'text-secondary': '#475569', 'on-tertiary-fixed-variant': '#005236', 'surface-bright': '#f8f9ff', 'surface-base': '#F8FAFC', 'on-primary': '#ffffff', 'on-error-container': '#93000a', 'on-primary-fixed': '#00174b', 'surface-container-high': '#dce9ff', 'border-subtle': '#E2E8F0', 'status-warning-text': '#92400E', 'on-secondary-container': '#5c647a', 'status-warning-bg': '#FEF3C7', 'tertiary-fixed-dim': '#4edea3', 'border-strong': '#CBD5E1', 'text-muted': '#94A3B8', 'text-primary': '#0F172A', 'on-surface-variant': '#434655', 'background': '#f8f9ff', 'on-secondary': '#ffffff', 'primary-container': '#2563eb', 'surface-variant': '#d3e4fe', 'outline-variant': '#c3c6d7', 'surface-container': '#e5eeff', 'on-tertiary': '#ffffff', 'surface-dim': '#cbdbf5', 'on-tertiary-fixed': '#002113', 'secondary-container': '#dae2fd', 'primary': '#004ac6', 'outline': '#737686', 'inverse-on-surface': '#eaf1ff', 'primary-fixed-dim': '#b4c5ff', 'error-container': '#ffdad6', 'tertiary-container': '#007d55', 'surface': '#f8f9ff', 'on-background': '#0b1c30', 'surface-card': '#FFFFFF', 'surface-container-low': '#eff4ff', 'status-warning': '#F59E0B', 'tertiary-fixed': '#6ffbbe', 'secondary': '#565e74', 'on-secondary-fixed-variant': '#3f465c', 'surface-tint': '#0053db', 'status-valid-text': '#065F46', 'on-primary-container': '#eeefff', 'on-error': '#ffffff' }, 'borderRadius': { 'DEFAULT': '0.25rem', 'lg': '0.5rem', 'xl': '0.75rem', 'full': '9999px' }, 'spacing': { 'space-2xs': '0.25rem', 'gutter-mobile': '1rem', 'space-xl': '2rem', 'container-max': '72rem', 'gutter-desktop': '1.5rem', 'space-xs': '0.5rem', 'space-sm': '0.75rem', 'space-md': '1rem', 'space-lg': '1.5rem', 'space-3xl': '4rem', 'space-2xl': '3rem' }, 'fontFamily': { 'headline-sm': ['Plus Jakarta Sans'], 'headline-md': ['Plus Jakarta Sans'], 'label-sm': ['Plus Jakarta Sans'], 'metric-display': ['Plus Jakarta Sans'], 'body-sm': ['Plus Jakarta Sans'], 'headline-lg-mobile': ['Plus Jakarta Sans'], 'body-md': ['Plus Jakarta Sans'], 'metric-display-mobile': ['Plus Jakarta Sans'], 'label-md': ['Plus Jakarta Sans'], 'body-lg': ['Plus Jakarta Sans'], 'caption-legal': ['Plus Jakarta Sans'], 'headline-lg': ['Plus Jakarta Sans'], 'display-hero': ['Plus Jakarta Sans'], 'display-hero-mobile': ['Plus Jakarta Sans'] }, 'fontSize': { 'headline-sm': ['18px', { lineHeight: '24px', letterSpacing: '-0.005em', fontWeight: '600' }], 'headline-md': ['22px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }], 'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '600' }], 'metric-display': ['44px', { lineHeight: '48px', letterSpacing: '-0.03em', fontWeight: '800' }], 'body-sm': ['13px', { lineHeight: '20px', fontWeight: '400' }], 'headline-lg-mobile': ['24px', { lineHeight: '32px', letterSpacing: '-0.015em', fontWeight: '700' }], 'body-md': ['15px', { lineHeight: '24px', fontWeight: '400' }], 'metric-display-mobile': ['36px', { lineHeight: '40px', letterSpacing: '-0.025em', fontWeight: '800' }], 'label-md': ['14px', { lineHeight: '18px', letterSpacing: '0.01em', fontWeight: '600' }], 'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }], 'caption-legal': ['12px', { lineHeight: '16px', letterSpacing: '0.005em', fontWeight: '400' }], 'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.02em', fontWeight: '700' }], 'display-hero': ['48px', { lineHeight: '56px', letterSpacing: '-0.025em', fontWeight: '800' }], 'display-hero-mobile': ['32px', { lineHeight: '40px', letterSpacing: '-0.02em', fontWeight: '800' }] } } } };</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;font-family:'Plus Jakarta Sans',sans-serif;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-gutter-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs min-w-0"><img alt="Brand logo. - Primary color: #2563eb
+- Font: plusJakartaSans
+- Mode: light
+- Roundness: rounded-md
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGCJjzj9xq90EWj2WMWOZvuDp4XcYxv18qqj0Sn15EFKiPp69rKak9UG2qf5lzlmEkbV74IfGUUUashoeiFBmO7Po3tynmM3PCu6acRsQB4B2nbLnstuRQDaq6sdCg2K8eS0e0AAY2Ne-4LYpnpxP_UaXTNOrfeXdSEw65CnfJtZ83SjSwOgoFMS3PRq9Ty3y9UwKy56UHRX3TeRX1r7sssrZDfY4LzR9NWasUcqgFtAtIbiYmU0RkEQc"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-space-2xs"><span class="font-label-md text-label-md text-text-primary truncate tracking-tight">diashabiles.es</span><span class="font-caption-legal text-caption-legal px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-bold leading-none">2027</span></div><span class="font-label-sm text-label-sm text-text-secondary truncate">Calculadora</span></div></div><div class="flex items-center gap-space-xs shrink-0"><a class="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" data-path="normativa-legal" href="#" title="Normativa Oficial BOE"><span class="material-symbols-outlined text-[22px]">gavel</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-sm"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 w-full bg-surface pt-16 pb-28 flex flex-col"><div class="flex flex-col w-full">
+<!-- Banner Normativo Provisional -->
+<div class="px-gutter-mobile pt-space-sm pb-space-xs">
+<div class="bg-status-warning-bg rounded-xl p-space-sm shadow-sm flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-status-warning text-[20px] shrink-0 mt-0.5">warning</span>
+<div class="flex-1 min-w-0">
+<p class="font-label-sm text-label-sm text-status-warning-text font-semibold leading-tight">
+          Datos provisionales 2027
+        </p>
+<p class="font-caption-legal text-caption-legal text-status-warning-text opacity-90 mt-0.5 leading-normal">
+          El calendario oficial del BOE se consolida en octubre. Festivos autonómicos orientativos.
+        </p>
+</div>
+<span class="font-caption-legal text-caption-legal px-space-xs py-0.5 rounded bg-surface-card text-status-warning-text font-bold shrink-0">
+        BOE 2027
+      </span>
+</div>
+</div>
+<!-- Encabezado Móvil Heroico & Statutory Header -->
+<div class="px-gutter-mobile pt-space-xs pb-space-sm">
+<div class="flex items-center gap-space-xs mb-space-2xs">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-bold">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+        Ley 39/2015 LPACAP
+      </span>
+<span class="font-caption-legal text-caption-legal text-text-secondary">
+        Código Civil art. 5
+      </span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-text-primary tracking-tight font-extrabold">
+      Calculadora de días laborables y hábiles 2027
+    </h1>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1 leading-relaxed">
+      Cómputo exacto de plazos laborales y administrativos con festivos oficiales de las 17 CCAA y 2 Ciudades Autónomas.
+    </p>
+</div>
+<!-- Contenedor Principal Calculadora Táctil -->
+<div class="px-gutter-mobile pb-space-md">
+<div class="bg-surface-card rounded-2xl p-space-md shadow-md">
+<!-- Selector de Fechas Táctil -->
+<div class="space-y-space-sm">
+<div class="grid grid-cols-2 gap-space-xs">
+<!-- Fecha Inicio -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">event</span>
+              Fecha de inicio
+            </label>
+<div class="relative bg-surface-container-low rounded-xl p-space-xs flex items-center gap-2">
+<input class="w-full bg-transparent font-label-md text-label-md text-text-primary focus:outline-none cursor-pointer" id="input-date-start" type="date" value="2027-03-15"/>
+</div>
+<span class="font-caption-legal text-caption-legal text-text-muted px-1">Lunes, 15 mar 2027</span>
+</div>
+<!-- Fecha Fin -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">event_upcoming</span>
+              Fecha de fin
+            </label>
+<div class="relative bg-surface-container-low rounded-xl p-space-xs flex items-center gap-2">
+<input class="w-full bg-transparent font-label-md text-label-md text-text-primary focus:outline-none cursor-pointer" id="input-date-end" type="date" value="2027-04-30"/>
+</div>
+<span class="font-caption-legal text-caption-legal text-text-muted px-1">Viernes, 30 abr 2027</span>
+</div>
+</div>
+<!-- Selector Comunidad Autónoma -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-text-secondary flex items-center justify-between">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">location_on</span>
+              Comunidad / Ciudad Autónoma
+            </span>
+<span class="font-caption-legal text-caption-legal text-primary font-bold">19 Jurisdicciones</span>
+</label>
+<div class="relative bg-surface-container-low rounded-xl px-space-sm py-space-xs flex items-center">
+<select class="w-full bg-transparent font-label-md text-label-md text-text-primary focus:outline-none appearance-none pr-8 cursor-pointer" id="comunidad-select">
+<option selected="" value="madrid">Comunidad de Madrid</option>
+<option value="nacional">Solo festivos nacionales (España)</option>
+<option value="andalucia">Andalucía</option>
+<option value="aragon">Aragón</option>
+<option value="asturias">Asturias</option>
+<option value="baleares">Islas Baleares</option>
+<option value="canarias">Canarias</option>
+<option value="cantabria">Cantabria</option>
+<option value="castilla-la-mancha">Castilla-La Mancha</option>
+<option value="castilla-leon">Castilla y León</option>
+<option value="cataluna">Cataluña</option>
+<option value="extremadura">Extremadura</option>
+<option value="galicia">Galicia</option>
+<option value="rioja">La Rioja</option>
+<option value="murcia">Región de Murcia</option>
+<option value="navarra">Comunidad Foral de Navarra</option>
+<option value="pais-vasco">País Vasco</option>
+<option value="valencia">Comunitat Valenciana</option>
+<option value="ceuta">Ceuta</option>
+<option value="melilla">Melilla</option>
+</select>
+<span class="material-symbols-outlined text-text-secondary absolute right-3 pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Pills de Atajos Rápidos Táctiles -->
+<div class="pt-space-2xs">
+<p class="font-caption-legal text-caption-legal text-text-secondary font-bold uppercase tracking-wider mb-space-2xs">
+            Atajos de cómputo frecuente
+          </p>
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="text-left bg-surface-container-low hover:bg-surface-container active:scale-[0.98] transition-all rounded-xl p-2.5 flex items-center justify-between" onclick="setPreset(15, 'habil')" type="button">
+<div>
+<span class="block font-label-md text-label-md text-text-primary font-bold">+15 hábiles</span>
+<span class="font-caption-legal text-caption-legal text-text-muted">Alegaciones adm.</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px]">add_circle</span>
+</button>
+<button class="text-left bg-surface-container-low hover:bg-surface-container active:scale-[0.98] transition-all rounded-xl p-2.5 flex items-center justify-between" onclick="setPreset(20, 'laboral')" type="button">
+<div>
+<span class="block font-label-md text-label-md text-text-primary font-bold">+20 despido</span>
+<span class="font-caption-legal text-caption-legal text-text-muted">Art. 59.2 ET</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px]">work_history</span>
+</button>
+<button class="text-left bg-surface-container-low hover:bg-surface-container active:scale-[0.98] transition-all rounded-xl p-2.5 flex items-center justify-between" onclick="setPreset(30, 'habil')" type="button">
+<div>
+<span class="block font-label-md text-label-md text-text-primary font-bold">+30 adm.</span>
+<span class="font-caption-legal text-caption-legal text-text-muted">Recursos alzada</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px]">gavel</span>
+</button>
+<button class="text-left bg-surface-container-low hover:bg-surface-container active:scale-[0.98] transition-all rounded-xl p-2.5 flex items-center justify-between" onclick="setPresetMonth()" type="button">
+<div>
+<span class="block font-label-md text-label-md text-text-primary font-bold">Mes completo</span>
+<span class="font-caption-legal text-caption-legal text-text-muted">Marzo / Abril</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px]">date_range</span>
+</button>
+</div>
+</div>
+<!-- Botones de Acción -->
+<div class="pt-space-xs flex gap-space-xs">
+<button class="flex-1 bg-primary-container hover:bg-primary active:scale-[0.98] text-on-primary font-label-md text-label-md py-3.5 px-4 rounded-xl shadow-sm flex items-center justify-center gap-2 transition-all" id="btn-calculate" onclick="recalculate()" type="button">
+<span class="material-symbols-outlined text-[20px]">calculate</span>
+<span>Calcular días</span>
+</button>
+<button class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant font-label-md text-label-md px-4 py-3.5 rounded-xl flex items-center justify-center transition-colors active:scale-95" onclick="resetForm()" title="Limpiar formulario" type="button">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Barra de Contexto del Cálculo Activo -->
+<div class="px-gutter-mobile pb-space-xs">
+<div class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between gap-space-xs shadow-sm">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-status-valid-text shrink-0 animate-pulse"></span>
+<div class="truncate">
+<p class="font-label-sm text-label-sm text-text-primary truncate font-bold" id="context-subtitle">
+            Comunidad de Madrid (15 mar 2027 — 30 abr 2027)
+          </p>
+<span class="font-caption-legal text-caption-legal text-text-secondary">Cómputo en vigor según estatuto</span>
+</div>
+</div>
+<button class="shrink-0 bg-surface-card hover:bg-surface-bright active:scale-95 text-primary p-2 rounded-lg flex items-center justify-center shadow-xs transition-all" id="btn-copy" onclick="copyResults()" title="Copiar resumen legal">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Tarjetas KPI de Resultados (Mobile Stack) -->
+<div class="px-gutter-mobile pb-space-md space-y-space-xs">
+<!-- KPI 1: Días Laborables -->
+<div class="bg-surface-card rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-status-valid-bg text-status-valid-text flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary font-bold leading-none">Días laborables</h2>
+<span class="font-caption-legal text-caption-legal text-text-secondary">Lunes a viernes sin festivos</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-status-valid-bg text-status-valid-text font-bold">
+          Contratos &amp; Nóminas
+        </span>
+</div>
+<div class="mt-space-sm flex items-baseline justify-between">
+<div class="flex items-baseline gap-1.5">
+<span class="font-metric-display-mobile text-metric-display-mobile text-text-primary tabular-nums" id="kpi-laborables">33</span>
+<span class="font-label-md text-label-md text-text-secondary font-medium">días hábiles efectivos</span>
+</div>
+<span class="font-caption-legal text-caption-legal text-text-muted">excl. fines de semana</span>
+</div>
+</div>
+<!-- KPI 2: Días Hábiles Administrativos -->
+<div class="bg-surface-card rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">balance</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary font-bold leading-none">Días hábiles*</h2>
+<span class="font-caption-legal text-caption-legal text-primary font-bold">Ley 39/2015 LPACAP (Sábados incluidos)</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-bold">
+          Plazos oficiales
+        </span>
+</div>
+<div class="mt-space-sm flex items-baseline justify-between">
+<div class="flex items-baseline gap-1.5">
+<span class="font-metric-display-mobile text-metric-display-mobile text-primary tabular-nums" id="kpi-habiles">39</span>
+<span class="font-label-md text-label-md text-text-secondary font-medium">días computables</span>
+</div>
+<span class="font-caption-legal text-caption-legal text-text-muted">+6 sábados hábiles</span>
+</div>
+</div>
+<!-- KPI 3: Días Naturales de Calendario -->
+<div class="bg-surface-card rounded-2xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary font-bold leading-none">Días naturales</h2>
+<span class="font-caption-legal text-caption-legal text-text-secondary">Código Civil art. 5</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-bold">
+          Días corridos
+        </span>
+</div>
+<div class="mt-space-sm flex items-baseline justify-between">
+<div class="flex items-baseline gap-1.5">
+<span class="font-metric-display-mobile text-metric-display-mobile text-text-primary tabular-nums" id="kpi-naturales">47</span>
+<span class="font-label-md text-label-md text-text-secondary font-medium">días en total</span>
+</div>
+<span class="font-caption-legal text-caption-legal text-text-muted">100% transcurridos</span>
+</div>
+</div>
+</div>
+<!-- Lista Desglosada de Festivos Oficiales Detectados -->
+<div class="px-gutter-mobile pb-space-md">
+<div class="bg-surface-card rounded-2xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-warning text-[22px]">event_busy</span>
+<h3 class="font-label-md text-label-md text-text-primary font-bold">Festivos en el rango seleccionado</h3>
+</div>
+<span class="font-caption-legal text-caption-legal px-2 py-0.5 rounded-full bg-status-warning-bg text-status-warning-text font-bold" id="badge-festivos-count">
+          2 festivos oficiales
+        </span>
+</div>
+<div class="space-y-space-xs" id="festivos-list">
+<!-- Festivo 1 -->
+<div class="p-space-xs rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-lg bg-surface-card flex flex-col items-center justify-center shadow-2xs shrink-0">
+<span class="font-caption-legal text-[10px] text-error font-bold leading-none">MAR</span>
+<span class="font-headline-sm text-headline-sm text-text-primary font-extrabold leading-none mt-0.5">25</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-text-primary font-semibold">Jueves Santo</p>
+<p class="font-caption-legal text-caption-legal text-text-secondary">Semana Santa 2027 · Festivo de Madrid</p>
+</div>
+</div>
+<span class="font-caption-legal text-caption-legal px-2 py-1 rounded bg-secondary-container text-on-secondary-container font-medium">
+            Autonómico
+          </span>
+</div>
+<!-- Festivo 2 -->
+<div class="p-space-xs rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-10 h-10 rounded-lg bg-surface-card flex flex-col items-center justify-center shadow-2xs shrink-0">
+<span class="font-caption-legal text-[10px] text-error font-bold leading-none">MAR</span>
+<span class="font-headline-sm text-headline-sm text-text-primary font-extrabold leading-none mt-0.5">26</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-text-primary font-semibold">Viernes Santo</p>
+<p class="font-caption-legal text-caption-legal text-text-secondary">Pascua · Festivo Nacional no sustituible</p>
+</div>
+</div>
+<span class="font-caption-legal text-caption-legal px-2 py-1 rounded bg-primary-fixed text-on-primary-fixed font-bold">
+            Nacional
+          </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Esquema Semanal Táctil Interactivo -->
+<div class="px-gutter-mobile pb-space-md">
+<div class="bg-surface-card rounded-2xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<h3 class="font-label-md text-label-md text-text-primary font-bold">Estatuto semanal computable</h3>
+<span class="font-caption-legal text-caption-legal text-text-secondary">Ley 39/2015</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary mb-space-sm">
+        Esquema de calificación de cada día para plazos públicos y privados:
+      </p>
+<!-- 7 Días Chips -->
+<div class="grid grid-cols-7 gap-1">
+<div class="bg-status-valid-bg rounded-lg p-1.5 flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm font-bold text-status-valid-text">L</span>
+<span class="font-caption-legal text-[10px] text-status-valid-text font-semibold mt-1">Laborable</span>
+<span class="font-caption-legal text-[10px] text-status-valid-text">Hábil</span>
+</div>
+<div class="bg-status-valid-bg rounded-lg p-1.5 flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm font-bold text-status-valid-text">M</span>
+<span class="font-caption-legal text-[10px] text-status-valid-text font-semibold mt-1">Laborable</span>
+<span class="font-caption-legal text-[10px] text-status-valid-text">Hábil</span>
+</div>
+<div class="bg-status-valid-bg rounded-lg p-1.5 flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm font-bold text-status-valid-text">X</span>
+<span class="font-caption-legal text-[10px] text-status-valid-text font-semibold mt-1">Laborable</span>
+<span class="font-caption-legal text-[10px] text-status-valid-text">Hábil</span>
+</div>
+<div class="bg-status-valid-bg rounded-lg p-1.5 flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm font-bold text-status-valid-text">J</span>
+<span class="font-caption-legal text-[10px] text-status-valid-text font-semibold mt-1">Laborable</span>
+<span class="font-caption-legal text-[10px] text-status-valid-text">Hábil</span>
+</div>
+<div class="bg-status-valid-bg rounded-lg p-1.5 flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm font-bold text-status-valid-text">V</span>
+<span class="font-caption-legal text-[10px] text-status-valid-text font-semibold mt-1">Laborable</span>
+<span class="font-caption-legal text-[10px] text-status-valid-text">Hábil</span>
+</div>
+<!-- Sábado Hábil en Admins -->
+<div class="bg-primary-fixed rounded-lg p-1.5 flex flex-col items-center text-center shadow-xs">
+<span class="font-label-sm text-label-sm font-bold text-primary">S</span>
+<span class="font-caption-legal text-[9px] text-on-primary-fixed-variant font-semibold mt-1 leading-tight">No lab.</span>
+<span class="font-caption-legal text-[10px] text-primary font-bold">Hábil</span>
+</div>
+<!-- Domingo Inhábil -->
+<div class="bg-surface-container-high rounded-lg p-1.5 flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm font-bold text-text-muted">D</span>
+<span class="font-caption-legal text-[9px] text-text-muted font-semibold mt-1 leading-tight">Inhábil</span>
+<span class="font-caption-legal text-[10px] text-text-muted">Cierra</span>
+</div>
+</div>
+<div class="mt-space-sm p-space-xs bg-surface-container-low rounded-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0">info</span>
+<p class="font-caption-legal text-caption-legal text-text-secondary leading-snug">
+<strong>Atención:</strong> En la Ley 39/2015 de las Administraciones Públicas, el <strong>sábado cuenta como hábil</strong> a menos que coincida con festivo en la sede.
+        </p>
+</div>
+</div>
+</div>
+<!-- Selector Rápido de Festivos Autonómicos 2027 -->
+<div class="px-gutter-mobile pb-space-md">
+<div class="flex items-center justify-between mb-space-xs">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">Festivos por Comunidad 2027</h3>
+<p class="font-caption-legal text-caption-legal text-text-secondary">Consulta los calendarios laborales regionales</p>
+</div>
+<span class="font-caption-legal text-caption-legal px-2 py-1 rounded bg-surface-container-high text-text-primary font-bold">17 CCAA</span>
+</div>
+<!-- Grid de Comunidades Autónomas (2 Columnas Táctiles) -->
+<div class="grid grid-cols-2 gap-space-xs">
+<button class="p-space-xs bg-surface-card hover:bg-surface-bright rounded-xl shadow-xs text-left flex items-center justify-between active:scale-[0.98] transition-transform" onclick="selectRegion('madrid', 'Comunidad de Madrid')">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-7 h-7 rounded-md bg-primary-fixed text-primary font-label-sm text-label-sm font-bold flex items-center justify-center shrink-0">MD</span>
+<span class="font-label-sm text-label-sm text-text-primary truncate font-semibold">Madrid</span>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</button>
+<button class="p-space-xs bg-surface-card hover:bg-surface-bright rounded-xl shadow-xs text-left flex items-center justify-between active:scale-[0.98] transition-transform" onclick="selectRegion('andalucia', 'Andalucía')">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-7 h-7 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-bold flex items-center justify-center shrink-0">AN</span>
+<span class="font-label-sm text-label-sm text-text-primary truncate font-semibold">Andalucía</span>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</button>
+<button class="p-space-xs bg-surface-card hover:bg-surface-bright rounded-xl shadow-xs text-left flex items-center justify-between active:scale-[0.98] transition-transform" onclick="selectRegion('cataluna', 'Cataluña')">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-7 h-7 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-bold flex items-center justify-center shrink-0">CT</span>
+<span class="font-label-sm text-label-sm text-text-primary truncate font-semibold">Cataluña</span>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</button>
+<button class="p-space-xs bg-surface-card hover:bg-surface-bright rounded-xl shadow-xs text-left flex items-center justify-between active:scale-[0.98] transition-transform" onclick="selectRegion('valencia', 'Comunitat Valenciana')">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-7 h-7 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-bold flex items-center justify-center shrink-0">VC</span>
+<span class="font-label-sm text-label-sm text-text-primary truncate font-semibold">Valencia</span>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</button>
+<button class="p-space-xs bg-surface-card hover:bg-surface-bright rounded-xl shadow-xs text-left flex items-center justify-between active:scale-[0.98] transition-transform" onclick="selectRegion('galicia', 'Galicia')">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-7 h-7 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-bold flex items-center justify-center shrink-0">GA</span>
+<span class="font-label-sm text-label-sm text-text-primary truncate font-semibold">Galicia</span>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</button>
+<button class="p-space-xs bg-surface-card hover:bg-surface-bright rounded-xl shadow-xs text-left flex items-center justify-between active:scale-[0.98] transition-transform" onclick="selectRegion('pais-vasco', 'País Vasco')">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-7 h-7 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-bold flex items-center justify-center shrink-0">PV</span>
+<span class="font-label-sm text-label-sm text-text-primary truncate font-semibold">País Vasco</span>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</button>
+<button class="p-space-xs bg-surface-card hover:bg-surface-bright rounded-xl shadow-xs text-left flex items-center justify-between active:scale-[0.98] transition-transform" onclick="selectRegion('castilla-leon', 'Castilla y León')">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-7 h-7 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-bold flex items-center justify-center shrink-0">CL</span>
+<span class="font-label-sm text-label-sm text-text-primary truncate font-semibold">Castilla y León</span>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</button>
+<button class="p-space-xs bg-surface-card hover:bg-surface-bright rounded-xl shadow-xs text-left flex items-center justify-between active:scale-[0.98] transition-transform" onclick="selectRegion('canarias', 'Canarias')">
+<div class="flex items-center gap-2 min-w-0">
+<span class="w-7 h-7 rounded-md bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-bold flex items-center justify-center shrink-0">CN</span>
+<span class="font-label-sm text-label-sm text-text-primary truncate font-semibold">Canarias</span>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Guía Práctica y Preguntas Frecuentes Táctiles (Accordions) -->
+<div class="px-gutter-mobile pb-space-lg">
+<div class="bg-surface-card rounded-2xl p-space-md shadow-sm">
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">help_center</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">Dudas frecuentes y base legal</h3>
+</div>
+<div class="space-y-space-xs">
+<!-- FAQ 1 -->
+<details class="group bg-surface-container-low rounded-xl p-space-xs" open="">
+<summary class="flex items-center justify-between cursor-pointer font-label-md text-label-md text-text-primary font-semibold list-none select-none">
+<span>¿Por qué los sábados cuentan como días hábiles?</span>
+<span class="material-symbols-outlined text-text-secondary group-open:rotate-180 transition-transform text-[20px]">expand_more</span>
+</summary>
+<div class="mt-2 font-body-sm text-body-sm text-text-secondary leading-relaxed">
+            La <strong>Ley 39/2015 (LPACAP), en su artículo 30</strong>, estipula que los plazos administrativos fijados en días se entienden hábiles, excluyendo del cómputo los domingos y los declarados festivos. <em>Los sábados son días hábiles</em> salvo que coincidan expresamente con un festivo oficial nacional o autonómico.
+          </div>
+</details>
+<!-- FAQ 2 -->
+<details class="group bg-surface-container-low rounded-xl p-space-xs">
+<summary class="flex items-center justify-between cursor-pointer font-label-md text-label-md text-text-primary font-semibold list-none select-none">
+<span>¿Cuántos días laborables tiene el año 2027 en España?</span>
+<span class="material-symbols-outlined text-text-secondary group-open:rotate-180 transition-transform text-[20px]">expand_more</span>
+</summary>
+<div class="mt-2 font-body-sm text-body-sm text-text-secondary leading-relaxed">
+            En 2027 existen en torno a <strong>252 días laborables</strong> estándar (lunes a viernes). El número exacto oscila entre 248 y 251 jornadas dependiendo de la comunidad y del municipio de residencia tras descontar las 14 festividades anuales estipuladas.
+          </div>
+</details>
+<!-- FAQ 3 -->
+<details class="group bg-surface-container-low rounded-xl p-space-xs">
+<summary class="flex items-center justify-between cursor-pointer font-label-md text-label-md text-text-primary font-semibold list-none select-none">
+<span>Diferencia entre día hábil, laborable y natural</span>
+<span class="material-symbols-outlined text-text-secondary group-open:rotate-180 transition-transform text-[20px]">expand_more</span>
+</summary>
+<div class="mt-2 font-body-sm text-body-sm text-text-secondary leading-relaxed">
+<strong>Laborable:</strong> lunes a viernes no festivo (nóminas, contratos).<br/>
+<strong>Hábil:</strong> lunes a sábado no festivo (procedimientos administrativos).<br/>
+<strong>Natural:</strong> cualquier día del calendario según el Art. 5 del Código Civil (arrendamientos, contratos mercantiles).
+          </div>
+</details>
+<!-- FAQ 4 -->
+<details class="group bg-surface-container-low rounded-xl p-space-xs">
+<summary class="flex items-center justify-between cursor-pointer font-label-md text-label-md text-text-primary font-semibold list-none select-none">
+<span>¿Cómo influye un despido o plazo procesal?</span>
+<span class="material-symbols-outlined text-text-secondary group-open:rotate-180 transition-transform text-[20px]">expand_more</span>
+</summary>
+<div class="mt-2 font-body-sm text-body-sm text-text-secondary leading-relaxed">
+            Según el <strong>Art. 59.2 del Estatuto de los Trabajadores</strong> y la Ley Reguladora de la Jurisdicción Social (LRJS), para impugnar un despido dispones de 20 días hábiles. Los sábados, domingos y festivos son inhábiles en sede judicial laboral.
+          </div>
+</details>
+</div>
+<!-- Descarga & API Banner -->
+<div class="mt-space-md p-space-sm bg-surface-container rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-primary text-[24px] shrink-0">data_object</span>
+<div class="truncate">
+<span class="font-label-sm text-label-sm text-text-primary block font-bold truncate">API JSON Festivos 2027</span>
+<span class="font-caption-legal text-caption-legal text-text-secondary">Integración directa para software y RRHH</span>
+</div>
+</div>
+<button class="shrink-0 bg-primary text-on-primary font-label-sm text-label-sm px-3 py-1.5 rounded-lg active:scale-95 transition-transform font-semibold" onclick="copyApiUrl()">
+          Copiar URL
+        </button>
+</div>
+</div>
+</div>
+<!-- Toast Notification Modal -->
+<div class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-inverse-surface text-inverse-on-surface px-4 py-2.5 rounded-xl shadow-lg flex items-center gap-2 pointer-events-none transition-opacity duration-300 opacity-0" id="toast-notify">
+<span class="material-symbols-outlined text-status-valid-text text-[18px]">check_circle</span>
+<span class="font-label-sm text-label-sm" id="toast-text">Resumen legal copiado al portapapeles</span>
+</div>
+</div>
+<script>
+  // Presets y cálculos de fechas
+  function setPreset(days, type) {
+    const startInput = document.getElementById('input-date-start');
+    const endInput = document.getElementById('input-date-end');
+    const start = new Date(startInput.value || '2027-03-15');
+    let current = new Date(start);
+    let counted = 0;
+
+    while (counted < days) {
+      current.setDate(current.getDate() + 1);
+      const dayOfWeek = current.getDay(); // 0 Dom, 6 Sab
+      if (type === 'habil') {
+        // Excluye sólo domingos
+        if (dayOfWeek !== 0) counted++;
+      } else {
+        // Excluye sábados y domingos (laboral)
+        if (dayOfWeek !== 0 && dayOfWeek !== 6) counted++;
+      }
+    }
+
+    endInput.value = current.toISOString().split('T')[0];
+    recalculate();
+    showToast(`Plazo de +${days} días ${type === 'habil' ? 'hábiles' : 'laborables'} aplicado`);
+  }
+
+  function setPresetMonth() {
+    const startInput = document.getElementById('input-date-start');
+    const endInput = document.getElementById('input-date-end');
+    startInput.value = '2027-04-01';
+    endInput.value = '2027-04-30';
+    recalculate();
+    showToast('Mes completo de abril 2027 seleccionado');
+  }
+
+  function selectRegion(val, name) {
+    const select = document.getElementById('comunidad-select');
+    select.value = val;
+    recalculate();
+    showToast(`Comunidad cambiada a: ${name}`);
+  }
+
+  function resetForm() {
+    document.getElementById('input-date-start').value = '2027-03-15';
+    document.getElementById('input-date-end').value = '2027-04-30';
+    document.getElementById('comunidad-select').value = 'madrid';
+    recalculate();
+    showToast('Calculadora reiniciada al rango de ejemplo');
+  }
+
+  function recalculate() {
+    const startVal = document.getElementById('input-date-start').value;
+    const endVal = document.getElementById('input-date-end').value;
+    const regionVal = document.getElementById('comunidad-select');
+    const regionName = regionVal.options[regionVal.selectedIndex].text;
+
+    if (!startVal || !endVal) return;
+
+    const d1 = new Date(startVal);
+    const d2 = new Date(endVal);
+
+    if (d2 < d1) {
+      alert('La fecha de fin debe ser posterior a la fecha de inicio');
+      return;
+    }
+
+    const diffTime = Math.abs(d2 - d1);
+    const naturalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+    // Cálculo simplificado representativo
+    let laborables = 0;
+    let habiles = 0;
+    let cur = new Date(d1);
+
+    while (cur <= d2) {
+      const day = cur.getDay();
+      // Festivos oficiales de muestra en el rango estándar (25 y 26 marzo 2027)
+      const isHolyThursday = (cur.getMonth() === 2 && cur.getDate() === 25);
+      const isGoodFriday = (cur.getMonth() === 2 && cur.getDate() === 26);
+      const isHoliday = isHolyThursday || isGoodFriday;
+
+      if (!isHoliday) {
+        if (day >= 1 && day <= 5) {
+          laborables++;
+          habiles++;
+        } else if (day === 6) {
+          habiles++; // Sábados cuentan como hábiles en Ley 39/2015
+        }
+      }
+      cur.setDate(cur.getDate() + 1);
+    }
+
+    // Actualización de KPIs en la UI
+    document.getElementById('kpi-laborables').textContent = laborables;
+    document.getElementById('kpi-habiles').textContent = habiles;
+    document.getElementById('kpi-naturales').textContent = naturalDays;
+    
+    // Subtítulo de contexto
+    const dateOptions = { day: 'numeric', month: 'short', year: 'numeric' };
+    const sStr = d1.toLocaleDateString('es-ES', dateOptions);
+    const eStr = d2.toLocaleDateString('es-ES', dateOptions);
+    document.getElementById('context-subtitle').textContent = `${regionName} (${sStr} — ${eStr})`;
+
+    // Animación táctil suave en los números
+    ['kpi-laborables', 'kpi-habiles', 'kpi-naturales'].forEach(id => {
+      const el = document.getElementById(id);
+      el.classList.add('scale-105');
+      setTimeout(() => el.classList.remove('scale-105'), 200);
+    });
+  }
+
+  function copyResults() {
+    const kpiLab = document.getElementById('kpi-laborables').textContent;
+    const kpiHab = document.getElementById('kpi-habiles').textContent;
+    const kpiNat = document.getElementById('kpi-naturales').textContent;
+    const ctx = document.getElementById('context-subtitle').textContent;
+
+    const legalText = `diashabiles.es 2027 | Cómputo Legal Oficial:\n` +
+      `Ámbito: ${ctx}\n` +
+      `- Días laborables: ${kpiLab} (L-V)\n` +
+      `- Días hábiles: ${kpiHab} (Ley 39/2015 LPACAP, incl. sábados)\n` +
+      `- Días naturales: ${kpiNat} (Art. 5 Código Civil)\n` +
+      `Festivos detectados: Jueves Santo (25 mar) y Viernes Santo (26 mar 2027)`;
+
+    navigator.clipboard.writeText(legalText).then(() => {
+      showToast('Resumen legal copiado para adjuntar o compartir');
+    }).catch(() => {
+      showToast('Cálculo copiado con éxito');
+    });
+  }
+
+  function copyApiUrl() {
+    navigator.clipboard.writeText('https://diashabiles.es/api/2027/nacional.json').then(() => {
+      showToast('Endpoint API 2027 copiado');
+    });
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast-notify');
+    const toastText = document.getElementById('toast-text');
+    toastText.textContent = msg;
+    toast.classList.remove('opacity-0');
+    toast.classList.add('opacity-100');
+    setTimeout(() => {
+      toast.classList.remove('opacity-100');
+      toast.classList.add('opacity-0');
+    }, 2400);
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-card/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(15,23,42,0.06)]" data-active-classes="text-primary font-bold"><div class="h-16 px-gutter-mobile flex justify-around items-center"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 transition-colors text-primary font-bold" data-path="calculadora" href="#"><span class="material-symbols-outlined text-[24px]">calculate</span><span class="font-label-sm text-label-sm mt-0.5">Calcular</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 text-on-surface-variant transition-colors" data-path="calendario-laboral" href="#"><span class="material-symbols-outlined text-[24px]">calendar_month</span><span class="font-label-sm text-label-sm mt-0.5">Calendario</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 text-on-surface-variant transition-colors" data-path="comunidades-autonomas" href="#"><span class="material-symbols-outlined text-[24px]">map</span><span class="font-label-sm text-label-sm mt-0.5">Regiones</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 text-on-surface-variant transition-colors" data-path="plazos-administrativos" href="#"><span class="material-symbols-outlined text-[24px]">history_toggle_off</span><span class="font-label-sm text-label-sm mt-0.5">Plazos</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 text-on-surface-variant transition-colors" data-path="normativa-legal" href="#"><span class="material-symbols-outlined text-[24px]">menu_book</span><span class="font-label-sm text-label-sm mt-0.5">Ley 39/15</span></a></div></nav></body></html>
