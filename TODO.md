@@ -20,7 +20,7 @@ Lista maestra de todo lo que vamos viendo. Se actualiza conforme se descubren nu
 
 ## 📝 Contenido / SEO
 
-- [ ] Blog / sección de artículos evergreen
+- [x] Blog / sección de artículos evergreen (guía completa ~1000 palabras)
   - "¿Cuántos días trabajas en 2027?" (keyword principal)
   - "Días laborables por comunidad autónoma 2027"
   - "Festivos de [Comunidad] 2027" (16 artículos)
