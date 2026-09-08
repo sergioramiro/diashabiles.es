@@ -37,10 +37,13 @@
 .faq-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  transition: max-height 0.3s ease-out, padding-top 0.3s ease-out, padding-bottom 0.3s ease-out;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .faq-content.expanded {
   max-height: 600px;
+  padding-top: 0.75rem;
   padding-bottom: 1rem;
 }
 

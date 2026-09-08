@@ -825,7 +825,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span>¿Cuántos días laborables hay en 2027?</span>
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
-            <div class="faq-content hidden px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
               En 2027 hay aproximadamente <strong class="text-on-surface">252 días laborables</strong> en España (lunes a viernes que no coinciden con días festivos). El número exacto oscila entre 250 y 253 días según la Comunidad Autónoma y la localidad concreta.
             </div>
           </div>
@@ -835,7 +835,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span>¿Cuál es la diferencia exacta entre día hábil y laborable?</span>
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
-            <div class="faq-content hidden px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
               Un <strong class="text-on-surface">día laborable</strong> comprende exclusivamente de lunes a viernes que no sea fiesta oficial. Un <strong class="text-on-surface">día hábil</strong> en el procedimiento administrativo común (Ley 39/2015) incluye además los sábados no festivos.
             </div>
           </div>
@@ -845,7 +845,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span>¿Cómo se calculan los días laborables entre dos fechas?</span>
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
-            <div class="faq-content hidden px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
               Selecciona la fecha inicial y la fecha final en la calculadora interactiva, indica tu Comunidad Autónoma y el motor calculará automáticamente la suma descontando fines de semana e intercalando los festivos vigentes.
             </div>
           </div>
@@ -855,7 +855,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span>¿Los sábados cuentan como días laborables?</span>
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
-            <div class="faq-content hidden px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
               No, en el derecho laboral estándar los sábados no cuentan como días laborables. Sin embargo, en el ámbito procesal y administrativo (Ley 39/2015), los sábados sí computan como días hábiles si no son festivos oficiales.
             </div>
           </div>
@@ -865,7 +865,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span>¿Cuándo se publican los festivos oficiales de 2027 en el BOE?</span>
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
-            <div class="faq-content hidden px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
               El calendario laboral nacional suele publicarse formalmente en el BOE a lo largo del mes de octubre anterior al año de vigencia. Las Comunidades Autónomas publican sus elecciones de festivos entre junio y septiembre.
             </div>
           </div>
@@ -1127,12 +1127,12 @@ import { COMUNIDADES } from '../lib/calculadora';
         btn.addEventListener('click', () => {
           const content = btn.nextElementSibling;
           const icon = btn.querySelector('.faq-icon');
-          const isExpanded = !content?.classList.contains('hidden');
+          const isExpanded = content?.classList.contains('expanded');
           if (isExpanded) {
-            content?.classList.add('hidden');
+            content?.classList.remove('expanded');
             icon?.classList.remove('rotate-180');
           } else {
-            content?.classList.remove('hidden');
+            content?.classList.add('expanded');
             icon?.classList.add('rotate-180');
           }
         });
