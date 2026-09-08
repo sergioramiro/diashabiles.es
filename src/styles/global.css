@@ -6,9 +6,11 @@
   html, body {
     margin: 0;
     padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
   body {
-    overscroll-behavior: none;
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
   }
   main > :first-child {
     margin-top: 0 !important;
@@ -17,8 +19,18 @@
     margin-bottom: 0 !important;
   }
 }
+
+/* Scrollbar oculto */
 ::-webkit-scrollbar {
   display: none;
+}
+
+/* Safe area para dispositivos con notch */
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 /* FAQ Accordion */
@@ -41,4 +53,15 @@ html {
 *:focus-visible {
   outline: 2px solid #004ac6;
   outline-offset: 2px;
+}
+
+/* Touch-friendly inputs */
+input[type="date"],
+select {
+  min-height: 44px;
+}
+
+/* Mobile date input styling */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
 }
