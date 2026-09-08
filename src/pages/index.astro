@@ -951,6 +951,13 @@ import { COMUNIDADES } from '../lib/calculadora';
       const festivosCountLabel = document.getElementById('festivos-count-label')!;
       const festivosTagsContainer = document.getElementById('festivos-tags-container')!;
 
+      // Check URL params for community
+      const urlParams = new URLSearchParams(window.location.search);
+      const comunidadParam = urlParams.get('comunidad');
+      if (comunidadParam && selectCcaa) {
+        selectCcaa.value = comunidadParam;
+      }
+
       const meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
 
       const festivosNacionales2027 = [
