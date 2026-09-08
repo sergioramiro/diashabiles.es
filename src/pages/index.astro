@@ -165,6 +165,121 @@ import { COMUNIDADES } from '../lib/calculadora';
   </section>
 
   <section style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
+    <h2 style="font-size: 1.25rem; margin-bottom: 1rem;">Guía completa: días laborables, días hábiles y días naturales en España</h2>
+
+    <p style="font-size: 0.95rem; color: var(--color-text); margin-bottom: 1.25rem; line-height: 1.7;">
+      Si has llegado hasta aquí probablemente tengas un plazo que cumplir, un contrato que redactar o una nómina que revisar. En cualquiera de esos escenarios, la diferencia entre un día laborable, un día hábil y un día natural puede suponer perder o ganar semanas. Vamos a aclarar los conceptos de una vez por todas, con ejemplos reales y las referencias legales de rigor.
+    </p>
+
+    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">Día laborable: lunes a viernes sin festivos</h3>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
+      Un <strong>día laborable</strong> es, en términos sencillos, cualquier día de la semana entre lunes y viernes que no coincida con un festivo. Es el concepto que la mayoría de la gente maneja en su vida cotidiana: los días en los que se va a trabajar, se abren los bancos y las oficinas públicas atienden al público.
+    </p>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
+      En el ámbito laboral español, la jornada laboral se estructura sobre esta base. Los convenios colectivos, los contratos de trabajo y las nóminas se calculan pensando en días laborables. Por ejemplo, si tu contrato establece 30 días naturales de vacaciones, la empresa los convierte en días laborables para planificar tu ausencia.
+    </p>
+
+    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">Día hábil: incluye sábados (y los plazos administrativos lo exigen)</h3>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
+      Aquí es donde la mayoría comete errores. Un <strong>día hábil</strong> incluye todos los días de lunes a sábado que no sean festivos. Sí, has leído bien: los sábados cuentan. Esto no es una opinión, es la ley. La <strong>Ley 39/2015, de 1 de octubre</strong>, del Procedimiento Administrativo Común de las Administraciones Públicas, establece en su artículo 30 que los plazos se expresan en días hábiles, y que <em>se excluyen del cómputo los sábados</em> <strong>solo cuando sean festivos</strong>.
+    </p>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
+      En la práctica, esto significa que si tienes 30 días hábiles para presentar una alegación ante una administración, ese plazo incluye sábados. Si el plazo empieza un lunes, el primer sábado ya suma. Esta distinción es la que separa a quien cumple los plazos de quien los pierde por un error interpretativo.
+    </p>
+
+    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">Día natural: el calendario no perdona</h3>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
+      Un <strong>día natural</strong> es simplemente un día del calendario, sin importar si es festivo, sábado o domingo. El <strong>artículo 5 del Código Civil</strong> establece que <em>«cuando los plazos se cuentan por días, se entiende que éstos son naturales»</em>, salvo disposición expresa en contrario. Es decir, si un contrato dice «plazo de 15 días» sin más precisiones, son 15 días de calendario, festivos incluidos.
+    </p>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
+      Esto es especialmente relevante en contratos civiles y mercantiles. Si firmas un contrato de alquiler con un preaviso de 30 días naturales, no te queda margen por festivos ni fines de semana. El reloj corre sin parar.
+    </p>
+
+    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">Cómo calcular los días laborables entre dos fechas: paso a paso</h3>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
+      Calcular días laborables no es solo contar lunes a viernes. Hay que tener en cuenta los festivos —tanto nacionales como autonómicos y locales— que caen en el rango. Aquí tienes el proceso paso a paso:
+    </p>
+    <ol style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; padding-left: 1.5rem; line-height: 1.8;">
+      <li><strong>Define las fechas de inicio y fin.</strong> El día de inicio se incluye en el cómputo; el día de fin también (a menos que la norma diga lo contrario).</li>
+      <li><strong>Identifica los días de la semana.</strong> Los domingos nunca son hábiles. Los sábados son hábiles (pero no laborables) salvo que sean festivos.</li>
+      <li><strong>Descuenta los festivos nacionales.</strong> Son los 14 días publicados en el BOE cada año. No cuentan como hábiles ni laborables.</li>
+      <li><strong>Descuenta los festivos autonómicos.</strong> Cada comunidad tiene entre 2 y 4 festivos propios. Varían según la región.</li>
+      <li><strong>Comprueba los festivos locales.</strong> En municipios con festivo local propio (por ejemplo, el día del patrón), también hay que restarlo.</li>
+      <li><strong>Cuenta los días restantes.</strong> Los días hábiles incluyen sábados no festivos. Los laborables, solo lunes a viernes.</li>
+    </ol>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 1rem; line-height: 1.7;">
+      Utiliza la calculadora que tienes arriba para obtener el resultado exacto. Solo necesitas seleccionar las fechas, elegir tu comunidad o ciudad autónoma y pulsar «Calcular». La herramienta excluye automáticamente los festivos correspondientes.
+    </p>
+
+    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">Ejemplos prácticos con fechas reales</h3>
+
+    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem;">
+      <p style="font-size: 0.95rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem;">
+        Ejemplo 1: Plazo administrativo en Madrid (15 marzo — 30 abril 2027)
+      </p>
+      <p style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.7;">
+        Tienes un plazo de 30 días hábiles para presentar un escrito ante el Ayuntamiento de Madrid. Empiezas el 15 de marzo de 2027 (lunes). En este rango cae el Viernes Santo (25 de marzo), festivo nacional. Si cuentas lunes a sábado excluyendo festivos, llegas al día hábil número 30 alrededor del 26 de abril. Si solo hubieras contado lunes a viernes (sin sábados), habrías llegado el 5 de mayo. La diferencia son <strong>9 días</strong>. Un error de este tipo puede acarrear la inadmisión de tu escrito.
+      </p>
+    </div>
+
+    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem;">
+      <p style="font-size: 0.95rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem;">
+        Ejemplo 2: Contrato de trabajo y vacaciones
+      </p>
+      <p style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.7;">
+        Tu contrato establece 22 días laborables de vacaciones. Si quieres cogerlos entre el 1 de junio y el 30 de junio de 2027, necesitas saber cuántos días laborables hay en ese mes. Junio 2027 tiene 22 días laborables (sin festivos autonómicos). Si en tu comunidad hay algún festivo local en junio, esos días laborables bajan a 21. Es decir, si tu comunidad celebra un festivo adicional en junio, solo podrías disfrutar de 21 días completos de vacación en ese mes — te faltaría un día para agotar las 22 jornadas.
+      </p>
+    </div>
+
+    <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem;">
+      <p style="font-size: 0.95rem; font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem;">
+        Ejemplo 3: Plazo de empresa para contestar un despido
+      </p>
+      <p style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.7;">
+        Si recibes una carta de despido el 10 de diciembre de 2027, tienes 20 días hábiles para impugnarla ante la jurisdicción social (artículo 59.2 del Estatuto de los Trabajadores). Ten en cuenta que el 6 de diciembre (Día de la Constitución), el 8 de diciembre (Inmaculada Concepción) y el 25 de diciembre (Navidad) son festivos nacionales. El 25 de diciembre cae en sábado, pero como es festivo, no cuenta como hábil. Si empiezas a contar desde el 11 de diciembre (primer día hábil tras la recepción), el plazo se extiende hasta principios de enero de 2028. Un abogado laboralista siempre verificaría este cómputo con una herramienta como la que te ofrecemos.
+      </p>
+    </div>
+
+    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">¿Por qué importa tanto esta distinción?</h3>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
+      La confusión entre días laborables, hábiles y naturales no es solo un tema académico. Tiene consecuencias reales en múltiples ámbitos:
+    </p>
+
+    <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--color-text);">Plazos administrativos</h4>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
+      La Ley 39/2015 y su reglamento de desarrollo establecen que los plazos de las administraciones públicas se expresan en días hábiles. Presentar un recurso, una alegación o una solicitud fuera de plazo puede suponer la inadmisión del trámite. Los boletines oficiales (BOE, BOJA, DOGC, etc.) publican periódicamente los calendarios de festivos para que los ciudadanos puedan calcular sus plazos correctamente.
+    </p>
+
+    <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--color-text);">Contratos y obligaciones civiles</h4>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
+      En contratos privados, si no se especifica nada, el Código Civil presume días naturales. Pero muchas empresas y profesionales incluyen cláusulas con plazos en días laborables (para alinearse con su calendario de trabajo) o en días hábiles (para alinearse con plazos administrativos). Saber cuál aplica es fundamental para no incurrir en incumplimiento contractual.
+    </p>
+
+    <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--color-text);">Recursos humanos y nóminas</h4>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; line-height: 1.7;">
+      En el día a día de un departamento de RRHH, saber cuántos días laborables hay en un mes es esencial para calcular nóminas, bonificaciones por presencia, productividad y encuadramiento de convenios. Un festivo caído en martes, por ejemplo, puede alterar el cómputo de horas mensuales si el convenio lo establece. Herramientas como esta calculadora evitan tener que hacerlo manualmente y cometer errores costosos.
+    </p>
+
+    <h4 style="font-size: 0.95rem; margin-top: 1rem; margin-bottom: 0.5rem; color: var(--color-text);">Gestión de proyectos y planificación</h4>
+    <p style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 1rem; line-height: 1.7;">
+      Si gestionas proyectos con herramientas tipo Jira o Asana, conocer los días laborables del equipo es clave para estimar sprints, compromisos de entrega y capacity planning. Un festivo en mitad de un sprint reduce la capacidad del equipo y puede hacer peligrar un milestone. Los managers que planifican con datos reales —no con suposiciones— son los que cumplen plazos de forma fiable.
+    </p>
+
+    <h3 style="font-size: 1.05rem; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text);">Referencias legales</h3>
+    <ul style="font-size: 0.95rem; color: var(--color-muted); margin-bottom: 0.75rem; padding-left: 1.5rem; line-height: 1.8;">
+      <li><strong>Ley 39/2015, de 1 de octubre</strong>, del Procedimiento Administrativo Común — art. 30 (cómputo de plazos en días hábiles).</li>
+      <li><strong>Artículo 5 del Código Civil</strong> — presunción de días naturales salvo disposición expresa en contrario.</li>
+      <li><strong>Real Decreto 2001/2015</strong> — normas de desarrollo del procedimiento administrativo común.</li>
+      <li><strong>Artículo 59.2 del Estatuto de los Trabajadores</strong> — plazos de impugnación de despidos en días hábiles.</li>
+      <li><strong>BOE (Boletín Oficial del Estado)</strong> — publicación anual de festivos nacionales.</li>
+    </ul>
+
+    <p style="font-size: 0.95rem; color: var(--color-muted); line-height: 1.7; margin-top: 1rem;">
+      En resumen: no todos los días son iguales ante la ley. Aprender a distinguir entre laborables, hábiles y naturales te dará una ventaja práctica en tu vida profesional y personal. Usa la calculadora de arriba, verifica tus fechas con festivos oficiales y nunca más pierdas un plazo por no haber contado bien los días.
+    </p>
+  </section>
+
+  <section style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
     <h2 style="font-size: 1.1rem; margin-bottom: 1rem;">Preguntas frecuentes</h2>
 
     <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
