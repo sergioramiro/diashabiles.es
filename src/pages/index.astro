@@ -300,6 +300,11 @@ import { COMUNIDADES } from '../lib/calculadora';
             </div>
           </div>
 
+          <!-- Mini Calendar Visualization -->
+          <div id="mini-calendar-container" class="bg-surface-card rounded-2xl border border-border-subtle p-space-lg shadow-sm">
+            <!-- Dynamically rendered by JS -->
+          </div>
+
           <!-- Festivos en rango -->
           <div class="bg-surface-container-low rounded-xl p-space-md border border-border-subtle flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
             <div class="flex items-center gap-space-sm">
@@ -1057,6 +1062,186 @@ import { COMUNIDADES } from '../lib/calculadora';
             </div>
           `;
         }).join('');
+
+        renderMiniCalendar(startDate, endDate, allHolidays, activeRegionHolidays);
+      }
+
+      function renderMiniCalendar(startDate: Date, endDate: Date, allHolidays: Set<string>, regionHolidays: string[]) {
+        const container = document.getElementById('mini-calendar-container');
+        if (!container) return;
+
+        // Determine months in range
+        const months: { year: number; month: number; label: string }[] = [];
+        const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        const shortMonths = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+
+        let cur = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
+        const endMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 1);
+        while (cur <= endMonth) {
+          months.push({ year: cur.getFullYear(), month: cur.getMonth(), label: monthNames[cur.getMonth()] });
+          cur.setMonth(cur.getMonth() + 1);
+        }
+
+        // Count days in range
+        const dayCount = Math.round((endDate.getTime() - startDate.getTime()) / 86400000) + 1;
+        const ccaaName = selectCcaa.options[selectCcaa.selectedIndex].text;
+
+        // Build header
+        const startLabel = `${startDate.getDate()} ${shortMonths[startDate.getMonth()]} ${startDate.getFullYear()}`;
+        const endLabel = `${endDate.getDate()} ${shortMonths[endDate.getMonth()]} ${endDate.getFullYear()}`;
+
+        let html = `
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-md border-b border-border-subtle mb-space-md">
+            <div>
+              <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-primary text-[20px]">date_range</span>
+                <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Visualización de calendario interactivo</h3>
+                <span class="px-2 py-0.5 rounded-full bg-primary-fixed/30 text-primary font-label-sm text-label-sm font-semibold">${months.length} ${months.length === 1 ? 'mes' : 'meses'} en rango</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-text-secondary mt-0.5">Rango activo: ${startLabel} — ${endLabel} (${dayCount} días) · ${ccaaName}</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container-low border border-primary/40 text-on-surface text-xs font-medium">
+                <span class="w-2.5 h-2.5 rounded bg-primary-fixed border border-primary"></span><span>En rango</span>
+              </div>
+              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-error-container/40 border border-error/30 text-on-surface text-xs font-medium">
+                <span class="w-2.5 h-2.5 rounded-full bg-error"></span><span>Festivo</span>
+              </div>
+              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-base border border-border-subtle text-text-secondary text-xs font-medium">
+                <span class="w-2.5 h-2.5 rounded bg-surface-container"></span><span>Fin de semana</span>
+              </div>
+              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-primary-fixed/10 border border-primary/30 text-primary text-xs font-medium">
+                <span class="w-2.5 h-2.5 rounded border border-dashed border-primary text-[9px] flex items-center justify-center font-bold">S</span><span>Sábado hábil (LPACAP)</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 ${months.length > 1 ? 'md:grid-cols-' + Math.min(months.length, 3) : ''} gap-space-lg">
+        `;
+
+        // Render each month
+        for (const m of months) {
+          const firstDay = new Date(m.year, m.month, 1);
+          const daysInMonth = new Date(m.year, m.month + 1, 0).getDate();
+          const startDow = (firstDay.getDay() + 6) % 7; // Monday=0
+
+          // Count range days and holidays in this month
+          let rangeDays = 0;
+          let monthHolidays: number[] = [];
+          let laborables = 0;
+          let habiles = 0;
+
+          for (let d = 1; d <= daysInMonth; d++) {
+            const dateObj = new Date(m.year, m.month, d);
+            const isoDate = `${m.year}-${String(m.month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+            const inRange = dateObj >= startDate && dateObj <= endDate;
+            if (inRange) {
+              rangeDays++;
+              const dow = dateObj.getDay();
+              const isHoliday = allHolidays.has(isoDate);
+              if (!isHoliday && dow >= 1 && dow <= 5) laborables++;
+              if (!isHoliday && dow >= 1 && dow <= 6) habiles++;
+              if (isHoliday) monthHolidays.push(d);
+            }
+          }
+
+          const monthHolidaysNames: string[] = [];
+          for (const d of monthHolidays) {
+            const isoDate = `${m.year}-${String(m.month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+            monthHolidaysNames.push(festivosNombres2027[isoDate] || 'Festivo');
+          }
+
+          const badgeBg = rangeDays === daysInMonth ? 'bg-primary text-on-primary' : 'bg-primary-container text-on-primary';
+          const badgeText = rangeDays === daysInMonth ? `${daysInMonth} días en rango (mes completo)` : `${rangeDays} días en rango`;
+
+          html += `
+            <div class="bg-surface-base rounded-xl p-space-md border border-border-subtle">
+              <div class="flex items-center justify-between pb-space-xs border-b border-border-subtle mb-space-sm">
+                <div class="flex items-center gap-space-xs">
+                  <span class="font-label-md text-label-md font-bold text-on-surface">${m.label} ${m.year}</span>
+                  <span class="px-1.5 py-0.5 rounded ${badgeBg} text-[10px] font-bold">${badgeText}</span>
+                </div>
+                <span class="text-caption-legal text-caption-legal text-text-muted">${monthHolidays.length} festivo${monthHolidays.length !== 1 ? 's' : ''}${monthHolidaysNames.length > 0 ? ' (' + monthHolidaysNames.join(', ') + ')' : ''}</span>
+              </div>
+              <div class="grid grid-cols-7 gap-1 text-center font-label-sm text-caption-legal font-bold text-text-secondary mb-1">
+                <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span class="text-primary">S</span><span class="text-error">D</span>
+              </div>
+              <div class="grid grid-cols-7 gap-1 text-xs text-center">
+          `;
+
+          // Empty cells before first day
+          for (let i = 0; i < startDow; i++) {
+            html += `<div class="p-1.5 rounded text-transparent"></div>`;
+          }
+
+          // Day cells
+          for (let d = 1; d <= daysInMonth; d++) {
+            const dateObj = new Date(m.year, m.month, d);
+            const isoDate = `${m.year}-${String(m.month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+            const inRange = dateObj >= startDate && dateObj <= endDate;
+            const dow = dateObj.getDay(); // 0=Sun, 6=Sat
+            const isWeekend = dow === 0 || dow === 6;
+            const isSaturday = dow === 6;
+            const isSunday = dow === 0;
+            const isHoliday = allHolidays.has(isoDate);
+            const isStartDate = dateObj.getTime() === startDate.getTime();
+            const isEndDate = dateObj.getTime() === endDate.getTime();
+
+            let cellClass = 'p-1.5 rounded ';
+
+            if (!inRange) {
+              cellClass += 'text-text-muted bg-surface-card opacity-50';
+            } else if (isHoliday) {
+              cellClass += 'bg-error-container border border-error/30 text-error font-bold relative group cursor-pointer';
+            } else if (isStartDate || isEndDate) {
+              cellClass += 'font-bold bg-primary text-on-primary shadow-sm relative group cursor-pointer';
+            } else if (isSaturday) {
+              cellClass += 'bg-surface-container text-primary font-semibold border border-dashed border-primary/40 relative hover:bg-primary-fixed/20 transition-colors';
+            } else if (isSunday) {
+              cellClass += 'bg-secondary-container/40 text-text-secondary';
+            } else {
+              cellClass += 'bg-primary-fixed/30 text-on-surface font-medium hover:bg-primary-fixed/50 transition-colors';
+            }
+
+            let dotHtml = '';
+            if (isHoliday && inRange) {
+              dotHtml = `<span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-error"></span>`;
+            } else if (isStartDate && inRange) {
+              dotHtml = `<span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-tertiary-fixed"></span>`;
+            } else if (isEndDate && inRange) {
+              dotHtml = `<span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-error-container"></span>`;
+            }
+
+            html += `<div class="${cellClass}">${d}${dotHtml}</div>`;
+          }
+
+          html += `
+              </div>
+              <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-between text-caption-legal text-text-muted">
+                <span>${rangeDays > 0 ? (startDate.getMonth() === m.month && startDate.getFullYear() === m.year ? 'Inicio de cómputo: ' + ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'][startDate.getDay()] + ' ' + startDate.getDate() + ' ' + shortMonths[startDate.getMonth()] : rangeDays === daysInMonth ? 'Mes completo en rango' : `${rangeDays} días en rango`) : 'Sin días en rango'}</span>
+                <span class="text-primary font-semibold">${laborables} laborables · ${habiles} hábiles</span>
+              </div>
+            </div>
+          `;
+        }
+
+        html += `</div>`;
+
+        // Footer info
+        html += `
+          <div class="mt-space-md pt-space-xs border-t border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-xs">
+            <div class="flex items-center gap-space-xs text-xs text-text-secondary">
+              <span class="material-symbols-outlined text-primary text-[18px]">info</span>
+              <span>Pasa el cursor por los días festivos para verificar la condición jurídica de cada festivo.</span>
+            </div>
+            <div class="flex items-center gap-1 text-xs text-text-secondary">
+              <span class="font-medium">Visualización dinámica:</span>
+              <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-semibold">Rango ${months.length}-${months.length} ${months.length === 1 ? 'mes' : 'meses'} activo</span>
+              <span class="text-text-muted">· Vista adaptativa a selección</span>
+            </div>
+          </div>
+        `;
+
+        container.innerHTML = html;
       }
 
       // Event handlers
