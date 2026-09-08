@@ -5,7 +5,7 @@ import { COMUNIDADES } from '../lib/calculadora';
 
 <Layout
   title="Calculadora de días laborables y hábiles 2027 — diashabiles.es"
-  description="Calcula los días laborables y hábiles entre dos fechas para 2027. Incluye festivos nacionales y de tu comunidad autónoma. Herramienta gratuita."
+  description="Calcula los días laborables y hábiles entre dos fechas para 2027. Incluye festivos nacionales y de tu comunidad o ciudad autónoma. Herramienta gratuita."
 >
   <Fragment slot="json-ld">
     <script type="application/ld+json">
@@ -30,7 +30,7 @@ import { COMUNIDADES } from '../lib/calculadora';
           "name": "¿Cuántos días laborables hay en 2027?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "En 2027 hay aproximadamente 252 días laborables en España (lunes a viernes sin festivos). El número exacto varía según tu comunidad autónoma por los festivos regionales."
+            "text": "En 2027 hay aproximadamente 252 días laborables en España (lunes a viernes sin festivos). El número exacto varía según tu comunidad o ciudad autónoma por los festivos regionales."
           }
         },
         {
@@ -46,7 +46,7 @@ import { COMUNIDADES } from '../lib/calculadora';
           "name": "¿Cómo se calculan los días laborables entre dos fechas?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Selecciona la fecha de inicio y fin en la calculadora, elige tu comunidad autónoma (o solo festivos nacionales) y la herramienta te dará el número de días laborables, días hábiles y festivos en ese rango."
+            "text": "Selecciona la fecha de inicio y fin en la calculadora, elige tu comunidad o ciudad autónoma (o solo festivos nacionales) y la herramienta te dará el número de días laborables, días hábiles y festivos en ese rango."
           }
         },
         {
@@ -93,7 +93,7 @@ import { COMUNIDADES } from '../lib/calculadora';
       </div>
 
       <div class="form-group">
-        <label for="comunidad">Comunidad autónoma</label>
+        <label for="comunidad">Comunidad autónoma / ciudad</label>
         <select id="comunidad" name="comunidad">
           <option value="">Solo festivos nacionales</option>
           {COMUNIDADES.map(c => (
@@ -137,7 +137,7 @@ import { COMUNIDADES } from '../lib/calculadora';
   </div>
 
   <section style="margin-top: 2rem;">
-    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Festivos por comunidad autónoma</h2>
+    <h2 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Festivos por comunidad y ciudad autónoma</h2>
     <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 1rem;">
       Consulta los festivos autonómicos de cada comunidad para 2027:
     </p>
@@ -170,7 +170,7 @@ import { COMUNIDADES } from '../lib/calculadora';
     <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
       <summary style="cursor: pointer; font-weight: 600; font-size: 0.95rem;">¿Cuántos días laborables hay en 2027?</summary>
       <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--color-muted);">
-        En 2027 hay aproximadamente <strong>252 días laborables</strong> en España (lunes a viernes sin festivos). El número exacto varía según tu comunidad autónoma por los festivos regionales.
+        En 2027 hay aproximadamente <strong>252 días laborables</strong> en España (lunes a viernes sin festivos). El número exacto varía según tu comunidad o ciudad autónoma por los festivos regionales.
       </p>
     </details>
 
@@ -184,7 +184,7 @@ import { COMUNIDADES } from '../lib/calculadora';
     <details style="margin-bottom: 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 1rem;">
       <summary style="cursor: pointer; font-weight: 600; font-size: 0.95rem;">¿Cómo se calculan los días laborables entre dos fechas?</summary>
       <p style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--color-muted);">
-        Selecciona la fecha de inicio y fin en la calculadora, elige tu comunidad autónoma (o solo festivos nacionales) y la herramienta te dará el número de días laborables, días hábiles y festivos en ese rango.
+        Selecciona la fecha de inicio y fin en la calculadora, elige tu comunidad o ciudad autónoma (o solo festivos nacionales) y la herramienta te dará el número de días laborables, días hábiles y festivos en ese rango.
       </p>
     </details>
 

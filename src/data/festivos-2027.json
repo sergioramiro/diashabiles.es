@@ -778,6 +778,41 @@
           "nota": "Sábado — traslado pendiente de confirmar"
         }
       ]
+    },
+    "ceuta": {
+      "nombre": "Ceuta",
+      "tipo": "ciudad_autonoma",
+      "festivos": [
+        {
+          "fecha": "2027-03-10",
+          "nombre": "Eid al-Fitr",
+          "nota": "Fiesta del fin del Ramadán (fecha lunar, provisional)"
+        },
+        {
+          "fecha": "2027-05-17",
+          "nombre": "Eid al-Adha",
+          "nota": "Fiesta del Sacrificio (fecha lunar, provisional)"
+        },
+        {
+          "fecha": "2027-06-13",
+          "nombre": "San Antonio de Padua"
+        },
+        {
+          "fecha": "2027-09-02",
+          "nombre": "Día de Ceuta"
+        }
+      ]
+    },
+    "melilla": {
+      "nombre": "Melilla",
+      "tipo": "ciudad_autonoma",
+      "festivos": [
+        {
+          "fecha": "2027-05-17",
+          "nombre": "Eid al-Adha",
+          "nota": "Fiesta del Sacrificio (fecha lunar, provisional)"
+        }
+      ]
     }
   }
 }

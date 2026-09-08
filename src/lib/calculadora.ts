@@ -132,6 +132,7 @@ export const COMUNIDADES = Object.entries(festivosData.comunidades).map(
   ([id, data]) => ({
     id,
     nombre: data.nombre,
+    tipo: data.tipo || 'comunidad',
   })
 );
 
