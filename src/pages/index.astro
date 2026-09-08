@@ -72,9 +72,12 @@ import { COMUNIDADES } from '../lib/calculadora';
 
   <!-- ===================== FIXED HEADER ===================== -->
   <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-    <div class="h-16 max-w-[72rem] mx-auto px-4 md:px-6 flex items-center justify-between gap-space-md">
+    <div class="h-16 max-w-[72rem] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md">
       <div class="flex items-center gap-space-sm shrink-0">
-        <img alt="Logo diashabiles.es" class="h-8 w-auto object-contain" src="/logo.svg" />
+        <a href="/" class="flex items-center gap-space-sm no-underline">
+          <img alt="Logo diashabiles.es" class="h-8 w-auto object-contain" src="/logo.svg" />
+          <span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">diashabiles<span class="text-primary">.es</span></span>
+        </a>
         <span class="hidden xl:inline-flex items-center px-space-xs py-space-2xs rounded-full bg-status-warning-bg text-status-warning-text font-label-sm text-label-sm font-semibold border border-status-warning/30">Calendario BOE 2027 Provisionales</span>
       </div>
       <nav class="hidden lg:flex items-center gap-space-md">
@@ -82,6 +85,7 @@ import { COMUNIDADES } from '../lib/calculadora';
         <a class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" href="#habiles-vs-laborables">Días Hábiles vs Laborables</a>
         <a class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" href="#festivos-2027-ccaa">Festivos 2027 por CCAA</a>
         <a class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" href="#guia-legal">Guía Legal &amp; Plazos</a>
+        <a class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" href="#api-festivos">API Festivos</a>
       </nav>
       <div class="flex items-center gap-space-sm">
         <a href="https://boe.es" target="_blank" rel="noopener" class="hidden md:inline-flex px-space-sm py-space-xs rounded-lg bg-surface-container border border-border-subtle text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors items-center gap-1.5">
@@ -137,7 +141,7 @@ import { COMUNIDADES } from '../lib/calculadora';
 
         <!-- Interactive Calculator -->
         <div class="bg-surface-card rounded-2xl shadow-xl border border-border-subtle p-space-md sm:p-space-xl relative">
-          <div class="grid grid-cols-2 lg:grid-cols-12 gap-space-md lg:gap-space-lg items-end">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-end">
             <!-- Start Date -->
             <div class="lg:col-span-4 flex flex-col gap-space-2xs">
               <div class="flex items-center justify-between">
@@ -227,6 +231,10 @@ import { COMUNIDADES } from '../lib/calculadora';
                 <span class="material-symbols-outlined text-[16px]">content_copy</span>
                 Copiar informe
               </button>
+              <button class="px-space-sm py-1.5 rounded-lg bg-surface-card border border-border-subtle text-on-surface-variant hover:text-on-surface text-label-sm font-semibold flex items-center gap-1 shadow-sm transition-colors" id="btn-descargar-resumen" type="button">
+                <span class="material-symbols-outlined text-[16px]">download</span>
+                Exportar desglose
+              </button>
             </div>
           </div>
 
@@ -301,8 +309,50 @@ import { COMUNIDADES } from '../lib/calculadora';
           </div>
 
           <!-- Mini Calendar Visualization -->
-          <div id="mini-calendar-container" class="bg-surface-card rounded-2xl border border-border-subtle p-space-lg shadow-sm">
-            <!-- Dynamically rendered by JS -->
+          <div id="mini-calendar-container" class="bg-surface-card rounded-2xl border border-border-subtle p-space-lg shadow-sm mb-space-lg">
+            <!-- Header with view toggle -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-md border-b border-border-subtle mb-space-md">
+              <div>
+                <div class="flex items-center gap-space-xs flex-wrap">
+                  <span class="material-symbols-outlined text-primary text-[22px]">calendar_month</span>
+                  <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Visualización de calendario interactivo</h3>
+                  <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed/40 text-primary font-label-sm text-label-sm font-bold" id="badge-rango-meses"></span>
+                </div>
+                <p class="font-body-sm text-body-sm text-text-secondary mt-1" id="subtitulo-rango-activo"></p>
+              </div>
+              <div class="flex flex-wrap items-center gap-2">
+                <div class="inline-flex p-1 bg-surface-container rounded-xl border border-border-subtle">
+                  <button class="px-3 py-1.5 rounded-lg font-label-sm text-label-sm font-bold text-on-primary bg-primary shadow-sm flex items-center gap-1.5 transition-all" id="tab-btn-carousel" type="button">
+                    <span class="material-symbols-outlined text-[16px]">view_carousel</span>
+                    <span>Vista 2 en 2 meses</span>
+                  </button>
+                  <button class="px-3 py-1.5 rounded-lg font-label-sm text-label-sm font-semibold text-text-secondary hover:text-on-surface flex items-center gap-1.5 transition-all" id="tab-btn-grid" type="button">
+                    <span class="material-symbols-outlined text-[16px]">grid_view</span>
+                    <span>Ver todos los meses</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Legend bar -->
+            <div class="flex flex-wrap items-center justify-between gap-space-sm pb-space-sm mb-space-md border-b border-dashed border-border-subtle text-xs text-text-secondary">
+              <div class="flex flex-wrap items-center gap-3">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded bg-primary-fixed border border-primary"></span><span>En rango</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded-full bg-error"></span><span>Festivo</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded bg-surface-container"></span><span>Fin de semana</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded border border-dashed border-primary text-[9px] flex items-center justify-center font-bold">S</span><span>Sábado hábil (LPACAP)</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2" id="carousel-pagination"></div>
+            </div>
+            <!-- Calendar content rendered by JS -->
+            <div id="calendar-view-container"></div>
           </div>
 
           <!-- Festivos en rango -->
@@ -805,6 +855,23 @@ import { COMUNIDADES } from '../lib/calculadora';
               </a>
             </div>
 
+            <!-- Developer API promotion banner -->
+            <div class="bg-surface-card p-space-md rounded-xl border border-border-subtle shadow-sm" id="api-festivos">
+              <div class="flex items-center gap-space-xs mb-space-xs">
+                <span class="material-symbols-outlined text-primary text-[20px]">code</span>
+                <h4 class="font-label-md text-label-md font-bold text-on-surface">API Festivos 2027 para Desarrolladores</h4>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
+                Integra el cálculo de plazos en tu ERP, CRM o software legal con nuestra API REST pública JSON con cotejo oficial.
+              </p>
+              <code class="block bg-surface-base text-text-primary p-2 rounded border border-border-subtle text-xs font-mono mb-space-xs overflow-x-auto">
+                GET /api/2027/nacional.json
+              </code>
+              <a class="text-primary font-label-sm text-label-sm font-semibold hover:underline inline-flex items-center gap-1" href="/api/2027/nacional.json" target="_blank" rel="noopener">
+                Consultar documentación <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+              </a>
+            </div>
+
           </div>
         </div>
       </div>
@@ -830,7 +897,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span>¿Cuántos días laborables hay en 2027?</span>
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
-            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
               En 2027 hay aproximadamente <strong class="text-on-surface">252 días laborables</strong> en España (lunes a viernes que no coinciden con días festivos). El número exacto oscila entre 250 y 253 días según la Comunidad Autónoma y la localidad concreta.
             </div>
           </div>
@@ -840,7 +907,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span>¿Cuál es la diferencia exacta entre día hábil y laborable?</span>
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
-            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
               Un <strong class="text-on-surface">día laborable</strong> comprende exclusivamente de lunes a viernes que no sea fiesta oficial. Un <strong class="text-on-surface">día hábil</strong> en el procedimiento administrativo común (Ley 39/2015) incluye además los sábados no festivos.
             </div>
           </div>
@@ -850,7 +917,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span>¿Cómo se calculan los días laborables entre dos fechas?</span>
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
-            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
               Selecciona la fecha inicial y la fecha final en la calculadora interactiva, indica tu Comunidad Autónoma y el motor calculará automáticamente la suma descontando fines de semana e intercalando los festivos vigentes.
             </div>
           </div>
@@ -860,7 +927,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span>¿Los sábados cuentan como días laborables?</span>
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
-            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
               No, en el derecho laboral estándar los sábados no cuentan como días laborables. Sin embargo, en el ámbito procesal y administrativo (Ley 39/2015), los sábados sí computan como días hábiles si no son festivos oficiales.
             </div>
           </div>
@@ -870,7 +937,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span>¿Cuándo se publican los festivos oficiales de 2027 en el BOE?</span>
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
-            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs">
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
               El calendario laboral nacional suele publicarse formalmente en el BOE a lo largo del mes de octubre anterior al año de vigencia. Las Comunidades Autónomas publican sus elecciones de festivos entre junio y septiembre.
             </div>
           </div>
@@ -953,8 +1020,15 @@ import { COMUNIDADES } from '../lib/calculadora';
       const kpiHabiles = document.getElementById('kpi-habiles')!;
       const kpiNaturales = document.getElementById('kpi-naturales')!;
       const btnCopiar = document.getElementById('btn-copiar-resumen')!;
+      const btnDescargar = document.getElementById('btn-descargar-resumen')!;
       const festivosCountLabel = document.getElementById('festivos-count-label')!;
       const festivosTagsContainer = document.getElementById('festivos-tags-container')!;
+      const badgeRangoMeses = document.getElementById('badge-rango-meses')!;
+      const subtituloRango = document.getElementById('subtitulo-rango-activo')!;
+      const calendarViewContainer = document.getElementById('calendar-view-container')!;
+      const carouselPagination = document.getElementById('carousel-pagination')!;
+      const tabBtnCarousel = document.getElementById('tab-btn-carousel')!;
+      const tabBtnGrid = document.getElementById('tab-btn-grid')!;
 
       // Check URL params for community
       const urlParams = new URLSearchParams(window.location.search);
@@ -988,6 +1062,15 @@ import { COMUNIDADES } from '../lib/calculadora';
         '2027-06-24': 'Sant Joan', '2027-09-11': 'Diada', '2027-12-26': 'Sant Esteve',
         '2027-03-19': 'San José', '2027-10-09': 'Día de Valencia'
       };
+
+      // Calendar view state
+      let calendarView: 'carousel' | 'grid' = 'carousel';
+      let carouselPage = 0;
+      let allMonths: { year: number; month: number; label: string }[] = [];
+      let lastStartDate: Date;
+      let lastEndDate: Date;
+      let lastAllHolidays: Set<string>;
+      let lastRegionHolidays: string[];
 
       function computeDays() {
         const startVal = inputInicio.value;
@@ -1063,185 +1146,222 @@ import { COMUNIDADES } from '../lib/calculadora';
           `;
         }).join('');
 
-        renderMiniCalendar(startDate, endDate, allHolidays, activeRegionHolidays);
-      }
+        // Store state for calendar rendering
+        lastStartDate = startDate;
+        lastEndDate = endDate;
+        lastAllHolidays = allHolidays;
+        lastRegionHolidays = activeRegionHolidays;
 
-      function renderMiniCalendar(startDate: Date, endDate: Date, allHolidays: Set<string>, regionHolidays: string[]) {
-        const container = document.getElementById('mini-calendar-container');
-        if (!container) return;
-
-        // Determine months in range
-        const months: { year: number; month: number; label: string }[] = [];
+        // Determine months
         const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-        const shortMonths = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
-
+        allMonths = [];
         let cur = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
         const endMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 1);
         while (cur <= endMonth) {
-          months.push({ year: cur.getFullYear(), month: cur.getMonth(), label: monthNames[cur.getMonth()] });
+          allMonths.push({ year: cur.getFullYear(), month: cur.getMonth(), label: monthNames[cur.getMonth()] });
           cur.setMonth(cur.getMonth() + 1);
         }
 
-        // Count days in range
+        // Update badge and subtitle
         const dayCount = Math.round((endDate.getTime() - startDate.getTime()) / 86400000) + 1;
-        const ccaaName = selectCcaa.options[selectCcaa.selectedIndex].text;
+        const startLabel = `${startDate.getDate()} ${meses[startDate.getMonth()]} ${startDate.getFullYear()}`;
+        const endLabel = `${endDate.getDate()} ${meses[endDate.getMonth()]} ${endDate.getFullYear()}`;
+        badgeRangoMeses.textContent = `Rango: ${allMonths.length} meses (${dayCount} días)`;
+        subtituloRango.textContent = `Periodo seleccionado: ${startLabel} al ${endLabel}`;
+        tabBtnGrid.innerHTML = `<span class="material-symbols-outlined text-[16px]">grid_view</span><span>Ver todos los meses (${allMonths.length})</span>`;
 
-        // Build header
-        const startLabel = `${startDate.getDate()} ${shortMonths[startDate.getMonth()]} ${startDate.getFullYear()}`;
-        const endLabel = `${endDate.getDate()} ${shortMonths[endDate.getMonth()]} ${endDate.getFullYear()}`;
+        // Reset carousel to first page
+        carouselPage = 0;
+        renderCalendarView();
+      }
 
-        let html = `
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-md border-b border-border-subtle mb-space-md">
-            <div>
-              <div class="flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-primary text-[20px]">date_range</span>
-                <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Visualización de calendario interactivo</h3>
-                <span class="px-2 py-0.5 rounded-full bg-primary-fixed/30 text-primary font-label-sm text-label-sm font-semibold">${months.length} ${months.length === 1 ? 'mes' : 'meses'} en rango</span>
-              </div>
-              <p class="font-body-sm text-body-sm text-text-secondary mt-0.5">Rango activo: ${startLabel} — ${endLabel} (${dayCount} días) · ${ccaaName}</p>
-            </div>
-            <div class="flex flex-wrap items-center gap-2">
-              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container-low border border-primary/40 text-on-surface text-xs font-medium">
-                <span class="w-2.5 h-2.5 rounded bg-primary-fixed border border-primary"></span><span>En rango</span>
-              </div>
-              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-error-container/40 border border-error/30 text-on-surface text-xs font-medium">
-                <span class="w-2.5 h-2.5 rounded-full bg-error"></span><span>Festivo</span>
-              </div>
-              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-base border border-border-subtle text-text-secondary text-xs font-medium">
-                <span class="w-2.5 h-2.5 rounded bg-surface-container"></span><span>Fin de semana</span>
-              </div>
-              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-primary-fixed/10 border border-primary/30 text-primary text-xs font-medium">
-                <span class="w-2.5 h-2.5 rounded border border-dashed border-primary text-[9px] flex items-center justify-center font-bold">S</span><span>Sábado hábil (LPACAP)</span>
-              </div>
-            </div>
-          </div>
-          <div class="grid grid-cols-1 ${months.length > 1 ? 'md:grid-cols-' + Math.min(months.length, 3) : ''} gap-space-lg">
-        `;
+      function renderMonthHTML(m: { year: number; month: number; label: string }, startDate: Date, endDate: Date, allHolidays: Set<string>): string {
+        const shortMonths = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+        const firstDay = new Date(m.year, m.month, 1);
+        const daysInMonth = new Date(m.year, m.month + 1, 0).getDate();
+        const startDow = (firstDay.getDay() + 6) % 7;
 
-        // Render each month
-        for (const m of months) {
-          const firstDay = new Date(m.year, m.month, 1);
-          const daysInMonth = new Date(m.year, m.month + 1, 0).getDate();
-          const startDow = (firstDay.getDay() + 6) % 7; // Monday=0
+        let rangeDays = 0;
+        let monthHolidays: number[] = [];
+        let laborables = 0;
+        let habiles = 0;
 
-          // Count range days and holidays in this month
-          let rangeDays = 0;
-          let monthHolidays: number[] = [];
-          let laborables = 0;
-          let habiles = 0;
-
-          for (let d = 1; d <= daysInMonth; d++) {
-            const dateObj = new Date(m.year, m.month, d);
-            const isoDate = `${m.year}-${String(m.month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-            const inRange = dateObj >= startDate && dateObj <= endDate;
-            if (inRange) {
-              rangeDays++;
-              const dow = dateObj.getDay();
-              const isHoliday = allHolidays.has(isoDate);
-              if (!isHoliday && dow >= 1 && dow <= 5) laborables++;
-              if (!isHoliday && dow >= 1 && dow <= 6) habiles++;
-              if (isHoliday) monthHolidays.push(d);
-            }
-          }
-
-          const monthHolidaysNames: string[] = [];
-          for (const d of monthHolidays) {
-            const isoDate = `${m.year}-${String(m.month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-            monthHolidaysNames.push(festivosNombres2027[isoDate] || 'Festivo');
-          }
-
-          const badgeBg = rangeDays === daysInMonth ? 'bg-primary text-on-primary' : 'bg-primary-container text-on-primary';
-          const badgeText = rangeDays === daysInMonth ? `${daysInMonth} días en rango (mes completo)` : `${rangeDays} días en rango`;
-
-          html += `
-            <div class="bg-surface-base rounded-xl p-space-md border border-border-subtle">
-              <div class="flex items-center justify-between pb-space-xs border-b border-border-subtle mb-space-sm">
-                <div class="flex items-center gap-space-xs">
-                  <span class="font-label-md text-label-md font-bold text-on-surface">${m.label} ${m.year}</span>
-                  <span class="px-1.5 py-0.5 rounded ${badgeBg} text-[10px] font-bold">${badgeText}</span>
-                </div>
-                <span class="text-caption-legal text-caption-legal text-text-muted">${monthHolidays.length} festivo${monthHolidays.length !== 1 ? 's' : ''}${monthHolidaysNames.length > 0 ? ' (' + monthHolidaysNames.join(', ') + ')' : ''}</span>
-              </div>
-              <div class="grid grid-cols-7 gap-1 text-center font-label-sm text-caption-legal font-bold text-text-secondary mb-1">
-                <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span class="text-primary">S</span><span class="text-error">D</span>
-              </div>
-              <div class="grid grid-cols-7 gap-1 text-xs text-center">
-          `;
-
-          // Empty cells before first day
-          for (let i = 0; i < startDow; i++) {
-            html += `<div class="p-1.5 rounded text-transparent"></div>`;
-          }
-
-          // Day cells
-          for (let d = 1; d <= daysInMonth; d++) {
-            const dateObj = new Date(m.year, m.month, d);
-            const isoDate = `${m.year}-${String(m.month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-            const inRange = dateObj >= startDate && dateObj <= endDate;
-            const dow = dateObj.getDay(); // 0=Sun, 6=Sat
-            const isWeekend = dow === 0 || dow === 6;
-            const isSaturday = dow === 6;
-            const isSunday = dow === 0;
+        for (let d = 1; d <= daysInMonth; d++) {
+          const dateObj = new Date(m.year, m.month, d);
+          const isoDate = `${m.year}-${String(m.month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+          const inRange = dateObj >= startDate && dateObj <= endDate;
+          if (inRange) {
+            rangeDays++;
+            const dow = dateObj.getDay();
             const isHoliday = allHolidays.has(isoDate);
-            const isStartDate = dateObj.getTime() === startDate.getTime();
-            const isEndDate = dateObj.getTime() === endDate.getTime();
-
-            let cellClass = 'p-1.5 rounded ';
-
-            if (!inRange) {
-              cellClass += 'text-text-muted bg-surface-card opacity-50';
-            } else if (isHoliday) {
-              cellClass += 'bg-error-container border border-error/30 text-error font-bold relative group cursor-pointer';
-            } else if (isStartDate || isEndDate) {
-              cellClass += 'font-bold bg-primary text-on-primary shadow-sm relative group cursor-pointer';
-            } else if (isSaturday) {
-              cellClass += 'bg-surface-container text-primary font-semibold border border-dashed border-primary/40 relative hover:bg-primary-fixed/20 transition-colors';
-            } else if (isSunday) {
-              cellClass += 'bg-secondary-container/40 text-text-secondary';
-            } else {
-              cellClass += 'bg-primary-fixed/30 text-on-surface font-medium hover:bg-primary-fixed/50 transition-colors';
-            }
-
-            let dotHtml = '';
-            if (isHoliday && inRange) {
-              dotHtml = `<span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-error"></span>`;
-            } else if (isStartDate && inRange) {
-              dotHtml = `<span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-tertiary-fixed"></span>`;
-            } else if (isEndDate && inRange) {
-              dotHtml = `<span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-error-container"></span>`;
-            }
-
-            html += `<div class="${cellClass}">${d}${dotHtml}</div>`;
+            if (!isHoliday && dow >= 1 && dow <= 5) laborables++;
+            if (!isHoliday && dow >= 1 && dow <= 6) habiles++;
+            if (isHoliday) monthHolidays.push(d);
           }
-
-          html += `
-              </div>
-              <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-between text-caption-legal text-text-muted">
-                <span>${rangeDays > 0 ? (startDate.getMonth() === m.month && startDate.getFullYear() === m.year ? 'Inicio de cómputo: ' + ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'][startDate.getDay()] + ' ' + startDate.getDate() + ' ' + shortMonths[startDate.getMonth()] : rangeDays === daysInMonth ? 'Mes completo en rango' : `${rangeDays} días en rango`) : 'Sin días en rango'}</span>
-                <span class="text-primary font-semibold">${laborables} laborables · ${habiles} hábiles</span>
-              </div>
-            </div>
-          `;
         }
 
-        html += `</div>`;
+        const monthHolidaysNames: string[] = [];
+        for (const d of monthHolidays) {
+          const isoDate = `${m.year}-${String(m.month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+          monthHolidaysNames.push(festivosNombres2027[isoDate] || 'Festivo');
+        }
 
-        // Footer info
-        html += `
-          <div class="mt-space-md pt-space-xs border-t border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-xs">
-            <div class="flex items-center gap-space-xs text-xs text-text-secondary">
-              <span class="material-symbols-outlined text-primary text-[18px]">info</span>
-              <span>Pasa el cursor por los días festivos para verificar la condición jurídica de cada festivo.</span>
+        const badgeBg = rangeDays === daysInMonth ? 'bg-primary text-on-primary' : 'bg-primary-container text-on-primary';
+        const badgeText = rangeDays === daysInMonth ? `${daysInMonth} días en rango (mes completo)` : `${rangeDays} días en rango`;
+
+        let html = `
+          <div class="bg-surface-base rounded-xl p-space-md border border-border-subtle">
+            <div class="flex items-center justify-between pb-space-xs border-b border-border-subtle mb-space-sm">
+              <div class="flex items-center gap-space-xs">
+                <span class="font-label-md text-label-md font-bold text-on-surface">${m.label} ${m.year}</span>
+                <span class="px-1.5 py-0.5 rounded ${badgeBg} text-[10px] font-bold">${badgeText}</span>
+              </div>
+              <span class="text-caption-legal text-caption-legal text-text-muted">${monthHolidays.length} festivo${monthHolidays.length !== 1 ? 's' : ''}${monthHolidaysNames.length > 0 ? ' (' + monthHolidaysNames.join(', ') + ')' : ''}</span>
             </div>
-            <div class="flex items-center gap-1 text-xs text-text-secondary">
-              <span class="font-medium">Visualización dinámica:</span>
-              <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-semibold">Rango ${months.length}-${months.length} ${months.length === 1 ? 'mes' : 'meses'} activo</span>
-              <span class="text-text-muted">· Vista adaptativa a selección</span>
+            <div class="grid grid-cols-7 gap-1 text-center font-label-sm text-caption-legal font-bold text-text-secondary mb-1">
+              <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span class="text-primary">S</span><span class="text-error">D</span>
+            </div>
+            <div class="grid grid-cols-7 gap-1 text-xs text-center">
+        `;
+
+        for (let i = 0; i < startDow; i++) {
+          html += `<div class="p-1.5 rounded text-transparent"></div>`;
+        }
+
+        for (let d = 1; d <= daysInMonth; d++) {
+          const dateObj = new Date(m.year, m.month, d);
+          const isoDate = `${m.year}-${String(m.month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+          const inRange = dateObj >= startDate && dateObj <= endDate;
+          const dow = dateObj.getDay();
+          const isSaturday = dow === 6;
+          const isSunday = dow === 0;
+          const isHoliday = allHolidays.has(isoDate);
+          const isStartDate = dateObj.getTime() === startDate.getTime();
+          const isEndDate = dateObj.getTime() === endDate.getTime();
+
+          let cellClass = 'p-1.5 rounded ';
+
+          if (!inRange) {
+            cellClass += 'text-text-muted bg-surface-card opacity-50';
+          } else if (isHoliday) {
+            cellClass += 'bg-error-container border border-error/30 text-error font-bold relative group cursor-pointer';
+          } else if (isStartDate || isEndDate) {
+            cellClass += 'font-bold bg-primary text-on-primary shadow-sm relative group cursor-pointer';
+          } else if (isSaturday) {
+            cellClass += 'bg-surface-container text-primary font-semibold border border-dashed border-primary/40 relative hover:bg-primary-fixed/20 transition-colors';
+          } else if (isSunday) {
+            cellClass += 'bg-secondary-container/40 text-text-secondary';
+          } else {
+            cellClass += 'bg-primary-fixed/30 text-on-surface font-medium hover:bg-primary-fixed/50 transition-colors';
+          }
+
+          let dotHtml = '';
+          if (isHoliday && inRange) {
+            dotHtml = `<span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-error"></span>`;
+          } else if (isStartDate && inRange) {
+            dotHtml = `<span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-tertiary-fixed"></span>`;
+          } else if (isEndDate && inRange) {
+            dotHtml = `<span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-error-container"></span>`;
+          }
+
+          html += `<div class="${cellClass}">${d}${dotHtml}</div>`;
+        }
+
+        html += `
+            </div>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-between text-caption-legal text-text-muted">
+              <span>${rangeDays > 0 ? (startDate.getMonth() === m.month && startDate.getFullYear() === m.year ? 'Inicio de cómputo: ' + ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'][startDate.getDay()] + ' ' + startDate.getDate() + ' ' + shortMonths[startDate.getMonth()] : rangeDays === daysInMonth ? 'Mes completo en rango' : `${rangeDays} días en rango`) : 'Sin días en rango'}</span>
+              <span class="text-primary font-semibold">${laborables} laborables · ${habiles} hábiles</span>
             </div>
           </div>
         `;
 
-        container.innerHTML = html;
+        return html;
+      }
+
+      function renderCalendarView() {
+        if (!calendarViewContainer || !lastStartDate || !lastEndDate) return;
+
+        if (calendarView === 'carousel') {
+          renderCarouselView();
+        } else {
+          renderGridView();
+        }
+        renderPagination();
+      }
+
+      function renderCarouselView() {
+        const monthsPerPage = 2;
+        const totalPages = Math.ceil(allMonths.length / monthsPerPage);
+        if (carouselPage >= totalPages) carouselPage = totalPages - 1;
+        if (carouselPage < 0) carouselPage = 0;
+
+        const startIdx = carouselPage * monthsPerPage;
+        const endIdx = Math.min(startIdx + monthsPerPage, allMonths.length);
+        const pageMonths = allMonths.slice(startIdx, endIdx);
+
+        let html = `<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">`;
+        for (const m of pageMonths) {
+          html += renderMonthHTML(m, lastStartDate, lastEndDate, lastAllHolidays);
+        }
+        html += `</div>`;
+
+        // Navigation arrows
+        html += `
+          <div class="mt-space-md pt-space-sm border-t border-border-subtle flex items-center justify-between">
+            <button class="px-space-sm py-1.5 rounded-lg border border-border-subtle bg-surface hover:bg-surface-container-low text-on-surface font-label-sm text-label-sm transition-colors flex items-center gap-1.5 ${carouselPage === 0 ? 'opacity-40 pointer-events-none' : ''}" id="carousel-prev" type="button">
+              <span class="material-symbols-outlined text-[16px]">chevron_left</span>
+              Anterior
+            </button>
+            <span class="font-caption-legal text-caption-legal text-text-muted">Meses ${startIdx + 1}–${endIdx} de ${allMonths.length}</span>
+            <button class="px-space-sm py-1.5 rounded-lg border border-border-subtle bg-surface hover:bg-surface-container-low text-on-surface font-label-sm text-label-sm transition-colors flex items-center gap-1.5 ${endIdx >= allMonths.length ? 'opacity-40 pointer-events-none' : ''}" id="carousel-next" type="button">
+              Siguiente
+              <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+            </button>
+          </div>
+        `;
+
+        calendarViewContainer.innerHTML = html;
+
+        // Attach navigation handlers
+        document.getElementById('carousel-prev')?.addEventListener('click', () => {
+          carouselPage--;
+          renderCalendarView();
+        });
+        document.getElementById('carousel-next')?.addEventListener('click', () => {
+          carouselPage++;
+          renderCalendarView();
+        });
+      }
+
+      function renderGridView() {
+        let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">`;
+        for (const m of allMonths) {
+          html += renderMonthHTML(m, lastStartDate, lastEndDate, lastAllHolidays);
+        }
+        html += `</div>`;
+        calendarViewContainer.innerHTML = html;
+      }
+
+      function renderPagination() {
+        if (calendarView !== 'carousel' || !carouselPagination) {
+          carouselPagination.innerHTML = '';
+          return;
+        }
+        const monthsPerPage = 2;
+        const totalPages = Math.ceil(allMonths.length / monthsPerPage);
+        let dots = '';
+        for (let i = 0; i < totalPages; i++) {
+          const active = i === carouselPage;
+          dots += `<button class="w-2 h-2 rounded-full transition-all ${active ? 'bg-primary w-4' : 'bg-border-strong hover:bg-outline'}" data-page="${i}" type="button" aria-label="Página ${i + 1}"></button>`;
+        }
+        carouselPagination.innerHTML = dots;
+        carouselPagination.querySelectorAll('button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            carouselPage = parseInt(btn.getAttribute('data-page') || '0');
+            renderCalendarView();
+          });
+        });
       }
 
       // Event handlers
@@ -1297,6 +1417,22 @@ import { COMUNIDADES } from '../lib/calculadora';
         });
       });
 
+      // Calendar view toggle
+      tabBtnCarousel.addEventListener('click', () => {
+        calendarView = 'carousel';
+        carouselPage = 0;
+        tabBtnCarousel.className = 'px-3 py-1.5 rounded-lg font-label-sm text-label-sm font-bold text-on-primary bg-primary shadow-sm flex items-center gap-1.5 transition-all';
+        tabBtnGrid.className = 'px-3 py-1.5 rounded-lg font-label-sm text-label-sm font-semibold text-text-secondary hover:text-on-surface flex items-center gap-1.5 transition-all';
+        renderCalendarView();
+      });
+
+      tabBtnGrid.addEventListener('click', () => {
+        calendarView = 'grid';
+        tabBtnGrid.className = 'px-3 py-1.5 rounded-lg font-label-sm text-label-sm font-bold text-on-primary bg-primary shadow-sm flex items-center gap-1.5 transition-all';
+        tabBtnCarousel.className = 'px-3 py-1.5 rounded-lg font-label-sm text-label-sm font-semibold text-text-secondary hover:text-on-surface flex items-center gap-1.5 transition-all';
+        renderCalendarView();
+      });
+
       // Copy summary
       btnCopiar.addEventListener('click', () => {
         const textToCopy = `Informe Oficial diashabiles.es 2027\n${headerText.textContent}\n- Días laborables: ${kpiLaborables.textContent}\n- Días hábiles (Ley 39/2015): ${kpiHabiles.textContent}\n- Días naturales: ${kpiNaturales.textContent}`;
@@ -1307,25 +1443,54 @@ import { COMUNIDADES } from '../lib/calculadora';
         });
       });
 
-      // FAQ Accordion
+      // Export desglose
+      btnDescargar?.addEventListener('click', () => {
+        const ccaaName = selectCcaa.options[selectCcaa.selectedIndex].text;
+        const lines = [
+          'Informe Oficial diashabiles.es 2027',
+          '=====================================',
+          '',
+          headerText.textContent || '',
+          '',
+          `Días laborables: ${kpiLaborables.textContent}`,
+          `Días hábiles (Ley 39/2015): ${kpiHabiles.textContent}`,
+          `Días naturales: ${kpiNaturales.textContent}`,
+          `Comunidad/Región: ${ccaaName}`,
+          '',
+          'Festivos detectados en el rango:',
+        ];
+        const tags = festivosTagsContainer.querySelectorAll('.inline-flex');
+        tags.forEach(tag => {
+          lines.push(`  - ${tag.textContent?.trim().replace(/\s+/g, ' ')}`);
+        });
+        lines.push('', 'Generado por diashabiles.es — Datos provisionales BOE 2027');
+        const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'informe-dias-habiles-2027.txt';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      // FAQ Accordion — uses hidden class toggle
       document.querySelectorAll('.faq-toggle').forEach(btn => {
         btn.addEventListener('click', () => {
           const content = btn.nextElementSibling;
           const icon = btn.querySelector('.faq-icon');
-          const isExpanded = content?.classList.contains('expanded');
-          if (isExpanded) {
-            content?.classList.remove('expanded');
-            icon?.classList.remove('rotate-180');
-          } else {
-            content?.classList.add('expanded');
+          const isHidden = content?.classList.contains('hidden');
+          if (isHidden) {
+            content?.classList.remove('hidden');
             icon?.classList.add('rotate-180');
+          } else {
+            content?.classList.add('hidden');
+            icon?.classList.remove('rotate-180');
           }
         });
       });
 
       // Mobile menu
       document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
-        // Simple scroll to calculator on mobile
         document.getElementById('calculadora')?.scrollIntoView({ behavior: 'smooth' });
       });
 

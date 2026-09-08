@@ -33,18 +33,16 @@
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* FAQ Accordion */
+/* FAQ Accordion — uses hidden class toggle */
 .faq-content {
-  max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-out, padding-top 0.3s ease-out, padding-bottom 0.3s ease-out;
-  padding-top: 0;
-  padding-bottom: 0;
+  transition: max-height 0.3s ease-out;
 }
-.faq-content.expanded {
+.faq-content.hidden {
+  max-height: 0;
+}
+.faq-content:not(.hidden) {
   max-height: 600px;
-  padding-top: 0.75rem;
-  padding-bottom: 1rem;
 }
 
 /* Smooth scroll */
@@ -67,4 +65,14 @@ select {
 /* Mobile date input styling */
 input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0.6;
+}
+
+/* Calendar carousel transitions */
+.calendar-carousel {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.calendar-carousel::-webkit-scrollbar {
+  display: none;
 }
