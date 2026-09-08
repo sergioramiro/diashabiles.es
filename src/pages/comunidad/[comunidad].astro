@@ -17,6 +17,18 @@ const festivos = resultado.festivosEnRango;
 const soloNacionales = calcularDias('2027-01-01', '2027-12-31');
 const festivosAutonomicos = festivos.filter(f => !soloNacionales.festivosEnRango.some(n => n.fecha === f.fecha));
 
+// Calendar grid data
+const MONTH_NAMES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+const YEAR = 2027;
+
+const festivosMap = new Map<string, { nombre: string; esAutonomico: boolean }>();
+for (const f of festivos) {
+  if (!festivosMap.has(f.fecha)) {
+    const esAutonomico = festivosAutonomicos.some(a => a.fecha === f.fecha);
+    festivosMap.set(f.fecha, { nombre: f.nombre, esAutonomico });
+  }
+}
+
 const siglas: Record<string, string> = {
   andalucia: 'AN', aragon: 'AR', asturias: 'AS', baleares: 'IB', canarias: 'CN',
   cantabria: 'CB', castillaleon: 'CL', castillamancha: 'CM', cataluna: 'CT',
@@ -234,6 +246,86 @@ const sigla = siglas[id] || id.slice(0, 2).toUpperCase();
           </div>
         )}
       </div>
+
+      <!-- Annual Calendar Grid View -->
+      <section class="mb-space-2xl">
+        <h2 class="font-headline-md text-headline-md text-on-surface mb-space-md flex items-center gap-2">
+          <span class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-xs font-bold">
+            <span class="material-symbols-outlined text-[16px]">calendar_month</span>
+          </span>
+          Calendario anual {nombre} 2027
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+          {Array.from({ length: 12 }, (_, monthIdx) => {
+            const firstDay = new Date(YEAR, monthIdx, 1);
+            const daysInMonth = new Date(YEAR, monthIdx + 1, 0).getDate();
+            const startDow = (firstDay.getDay() + 6) % 7;
+            const monthFestivos = festivos.filter(f => {
+              const m = parseInt(f.fecha.split('-')[1]);
+              return m === monthIdx + 1;
+            });
+            return (
+              <div class="bg-surface-card rounded-xl border border-border-subtle p-space-sm shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between pb-space-xs border-b border-border-subtle mb-space-xs">
+                  <span class="font-label-md text-label-md font-bold text-on-surface">{MONTH_NAMES[monthIdx]} {YEAR}</span>
+                  <span class="text-[10px] px-1.5 py-0.5 bg-primary-container text-on-primary rounded font-bold">
+                    {monthFestivos.length} festivo{monthFestivos.length !== 1 ? 's' : ''}
+                  </span>
+                </div>
+                <div class="grid grid-cols-7 gap-px text-center text-[10px] font-bold text-text-muted mb-0.5">
+                  <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+                </div>
+                <div class="grid grid-cols-7 gap-px text-center text-[11px]">
+                  {Array.from({ length: startDow }, (_, i) => (
+                    <div class="p-0.5"></div>
+                  ))}
+                  {Array.from({ length: daysInMonth }, (_, d) => {
+                    const day = d + 1;
+                    const dow = (startDow + d) % 7;
+                    const isWeekend = dow >= 5;
+                    const isoDate = `2027-${String(monthIdx + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    const festivo = festivosMap.get(isoDate);
+                    const isHoliday = !!festivo;
+                    const isRegional = festivo?.esAutonomico;
+
+                    let cellClass = 'p-0.5 rounded relative ';
+                    if (isHoliday && isRegional) {
+                      cellClass += 'bg-status-warning/20 text-status-warning font-bold ';
+                    } else if (isHoliday) {
+                      cellClass += 'bg-error-container text-error font-bold ';
+                    } else if (isWeekend) {
+                      cellClass += 'bg-surface-container text-text-muted ';
+                    } else {
+                      cellClass += 'text-on-surface ';
+                    }
+
+                    return (
+                      <div class={cellClass} title={isHoliday ? festivo?.nombre : ''}>
+                        {day}
+                        {isHoliday && (
+                          <span class={`absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full ${isRegional ? 'bg-status-warning' : 'bg-error'}`}></span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <!-- Legend -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mt-space-md text-xs text-text-muted">
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-error"></span><span>Festivo nacional</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-status-warning"></span><span>Festivo autonómico</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded bg-surface-container"></span><span>Fin de semana</span>
+          </div>
+        </div>
+      </section>
 
       <!-- What are laborable vs hábil -->
       <div class="bg-surface-card p-space-lg rounded-xl border border-border-subtle shadow-sm mb-space-xl">
