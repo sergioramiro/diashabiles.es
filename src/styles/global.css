@@ -106,3 +106,10 @@ iframe[src*="netlify"],
 script[src*="netlify/scripts/hud"] {
   display: none !important;
 }
+
+/* Content visibility for below-the-fold sections */
+section + section,
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
