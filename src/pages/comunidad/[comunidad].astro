@@ -68,22 +68,20 @@ const tituloSEO = titulosPorComunidad[id] || `Días laborables y festivos ${nomb
   description={`Calcula los días laborables y hábiles en ${nombre} para 2027. Festivos nacionales y autonómicos. Herramienta gratuita.`}
 >
   <Fragment slot="json-ld">
-    <script type="application/ld+json">
-    {
+    <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": `Días laborables ${nombre} 2027`,
-      "url": `https://diashabiles.es/comunidad/${id}`,
-      "description": `Festivos nacionales y autonómicos de ${nombre} en 2027`,
+      "name": `Calendario Laboral ${nombre} 2027 — Festivos y Días Hábiles`,
+      "url": `https://diashabiles.es/comunidad/${id}/`,
+      "description": `Calcula los días laborables y hábiles en ${nombre} para 2027. Festivos nacionales y autonómicos.`,
       "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://diashabiles.es" },
-          { "@type": "ListItem", "position": 2, "name": `${nombre}`, "item": `https://diashabiles.es/comunidad/${id}` }
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://diashabiles.es/" },
+          { "@type": "ListItem", "position": 2, "name": nombre, "item": `https://diashabiles.es/comunidad/${id}/` }
         ]
       }
-    }
-    </script>
+    })} />
   </Fragment>
 
   <!-- Fixed Header -->
