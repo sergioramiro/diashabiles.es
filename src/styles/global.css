@@ -98,3 +98,11 @@ main {
 .grid {
   contain: layout style;
 }
+
+/* Hide Netlify HUD badge (replaces hide-netlify-badge.js) */
+[data-netlify-site-id],
+[data-nf-variant],
+iframe[src*="netlify"],
+script[src*="netlify/scripts/hud"] {
+  display: none !important;
+}
