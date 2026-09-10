@@ -37,10 +37,34 @@ const siglas: Record<string, string> = {
   nacional: 'NA'
 };
 const sigla = siglas[id] || id.slice(0, 2).toUpperCase();
+
+// Títulos diferenciados por comunidad para SEO
+const titulosPorComunidad: Record<string, string> = {
+  andalucia: 'Calendario Laboral Andalucía 2027 — Festivos y Días Hábiles',
+  aragon: 'Festivos Aragón 2027 — Calendario Laboral Comunitario',
+  asturias: 'Calendario Laboral Asturias 2027 — Días Festivos y Hábiles',
+  canarias: 'Festivos Canarias 2027 — Calendario Laboral Completo',
+  cantabria: 'Calendario Laboral Cantabria 2027 — Días Festivos',
+  castilla_y_leon: 'Festivos Castilla y León 2027 — Calendario Laboral',
+  cataluna: 'Calendario Laboral Cataluña 2027 — Festivos y Hábiles',
+  ceuta: 'Festivos Ceuta 2027 — Calendario Laboral Ciudad Autónoma',
+  extremadura: 'Calendario Laboral Extremadura 2027 — Días Festivos',
+  galicia: 'Festivos Galicia 2027 — Calendario Laboral Comunitario',
+  islas_baleares: 'Calendario Laboral Islas Baleares 2027 — Festivos',
+  la_rioja: 'Festivos La Rioja 2027 — Calendario Laboral',
+  madrid: 'Calendario Laboral Madrid 2027 — Festivos y Días Hábiles',
+  melilla: 'Festivos Melilla 2027 — Calendario Laboral Ciudad Autónoma',
+  murcia: 'Calendario Laboral Murcia 2027 — Días Festivos',
+  navarra: 'Festivos Navarra 2027 — Calendario Laboral Foral',
+  pais_vasco: 'Calendario Laboral País Vasco 2027 — Festivos y Hábiles',
+  valencia: 'Festivos Valencia 2027 — Calendario Laboral Comunitario'
+};
+
+const tituloSEO = titulosPorComunidad[id] || `Días laborables y festivos ${nombre} 2027 — diashabiles.es`;
 ---
 
 <Layout
-  title={`Días laborables y festivos ${nombre} 2027 — diashabiles.es`}
+  title={tituloSEO}
   description={`Calcula los días laborables y hábiles en ${nombre} para 2027. Festivos nacionales y autonómicos. Herramienta gratuita.`}
 >
   <Fragment slot="json-ld">
