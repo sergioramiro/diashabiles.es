@@ -59,10 +59,34 @@ import { COMUNIDADES } from '../lib/calculadora';
         },
         {
           "@type": "Question",
-          "name": "¿Cuándo se publican los festivos oficiales de 2027?",
+          "name": "¿Cuándo se publican los festivos oficiales de 2027 en el BOE?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Los festivos nacionales se publican en el BOE durante el primer semestre. Los festivos autonómicos se publican en los boletines oficiales de cada comunidad, normalmente antes de octubre. Esta web actualiza los datos cuando se publican oficialmente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántos días laborables tiene un mes de 30 días?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depende del mes concreto y de los días de la semana en que caen. Un mes de 30 días puede tener entre 20 y 24 días laborables según cuántos fines de semana y festivos contenga. Por ejemplo, abril de 2027 tiene 22 días laborables porque el 1 de abril cae en jueves y solo hay un festivo nacional (Jueves Santo el día 22)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se cuentan los sábados como días laborables para la Seguridad Social?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. La Seguridad Social utiliza exclusivamente la jornada laboral de lunes a viernes para el cómputo de días cotizados y prestaciones. Los sábados no se consideran días laborables en ningún ámbito del derecho laboral español."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo afectan los puentes festivos al cómputo de días laborables?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los puentes festivos se tratan exactamente igual que cualquier otro día festivo oficial: reducen el número de días laborables del mes en el que caen. Si un puente coincide con un miércoles, ese día no se computa como laborable, lo que puede significar una semana de 3 días laborables en lugar de 5."
           }
         }
       ]
@@ -559,8 +583,179 @@ import { COMUNIDADES } from '../lib/calculadora';
           </table>
         </div>
         <div class="mt-space-sm flex items-center justify-between text-caption-legal text-caption-legal text-text-muted">
-          <span>* En enero 2027 hay 21 días laborables pero 25 días hábiles, porque los 4 sábados no coinciden con ningún festivo.</span>
+          <span>* En enero 2027 hay 19 días laborables pero 24 días hábiles, porque los 4 sábados no coinciden con ningún festivo.</span>
           <span>Referencia: Art. 30.2 Ley 39/2015</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MONTHLY GRID 2027 ===================== -->
+    <section class="w-full py-space-2xl" id="dias-laborables-mes-2027">
+      <div class="max-w-[72rem] mx-auto px-4 md:px-6">
+        <div class="text-center max-w-2xl mx-auto mb-space-xl">
+          <span class="text-primary font-label-md text-label-md font-bold uppercase tracking-wider">Desglose Mensual</span>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">
+            Días laborables por mes en 2027
+          </h2>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Visualiza de un vistazo cuántos días laborables, hábiles y naturales tiene cada mes del año 2027 en la Comunidad de Madrid (con festivos nacionales y autonómicos incluidos).
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-space-md">
+          <!-- Enero -->
+          <div class="bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm hover:shadow-md transition-shadow text-center">
+            <span class="font-label-md text-label-md text-on-surface font-bold block mb-space-xs">Enero</span>
+            <span class="text-headline-lg font-headline-lg text-primary font-bold block">19</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
+              <span>24 hábiles</span>
+              <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+              <span>31 naturales</span>
+            </div>
+          </div>
+          <!-- Febrero -->
+          <div class="bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm hover:shadow-md transition-shadow text-center">
+            <span class="font-label-md text-label-md text-on-surface font-bold block mb-space-xs">Febrero</span>
+            <span class="text-headline-lg font-headline-lg text-primary font-bold block">20</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
+              <span>24 hábiles</span>
+              <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+              <span>28 naturales</span>
+            </div>
+          </div>
+          <!-- Marzo -->
+          <div class="bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm hover:shadow-md transition-shadow text-center">
+            <span class="font-label-md text-label-md text-on-surface font-bold block mb-space-xs">Marzo</span>
+            <span class="text-headline-lg font-headline-lg text-primary font-bold block">21</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
+              <span>25 hábiles</span>
+              <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+              <span>31 naturales</span>
+            </div>
+          </div>
+          <!-- Abril -->
+          <div class="bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm hover:shadow-md transition-shadow text-center">
+            <span class="font-label-md text-label-md text-on-surface font-bold block mb-space-xs">Abril</span>
+            <span class="text-headline-lg font-headline-lg text-primary font-bold block">22</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
+              <span>26 hábiles</span>
+              <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+              <span>30 naturales</span>
+            </div>
+          </div>
+          <!-- Mayo -->
+          <div class="bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm hover:shadow-md transition-shadow text-center">
+            <span class="font-label-md text-label-md text-on-surface font-bold block mb-space-xs">Mayo</span>
+            <span class="text-headline-lg font-headline-lg text-primary font-bold block">21</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
+              <span>25 hábiles</span>
+              <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+              <span>31 naturales</span>
+            </div>
+          </div>
+          <!-- Junio -->
+          <div class="bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm hover:shadow-md transition-shadow text-center">
+            <span class="font-label-md text-label-md text-on-surface font-bold block mb-space-xs">Junio</span>
+            <span class="text-headline-lg font-headline-lg text-primary font-bold block">22</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
+              <span>26 hábiles</span>
+              <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+              <span>30 naturales</span>
+            </div>
+          </div>
+          <!-- Julio -->
+          <div class="bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm hover:shadow-md transition-shadow text-center">
+            <span class="font-label-md text-label-md text-on-surface font-bold block mb-space-xs">Julio</span>
+            <span class="text-headline-lg font-headline-lg text-primary font-bold block">22</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
+              <span>27 hábiles</span>
+              <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+              <span>31 naturales</span>
+            </div>
+          </div>
+          <!-- Agosto -->
+          <div class="bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm hover:shadow-md transition-shadow text-center">
+            <span class="font-label-md text-label-md text-on-surface font-bold block mb-space-xs">Agosto</span>
+            <span class="text-headline-lg font-headline-lg text-primary font-bold block">22</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
+              <span>26 hábiles</span>
+              <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+              <span>31 naturales</span>
+            </div>
+          </div>
+          <!-- Septiembre -->
+          <div class="bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm hover:shadow-md transition-shadow text-center">
+            <span class="font-label-md text-label-md text-on-surface font-bold block mb-space-xs">Septiembre</span>
+            <span class="text-headline-lg font-headline-lg text-primary font-bold block">22</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
+              <span>26 hábiles</span>
+              <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+              <span>30 naturales</span>
+            </div>
+          </div>
+          <!-- Octubre -->
+          <div class="bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm hover:shadow-md transition-shadow text-center">
+            <span class="font-label-md text-label-md text-on-surface font-bold block mb-space-xs">Octubre</span>
+            <span class="text-headline-lg font-headline-lg text-primary font-bold block">20</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
+              <span>25 hábiles</span>
+              <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+              <span>31 naturales</span>
+            </div>
+          </div>
+          <!-- Noviembre -->
+          <div class="bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm hover:shadow-md transition-shadow text-center">
+            <span class="font-label-md text-label-md text-on-surface font-bold block mb-space-xs">Noviembre</span>
+            <span class="text-headline-lg font-headline-lg text-primary font-bold block">21</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
+              <span>25 hábiles</span>
+              <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+              <span>30 naturales</span>
+            </div>
+          </div>
+          <!-- Diciembre -->
+          <div class="bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm hover:shadow-md transition-shadow text-center">
+            <span class="font-label-md text-label-md text-on-surface font-bold block mb-space-xs">Diciembre</span>
+            <span class="text-headline-lg font-headline-lg text-primary font-bold block">21</span>
+            <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
+            <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
+              <span>24 hábiles</span>
+              <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+              <span>31 naturales</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary row -->
+        <div class="mt-space-lg bg-surface-card rounded-xl border border-border-subtle p-space-md shadow-sm flex flex-col sm:flex-row items-center justify-between gap-space-md">
+          <div class="flex items-center gap-space-sm">
+            <span class="material-symbols-outlined text-primary text-[22px]">summarize</span>
+            <span class="font-label-md text-label-md text-on-surface font-bold">Resumen anual 2027 — Comunidad de Madrid</span>
+          </div>
+          <div class="flex items-center gap-space-md text-sm font-semibold">
+            <span class="text-primary">253 laborables</span>
+            <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+            <span class="text-on-surface">303 hábiles</span>
+            <span class="w-1 h-1 rounded-full bg-border-strong"></span>
+            <span class="text-on-surface-variant">365 naturales</span>
+          </div>
+        </div>
+
+        <div class="mt-space-sm text-center">
+          <p class="font-caption-legal text-caption-legal text-text-muted">
+            * Datos basados en festivos nacionales del BOE + festivos autonómicos de Madrid. Los valores pueden variar según tu comunidad autónoma y festivos locales.
+          </p>
         </div>
       </div>
     </section>
@@ -804,6 +999,125 @@ import { COMUNIDADES } from '../lib/calculadora';
                 </div>
               </div>
             </div>
+
+            <!-- Cómo calcular días laborables mes a mes en 2027 -->
+            <div>
+              <h3 class="font-headline-md text-headline-md text-on-surface mb-space-sm">
+                Cómo calcular días laborables mes a mes en 2027
+              </h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+                Conocer los días laborables de cada mes es fundamental para planificar vacaciones, calcular nóminas y gestionar plazos administrativos. A continuación se presenta un desglose completo del año 2027 para la Comunidad de Madrid, incluyendo los festivos nacionales del BOE y los autonómicos de la región.
+              </p>
+              <div class="overflow-x-auto bg-surface-card rounded-xl border border-border-subtle shadow-sm">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="bg-surface-container-low border-b border-border-subtle text-on-surface font-label-sm text-label-sm">
+                      <th class="py-space-sm px-space-md font-bold">Mes</th>
+                      <th class="py-space-sm px-space-md font-bold text-center">Naturales</th>
+                      <th class="py-space-sm px-space-md font-bold text-center">Laborables</th>
+                      <th class="py-space-sm px-space-md font-bold text-center">Hábiles</th>
+                      <th class="py-space-sm px-space-md font-bold">Festivos</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-border-subtle font-body-sm text-body-sm text-on-surface">
+                    <tr class="hover:bg-surface-base transition-colors">
+                      <td class="py-space-xs px-space-md font-semibold">Enero</td>
+                      <td class="py-space-xs px-space-md text-center">31</td>
+                      <td class="py-space-xs px-space-md text-center font-bold text-primary">19</td>
+                      <td class="py-space-xs px-space-md text-center">24</td>
+                      <td class="py-space-xs px-space-md text-text-secondary">Año Nuevo (1), Epifanía (6)</td>
+                    </tr>
+                    <tr class="bg-surface-base/50 hover:bg-surface-base transition-colors">
+                      <td class="py-space-xs px-space-md font-semibold">Febrero</td>
+                      <td class="py-space-xs px-space-md text-center">28</td>
+                      <td class="py-space-xs px-space-md text-center font-bold text-primary">20</td>
+                      <td class="py-space-xs px-space-md text-center">24</td>
+                      <td class="py-space-xs px-space-md text-text-secondary">Sin festivos</td>
+                    </tr>
+                    <tr class="hover:bg-surface-base transition-colors">
+                      <td class="py-space-xs px-space-md font-semibold">Marzo</td>
+                      <td class="py-space-xs px-space-md text-center">31</td>
+                      <td class="py-space-xs px-space-md text-center font-bold text-primary">21</td>
+                      <td class="py-space-xs px-space-md text-center">25</td>
+                      <td class="py-space-xs px-space-md text-text-secondary">Jueves Santo (25), Viernes Santo (26)</td>
+                    </tr>
+                    <tr class="bg-surface-base/50 hover:bg-surface-base transition-colors">
+                      <td class="py-space-xs px-space-md font-semibold">Abril</td>
+                      <td class="py-space-xs px-space-md text-center">30</td>
+                      <td class="py-space-xs px-space-md text-center font-bold text-primary">22</td>
+                      <td class="py-space-xs px-space-md text-center">26</td>
+                      <td class="py-space-xs px-space-md text-text-secondary">Sin festivos</td>
+                    </tr>
+                    <tr class="hover:bg-surface-base transition-colors">
+                      <td class="py-space-xs px-space-md font-semibold">Mayo</td>
+                      <td class="py-space-xs px-space-md text-center">31</td>
+                      <td class="py-space-xs px-space-md text-center font-bold text-primary">21</td>
+                      <td class="py-space-xs px-space-md text-center">25</td>
+                      <td class="py-space-xs px-space-md text-text-secondary">Día del Trabajo (1), Fiesta CCAA Madrid (2)</td>
+                    </tr>
+                    <tr class="bg-surface-base/50 hover:bg-surface-base transition-colors">
+                      <td class="py-space-xs px-space-md font-semibold">Junio</td>
+                      <td class="py-space-xs px-space-md text-center">30</td>
+                      <td class="py-space-xs px-space-md text-center font-bold text-primary">22</td>
+                      <td class="py-space-xs px-space-md text-center">26</td>
+                      <td class="py-space-xs px-space-md text-text-secondary">Sin festivos</td>
+                    </tr>
+                    <tr class="hover:bg-surface-base transition-colors">
+                      <td class="py-space-xs px-space-md font-semibold">Julio</td>
+                      <td class="py-space-xs px-space-md text-center">31</td>
+                      <td class="py-space-xs px-space-md text-center font-bold text-primary">22</td>
+                      <td class="py-space-xs px-space-md text-center">27</td>
+                      <td class="py-space-xs px-space-md text-text-secondary">Sin festivos</td>
+                    </tr>
+                    <tr class="bg-surface-base/50 hover:bg-surface-base transition-colors">
+                      <td class="py-space-xs px-space-md font-semibold">Agosto</td>
+                      <td class="py-space-xs px-space-md text-center">31</td>
+                      <td class="py-space-xs px-space-md text-center font-bold text-primary">22</td>
+                      <td class="py-space-xs px-space-md text-center">26</td>
+                      <td class="py-space-xs px-space-md text-text-secondary">Asunción (15)</td>
+                    </tr>
+                    <tr class="hover:bg-surface-base transition-colors">
+                      <td class="py-space-xs px-space-md font-semibold">Septiembre</td>
+                      <td class="py-space-xs px-space-md text-center">30</td>
+                      <td class="py-space-xs px-space-md text-center font-bold text-primary">22</td>
+                      <td class="py-space-xs px-space-md text-center">26</td>
+                      <td class="py-space-xs px-space-md text-text-secondary">Sin festivos</td>
+                    </tr>
+                    <tr class="bg-surface-base/50 hover:bg-surface-base transition-colors">
+                      <td class="py-space-xs px-space-md font-semibold">Octubre</td>
+                      <td class="py-space-xs px-space-md text-center">31</td>
+                      <td class="py-space-xs px-space-md text-center font-bold text-primary">20</td>
+                      <td class="py-space-xs px-space-md text-center">25</td>
+                      <td class="py-space-xs px-space-md text-text-secondary">Fiesta Nacional (12)</td>
+                    </tr>
+                    <tr class="hover:bg-surface-base transition-colors">
+                      <td class="py-space-xs px-space-md font-semibold">Noviembre</td>
+                      <td class="py-space-xs px-space-md text-center">30</td>
+                      <td class="py-space-xs px-space-md text-center font-bold text-primary">21</td>
+                      <td class="py-space-xs px-space-md text-center">25</td>
+                      <td class="py-space-xs px-space-md text-text-secondary">Todos los Santos (1)</td>
+                    </tr>
+                    <tr class="bg-surface-base/50 hover:bg-surface-base transition-colors">
+                      <td class="py-space-xs px-space-md font-semibold">Diciembre</td>
+                      <td class="py-space-xs px-space-md text-center">31</td>
+                      <td class="py-space-xs px-space-md text-center font-bold text-primary">21</td>
+                      <td class="py-space-xs px-space-md text-center">24</td>
+                      <td class="py-space-xs px-space-md text-text-secondary">Constitución (6), Inmaculada (8), Navidad (25)</td>
+                    </tr>
+                    <tr class="bg-primary-fixed/10 font-bold text-on-surface">
+                      <td class="py-space-sm px-space-md">TOTAL ANUAL</td>
+                      <td class="py-space-sm px-space-md text-center">365</td>
+                      <td class="py-space-sm px-space-md text-center text-primary">253</td>
+                      <td class="py-space-sm px-space-md text-center">303</td>
+                      <td class="py-space-sm px-space-md text-primary text-xs">14 festivos (10 nacionales + 2 autonómicos Madrid + 2 Semana Santa)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="mt-space-sm font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Observa que los meses con más días laborables son abril, junio, julio, agosto y septiembre (22 cada uno), mientras que enero es el mes con menos días laborables (19) debido al puente festivo de Año Nuevo y Epifanía. Este tipo de desglose es especialmente útil para departamentos de Recursos Humanos que necesitan calcular jornadas mensuales y para empresas que planifican sus cuatrimestres de actividad.
+              </p>
+            </div>
           </div>
 
           <!-- 4-col sidebar -->
@@ -939,6 +1253,36 @@ import { COMUNIDADES } from '../lib/calculadora';
             </button>
             <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
               El calendario laboral nacional suele publicarse formalmente en el BOE a lo largo del mes de octubre anterior al año de vigencia. Las Comunidades Autónomas publican sus elecciones de festivos entre junio y septiembre.
+            </div>
+          </div>
+          <!-- Q6 -->
+          <div class="faq-item bg-surface-card rounded-xl border border-border-subtle shadow-2xs overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-space-md text-left flex items-center justify-between gap-space-sm font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors focus:outline-none" type="button">
+              <span>¿Cuántos días laborables tiene un mes de 30 días?</span>
+              <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
+              Depende del mes concreto y de los días de la semana en que caen. Un mes de 30 días puede tener entre 20 y 24 días laborables según cuántos fines de semana y festivos contenga. Por ejemplo, <strong class="text-on-surface">abril de 2027</strong> tiene 22 días laborables porque el 1 de abril cae en jueves y solo hay un festivo nacional (Jueves Santo el día 22). En cambio, noviembre con 30 días solo tiene 21 laborables porque incluye el festivo de Todos los Santos. La clave no es el número total de días del mes, sino cómo se distribuyen los fines de semana y los festivos dentro de ese mes.
+            </div>
+          </div>
+          <!-- Q7 -->
+          <div class="faq-item bg-surface-card rounded-xl border border-border-subtle shadow-2xs overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-space-md text-left flex items-center justify-between gap-space-sm font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors focus:outline-none" type="button">
+              <span>¿Se cuentan los sábados como días laborables para la Seguridad Social?</span>
+              <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
+              <strong class="text-on-surface">No.</strong> La Seguridad Social utiliza exclusivamente la jornada laboral de lunes a viernes para el cómputo de días cotizados y prestaciones. Los sábados no se consideran días laborables en ningún ámbito del derecho laboral español. Esto es distinto del ámbito administrativo, donde los sábados sí cuentan como días hábiles según la Ley 39/2015 LPACAP. Si necesitas calcular cuántos días has cotizado o cuánto te corresponde de prestación por desempleo, debes contar únicamente de lunes a viernes.
+            </div>
+          </div>
+          <!-- Q8 -->
+          <div class="faq-item bg-surface-card rounded-xl border border-border-subtle shadow-2xs overflow-hidden transition-all">
+            <button class="faq-toggle w-full p-space-md text-left flex items-center justify-between gap-space-sm font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors focus:outline-none" type="button">
+              <span>¿Cómo afectan los puentes festivos al cómputo de días laborables?</span>
+              <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
+            </button>
+            <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
+              Los puentes festivos se tratan exactamente igual que cualquier otro día festivo oficial: <strong class="text-on-surface">reducen el número de días laborables</strong> del mes en el que caen. Si un puente coincide con un miércoles, ese día no se computa como laborable, lo que puede significar una semana de 3 días laborables en lugar de 5. En 2027, por ejemplo, el Jueves Santo (25 de marzo) y el Viernes Santo (26 de marzo) generan un puente natural que reduce los días laborables de marzo a 21. Para planificación de nóminas y vacaciones, los puentes son tan relevantes como los festivos tradicionales.
             </div>
           </div>
         </div>
