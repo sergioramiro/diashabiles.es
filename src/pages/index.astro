@@ -94,38 +94,6 @@ import { COMUNIDADES } from '../lib/calculadora';
     </script>
   </Fragment>
 
-  <!-- ===================== FIXED HEADER ===================== -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-    <div class="h-16 max-w-[72rem] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md">
-      <div class="flex items-center gap-space-sm shrink-0">
-        <a href="/" class="flex items-center gap-space-sm no-underline">
-          <img alt="Logo diashabiles.es" class="h-8 w-auto object-contain" src="/logo.svg" />
-          <span class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight">diashabiles<span class="text-primary">.es</span></span>
-        </a>
-        <span class="hidden xl:inline-flex items-center px-space-xs py-space-2xs rounded-full bg-status-warning-bg text-status-warning-text font-label-sm text-label-sm font-semibold border border-status-warning/30">Calendario BOE 2027 Provisionales</span>
-      </div>
-      <nav class="hidden lg:flex items-center gap-space-md">
-        <a class="transition-colors bg-primary-container text-on-primary font-bold rounded-lg px-space-sm py-space-xs" href="#calculadora">Calculadora</a>
-        <a class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" href="#habiles-vs-laborables">Días Hábiles vs Laborables</a>
-        <a class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" href="#festivos-2027-ccaa">Festivos 2027 por CCAA</a>
-        <a class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" href="#guia-legal">Guía Legal &amp; Plazos</a>
-        <a class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" href="#api-festivos">API Festivos</a>
-      </nav>
-      <div class="flex items-center gap-space-sm">
-        <a href="https://boe.es" target="_blank" rel="noopener" class="hidden md:inline-flex px-space-sm py-space-xs rounded-lg bg-surface-container border border-border-subtle text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors items-center gap-1.5">
-          <span class="material-symbols-outlined text-[16px]">open_in_new</span>
-          Consultar BOE
-        </a>
-        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-surface-container transition-colors" aria-label="Menú">
-          <span class="material-symbols-outlined text-[24px]">menu</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Spacer for fixed header -->
-  <div class="h-16"></div>
-
   <main>
     <!-- ===================== HERO + CALCULATOR ===================== -->
     <section class="relative w-full overflow-hidden pb-space-2xl pt-space-md" id="calculadora">
