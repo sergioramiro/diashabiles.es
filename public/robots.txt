@@ -1,29 +1,56 @@
 # robots.txt para diashabiles.es
 # Gestorado manualmente - NO editar desde Cloudflare
+#
+# Política (24/09/2026): bloqueamos el entrenamiento de modelos, permitimos la
+# navegación y la búsqueda con IA. Si bloqueas los bots de navegación, ChatGPT,
+# Claude o Perplexity no pueden traer/enlazar tus páginas cuando alguien pregunta.
+# Los bots de entrenamiento no aportan visibilidad, solo consumen crawl budget.
 
 User-agent: *
 Allow: /
 
-# Bloquear crawlers de IA que rastrean para entrenamiento
+# --- Entrenamiento de modelos: BLOQUEADO ---
 User-agent: GPTBot
-Disallow: /
-
-User-agent: ChatGPT-User
 Disallow: /
 
 User-agent: CCBot
 Disallow: /
 
-User-agent: Google-Extended
+User-agent: ClaudeBot
 Disallow: /
 
 User-agent: anthropic-ai
 Disallow: /
 
-User-agent: ClaudeBot
+User-agent: cohere-ai
 Disallow: /
 
-# Permitir crawlers de búsqueda
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+# --- Navegación y búsqueda en IA: PERMITIDO ---
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# --- Motores de búsqueda tradicionales: PERMITIDO ---
 User-agent: Googlebot
 Allow: /
 
