@@ -38,7 +38,7 @@ import { COMUNIDADES } from '../lib/calculadora';
           "name": "¿Cuál es la diferencia entre día hábil y laborable?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Un día laborable es de lunes a viernes que no es festivo. Un día hábil incluye además los sábados no festivos. En plazos administrativos (Ley 39/2015) se cuentan días hábiles, por lo que los sábados sí cuentan salvo que sean festivos."
+            "text": "Ambos coinciden: de lunes a viernes que no son festivos. La diferencia está en el uso, no en el calendario: el día laborable ordena jornada y nóminas y el día hábil cuenta los plazos administrativos. El artículo 30.2 de la Ley 39/2015 excluye expresamente sábados, domingos y festivos."
           }
         },
         {
@@ -54,7 +54,7 @@ import { COMUNIDADES } from '../lib/calculadora';
           "name": "¿Los sábados cuentan como días laborables?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No, los sábados no cuentan como días laborables. Sin embargo, en el ámbito administrativo (plazos de la Ley 39/2015), los sábados sí cuentan como días hábiles si no son festivos."
+            "text": "No. Tampoco son días hábiles: el artículo 30.2 de la Ley 39/2015 excluye del cómputo los sábados, los domingos y los festivos, también en plazos administrativos."
           }
         },
         {
@@ -70,7 +70,7 @@ import { COMUNIDADES } from '../lib/calculadora';
           "name": "¿Cuántos días laborables tiene un mes de 30 días?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Depende del mes concreto y de los días de la semana en que caen. Un mes de 30 días puede tener entre 20 y 24 días laborables según cuántos fines de semana y festivos contenga. Por ejemplo, abril de 2027 tiene 22 días laborables porque el 1 de abril cae en jueves y solo hay un festivo nacional (Jueves Santo el día 22)."
+            "text": "Depende del mes concreto y de los días de la semana en que caen. Un mes de 30 días puede tener entre 20 y 24 días laborables según cuántos fines de semana y festivos contenga. Por ejemplo, abril de 2027 tiene 22 días laborables porque el 1 de abril cae en jueves y no tiene ningún festivo: la Semana Santa de 2027 cae en marzo."
           }
         },
         {
@@ -260,7 +260,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <div class="flex items-start justify-between relative z-10">
                 <div>
                   <span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider block">Días hábiles*</span>
-                  <span class="font-caption-legal text-caption-legal text-text-muted mt-0.5 block">Incluye sábados no festivos</span>
+                  <span class="font-caption-legal text-caption-legal text-text-muted mt-0.5 block">Lunes a viernes no festivos (art. 30.2)</span>
                 </div>
                 <span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm font-bold inline-flex items-center gap-1">
                   <span class="material-symbols-outlined text-[14px]">gavel</span> Ley 39/2015
@@ -268,7 +268,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               </div>
               <div class="my-space-md relative z-10">
                 <div class="flex items-baseline gap-2">
-                  <span class="text-metric-display-mobile md:text-metric-display text-primary tracking-tight font-display" id="kpi-habiles">39</span>
+                  <span class="text-metric-display-mobile md:text-metric-display text-primary tracking-tight font-display" id="kpi-habiles">33</span>
                   <span class="font-headline-sm text-headline-sm text-primary/70 font-semibold">días hábiles</span>
                 </div>
               </div>
@@ -338,7 +338,7 @@ import { COMUNIDADES } from '../lib/calculadora';
                   <span class="w-3 h-3 rounded bg-surface-container"></span><span>Fin de semana</span>
                 </div>
                 <div class="flex items-center gap-1.5">
-                  <span class="w-3 h-3 rounded border border-dashed border-primary text-[9px] flex items-center justify-center font-bold">S</span><span>Sábado hábil (LPACAP)</span>
+                  <span class="w-3 h-3 rounded border border-dashed border-primary text-[9px] flex items-center justify-center font-bold">S</span><span>Sábado (inhábil)</span>
                 </div>
               </div>
               <div class="flex items-center gap-2" id="carousel-pagination"></div>
@@ -365,7 +365,7 @@ import { COMUNIDADES } from '../lib/calculadora';
 
           <div class="mt-space-xs text-right">
             <p class="font-caption-legal text-caption-legal text-text-muted">
-              * <strong class="text-on-surface-variant">Días hábiles</strong> incluyen sábados no festivos (ámbito administrativo, <a class="text-primary underline" href="#guia-legal">Ley 39/2015 LPACAP</a>). Los días laborables solo cuentan lunes a viernes.
+              * <strong class="text-on-surface-variant">Días hábiles</strong> y laborables coinciden: el art. 30.2 de la <a class="text-primary underline" href="#guia-legal">Ley 39/2015 LPACAP</a> excluye sábados, domingos y festivos. Mismo número, distinto uso legal.
             </p>
           </div>
         </div>
@@ -382,10 +382,10 @@ import { COMUNIDADES } from '../lib/calculadora';
               Criterio Legal Oficial
             </div>
             <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-              ¿Por qué un día hábil NO es lo mismo que un día laborable?
+              Día hábil y día laborable: mismo número, distinto uso
             </h2>
             <p class="mt-space-xs font-body-md text-body-md text-on-surface-variant">
-              En España existen tres formas de contar el tiempo. Una confusión entre cómputo procesal administrativo y cómputo laboral puede causar la inadmisión de un recurso o la caducidad de una acción judicial. Para una <a href="/dias-habiles/" class="text-primary hover:underline font-semibold">explicación detallada de días hábiles</a>, consulta nuestra guía.
+              En España hay tres formas de contar el tiempo: natural, laborable y hábil. Laborable y hábil coinciden en el calendario —lunes a viernes sin festivos— porque el artículo 30.2 excluye del cómputo los sábados, los domingos y los festivos, pero no significan lo mismo: uno ordena la jornada y el otro cuenta plazos legales. Una confusión entre cómputo procesal administrativo y cómputo laboral puede causar la inadmisión de un recurso o la caducidad de una acción judicial. Para una <a href="/dias-habiles/" class="text-primary hover:underline font-semibold">explicación detallada de días hábiles</a>, consulta nuestra guía.
             </p>
             <div class="mt-space-md flex items-center gap-space-lg">
               <div>
@@ -445,7 +445,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <div class="flex flex-col">
                 <span class="font-label-sm text-label-sm font-bold text-primary">S</span>
                 <div class="mt-1 h-9 rounded bg-surface-container text-text-muted flex items-center justify-center font-bold text-xs line-through">Laboral</div>
-                <div class="mt-1 h-9 rounded bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs ring-2 ring-primary">HÁBIL</div>
+                <div class="mt-1 h-9 rounded bg-surface-container text-text-muted flex items-center justify-center font-bold text-xs line-through">Hábil</div>
                 <div class="mt-1 h-9 rounded bg-secondary-container text-on-secondary-fixed flex items-center justify-center font-bold text-xs">Natural</div>
               </div>
               <div class="flex flex-col">
@@ -456,7 +456,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               </div>
             </div>
             <div class="bg-surface-base p-space-xs rounded-lg flex items-center justify-between text-xs text-on-surface-variant font-medium">
-              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-primary-container"></span> El sábado suma en plazos de la Administración</span>
+              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-primary-container"></span> El sábado es inhábil desde 2016 (Ley 39/2015)</span>
               <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-error-container"></span> El domingo nunca es hábil</span>
             </div>
           </div>
@@ -503,7 +503,7 @@ import { COMUNIDADES } from '../lib/calculadora';
                   Convenios colectivos, jornada ordinaria, vacaciones y nómina.
                 </td>
                 <td class="py-space-md px-space-lg text-center">
-                  <span class="font-headline-sm text-headline-sm font-bold text-on-surface">21</span>
+                  <span class="font-headline-sm text-headline-sm font-bold text-on-surface">19</span>
                   <span class="block text-caption-legal text-caption-legal text-text-muted">días laborables</span>
                 </td>
               </tr>
@@ -517,14 +517,14 @@ import { COMUNIDADES } from '../lib/calculadora';
                     </div>
                   </div>
                 </td>
-                <td class="py-space-md px-space-lg font-medium text-on-surface">Lunes a sábado que no sea festivo oficial (se excluyen domingos y festivos).</td>
+                <td class="py-space-md px-space-lg font-medium text-on-surface">Lunes a viernes que no sea festivo (el art. 30.2 excluye sábados, domingos y festivos).</td>
                 <td class="py-space-md px-space-lg">
                   <span class="inline-flex items-center px-2 py-0.5 rounded bg-primary-container text-on-primary text-label-sm font-semibold mr-1">Ley 39/2015 LPACAP</span>
                   Plazos ante Ayuntamientos, Comunidades, Hacienda, Seguridad Social y oposiciones.
                 </td>
                 <td class="py-space-md px-space-lg text-center">
-                  <span class="font-headline-sm text-headline-sm font-bold text-primary">25</span>
-                  <span class="block text-caption-legal text-caption-legal text-primary/70">días hábiles (+4 sábados)</span>
+                  <span class="font-headline-sm text-headline-sm font-bold text-primary">19</span>
+                  <span class="block text-caption-legal text-caption-legal text-primary/70">días hábiles (igual que laborables)</span>
                 </td>
               </tr>
               <tr class="hover:bg-surface-base transition-colors">
@@ -551,7 +551,7 @@ import { COMUNIDADES } from '../lib/calculadora';
           </table>
         </div>
         <div class="mt-space-sm flex items-center justify-between text-caption-legal text-caption-legal text-text-muted">
-          <span>* En enero 2027 hay 19 días laborables pero 24 días hábiles, porque los 4 sábados no coinciden con ningún festivo.</span>
+          <span>* En enero 2027 laborables y hábiles coinciden en 19 días: el art. 30.2 excluye sábados, domingos y festivos. Los 31 son naturales.</span>
           <span>Referencia: Art. 30.2 Ley 39/2015</span>
         </div>
       </div>
@@ -577,7 +577,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             <span class="text-headline-lg font-headline-lg text-primary font-bold block">19</span>
             <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
             <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
-              <span>24 hábiles</span>
+              <span>19 hábiles</span>
               <span class="w-1 h-1 rounded-full bg-border-strong"></span>
               <span>31 naturales</span>
             </div>
@@ -588,7 +588,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             <span class="text-headline-lg font-headline-lg text-primary font-bold block">20</span>
             <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
             <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
-              <span>24 hábiles</span>
+              <span>20 hábiles</span>
               <span class="w-1 h-1 rounded-full bg-border-strong"></span>
               <span>28 naturales</span>
             </div>
@@ -599,7 +599,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             <span class="text-headline-lg font-headline-lg text-primary font-bold block">21</span>
             <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
             <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
-              <span>25 hábiles</span>
+              <span>21 hábiles</span>
               <span class="w-1 h-1 rounded-full bg-border-strong"></span>
               <span>31 naturales</span>
             </div>
@@ -610,7 +610,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             <span class="text-headline-lg font-headline-lg text-primary font-bold block">22</span>
             <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
             <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
-              <span>26 hábiles</span>
+              <span>22 hábiles</span>
               <span class="w-1 h-1 rounded-full bg-border-strong"></span>
               <span>30 naturales</span>
             </div>
@@ -621,7 +621,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             <span class="text-headline-lg font-headline-lg text-primary font-bold block">21</span>
             <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
             <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
-              <span>25 hábiles</span>
+              <span>21 hábiles</span>
               <span class="w-1 h-1 rounded-full bg-border-strong"></span>
               <span>31 naturales</span>
             </div>
@@ -632,7 +632,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             <span class="text-headline-lg font-headline-lg text-primary font-bold block">22</span>
             <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
             <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
-              <span>26 hábiles</span>
+              <span>22 hábiles</span>
               <span class="w-1 h-1 rounded-full bg-border-strong"></span>
               <span>30 naturales</span>
             </div>
@@ -643,7 +643,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             <span class="text-headline-lg font-headline-lg text-primary font-bold block">22</span>
             <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
             <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
-              <span>27 hábiles</span>
+              <span>22 hábiles</span>
               <span class="w-1 h-1 rounded-full bg-border-strong"></span>
               <span>31 naturales</span>
             </div>
@@ -654,7 +654,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             <span class="text-headline-lg font-headline-lg text-primary font-bold block">22</span>
             <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
             <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
-              <span>26 hábiles</span>
+              <span>22 hábiles</span>
               <span class="w-1 h-1 rounded-full bg-border-strong"></span>
               <span>31 naturales</span>
             </div>
@@ -665,7 +665,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             <span class="text-headline-lg font-headline-lg text-primary font-bold block">22</span>
             <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
             <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
-              <span>26 hábiles</span>
+              <span>22 hábiles</span>
               <span class="w-1 h-1 rounded-full bg-border-strong"></span>
               <span>30 naturales</span>
             </div>
@@ -676,7 +676,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             <span class="text-headline-lg font-headline-lg text-primary font-bold block">20</span>
             <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
             <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
-              <span>25 hábiles</span>
+              <span>20 hábiles</span>
               <span class="w-1 h-1 rounded-full bg-border-strong"></span>
               <span>31 naturales</span>
             </div>
@@ -687,7 +687,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             <span class="text-headline-lg font-headline-lg text-primary font-bold block">21</span>
             <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
             <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
-              <span>25 hábiles</span>
+              <span>21 hábiles</span>
               <span class="w-1 h-1 rounded-full bg-border-strong"></span>
               <span>30 naturales</span>
             </div>
@@ -698,7 +698,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             <span class="text-headline-lg font-headline-lg text-primary font-bold block">21</span>
             <span class="font-caption-legal text-caption-legal text-text-muted block">laborables</span>
             <div class="mt-space-xs pt-space-xs border-t border-border-subtle flex items-center justify-center gap-2 text-[11px] text-text-secondary font-medium">
-              <span>24 hábiles</span>
+              <span>21 hábiles</span>
               <span class="w-1 h-1 rounded-full bg-border-strong"></span>
               <span>31 naturales</span>
             </div>
@@ -714,7 +714,7 @@ import { COMUNIDADES } from '../lib/calculadora';
           <div class="flex items-center gap-space-md text-sm font-semibold">
             <span class="text-primary">253 laborables</span>
             <span class="w-1 h-1 rounded-full bg-border-strong"></span>
-            <span class="text-on-surface">303 hábiles</span>
+            <span class="text-on-surface">253 hábiles (art. 30.2)</span>
             <span class="w-1 h-1 rounded-full bg-border-strong"></span>
             <span class="text-on-surface-variant">365 naturales</span>
           </div>
@@ -808,16 +808,16 @@ import { COMUNIDADES } from '../lib/calculadora';
             <div class="bg-surface-card p-space-lg rounded-xl border-l-4 border-primary shadow-sm">
               <h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs flex items-center gap-2">
                 <span class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center text-xs font-bold">2</span>
-                Día hábil: incluye sábados (y los plazos administrativos lo exigen)
+                Día hábil: lunes a viernes, nunca sábados (art. 30.2)
               </h3>
               <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                Aquí es donde la mayoría comete costosos errores procesales. Un <strong class="text-on-surface font-semibold">día hábil</strong> en el ámbito de las Administraciones Públicas incluye todos los días de lunes a sábado que no sean festivos. Sí: los sábados cuentan.
+                Aquí es donde la mayoría se equivoca, y la confusión es antigua: viene de la Ley 30/1992. Un <strong class="text-on-surface font-semibold">día hábil</strong> en el ámbito de las Administraciones Públicas es cualquier día que cuenta para un plazo: de lunes a viernes, siempre que no sea festivo. Los sábados no cuentan.
               </p>
               <div class="mt-space-sm p-space-sm bg-surface-container rounded-lg font-body-sm text-body-sm text-on-surface-variant border-l-2 border-primary">
                 <span class="font-bold text-on-surface">Artículo 30 Ley 39/2015 LPACAP:</span> «Siempre que por Ley o en el Derecho de la Unión Europea no se exprese otro cómputo, cuando los plazos se señalen por días, se entiende que éstos son hábiles, excluyéndose del cómputo los sábados, los domingos y los declarados festivos.»
               </div>
               <p class="font-body-md text-body-md text-on-surface-variant mt-space-xs leading-relaxed">
-                En la práctica administrativa, si tienes 30 días hábiles para subsanar un requerimiento o presentar un recurso, cada sábado no festivo computará, acortando sensiblemente el plazo de calendario frente a quien piensa erróneamente en semanas laborales.
+                En la práctica, si tienes 30 días hábiles para subsanar un requerimiento o presentar un recurso, los sábados no suman: contarlos te haría creer que el plazo vence una semana antes de cuando vence en realidad, y te comerías margen que sí tienes. ¿De dónde viene la idea contraria? Hasta la Ley 39/2015 (en vigor desde octubre de 2016) el sábado podía computar como hábil; desde entonces el artículo 30.2 excluye sábados, domingos y festivos, y la respuesta coincide con la de los días laborables.
               </p>
             </div>
 
@@ -855,7 +855,7 @@ import { COMUNIDADES } from '../lib/calculadora';
                   <span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
                   <div>
                     <strong class="font-semibold text-on-surface block text-sm">Identifica los días de la semana</strong>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant">Los domingos nunca son hábiles. Los sábados son hábiles para plazos administrativos (Ley 39/2015) pero inhábiles para la jornada laboral típica.</p>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Ni sábados ni domingos son hábiles: el artículo 30.2 de la Ley 39/2015 excluye expresamente ambos, y también los festivos. Días hábiles y laborables, por tanto, coinciden.</p>
                   </div>
                 </div>
                 <div class="flex items-start gap-space-sm bg-surface-card p-space-sm rounded-lg border border-border-subtle">
@@ -883,7 +883,7 @@ import { COMUNIDADES } from '../lib/calculadora';
                   <span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">6</span>
                   <div>
                     <strong class="font-semibold text-on-surface block text-sm">Realiza el cómputo final diferenciado</strong>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant">Obtén la triple cifra: días naturales (brutos), días hábiles administrativos (con sábados) y días netamente laborables de jornada.</p>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Obtén la cifra doble: días naturales (brutos) y días laborables, que desde la Ley 39/2015 son exactamente los mismos que los hábiles.</p>
                   </div>
                 </div>
               </div>
@@ -908,8 +908,8 @@ import { COMUNIDADES } from '../lib/calculadora';
                     </p>
                   </div>
                   <div class="mt-space-md pt-space-xs border-t border-border-subtle">
-                    <span class="block text-xs font-bold text-primary">Diferencia crítica: 9 días</span>
-                    <p class="text-caption-legal text-text-muted mt-0.5">Al contar sábados el plazo vence hacia el 26 de abril. Sin sábados se iría al 5 de mayo.</p>
+                    <span class="block text-xs font-bold text-primary">Diferencia crítica: 7 días</span>
+                    <p class="text-caption-legal text-text-muted mt-0.5">El plazo vence el 27 de abril de 2027. Si sumas los sábados (error típico) te sale el 20 de abril.</p>
                   </div>
                 </div>
                 <!-- Case 2 -->
@@ -992,92 +992,92 @@ import { COMUNIDADES } from '../lib/calculadora';
                       <td class="py-space-xs px-space-md font-semibold">Enero</td>
                       <td class="py-space-xs px-space-md text-center">31</td>
                       <td class="py-space-xs px-space-md text-center font-bold text-primary">19</td>
-                      <td class="py-space-xs px-space-md text-center">24</td>
+                      <td class="py-space-xs px-space-md text-center">19</td>
                       <td class="py-space-xs px-space-md text-text-secondary">Año Nuevo (1), Epifanía (6)</td>
                     </tr>
                     <tr class="bg-surface-base/50 hover:bg-surface-base transition-colors">
                       <td class="py-space-xs px-space-md font-semibold">Febrero</td>
                       <td class="py-space-xs px-space-md text-center">28</td>
                       <td class="py-space-xs px-space-md text-center font-bold text-primary">20</td>
-                      <td class="py-space-xs px-space-md text-center">24</td>
+                      <td class="py-space-xs px-space-md text-center">20</td>
                       <td class="py-space-xs px-space-md text-text-secondary">Sin festivos</td>
                     </tr>
                     <tr class="hover:bg-surface-base transition-colors">
                       <td class="py-space-xs px-space-md font-semibold">Marzo</td>
                       <td class="py-space-xs px-space-md text-center">31</td>
                       <td class="py-space-xs px-space-md text-center font-bold text-primary">21</td>
-                      <td class="py-space-xs px-space-md text-center">25</td>
+                      <td class="py-space-xs px-space-md text-center">21</td>
                       <td class="py-space-xs px-space-md text-text-secondary">Jueves Santo (25), Viernes Santo (26)</td>
                     </tr>
                     <tr class="bg-surface-base/50 hover:bg-surface-base transition-colors">
                       <td class="py-space-xs px-space-md font-semibold">Abril</td>
                       <td class="py-space-xs px-space-md text-center">30</td>
                       <td class="py-space-xs px-space-md text-center font-bold text-primary">22</td>
-                      <td class="py-space-xs px-space-md text-center">26</td>
+                      <td class="py-space-xs px-space-md text-center">22</td>
                       <td class="py-space-xs px-space-md text-text-secondary">Sin festivos</td>
                     </tr>
                     <tr class="hover:bg-surface-base transition-colors">
                       <td class="py-space-xs px-space-md font-semibold">Mayo</td>
                       <td class="py-space-xs px-space-md text-center">31</td>
                       <td class="py-space-xs px-space-md text-center font-bold text-primary">21</td>
-                      <td class="py-space-xs px-space-md text-center">25</td>
+                      <td class="py-space-xs px-space-md text-center">21</td>
                       <td class="py-space-xs px-space-md text-text-secondary">Día del Trabajo (1), Fiesta CCAA Madrid (2)</td>
                     </tr>
                     <tr class="bg-surface-base/50 hover:bg-surface-base transition-colors">
                       <td class="py-space-xs px-space-md font-semibold">Junio</td>
                       <td class="py-space-xs px-space-md text-center">30</td>
                       <td class="py-space-xs px-space-md text-center font-bold text-primary">22</td>
-                      <td class="py-space-xs px-space-md text-center">26</td>
+                      <td class="py-space-xs px-space-md text-center">22</td>
                       <td class="py-space-xs px-space-md text-text-secondary">Sin festivos</td>
                     </tr>
                     <tr class="hover:bg-surface-base transition-colors">
                       <td class="py-space-xs px-space-md font-semibold">Julio</td>
                       <td class="py-space-xs px-space-md text-center">31</td>
                       <td class="py-space-xs px-space-md text-center font-bold text-primary">22</td>
-                      <td class="py-space-xs px-space-md text-center">27</td>
+                      <td class="py-space-xs px-space-md text-center">22</td>
                       <td class="py-space-xs px-space-md text-text-secondary">Sin festivos</td>
                     </tr>
                     <tr class="bg-surface-base/50 hover:bg-surface-base transition-colors">
                       <td class="py-space-xs px-space-md font-semibold">Agosto</td>
                       <td class="py-space-xs px-space-md text-center">31</td>
                       <td class="py-space-xs px-space-md text-center font-bold text-primary">22</td>
-                      <td class="py-space-xs px-space-md text-center">26</td>
+                      <td class="py-space-xs px-space-md text-center">22</td>
                       <td class="py-space-xs px-space-md text-text-secondary">Asunción (15)</td>
                     </tr>
                     <tr class="hover:bg-surface-base transition-colors">
                       <td class="py-space-xs px-space-md font-semibold">Septiembre</td>
                       <td class="py-space-xs px-space-md text-center">30</td>
                       <td class="py-space-xs px-space-md text-center font-bold text-primary">22</td>
-                      <td class="py-space-xs px-space-md text-center">26</td>
+                      <td class="py-space-xs px-space-md text-center">22</td>
                       <td class="py-space-xs px-space-md text-text-secondary">Sin festivos</td>
                     </tr>
                     <tr class="bg-surface-base/50 hover:bg-surface-base transition-colors">
                       <td class="py-space-xs px-space-md font-semibold">Octubre</td>
                       <td class="py-space-xs px-space-md text-center">31</td>
                       <td class="py-space-xs px-space-md text-center font-bold text-primary">20</td>
-                      <td class="py-space-xs px-space-md text-center">25</td>
+                      <td class="py-space-xs px-space-md text-center">20</td>
                       <td class="py-space-xs px-space-md text-text-secondary">Fiesta Nacional (12)</td>
                     </tr>
                     <tr class="hover:bg-surface-base transition-colors">
                       <td class="py-space-xs px-space-md font-semibold">Noviembre</td>
                       <td class="py-space-xs px-space-md text-center">30</td>
                       <td class="py-space-xs px-space-md text-center font-bold text-primary">21</td>
-                      <td class="py-space-xs px-space-md text-center">25</td>
+                      <td class="py-space-xs px-space-md text-center">21</td>
                       <td class="py-space-xs px-space-md text-text-secondary">Todos los Santos (1)</td>
                     </tr>
                     <tr class="bg-surface-base/50 hover:bg-surface-base transition-colors">
                       <td class="py-space-xs px-space-md font-semibold">Diciembre</td>
                       <td class="py-space-xs px-space-md text-center">31</td>
                       <td class="py-space-xs px-space-md text-center font-bold text-primary">21</td>
-                      <td class="py-space-xs px-space-md text-center">24</td>
+                      <td class="py-space-xs px-space-md text-center">21</td>
                       <td class="py-space-xs px-space-md text-text-secondary">Constitución (6), Inmaculada (8), Navidad (25)</td>
                     </tr>
                     <tr class="bg-primary-fixed/10 font-bold text-on-surface">
                       <td class="py-space-sm px-space-md">TOTAL ANUAL</td>
                       <td class="py-space-sm px-space-md text-center">365</td>
                       <td class="py-space-sm px-space-md text-center text-primary">253</td>
-                      <td class="py-space-sm px-space-md text-center">303</td>
-                      <td class="py-space-sm px-space-md text-primary text-xs">14 festivos (10 nacionales + 2 autonómicos Madrid + 2 Semana Santa)</td>
+                      <td class="py-space-sm px-space-md text-center">253</td>
+                      <td class="py-space-sm px-space-md text-primary text-xs">12 fechas festivas (10 nacionales + 2 autonómicos de Madrid)</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1130,7 +1130,7 @@ import { COMUNIDADES } from '../lib/calculadora';
                 <span class="text-on-primary-container font-semibold">días laborables medios</span>
               </div>
               <p class="font-body-sm text-body-sm text-on-primary-container mb-space-md">
-                En España se trabajan de media unas 1.764 horas anuales, repartidas en 252 jornadas hábiles laborales.
+                En España se trabajan de media unas 1.764 horas anuales, repartidas en 252 jornadas laborales.
               </p>
               <a class="inline-flex w-full items-center justify-center py-2.5 px-space-sm rounded-lg bg-surface-card text-primary font-label-md text-label-md font-bold hover:bg-surface-bright transition-colors shadow-sm" href="#calculadora">
                 Personalizar para mi comunidad
@@ -1190,7 +1190,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
             <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
-              Un <strong class="text-on-surface">día laborable</strong> comprende exclusivamente de lunes a viernes que no sea fiesta oficial. Un <strong class="text-on-surface">día hábil</strong> en el procedimiento administrativo común (Ley 39/2015) incluye además los sábados no festivos.
+              Los dos abarcan exactamente lo mismo: de lunes a viernes que no sea festivo. La diferencia está en el uso. El <strong class="text-on-surface">día laborable</strong> ordena jornada, convenios y nóminas; el <strong class="text-on-surface">día hábil</strong> (art. 30.2 de la Ley 39/2015) cuenta para los plazos administrativos y excluye sábados, domingos y festivos.
             </div>
           </div>
           <!-- Q3 -->
@@ -1210,7 +1210,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
             <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
-              No, en el derecho laboral estándar los sábados no cuentan como días laborables. Sin embargo, en el ámbito procesal y administrativo (Ley 39/2015), los sábados sí computan como días hábiles si no son festivos oficiales.
+              No. Y como días hábiles tampoco: el artículo 30.2 de la Ley 39/2015 excluye del cómputo los sábados, los domingos y los festivos. La creencia de que "el sábado cuenta en lo administrativo" venía de la derogada Ley 30/1992 y ya no es válida desde 2016.
             </div>
           </div>
           <!-- Q5 -->
@@ -1230,7 +1230,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
             <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
-              Depende del mes concreto y de los días de la semana en que caen. Un mes de 30 días puede tener entre 20 y 24 días laborables según cuántos fines de semana y festivos contenga. Por ejemplo, <strong class="text-on-surface">abril de 2027</strong> tiene 22 días laborables porque el 1 de abril cae en jueves y solo hay un festivo nacional (Jueves Santo el día 22). En cambio, noviembre con 30 días solo tiene 21 laborables porque incluye el festivo de Todos los Santos. La clave no es el número total de días del mes, sino cómo se distribuyen los fines de semana y los festivos dentro de ese mes.
+              Depende del mes concreto y de los días de la semana en que caen. Un mes de 30 días puede tener entre 20 y 24 días laborables según cuántos fines de semana y festivos contenga. Por ejemplo, <strong class="text-on-surface">abril de 2027</strong> tiene 22 días laborables porque el 1 de abril cae en jueves y no tiene ningún festivo: la Semana Santa de 2027 cae en marzo. En cambio, noviembre con 30 días solo tiene 21 laborables porque incluye el festivo de Todos los Santos. La clave no es el número total de días del mes, sino cómo se distribuyen los fines de semana y los festivos dentro de ese mes.
             </div>
           </div>
           <!-- Q7 -->
@@ -1240,7 +1240,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span class="material-symbols-outlined faq-icon text-secondary transition-transform duration-200">expand_more</span>
             </button>
             <div class="faq-content px-space-md pb-space-md font-body-md text-body-md text-on-surface-variant border-t border-border-subtle/50 pt-space-xs hidden">
-              <strong class="text-on-surface">No.</strong> La Seguridad Social utiliza exclusivamente la jornada laboral de lunes a viernes para el cómputo de días cotizados y prestaciones. Los sábados no se consideran días laborables en ningún ámbito del derecho laboral español. Esto es distinto del ámbito administrativo, donde los sábados sí cuentan como días hábiles según la Ley 39/2015 LPACAP. Si necesitas calcular cuántos días has cotizado o cuánto te corresponde de prestación por desempleo, debes contar únicamente de lunes a viernes.
+              <strong class="text-on-surface">No.</strong> La Seguridad Social utiliza exclusivamente la jornada laboral de lunes a viernes para el cómputo de días cotizados y prestaciones. Los sábados no se consideran días laborables en ningún ámbito del derecho laboral español. Tampoco cuentan como días hábiles en el ámbito administrativo: el artículo 30.2 de la Ley 39/2015 LPACAP excluye sábados, domingos y festivos. Si necesitas calcular cuántos días has cotizado o cuánto te corresponde de prestación por desempleo, debes contar únicamente de lunes a viernes.
             </div>
           </div>
           <!-- Q8 -->
@@ -1326,6 +1326,8 @@ import { COMUNIDADES } from '../lib/calculadora';
 
   <!-- ===================== CLIENT-SIDE SCRIPT ===================== -->
   <script>
+    import festivosData from '../data/festivos-2027.json';
+
     document.addEventListener('DOMContentLoaded', function() {
       const inputInicio = document.getElementById('fecha-inicio') as HTMLInputElement;
       const inputFin = document.getElementById('fecha-fin') as HTMLInputElement;
@@ -1356,29 +1358,21 @@ import { COMUNIDADES } from '../lib/calculadora';
 
       const meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
 
-      const festivosNacionales2027 = [
-        '2027-01-01', '2027-01-06', '2027-03-26', '2027-05-01',
-        '2027-08-15', '2027-10-12', '2027-11-01', '2027-12-06',
-        '2027-12-08', '2027-12-25'
-      ];
+      const festivosNacionales2027: string[] = festivosData.nacionales.map(f => f.fecha);
 
-      const festivosAutonomicos2027: Record<string, string[]> = {
-        'madrid': ['2027-03-25', '2027-05-02'],
-        'andalucia': ['2027-02-28', '2027-03-25'],
-        'cataluna': ['2027-03-29', '2027-06-24', '2027-09-11', '2027-12-26'],
-        'valencia': ['2027-03-19', '2027-03-29', '2027-10-09'],
-        'paisvasco': ['2027-03-25', '2027-03-29']
-      };
+      // Lista completa por comunidad desde el JSON de datos (incluye los nacionales)
+      const festivosAutonomicos2027: Record<string, string[]> = {};
+      for (const [id, data] of Object.entries(festivosData.comunidades)) {
+        festivosAutonomicos2027[id] = data.festivos.map(f => f.fecha);
+      }
 
-      const festivosNombres2027: Record<string, string> = {
-        '2027-01-01': 'Año Nuevo', '2027-01-06': 'Epifanía', '2027-03-25': 'Jueves Santo',
-        '2027-03-26': 'Viernes Santo', '2027-05-01': 'Día del Trabajo', '2027-05-02': 'Fiesta Comunidad Madrid',
-        '2027-08-15': 'Asunción', '2027-10-12': 'Fiesta Nacional', '2027-11-01': 'Todos los Santos',
-        '2027-12-06': 'Constitución', '2027-12-08': 'Inmaculada', '2027-12-25': 'Navidad',
-        '2027-02-28': 'Día de Andalucía', '2027-03-29': 'Lunes de Pascua',
-        '2027-06-24': 'Sant Joan', '2027-09-11': 'Diada', '2027-12-26': 'Sant Esteve',
-        '2027-03-19': 'San José', '2027-10-09': 'Día de Valencia'
-      };
+      const festivosNombres2027: Record<string, string> = {};
+      for (const f of festivosData.nacionales) festivosNombres2027[f.fecha] = f.nombre || 'Festivo';
+      for (const data of Object.values(festivosData.comunidades)) {
+        for (const f of data.festivos) {
+          if (!festivosNombres2027[f.fecha]) festivosNombres2027[f.fecha] = f.nombre || 'Festivo';
+        }
+      }
 
       // Calendar view state
       let calendarView: 'carousel' | 'grid' = 'carousel';
@@ -1417,7 +1411,7 @@ import { COMUNIDADES } from '../lib/calculadora';
           const isHoliday = allHolidays.has(isoDate);
 
           if (isHoliday) {
-            const isAuto = activeRegionHolidays.includes(isoDate);
+            const isAuto = activeRegionHolidays.includes(isoDate) && !festivosNacionales2027.includes(isoDate);
             festivosEnRango.push({
               fecha: isoDate,
               nombre: festivosNombres2027[isoDate] || 'Festivo',
@@ -1426,7 +1420,7 @@ import { COMUNIDADES } from '../lib/calculadora';
           }
 
           if (dayOfWeek >= 1 && dayOfWeek <= 5 && !isHoliday) laborables++;
-          if (dayOfWeek >= 1 && dayOfWeek <= 6 && !isHoliday) habiles++;
+          if (dayOfWeek >= 1 && dayOfWeek <= 5 && !isHoliday) habiles++;
           curDate.setDate(curDate.getDate() + 1);
         }
 
@@ -1512,7 +1506,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             const dow = dateObj.getDay();
             const isHoliday = allHolidays.has(isoDate);
             if (!isHoliday && dow >= 1 && dow <= 5) laborables++;
-            if (!isHoliday && dow >= 1 && dow <= 6) habiles++;
+            if (!isHoliday && dow >= 1 && dow <= 5) habiles++;
             if (isHoliday) monthHolidays.push(d);
           }
         }
@@ -1727,9 +1721,9 @@ import { COMUNIDADES } from '../lib/calculadora';
         btn.addEventListener('click', (e) => {
           const type = (e.target as HTMLElement).dataset.preset;
           inputInicio.value = '2027-03-15';
-          if (type === '15d') inputFin.value = '2027-04-03';
-          else if (type === '20d') inputFin.value = '2027-04-09';
-          else if (type === '30d') inputFin.value = '2027-04-26';
+          if (type === '15d') inputFin.value = '2027-04-06';
+          else if (type === '20d') inputFin.value = '2027-04-13';
+          else if (type === '30d') inputFin.value = '2027-04-27';
           computeDays();
         });
       });

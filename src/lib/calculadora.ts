@@ -61,8 +61,9 @@ function obtenerFestivos(comunidad?: string): Map<string, Festivo> {
  * Calcula días laborables y hábiles entre dos fechas (ambas incluidas)
  *
  * - Laborable: lunes a viernes que no es festivo
- * - Hábil: laborable SÁBADO incluido (ámbito administrativo, Ley 39/2015)
- *   Días hábiles = laborables + sábados no festivos
+ * - Hábil: lunes a viernes que no es festivo. El art. 30.2 de la Ley 39/2015
+ *   excluye del cómputo los sábados, los domingos y los declarados festivos,
+ *   así que los hábiles coinciden con los laborables
  */
 export function calcularDias(
   inicio: string,
@@ -99,16 +100,10 @@ export function calcularDias(
 
     if (diaSemana === 0 || diaSemana === 6) {
       finesDeSemana++;
-      // Sábado no festivo = hábil en ámbito administrativo
-      if (diaSemana === 6 && !esFestivo) {
-        diasHabiles++;
-      }
-    } else {
-      // Lunes a viernes
-      if (!esFestivo) {
-        diasLaborables++;
-        diasHabiles++;
-      }
+    } else if (!esFestivo) {
+      // Lunes a viernes no festivo: laborable Y hábil (art. 30.2 LPACAP)
+      diasLaborables++;
+      diasHabiles++;
     }
 
     cursor.setDate(cursor.getDate() + 1);
