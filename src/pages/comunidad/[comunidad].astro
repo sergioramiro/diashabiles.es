@@ -30,10 +30,10 @@ for (const f of festivos) {
 }
 
 const siglas: Record<string, string> = {
-  andalucia: 'AN', aragon: 'AR', asturias: 'AS', baleares: 'IB', canarias: 'CN',
-  cantabria: 'CB', castillaleon: 'CL', castillamancha: 'CM', cataluna: 'CT',
+  andalucia: 'AN', aragon: 'AR', asturias: 'AS', islas_baleares: 'IB', baleares: 'IB', canarias: 'CN',
+  cantabria: 'CB', castilla_y_leon: 'CL', castillaleon: 'CL', castilla_la_mancha: 'CM', castillamancha: 'CM', cataluna: 'CT',
   ceuta: 'CE', extremadura: 'EX', galicia: 'GA', madrid: 'MD', melilla: 'ML',
-  murcia: 'MC', navarra: 'NC', paisvasco: 'PV', larioja: 'LR', valencia: 'VC',
+  murcia: 'MC', navarra: 'NC', pais_vasco: 'PV', paisvasco: 'PV', la_rioja: 'LR', larioja: 'LR', valencia: 'VC',
   nacional: 'NA'
 };
 const sigla = siglas[id] || id.slice(0, 2).toUpperCase();
@@ -45,6 +45,7 @@ const titulosPorComunidad: Record<string, string> = {
   asturias: 'Calendario Laboral Asturias 2027 — Días Festivos y Hábiles',
   canarias: 'Festivos Canarias 2027 — Calendario Laboral Completo',
   cantabria: 'Calendario Laboral Cantabria 2027 — Días Festivos',
+  castilla_la_mancha: 'Festivos Castilla-La Mancha 2027 — Calendario Laboral y Corpus',
   castilla_y_leon: 'Festivos Castilla y León 2027 — Calendario Laboral',
   cataluna: 'Calendario Laboral Cataluña 2027 — Festivos y Hábiles',
   ceuta: 'Festivos Ceuta 2027 — Calendario Laboral Ciudad Autónoma',

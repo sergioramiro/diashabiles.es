@@ -1,0 +1,300 @@
+---
+import Layout from '../layouts/Layout.astro';
+import d27 from '../data/festivos-2027.json';
+
+const title = "Calendario laboral 2027: festivos nacionales, estado del BOE y por comunidad — diashabiles.es";
+const description = "Festivos nacionales de 2027 con su día de la semana, estado de la resolución del BOE y calendario por comunidad autónoma. Datos provisionales actualizados el 28 de septiembre de 2026.";
+
+function fecha(f: string) {
+  const [y, m, d] = f.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+const DN = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+
+const nacionales = (d27 as any).nacionales.map((e: any) => ({
+  fecha: e.fecha,
+  nombre: e.nombre,
+  dia: DN[fecha(e.fecha).getDay()],
+  etiqueta: `${fecha(e.fecha).getDate()} ${MES[fecha(e.fecha).getMonth()]}`,
+  nota: e.nota || '',
+}));
+
+type Fila = {
+  id: string; nombre: string; total: number; efectivos: number;
+  sabados: string[]; pendientes: string[];
+};
+const filas: Fila[] = Object.entries((d27 as any).comunidades).map(([id, g]: [string, any]) => {
+  const unicas = new Map<string, any>();
+  for (const e of g.festivos) if (!unicas.has(e.fecha)) unicas.set(e.fecha, e);
+  let efectivos = 0;
+  const sabados: string[] = [];
+  const pendientes: string[] = [];
+  for (const e of unicas.values()) {
+    const dw = fecha(e.fecha).getDay();
+    const etiqueta = `${fecha(e.fecha).getDate()} ${MES[fecha(e.fecha).getMonth()]} ${e.nombre}`;
+    if (dw === 6) sabados.push(etiqueta);
+    else if (dw === 0) {
+      if (!(e.nota || '').includes('trasladado al lunes')) pendientes.push(etiqueta);
+    } else efectivos++;
+  }
+  return { id, nombre: g.nombre, total: unicas.size, efectivos, sabados, pendientes };
+});
+filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="json-ld">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Calendario laboral 2027: festivos nacionales, estado del BOE y por comunidad",
+      "description": "Los 10 festivos nacionales de 2027 con su día de la semana, el estado de la resolución del BOE y el calendario de cada comunidad autónoma.",
+      "author": { "@type": "Person", "name": "Carlos Méndez" },
+      "datePublished": "2026-09-28",
+      "dateModified": "2026-09-28",
+      "publisher": {
+        "@type": "Organization",
+        "name": "diashabiles.es",
+        "url": "https://diashabiles.es"
+      },
+      "image": "https://diashabiles.es/og-image.png",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://diashabiles.es/calendario-laboral-2027"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuándo se publican los festivos 2027 en el BOE?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La resolución de la Dirección General de Trabajo con los festivos de 2027 se espera en el BOE en octubre de 2026. En 2025, la equivalente para 2026 se publicó el 28 de octubre (BOE-A-2025-21667)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántos festivos nacionales hay en 2027?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Diez: 1 de enero, 6 de enero, Viernes Santo (26 de marzo), 1 de mayo, 15 de agosto, 12 de octubre, 1 de noviembre, 6 de diciembre, 8 de diciembre y 25 de diciembre."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué festivos caen en sábado en 2027?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El 1 de mayo (Día del Trabajo) y el 25 de diciembre (Navidad). No se trasladan ni se recuperan: son dos festivos perdidos en toda España. Cataluña añade el 11 de septiembre y Valencia el 9 de octubre."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El 15 de agosto de 2027 es festivo en todo el país?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, el 15 de agosto es festivo nacional, pero en 2027 cae en domingo. Cada comunidad decide si traslada el descanso al lunes 16: Aragón y Canarias ya lo han aprobado; el resto se confirma con los calendarios autonómicos."
+          }
+        }
+      ]
+    }
+    </script>
+  </Fragment>
+
+  <main class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">·</span>
+      <span class="text-on-surface">Calendario laboral 2027</span>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+          <time datetime="2026-09-28">28 de septiembre de 2026</time>
+          <span class="mx-1">·</span>
+          <span>8 min de lectura</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          Calendario laboral 2027: festivos nacionales, estado del BOE y por comunidad
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          Los diez festivos nacionales de 2027, qué día de la semana caen, cuáles se pierden y qué falta por confirmar antes de la publicación oficial en el BOE.
+        </p>
+      </header>
+
+      <div class="prose-custom space-y-6 text-on-surface leading-relaxed">
+        <p>
+          Este calendario está <strong>provisional</strong> y se actualiza cuando el BOE publique la resolución oficial de festivos de 2027. Los festivos nacionales están fijados por el Estatuto de los Trabajadores y no cambian; lo que se está resolviendo ahora mismo es el calendario de cada comunidad autónoma y los traslados de los festivos que caen en domingo.
+        </p>
+
+        <div class="bg-surface-secondary rounded-2xl p-6 my-8 border-l-4 border-primary">
+          <h2 class="text-lg font-bold text-on-surface mb-2 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">info</span>
+            Estado del BOE
+          </h2>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            La resolución de la Dirección General de Trabajo con los festivos de 2027 aún no está publicada. La del ejercicio 2026 apareció el <strong>28 de octubre de 2025</strong> (BOE-A-2025-21667, Resolución de 17 de octubre de 2025). Se espera que la de 2027 se publique en las mismas fechas: <strong>octubre de 2026</strong>. Las comunidades ya han remitido o están remitiendo sus listas al Ministerio de Trabajo (art. 45.4 del RD 2001/1983).
+          </p>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Festivos nacionales 2027</h2>
+        <p>Estos diez días son festivos en toda España, independientemente de la comunidad:</p>
+
+        <div class="overflow-x-auto my-8">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-outline-variant">
+                <th class="text-left py-2 font-semibold">Fecha</th>
+                <th class="text-left py-2 font-semibold">Día</th>
+                <th class="text-left py-2 font-semibold">Festivo</th>
+                <th class="text-left py-2 font-semibold">Observaciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {nacionales.map(n => (
+                <tr class="border-b border-outline-variant">
+                  <td class="py-2 font-semibold">{n.etiqueta}</td>
+                  <td class="py-2 capitalize">{n.dia}</td>
+                  <td class="py-2">{n.nombre}</td>
+                  <td class="py-2 text-text-secondary text-xs">{n.nota || '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Dos caen en sábado (1 de mayo y 25 de diciembre) y no se recuperan: los sábados no admiten traslado. Uno cae en domingo (15 de agosto) y ahí cada comunidad decide si mueve el descanso al lunes 16. El resto son días laborables entre semana, así que 2027 es un año con festivos bien repartidos: la Semana Santa del 25 al 29 de marzo abre puente en varias comunidades, y noviembre y diciembre concentran cuatro festivos en siete semanas.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Reglas: cuándo se recupera un festivo</h2>
+        <p>El marco es el artículo 45 del Real Decreto 2001/1983, tal y como lo resume la propia resolución del BOE:</p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Fiestas nacionales no sustituibles</strong> (apartados a, b y c del art. 45.1): Año Nuevo, Viernes Santo, 1 de mayo, 12 de octubre, 1 de noviembre, 6 y 25 de diciembre... las comunidades no pueden quitarlas.</li>
+          <li><strong>Fiestas nacionales sustituibles</strong> (apartado d): 6 de enero, Jueves Santo y San José o Santiago. Cada comunidad elige si las celebra o las cambia por una tradición propia. Por eso Jueves Santo es festivo en diecisiete comunidades y no en Cataluña ni en la Comunitat Valenciana (en muchas localidades de esas provincias sí es festivo local).</li>
+          <li><strong>Fiestas que caen en domingo</strong>: el descanso se traslada al lunes siguiente, salvo que la comunidad sustituya ese lunes por una festividad propia (art. 45.3). En 2026 la diferencia fue real: nueve comunidades disfrutaron del lunes 2 de noviembre y otras no.</li>
+          <li><strong>Fiestas que caen en sábado</strong>: no se trasladan ni se recuperan. Es el caso de 2027 con el 1 de mayo y el 25 de diciembre.</li>
+        </ul>
+
+        <div class="bg-surface-card rounded-2xl p-6 my-8 border border-border-subtle">
+          <h2 class="text-xl font-bold text-on-surface mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">event</span>
+            Calculadora de días laborables 2027
+          </h2>
+          <p class="text-sm text-text-secondary mb-4">Entre dos fechas, con los festivos de tu comunidad: el número exacto de laborables y hábiles del tramo.</p>
+          <a href="/#calculadora" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+            <span class="material-symbols-outlined text-[16px]">calculate</span>
+            Calcular
+          </a>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Calendario por comunidad autónoma</h2>
+        <p>
+          Diecinueve calendarios (diecisiete comunidades y Ceuta y Melilla), con el recuento de festivos de 2027 y cuántos caen en fin de semana. Los de <em>sábado</em> están perdidos; los de <em>domingo</em> dependen de que la comunidad traslade el descanso.
+        </p>
+
+        <div class="overflow-x-auto my-8">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-outline-variant">
+                <th class="text-left py-2 font-semibold">Comunidad</th>
+                <th class="text-right py-2 font-semibold">Festivos</th>
+                <th class="text-right py-2 font-semibold">De lunes a viernes</th>
+                <th class="text-right py-2 font-semibold">En sábado (perdidos)</th>
+                <th class="text-right py-2 font-semibold">En domingo (por confirmar)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filas.map(f => (
+                <tr class="border-b border-outline-variant">
+                  <td class="py-2">
+                    <a href={`/comunidad/${f.id}`} class="text-primary hover:underline font-semibold">{f.nombre}</a>
+                  </td>
+                  <td class="py-2 text-right">{f.total}</td>
+                  <td class="py-2 text-right">{f.efectivos}</td>
+                  <td class="py-2 text-right">{f.sabados.length}</td>
+                  <td class="py-2 text-right">{f.pendientes.length}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          El detalle de cada comunidad (con el calendario mes a mes) está en las páginas de cada territorio, por ejemplo <a href="/comunidad/madrid" class="text-primary hover:underline">Madrid</a>, <a href="/comunidad/cataluna" class="text-primary hover:underline">Cataluña</a>, <a href="/comunidad/andalucia" class="text-primary hover:underline">Andalucía</a>, <a href="/comunidad/valencia" class="text-primary hover:underline">Comunitat Valenciana</a> o <a href="/comunidad/pais_vasco" class="text-primary hover:underline">País Vasco</a>.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Qué queda por confirmar</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Octubre de 2026</strong>: publicación de la resolución del BOE con la lista definitiva de 2027. Actualizamos este artículo el mismo día.</li>
+          <li><strong>Traslados del 15 de agosto</strong>: confirmados en Aragón y Canarias (lunes 16 de agosto). El resto de comunidades se decidirá con sus calendarios.</li>
+          <li><strong>Fiestas locales</strong>: cada provincia y municipio suma de dos a cuatro fiestas propias que no aparecen aquí. No están incluidas en la calculadora.</li>
+        </ul>
+
+        <p>
+          Si te interesa el efecto de los festivos de fin de semana, el análisis completo —incluido el 11 de septiembre en Cataluña y el 26 de diciembre en Baleares y Cataluña— está en <a href="/festivos-perdidos-2027" class="text-primary hover:underline">festivos perdidos 2027</a>.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
+        <div class="space-y-5">
+          <div>
+            <h3 class="font-bold text-on-surface">¿Cuándo se publican los festivos 2027 en el BOE?</h3>
+            <p class="text-text-secondary">Se espera en octubre de 2026. El año pasado, la resolución de 2026 se publicó el 28 de octubre de 2025.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Cuántos festivos nacionales hay en 2027?</h3>
+            <p class="text-text-secondary">Diez, igual que todos los años: 1 de enero, 6 de enero, Viernes Santo, 1 de mayo, 15 de agosto, 12 de octubre, 1 de noviembre, 6 de diciembre, 8 de diciembre y 25 de diciembre.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Qué festivos se pierden en 2027?</h3>
+            <p class="text-text-secondary">El 1 de mayo y el 25 de diciembre, ambos en sábado y en toda España. Cataluña suma la Diada (11 de septiembre) y Valencia el 9 de octubre, también en sábado.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Puedo contar con el lunes 16 de agosto?</h3>
+            <p class="text-text-secondary">Solo si tu comunidad lo traslada. Aragón y Canarias ya lo han aprobado para 2027; el resto se confirma con los calendarios autonómicos. Consulta la tabla superior o tu convenio.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-outline-variant">
+        <p class="text-sm text-text-secondary">
+          Última actualización: 28 de septiembre de 2026. Fuentes: Estatuto de los Trabajadores (art. 37.4), Real Decreto 2001/1983 (art. 45), Resolución BOE-A-2025-21667 y calendarios autonómicos publicados.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Calendario laboral 2027</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Festivos 2027</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">BOE</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Festivos por comunidad</span>
+        </div>
+      </footer>
+    </article>
+
+    <section class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Festivos perdidos 2027</h2>
+        <p class="text-sm text-text-secondary mb-4">Por qué 1 de mayo y Navidad caen en sábado y qué comunidades pierden más días.</p>
+        <a href="/festivos-perdidos-2027" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">event_busy</span>
+          Leer el análisis
+        </a>
+      </div>
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Calculadora de días laborables</h2>
+        <p class="text-sm text-text-secondary mb-4">Laborables y hábiles entre dos fechas, con festivos de tu comunidad.</p>
+        <a href="/#calculadora" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">calculate</span>
+          Ir a la calculadora
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

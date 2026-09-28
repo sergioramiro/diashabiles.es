@@ -1,9 +1,9 @@
 {
   "_metadata": {
     "ano": 2027,
-    "fuente": "BOE + notas de prensa autonómicas (provisional, pendiente publicación BOE oct 2026)",
-    "actualizado": "2026-09-06",
-    "nota": "Las comunidades tienen hasta el 30/09/2026 para comunicar sus fiestas. Datos provisionales."
+    "fuente": "BOE (Resolución DGT de fiestas 2026, BOE-A-2025-21667) + calendarios autonómicos aprobados y prensa (provisional, pendiente de la Resolución de fiestas 2027, previsiblemente en el BOE de octubre-noviembre de 2026)",
+    "actualizado": "2026-09-28",
+    "nota": "Las comunidades tienen hasta el 30/09/2026 para comunicar sus fiestas. Los festivos que caen en sábado no se trasladan; los que caen en domingo dependen de cada comunidad."
   },
   "nacionales": [
     {
@@ -15,23 +15,22 @@
       "nombre": "Epifanía del Señor"
     },
     {
-      "fecha": "2027-03-25",
+      "fecha": "2027-03-26",
       "nombre": "Viernes Santo"
     },
     {
       "fecha": "2027-05-01",
       "nombre": "Día del Trabajo",
-      "nota": "Sábado — traslado pendiente de confirmar"
+      "nota": "Sábado: festivo perdido, sin traslado posible"
     },
     {
       "fecha": "2027-08-15",
       "nombre": "Asunción de la Virgen",
-      "nota": "Domingo — varias comunidades trasladan al 16"
+      "nota": "Domingo: el descanso puede trasladarse al lunes 16 según el calendario de cada comunidad (confirmado en Aragón y Canarias)"
     },
     {
       "fecha": "2027-10-12",
-      "nombre": "Fiesta Nacional de España",
-      "nota": "Domingo — traslado pendiente de confirmar"
+      "nombre": "Fiesta Nacional de España"
     },
     {
       "fecha": "2027-11-01",
@@ -39,7 +38,7 @@
     },
     {
       "fecha": "2027-12-06",
-      "nombre": "Día de la Constitución"
+      "nombre": "Día de la Constitución Española"
     },
     {
       "fecha": "2027-12-08",
@@ -47,8 +46,8 @@
     },
     {
       "fecha": "2027-12-25",
-      "nombre": "Navidad",
-      "nota": "Sábado — traslado pendiente de confirmar"
+      "nombre": "Natividad del Señor",
+      "nota": "Sábado: festivo perdido, sin traslado posible"
     }
   ],
   "comunidades": {
@@ -56,43 +55,68 @@
       "nombre": "Andalucía",
       "festivos": [
         {
+          "fecha": "2027-01-01",
+          "nombre": "Año Nuevo"
+        },
+        {
+          "fecha": "2027-01-06",
+          "nombre": "Epifanía del Señor"
+        },
+        {
           "fecha": "2027-02-28",
           "nombre": "Día de Andalucía",
-          "nota": "Original — trasladado al 1-mar por ser domingo"
+          "nota": "Domingo: descanso trasladado al lunes 1 de marzo de 2027 (calendario autonómico)"
         },
         {
           "fecha": "2027-03-01",
           "nombre": "Día de Andalucía (traslado)"
         },
         {
+          "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
+          "nombre": "Viernes Santo"
+        },
+        {
+          "fecha": "2027-05-01",
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-08-15",
+          "nombre": "Asunción de la Virgen",
+          "nota": "Domingo: descanso trasladado al lunes 16 de agosto de 2027 (calendario autonómico)"
+        },
+        {
           "fecha": "2027-08-16",
           "nombre": "Asunción de la Virgen (traslado)"
         },
         {
           "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional (traslado pendiente)"
-        }
-      ]
-    },
-    "castilla_y_leon": {
-      "nombre": "Castilla y León",
-      "festivos": [
-        {
-          "fecha": "2027-04-23",
-          "nombre": "Día de Castilla y León"
+          "nombre": "Fiesta Nacional de España"
         },
         {
-          "fecha": "2027-08-16",
-          "nombre": "Asunción de la Virgen (traslado)"
+          "fecha": "2027-11-01",
+          "nombre": "Día de Todos los Santos"
         },
         {
-          "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional (traslado pendiente)"
+          "fecha": "2027-12-06",
+          "nombre": "Día de la Constitución"
+        },
+        {
+          "fecha": "2027-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2027-12-25",
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ]
     },
     "aragon": {
-      "_provisional": true,
       "nombre": "Aragón",
       "festivos": [
         {
@@ -105,22 +129,34 @@
         },
         {
           "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
           "nombre": "Viernes Santo"
         },
         {
+          "fecha": "2027-04-23",
+          "nombre": "San Jorge / Día de Aragón"
+        },
+        {
           "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         },
         {
           "fecha": "2027-08-15",
           "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
+          "nota": "Domingo: descanso trasladado al lunes 16 de agosto de 2027 (calendario autonómico)"
+        },
+        {
+          "fecha": "2027-08-16",
+          "nombre": "Asunción de la Virgen (traslado al lunes)",
+          "nota": "Traslado del domingo según art. 45 del RD 2001/1983"
         },
         {
           "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
+          "nombre": "Fiesta Nacional de España"
         },
         {
           "fecha": "2027-11-01",
@@ -136,13 +172,12 @@
         },
         {
           "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ]
     },
     "asturias": {
-      "_provisional": true,
       "nombre": "Asturias",
       "festivos": [
         {
@@ -155,22 +190,29 @@
         },
         {
           "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
           "nombre": "Viernes Santo"
         },
         {
           "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         },
         {
           "fecha": "2027-08-15",
           "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-09-08",
+          "nombre": "Día de Asturias"
         },
         {
           "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
+          "nombre": "Fiesta Nacional de España"
         },
         {
           "fecha": "2027-11-01",
@@ -186,13 +228,77 @@
         },
         {
           "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        }
+      ]
+    },
+    "islas_baleares": {
+      "nombre": "Illes Balears",
+      "festivos": [
+        {
+          "fecha": "2027-01-01",
+          "nombre": "Año Nuevo"
+        },
+        {
+          "fecha": "2027-01-06",
+          "nombre": "Epifanía del Señor"
+        },
+        {
+          "fecha": "2027-03-01",
+          "nombre": "Día de les Illes Balears"
+        },
+        {
+          "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
+          "nombre": "Viernes Santo"
+        },
+        {
+          "fecha": "2027-03-29",
+          "nombre": "Lunes de Pascua"
+        },
+        {
+          "fecha": "2027-05-01",
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-08-15",
+          "nombre": "Asunción de la Virgen",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2027-11-01",
+          "nombre": "Día de Todos los Santos"
+        },
+        {
+          "fecha": "2027-12-06",
+          "nombre": "Día de la Constitución"
+        },
+        {
+          "fecha": "2027-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2027-12-25",
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-12-26",
+          "nombre": "San Esteban",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
         }
       ]
     },
     "canarias": {
-      "_provisional": true,
       "nombre": "Canarias",
       "festivos": [
         {
@@ -205,22 +311,35 @@
         },
         {
           "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
           "nombre": "Viernes Santo"
         },
         {
           "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-05-30",
+          "nombre": "Día de Canarias",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
         },
         {
           "fecha": "2027-08-15",
           "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
+          "nota": "Domingo: descanso trasladado al lunes 16 de agosto de 2027 (calendario autonómico)"
+        },
+        {
+          "fecha": "2027-08-16",
+          "nombre": "Asunción de la Virgen (traslado al lunes)",
+          "nota": "Traslado del domingo según art. 45 del RD 2001/1983"
         },
         {
           "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
+          "nombre": "Fiesta Nacional de España"
         },
         {
           "fecha": "2027-11-01",
@@ -236,13 +355,12 @@
         },
         {
           "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ]
     },
     "cantabria": {
-      "_provisional": true,
       "nombre": "Cantabria",
       "festivos": [
         {
@@ -255,22 +373,33 @@
         },
         {
           "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
           "nombre": "Viernes Santo"
         },
         {
           "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-07-28",
+          "nombre": "Día de las Instituciones de Cantabria"
         },
         {
           "fecha": "2027-08-15",
           "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-09-15",
+          "nombre": "La Bien Aparecida"
         },
         {
           "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
+          "nombre": "Fiesta Nacional de España"
         },
         {
           "fecha": "2027-11-01",
@@ -286,13 +415,132 @@
         },
         {
           "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        }
+      ]
+    },
+    "castilla_la_mancha": {
+      "nombre": "Castilla-La Mancha",
+      "festivos": [
+        {
+          "fecha": "2027-01-01",
+          "nombre": "Año Nuevo"
+        },
+        {
+          "fecha": "2027-01-06",
+          "nombre": "Epifanía del Señor"
+        },
+        {
+          "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
+          "nombre": "Viernes Santo"
+        },
+        {
+          "fecha": "2027-03-29",
+          "nombre": "Lunes de Pascua"
+        },
+        {
+          "fecha": "2027-05-01",
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-05-27",
+          "nombre": "Corpus Christi"
+        },
+        {
+          "fecha": "2027-08-15",
+          "nombre": "Asunción de la Virgen",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2027-11-01",
+          "nombre": "Día de Todos los Santos"
+        },
+        {
+          "fecha": "2027-12-06",
+          "nombre": "Día de la Constitución"
+        },
+        {
+          "fecha": "2027-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2027-12-25",
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        }
+      ]
+    },
+    "castilla_y_leon": {
+      "nombre": "Castilla y León",
+      "festivos": [
+        {
+          "fecha": "2027-01-01",
+          "nombre": "Año Nuevo"
+        },
+        {
+          "fecha": "2027-01-06",
+          "nombre": "Epifanía del Señor"
+        },
+        {
+          "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
+          "nombre": "Viernes Santo"
+        },
+        {
+          "fecha": "2027-04-23",
+          "nombre": "Fiesta de Castilla y León"
+        },
+        {
+          "fecha": "2027-05-01",
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-08-15",
+          "nombre": "Asunción de la Virgen",
+          "nota": "Domingo: descanso trasladado al lunes 16 de agosto de 2027 (calendario autonómico)"
+        },
+        {
+          "fecha": "2027-08-16",
+          "nombre": "Asunción de la Virgen (traslado)"
+        },
+        {
+          "fecha": "2027-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2027-11-01",
+          "nombre": "Día de Todos los Santos"
+        },
+        {
+          "fecha": "2027-12-06",
+          "nombre": "Día de la Constitución"
+        },
+        {
+          "fecha": "2027-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2027-12-25",
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ]
     },
     "cataluna": {
-      "_provisional": true,
       "nombre": "Cataluña",
       "festivos": [
         {
@@ -304,19 +552,35 @@
           "nombre": "Epifanía del Señor"
         },
         {
+          "fecha": "2027-03-26",
+          "nombre": "Viernes Santo"
+        },
+        {
+          "fecha": "2027-03-29",
+          "nombre": "Lunes de Pascua"
+        },
+        {
           "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-06-24",
+          "nombre": "San Juan"
         },
         {
           "fecha": "2027-08-15",
           "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-09-11",
+          "nombre": "Fiesta Nacional de Cataluña",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         },
         {
           "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
+          "nombre": "Fiesta Nacional de España"
         },
         {
           "fecha": "2027-11-01",
@@ -332,13 +596,17 @@
         },
         {
           "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-12-26",
+          "nombre": "San Esteban",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
         }
       ]
     },
     "extremadura": {
-      "_provisional": true,
       "nombre": "Extremadura",
       "festivos": [
         {
@@ -351,22 +619,29 @@
         },
         {
           "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
           "nombre": "Viernes Santo"
         },
         {
           "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         },
         {
           "fecha": "2027-08-15",
           "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-09-08",
+          "nombre": "Día de Extremadura"
         },
         {
           "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
+          "nombre": "Fiesta Nacional de España"
         },
         {
           "fecha": "2027-11-01",
@@ -382,13 +657,12 @@
         },
         {
           "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ]
     },
     "galicia": {
-      "_provisional": true,
       "nombre": "Galicia",
       "festivos": [
         {
@@ -400,23 +674,39 @@
           "nombre": "Epifanía del Señor"
         },
         {
+          "fecha": "2027-03-19",
+          "nombre": "San José"
+        },
+        {
           "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
           "nombre": "Viernes Santo"
         },
         {
           "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-06-24",
+          "nombre": "San Juan"
+        },
+        {
+          "fecha": "2027-07-25",
+          "nombre": "Santiago Apóstol / Día Nacional de Galicia",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
         },
         {
           "fecha": "2027-08-15",
           "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
         },
         {
           "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
+          "nombre": "Fiesta Nacional de España"
         },
         {
           "fecha": "2027-11-01",
@@ -432,14 +722,13 @@
         },
         {
           "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ]
     },
-    "islas_baleares": {
-      "_provisional": true,
-      "nombre": "Islas Baleares",
+    "madrid": {
+      "nombre": "Comunidad de Madrid",
       "festivos": [
         {
           "fecha": "2027-01-01",
@@ -451,22 +740,30 @@
         },
         {
           "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
           "nombre": "Viernes Santo"
         },
         {
           "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-05-02",
+          "nombre": "Fiesta de la Comunidad de Madrid",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
         },
         {
           "fecha": "2027-08-15",
           "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
         },
         {
           "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
+          "nombre": "Fiesta Nacional de España"
         },
         {
           "fecha": "2027-11-01",
@@ -482,13 +779,197 @@
         },
         {
           "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        }
+      ]
+    },
+    "murcia": {
+      "nombre": "Región de Murcia",
+      "festivos": [
+        {
+          "fecha": "2027-01-01",
+          "nombre": "Año Nuevo"
+        },
+        {
+          "fecha": "2027-01-06",
+          "nombre": "Epifanía del Señor"
+        },
+        {
+          "fecha": "2027-03-19",
+          "nombre": "San José"
+        },
+        {
+          "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
+          "nombre": "Viernes Santo"
+        },
+        {
+          "fecha": "2027-05-01",
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-06-09",
+          "nombre": "Día de la Región de Murcia"
+        },
+        {
+          "fecha": "2027-08-15",
+          "nombre": "Asunción de la Virgen",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2027-11-01",
+          "nombre": "Día de Todos los Santos"
+        },
+        {
+          "fecha": "2027-12-06",
+          "nombre": "Día de la Constitución"
+        },
+        {
+          "fecha": "2027-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2027-12-25",
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        }
+      ]
+    },
+    "navarra": {
+      "nombre": "Comunidad Foral de Navarra",
+      "festivos": [
+        {
+          "fecha": "2027-01-01",
+          "nombre": "Año Nuevo"
+        },
+        {
+          "fecha": "2027-01-06",
+          "nombre": "Epifanía del Señor"
+        },
+        {
+          "fecha": "2027-03-19",
+          "nombre": "San José"
+        },
+        {
+          "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
+          "nombre": "Viernes Santo"
+        },
+        {
+          "fecha": "2027-03-29",
+          "nombre": "Lunes de Pascua"
+        },
+        {
+          "fecha": "2027-05-01",
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-08-15",
+          "nombre": "Asunción de la Virgen",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2027-11-01",
+          "nombre": "Día de Todos los Santos"
+        },
+        {
+          "fecha": "2027-12-06",
+          "nombre": "Día de la Constitución"
+        },
+        {
+          "fecha": "2027-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2027-12-25",
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        }
+      ]
+    },
+    "pais_vasco": {
+      "nombre": "País Vasco",
+      "festivos": [
+        {
+          "fecha": "2027-01-01",
+          "nombre": "Año Nuevo"
+        },
+        {
+          "fecha": "2027-01-06",
+          "nombre": "Epifanía del Señor"
+        },
+        {
+          "fecha": "2027-03-19",
+          "nombre": "San José"
+        },
+        {
+          "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
+          "nombre": "Viernes Santo"
+        },
+        {
+          "fecha": "2027-03-29",
+          "nombre": "Lunes de Pascua"
+        },
+        {
+          "fecha": "2027-05-01",
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-07-25",
+          "nombre": "Santiago Apóstol / Día Nacional de Galicia",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-08-15",
+          "nombre": "Asunción de la Virgen",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2027-11-01",
+          "nombre": "Día de Todos los Santos"
+        },
+        {
+          "fecha": "2027-12-06",
+          "nombre": "Día de la Constitución"
+        },
+        {
+          "fecha": "2027-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2027-12-25",
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ]
     },
     "la_rioja": {
-      "_provisional": true,
       "nombre": "La Rioja",
       "festivos": [
         {
@@ -501,22 +982,33 @@
         },
         {
           "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
           "nombre": "Viernes Santo"
         },
         {
+          "fecha": "2027-03-29",
+          "nombre": "Lunes de Pascua"
+        },
+        {
           "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-06-09",
+          "nombre": "Día de la Rioja"
         },
         {
           "fecha": "2027-08-15",
           "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
         },
         {
           "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
+          "nombre": "Fiesta Nacional de España"
         },
         {
           "fecha": "2027-11-01",
@@ -532,206 +1024,13 @@
         },
         {
           "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
-        }
-      ]
-    },
-    "madrid": {
-      "_provisional": true,
-      "nombre": "Madrid",
-      "festivos": [
-        {
-          "fecha": "2027-01-01",
-          "nombre": "Año Nuevo"
-        },
-        {
-          "fecha": "2027-01-06",
-          "nombre": "Epifanía del Señor"
-        },
-        {
-          "fecha": "2027-03-25",
-          "nombre": "Viernes Santo"
-        },
-        {
-          "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
-        },
-        {
-          "fecha": "2027-08-15",
-          "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
-        },
-        {
-          "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
-        },
-        {
-          "fecha": "2027-11-01",
-          "nombre": "Día de Todos los Santos"
-        },
-        {
-          "fecha": "2027-12-06",
-          "nombre": "Día de la Constitución"
-        },
-        {
-          "fecha": "2027-12-08",
-          "nombre": "Inmaculada Concepción"
-        },
-        {
-          "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
-        }
-      ]
-    },
-    "murcia": {
-      "_provisional": true,
-      "nombre": "Murcia",
-      "festivos": [
-        {
-          "fecha": "2027-01-01",
-          "nombre": "Año Nuevo"
-        },
-        {
-          "fecha": "2027-01-06",
-          "nombre": "Epifanía del Señor"
-        },
-        {
-          "fecha": "2027-03-25",
-          "nombre": "Viernes Santo"
-        },
-        {
-          "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
-        },
-        {
-          "fecha": "2027-08-15",
-          "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
-        },
-        {
-          "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
-        },
-        {
-          "fecha": "2027-11-01",
-          "nombre": "Día de Todos los Santos"
-        },
-        {
-          "fecha": "2027-12-06",
-          "nombre": "Día de la Constitución"
-        },
-        {
-          "fecha": "2027-12-08",
-          "nombre": "Inmaculada Concepción"
-        },
-        {
-          "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
-        }
-      ]
-    },
-    "navarra": {
-      "_provisional": true,
-      "nombre": "Navarra",
-      "festivos": [
-        {
-          "fecha": "2027-01-01",
-          "nombre": "Año Nuevo"
-        },
-        {
-          "fecha": "2027-01-06",
-          "nombre": "Epifanía del Señor"
-        },
-        {
-          "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
-        },
-        {
-          "fecha": "2027-08-15",
-          "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
-        },
-        {
-          "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
-        },
-        {
-          "fecha": "2027-11-01",
-          "nombre": "Día de Todos los Santos"
-        },
-        {
-          "fecha": "2027-12-06",
-          "nombre": "Día de la Constitución"
-        },
-        {
-          "fecha": "2027-12-08",
-          "nombre": "Inmaculada Concepción"
-        },
-        {
-          "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
-        }
-      ]
-    },
-    "pais_vasco": {
-      "_provisional": true,
-      "nombre": "País Vasco",
-      "festivos": [
-        {
-          "fecha": "2027-01-01",
-          "nombre": "Año Nuevo"
-        },
-        {
-          "fecha": "2027-01-06",
-          "nombre": "Epifanía del Señor"
-        },
-        {
-          "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
-        },
-        {
-          "fecha": "2027-08-15",
-          "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
-        },
-        {
-          "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
-        },
-        {
-          "fecha": "2027-11-01",
-          "nombre": "Día de Todos los Santos"
-        },
-        {
-          "fecha": "2027-12-06",
-          "nombre": "Día de la Constitución"
-        },
-        {
-          "fecha": "2027-12-08",
-          "nombre": "Inmaculada Concepción"
-        },
-        {
-          "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ]
     },
     "valencia": {
-      "_provisional": true,
-      "nombre": "Valencia",
+      "nombre": "Comunitat Valenciana",
       "festivos": [
         {
           "fecha": "2027-01-01",
@@ -742,23 +1041,39 @@
           "nombre": "Epifanía del Señor"
         },
         {
-          "fecha": "2027-03-25",
+          "fecha": "2027-03-19",
+          "nombre": "San José"
+        },
+        {
+          "fecha": "2027-03-26",
           "nombre": "Viernes Santo"
         },
         {
+          "fecha": "2027-03-29",
+          "nombre": "Lunes de Pascua"
+        },
+        {
           "fecha": "2027-05-01",
-          "nombre": "Día del Trabajo",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
+        {
+          "fecha": "2027-06-24",
+          "nombre": "San Juan"
         },
         {
           "fecha": "2027-08-15",
           "nombre": "Asunción de la Virgen",
-          "nota": "Domingo — varias comunidades trasladan al 16"
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-10-09",
+          "nombre": "Día de la Comunitat Valenciana",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         },
         {
           "fecha": "2027-10-12",
-          "nombre": "Fiesta Nacional de España",
-          "nota": "Domingo — traslado pendiente de confirmar"
+          "nombre": "Fiesta Nacional de España"
         },
         {
           "fecha": "2027-11-01",
@@ -774,19 +1089,40 @@
         },
         {
           "fecha": "2027-12-25",
-          "nombre": "Navidad",
-          "nota": "Sábado — traslado pendiente de confirmar"
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ]
     },
     "ceuta": {
-      "nombre": "Ceuta",
+      "nombre": "Ciudad Autónoma de Ceuta",
       "tipo": "ciudad_autonoma",
       "festivos": [
+        {
+          "fecha": "2027-01-01",
+          "nombre": "Año Nuevo"
+        },
+        {
+          "fecha": "2027-01-06",
+          "nombre": "Epifanía del Señor"
+        },
         {
           "fecha": "2027-03-10",
           "nombre": "Eid al-Fitr",
           "nota": "Fiesta del fin del Ramadán (fecha lunar, provisional)"
+        },
+        {
+          "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
+          "nombre": "Viernes Santo"
+        },
+        {
+          "fecha": "2027-05-01",
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         },
         {
           "fecha": "2027-05-17",
@@ -795,22 +1131,105 @@
         },
         {
           "fecha": "2027-06-13",
-          "nombre": "San Antonio de Padua"
+          "nombre": "San Antonio de Padua",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-08-05",
+          "nombre": "Nuestra Señora de África"
+        },
+        {
+          "fecha": "2027-08-15",
+          "nombre": "Asunción de la Virgen",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
         },
         {
           "fecha": "2027-09-02",
           "nombre": "Día de Ceuta"
+        },
+        {
+          "fecha": "2027-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2027-11-01",
+          "nombre": "Día de Todos los Santos"
+        },
+        {
+          "fecha": "2027-12-06",
+          "nombre": "Día de la Constitución"
+        },
+        {
+          "fecha": "2027-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2027-12-25",
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ]
     },
     "melilla": {
-      "nombre": "Melilla",
+      "nombre": "Ciudad Autónoma de Melilla",
       "tipo": "ciudad_autonoma",
       "festivos": [
+        {
+          "fecha": "2027-01-01",
+          "nombre": "Año Nuevo"
+        },
+        {
+          "fecha": "2027-01-06",
+          "nombre": "Epifanía del Señor"
+        },
+        {
+          "fecha": "2027-03-10",
+          "nombre": "Eid al-Fitr",
+          "nota": "Fiesta del fin del Ramadán (fecha lunar, provisional)"
+        },
+        {
+          "fecha": "2027-03-25",
+          "nombre": "Jueves Santo"
+        },
+        {
+          "fecha": "2027-03-26",
+          "nombre": "Viernes Santo"
+        },
+        {
+          "fecha": "2027-05-01",
+          "nombre": "Fiesta del Trabajo",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        },
         {
           "fecha": "2027-05-17",
           "nombre": "Eid al-Adha",
           "nota": "Fiesta del Sacrificio (fecha lunar, provisional)"
+        },
+        {
+          "fecha": "2027-08-15",
+          "nombre": "Asunción de la Virgen",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2027-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2027-11-01",
+          "nombre": "Día de Todos los Santos"
+        },
+        {
+          "fecha": "2027-12-06",
+          "nombre": "Día de la Constitución"
+        },
+        {
+          "fecha": "2027-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2027-12-25",
+          "nombre": "Natividad del Señor",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ]
     }

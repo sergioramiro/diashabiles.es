@@ -1,0 +1,292 @@
+---
+import Layout from '../layouts/Layout.astro';
+import d27 from '../data/festivos-2027.json';
+
+const title = "Festivos perdidos 2027: 1 de mayo cae en sábado, ¿pierdo un festivo? — diashabiles.es";
+const description = "El 1 de mayo de 2027 cae en sábado y el 25 de diciembre también: son festivos perdidos en toda España. Qué festivos se pierden en cada comunidad y por qué no se recuperan.";
+
+function fecha(f: string) {
+  const [y, m, d] = f.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+const DN = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+
+type Fila = { id: string; nombre: string; sabados: string[]; pendientes: string[]; trasladados: string[] };
+const filas: Fila[] = Object.entries((d27 as any).comunidades).map(([id, g]: [string, any]) => {
+  const unicas = new Map<string, any>();
+  for (const e of g.festivos) if (!unicas.has(e.fecha)) unicas.set(e.fecha, e);
+  const sabados: string[] = [], pendientes: string[] = [], trasladados: string[] = [];
+  for (const e of unicas.values()) {
+    const dw = fecha(e.fecha).getDay();
+    const corto = `${fecha(e.fecha).getDate()} ${MES[fecha(e.fecha).getMonth()]} (${e.nombre})`;
+    if (dw === 6) sabados.push(corto);
+    else if (dw === 0) {
+      if ((e.nota || '').includes('trasladado al lunes')) trasladados.push(corto);
+      else pendientes.push(corto);
+    }
+  }
+  return { id, nombre: g.nombre, sabados, pendientes, trasladados };
+});
+filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+
+const mayo = [
+  { anio: 2024, dia: 'miércoles' },
+  { anio: 2025, dia: 'jueves' },
+  { anio: 2026, dia: 'viernes' },
+  { anio: 2027, dia: 'sábado' },
+  { anio: 2028, dia: 'lunes' },
+];
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="json-ld">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Festivos perdidos 2027: 1 de mayo cae en sábado, ¿pierdo un festivo?",
+      "description": "En 2027 el 1 de mayo y el 25 de diciembre caen en sábado: dos festivos perdidos en toda España. Análisis por comunidad autónoma.",
+      "author": { "@type": "Person", "name": "Carlos Méndez" },
+      "datePublished": "2026-09-28",
+      "dateModified": "2026-09-28",
+      "publisher": {
+        "@type": "Organization",
+        "name": "diashabiles.es",
+        "url": "https://diashabiles.es"
+      },
+      "image": "https://diashabiles.es/og-image.png",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://diashabiles.es/festivos-perdidos-2027"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿El 1 de mayo de 2027 cae en sábado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, el Día del Trabajo de 2027 es sábado 1 de mayo. Al caer en sábado no se traslada ni se recupera: es un festivo perdido en toda España."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se pueden recuperar los festivos que caen en sábado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No por norma general. El traslado al lunes solo existe para los festivos nacionales que caen en domingo, y depende de la comunidad autónoma. Los que caen en sábado no tienen compensación legal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué comunidades pierden más festivos en 2027?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Toda España pierde el 1 de mayo y el 25 de diciembre (sábado). Cataluña añade la Diada, el 11 de septiembre, y la Comunitat Valenciana el 9 de octubre, también en sábado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa si el festivo cae en domingo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los festivos nacionales que caen en domingo se trasladan al lunes siguiente salvo que la comunidad sustituya ese lunes por otra festividad propia. En 2027 el 15 de agosto cae en domingo: Aragón y Canarias ya han aprobado el lunes 16."
+          }
+        }
+      ]
+    }
+    </script>
+  </Fragment>
+
+  <main class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">·</span>
+      <a href="/calendario-laboral-2027" class="hover:text-primary transition-colors">Calendario 2027</a>
+      <span class="mx-2">·</span>
+      <span class="text-on-surface">Festivos perdidos 2027</span>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+          <time datetime="2026-09-28">28 de septiembre de 2026</time>
+          <span class="mx-1">·</span>
+          <span>6 min de lectura</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          1 de mayo de 2027 cae en sábado: ¿pierdo un festivo?
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          Sí: se pierde. Y no es el único. En 2027 el Día del Trabajo y Navidad caen en sábado, y algunas comunidades pierden uno más. Te contamos por qué no se recuperan y qué opciones quedan.
+        </p>
+      </header>
+
+      <div class="prose-custom space-y-6 text-on-surface leading-relaxed">
+        <p>
+          Cada vez que un festivo cae en sábado, se repite la misma pregunta en las oficinas de recursos humanos: ¿esto se recupera? La respuesta corta es <strong>no</strong>. La norma laboral española solo prevé un mecanismo de traslado, y no es este.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Por qué el 1 de mayo de 2027 se pierde</h2>
+        <p>
+          El Día del Trabajo (1 de mayo) es festivo nacional, de carácter no sustituible: ninguna comunidad puede quitárselo a sus trabajadores. Pero el artículo 45 del Real Decreto 2001/1983 solo contempla traslados para los festivos nacionales que caen <strong>en domingo</strong>: en ese caso, el descanso se disfruta el lunes siguiente (o se sustituye por una festividad propia de la comunidad).
+        </p>
+        <p>
+          Del sábado no dice nada. Y como el 1 de mayo de 2027 es sábado, el festivo se consume en un día que ya no era laborable: no hay lunes puente, no hay recuperación y no hay derecho a un día extra. Lo mismo aplica al <strong>25 de diciembre</strong>, que en 2027 cae en sábado. Dos festivos menos, en toda España.
+        </p>
+
+        <div class="bg-surface-secondary rounded-2xl p-6 my-8">
+          <h2 class="text-xl font-bold text-on-surface mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">calendar_month</span>
+            El 1 de mayo, año a año
+          </h2>
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-outline-variant">
+                <th class="text-left py-2 font-semibold">Año</th>
+                <th class="text-left py-2 font-semibold">1 de mayo cae en</th>
+                <th class="text-left py-2 font-semibold">¿Se recupera?</th>
+              </tr>
+            </thead>
+            <tbody>
+              {mayo.map(m => (
+                <tr class="border-b border-outline-variant">
+                  <td class="py-2 font-semibold">{m.anio}</td>
+                  <td class="py-2 capitalize">{m.dia}</td>
+                  <td class="py-2 text-text-secondary">
+                    {m.dia === 'sábado' ? 'No — festivo perdido' : m.dia === 'domingo' ? 'Sí, si la comunidad lo traslada' : 'No hace falta'}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="text-xs text-text-muted mt-3">En 2028 el 1 de mayo cae en lunes: festivo entre semana, sin complicaciones.</p>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Diciembre, el otro cabezón</h2>
+        <p>
+          El 25 de diciembre de 2027 es sábado. Además, el <strong>26 de diciembre (San Esteban) es festivo autonómico en Baleares y Cataluña</strong> y cae en domingo. San Esteban sí podría trasladarse (es festivo de comunidad, y las comunidades mueven sus fiestas cuando caen en domingo), pero de momento ninguna ha confirmado nada para 2027.
+        </p>
+        <p>
+          Cataluña es quien peor lo tiene: pierde la Diada (11 de septiembre, sábado), el 1 de mayo y el 25 de diciembre, y tiene dos domingos pendientes de confirmar (15 de agosto y San Esteban). La Comunitat Valenciana también pierde uno propio: el 9 de octubre cae en sábado.
+        </p>
+
+        <div class="bg-surface-card rounded-2xl p-6 my-8 border border-border-subtle">
+          <h2 class="text-xl font-bold text-on-surface mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">event_busy</span>
+            Festivos en fin de semana por comunidad (2027)
+          </h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b-2 border-outline-variant">
+                  <th class="text-left py-2 font-semibold">Comunidad</th>
+                  <th class="text-left py-2 font-semibold">En sábado (perdidos)</th>
+                  <th class="text-left py-2 font-semibold">En domingo (pendiente)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filas.map(f => (
+                  <tr class="border-b border-outline-variant">
+                    <td class="py-2">
+                      <a href={`/comunidad/${f.id}`} class="text-primary hover:underline font-semibold">{f.nombre}</a>
+                    </td>
+                    <td class="py-2 text-text-secondary">{f.sabados.join('; ')}</td>
+                    <td class="py-2 text-text-secondary">{f.pendientes.length ? f.pendientes.join('; ') : '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-text-muted mt-3">
+            Los domingos trasladados (por ejemplo, la Asunción al lunes 16 en Aragón, Canarias, Andalucía y Castilla y León) no aparecen como pendientes.
+          </p>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">¿Y si trabajo en sábado?</h2>
+        <p>
+          Matiz que se olvida siempre: si tu jornada incluye sábados (turnos, hostelería, comercio), un festivo en sábado sí que te afecta de otra forma. Tu día de descanso semanal o el festivo compensatorio dependen de tu convenio colectivo, que suele contemplar un día sustitutorio cuando el festivo coincide con tu jornada. Ahí la regulación no es la del calendario, sino la de tu convenio: revísalo.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Qué opciones quedan para recuperar los días</h2>
+        <p>Al margen del convenio, las vías habituales son:</p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Días de libre disposición</strong>: algunos convenios y muchas empresas conceden días personales que el trabajador usa cuando quiere. Son la compensación más habitual.</li>
+          <li><strong>Puentes voluntarios</strong>: la empresa decide dar el viernes 30 de abril o el lunes 27 de diciembre como día no laborable. Es una decisión de la empresa, no un derecho.</li>
+          <li><strong>Convenios con compensación</strong>: un puñado de convenios contemplan mecanismos de compensación cuando los festivos caen en sábado, aunque son la excepción.</li>
+        </ul>
+        <p>
+          Fuera de eso, un festivo en sábado es un festivo consumido. Lo que sí puedes planificar con precisión son los días laborables que te quedan: la <a href="/#calculadora" class="text-primary hover:underline">calculadora de días laborables</a> te da el número exacto para 2027 con los festivos de tu comunidad.
+        </p>
+
+        <div class="bg-surface-secondary rounded-2xl p-6 my-8 border-l-4 border-primary">
+          <h2 class="text-lg font-bold text-on-surface mb-2 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">lightbulb</span>
+            Dato útil para 2028
+          </h2>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            En 2028 el 25 de diciembre cae en lunes y el 26 (en martes) se suma como festivo en Baleares y Cataluña: tras el mal 2027, diciembre de 2028 recupera los dos días y encadena festivo-lunes y festivo-martes.
+          </p>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
+        <div class="space-y-5">
+          <div>
+            <h3 class="font-bold text-on-surface">¿Se pueden recuperar los festivos que caen en sábado?</h3>
+            <p class="text-text-secondary">No por norma general. El traslado al lunes solo aplica a festivos nacionales en domingo, y de forma facultativa para cada comunidad. Los sábados no admiten traslado.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Y si el festivo cae en domingo?</h3>
+            <p class="text-text-secondary">Ahí sí existe mecanismo: el descanso se traslada al lunes siguiente o la comunidad lo sustituye por una festividad propia (art. 45.3 del RD 2001/1983). En 2027, el 15 de agosto es el caso: Aragón y Canarias ya han aprobado el lunes 16 de agosto.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Qué comunidades pierden más festivos en 2027?</h3>
+            <p class="text-text-secondary">Todas pierden dos (1 de mayo y 25 de diciembre). Cataluña añade la Diada y la Comunitat Valenciana el 9 de octubre, ambos en sábado.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Los festivos locales también se pierden en sábado?</h3>
+            <p class="text-text-secondary">Sí, les aplica la misma regla. Las fiestas locales de tu municipio no aparecen en esta página ni en la calculadora, así que cuéntalas aparte.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-outline-variant">
+        <p class="text-sm text-text-secondary">
+          Última actualización: 28 de septiembre de 2026. Fuentes: art. 45 del Real Decreto 2001/1983, Resolución BOE-A-2025-21667 y calendarios autonómicos de 2027 (provisionales hasta la publicación del BOE).
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Festivos 2027 perdidos</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">1 de mayo 2027</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">25 de diciembre 2027</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Festivos en sábado</span>
+        </div>
+      </footer>
+    </article>
+
+    <section class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Calendario laboral 2027</h2>
+        <p class="text-sm text-text-secondary mb-4">Los diez festivos nacionales, su día de la semana y el estado del BOE.</p>
+        <a href="/calendario-laboral-2027" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">calendar_month</span>
+          Ver el calendario
+        </a>
+      </div>
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Calculadora de días laborables</h2>
+        <p class="text-sm text-text-secondary mb-4">Cuántos días laborables te quedan en 2027 con los festivos de tu comunidad.</p>
+        <a href="/#calculadora" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">calculate</span>
+          Calcular
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

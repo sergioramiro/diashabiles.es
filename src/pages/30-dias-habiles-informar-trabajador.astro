@@ -1,0 +1,369 @@
+---
+import Layout from '../layouts/Layout.astro';
+import q4Data from '../data/festivos-2026-q4.json';
+import data27 from '../data/festivos-2027.json';
+
+const title = "30 días hábiles para informar al trabajador (RD 723/2026): cómo se computan — diashabiles.es";
+const description = "El RD 723/2026 da 30 días hábiles a la empresa para entregar la información del contrato. Reglas de cómputo con la Ley 39/2015, ejemplo real y calculadora del plazo límite.";
+
+const comunidades = Object.entries(data27.comunidades).map(([id, g]) => ({ id, nombre: (g as any).nombre }));
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="json-ld">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "30 días hábiles para informar al trabajador (RD 723/2026): cómo se computan",
+      "description": "Cómo se cuentan los 30 días hábiles que el RD 723/2026 da a la empresa para entregar la información del contrato: reglas, ejemplo real y calculadora.",
+      "author": { "@type": "Person", "name": "Carlos Méndez" },
+      "datePublished": "2026-09-28",
+      "dateModified": "2026-09-28",
+      "publisher": {
+        "@type": "Organization",
+        "name": "diashabiles.es",
+        "url": "https://diashabiles.es"
+      },
+      "image": "https://diashabiles.es/og-image.png",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://diashabiles.es/30-dias-habiles-informar-trabajador"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuándo empiezan a contar los 30 días hábiles?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El día siguiente a la recepción de la solicitud del trabajador. El día de la solicitud no se cuenta."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Los sábados cuentan como días hábiles?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. El artículo 30.2 de la Ley 39/2015 excluye del cómputo los sábados, los domingos y los declarados festivos. Solo cuentan de lunes a viernes que no sean festivos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa si el día 30 cae en festivo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Al contarse en días hábiles, el último día del plazo siempre es hábil por construcción. Si por cualquier motivo el vencimiento cayese en un día inhábil, se amplía al primer día hábil siguiente (artículo 30.5 de la Ley 39/2015)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa si la empresa no responde en plazo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El incumplimiento de las obligaciones de información es infracción leve del artículo 6.4 de la LISOS, con multas de 70 a 750 euros. El trabajador puede reclamar por escrito y, si el defecto encubre una obligación mayor como la falta de contrato escrito, la sanción puede llegar a 7.500 euros."
+          }
+        }
+      ]
+    }
+    </script>
+  </Fragment>
+
+  <main class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">·</span>
+      <span class="text-on-surface">30 días hábiles (RD 723/2026)</span>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+          <time datetime="2026-09-28">28 de septiembre de 2026</time>
+          <span class="mx-1">·</span>
+          <span>7 min de lectura</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          30 días hábiles para informar al trabajador (RD 723/2026): cómo se computan
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          El Real Decreto 723/2026 entra en vigor el 5 de octubre de 2026 y trae un plazo nuevo que casi nadie sabe contar. Reglas de cómputo, un ejemplo real y una calculadora para no equivocarse.
+        </p>
+      </header>
+
+      <div class="prose-custom space-y-6 text-on-surface leading-relaxed">
+        <p>
+          El pasado 15 de septiembre se publicó en el BOE el <strong>Real Decreto 723/2026</strong>, que transpone la Directiva europea 2019/1152 sobre condiciones laborales transparentes y previsibles. La norma obliga a las empresas a entregar al trabajador, por escrito, toda la información del contrato: salario desglosado, jornada, funciones, periodo de prueba y sistemas algorítmicos que intervengan en decisiones sobre turnos, salarios o despidos.
+        </p>
+        <p>
+          Para los contratos que ya estaban firmados a la entrada en vigor, la disposición transitoria única fija un plazo concreto:
+        </p>
+
+        <div class="bg-surface-secondary rounded-2xl p-6 my-8 border-l-4 border-primary">
+          <p class="text-sm italic text-on-surface-variant leading-relaxed">
+            «La empresa deberá facilitar a la persona trabajadora que lo solicite, <strong class="text-on-surface">en el plazo de treinta días hábiles a partir de la recepción de la solicitud</strong> y siempre que no obrara ya en su poder, la información a que se refieren los artículos 3, 4 y 5.»
+          </p>
+          <p class="text-xs text-text-muted mt-3">Disposición transitoria única del RD 723/2026 (BOE-A-2026-19200)</p>
+        </div>
+
+        <p>
+          Treinta días <strong>hábiles</strong>, no naturales. La diferencia no es semántica: un plazo de 30 días naturales desde el 5 de octubre vencería el 4 de noviembre, y el mismo plazo en días hábiles se va hasta el 17 de noviembre. Más de dos semanas de diferencia.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cómo se cuentan los 30 días hábiles</h2>
+        <p>Cuatro reglas, todas con respaldo normativo:</p>
+        <ol class="list-decimal pl-6 space-y-3">
+          <li>
+            <strong>Arranca el día siguiente a la solicitud.</strong> El día en que recibes la petición no cuenta. Es la regla general de cómputo de plazos del artículo 5.1 del Código Civil, la misma que usa la Administración en el artículo 30.3 de la Ley 39/2015.
+          </li>
+          <li>
+            <strong>Sábados y domingos no cuentan.</strong> El artículo 30.2 de la Ley 39/2015 (LPACAP) es tajante: «cuando los plazos se señalen por días, se entiende que éstos son hábiles, excluyéndose del cómputo los sábados, los domingos y los declarados festivos».
+          </li>
+          <li>
+            <strong>Tampoco cuentan los festivos.</strong> Los nacionales (12 de octubre, 1 de noviembre, 8 y 25 de diciembre…), los de tu comunidad autónoma y los declarados en tu municipio o provincia. Cada comunidad fija los suyos en su calendario anual.
+          </li>
+          <li>
+            <strong>Si el vencimiento cayera en día inhábil</strong> (por un cambio de calendario, por ejemplo), se amplía al primer día hábil siguiente: artículo 30.5 de la Ley 39/2015. Contando en días hábiles, el día 30 es hábil por construcción, pero conviene conocer la regla.
+          </li>
+        </ol>
+
+        <div class="bg-surface-secondary rounded-2xl p-6 my-8">
+          <h2 class="text-xl font-bold text-on-surface mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">calculate</span>
+            Ejemplo: solicitud el 5 de octubre de 2026
+          </h2>
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-outline-variant">
+                <th class="text-left py-2 font-semibold">Concepto</th>
+                <th class="text-left py-2 font-semibold">Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-outline-variant">
+                <td class="py-2">Recepción de la solicitud</td>
+                <td class="py-2">5 oct 2026 (lunes)</td>
+              </tr>
+              <tr class="border-b border-outline-variant">
+                <td class="py-2">Primer día que cuenta</td>
+                <td class="py-2">6 oct 2026 (martes)</td>
+              </tr>
+              <tr class="border-b border-outline-variant">
+                <td class="py-2">Festivo que se cruza</td>
+                <td class="py-2">12 oct (Fiesta Nacional)</td>
+              </tr>
+              <tr class="border-b border-outline-variant">
+                <td class="py-2">30.º día hábil</td>
+                <td class="py-2 font-bold text-primary">17 nov 2026 (martes)</td>
+              </tr>
+              <tr>
+                <td class="py-2">Días naturales transcurridos</td>
+                <td class="py-2">43</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-xs text-text-muted mt-3">Solo con festivos nacionales. En Madrid, el lunes 2 de noviembre (traslado de Todos los Santos) mueve el vencimiento al 18 de noviembre.</p>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Calculadora del plazo de 30 días hábiles</h2>
+        <p>
+          Introduce la fecha en que tu empresa recibió la solicitud y elige tu comunidad autónoma. La herramienta devuelve el vencimiento exacto, contando solo de lunes a viernes y descontando los festivos de tu comunidad.
+        </p>
+
+        <div class="bg-surface-card rounded-2xl p-6 my-8 border border-border-subtle shadow-sm">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div class="flex flex-col gap-2">
+              <label for="fecha-solicitud" class="text-sm font-semibold text-on-surface">Fecha de la solicitud</label>
+              <input id="fecha-solicitud" type="date" min="2026-10-05" max="2027-12-31" value="2026-10-05"
+                class="h-11 px-3 rounded-lg bg-surface-base border border-border-strong text-on-surface text-sm focus:outline-none focus:border-primary" />
+              <span class="text-xs text-text-muted">Entre el 5/10/2026 (entrada en vigor) y el 31/12/2027</span>
+            </div>
+            <div class="flex flex-col gap-2">
+              <label for="ccaa-plazo" class="text-sm font-semibold text-on-surface">Comunidad autónoma</label>
+              <select id="ccaa-plazo"
+                class="h-11 px-3 rounded-lg bg-surface-base border border-border-strong text-on-surface text-sm focus:outline-none focus:border-primary">
+                <option value="">Solo festivos nacionales</option>
+                {comunidades.map(c => <option value={c.id}>{c.nombre}</option>)}
+              </select>
+            </div>
+          </div>
+          <button id="btn-plazo" type="button"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+            <span class="material-symbols-outlined text-[16px]">event_available</span>
+            Calcular vencimiento
+          </button>
+          <div id="resultado-plazo" class="hidden mt-5 pt-5 border-t border-border-subtle"></div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Y si la empresa no responde en plazo</h2>
+        <p>
+          El RD 723/2026 no trae régimen sancionador propio, pero el incumplimiento encaja en el artículo 6.4 de la LISOS (texto refundido aprobado por el Real Decreto Legislativo 5/2000): es una <strong>infracción leve</strong>, con multa de 70 a 150 euros en grado mínimo, de 151 a 370 en grado medio y de 371 a 750 en grado máximo. Así lo están valorando los despachos que han analizado la norma (Jover Abogados, Caballero y Fuentes, Versis).
+        </p>
+        <p>
+          Matiz importante: si detrás de la falta de información hay algo más grave, la cuenta cambia. Que la empresa no tenga contrato formalizado por escrito es infracción grave y puede llegar a los 7.500 euros. El consejo práctico es enviar la solicitud <strong>por escrito y guardar el justificante de recepción</strong>: sin fecha de recepción no hay cómputo que reclamar.
+        </p>
+
+        <div class="bg-surface-secondary rounded-2xl p-6 my-8">
+          <h2 class="text-xl font-bold text-on-surface mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">schedule</span>
+            Calendario de la norma
+          </h2>
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-outline-variant">
+                <th class="text-left py-2 font-semibold">Hito</th>
+                <th class="text-left py-2 font-semibold">Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-outline-variant">
+                <td class="py-2">Publicación en el BOE</td>
+                <td class="py-2">15 septiembre 2026</td>
+              </tr>
+              <tr class="border-b border-outline-variant">
+                <td class="py-2">El SEPE debe publicar el modelo de documento informativo (20 días desde el BOE)</td>
+                <td class="py-2">5 octubre 2026</td>
+              </tr>
+              <tr>
+                <td class="py-2 font-bold text-primary">Entrada en vigor</td>
+                <td class="py-2 font-bold text-primary">5 octubre 2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
+        <div class="space-y-5">
+          <div>
+            <h3 class="font-bold text-on-surface">¿Cuándo empiezan a contar los 30 días hábiles?</h3>
+            <p class="text-text-secondary">El día siguiente a la recepción de la solicitud. Si llega un viernes, el cómputo empieza el lunes.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Los sábados cuentan como días hábiles?</h3>
+            <p class="text-text-secondary">No. El artículo 30.2 de la Ley 39/2015 excluye sábados, domingos y festivos. Solo cuentan los días laborables de lunes a viernes.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Qué pasa si el día 30 cae en festivo?</h3>
+            <p class="text-text-secondary">Al contarse en días hábiles, el último día siempre es hábil. Si por algún motivo venciese en día inhábil, el plazo se amplía al primer día hábil siguiente (artículo 30.5, Ley 39/2015).</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Qué sanción hay si la empresa no informa?</h3>
+            <p class="text-text-secondary">Infracción leve del artículo 6.4 LISOS: de 70 a 750 euros. Si el incumplimiento va unido a otra infracción (contrato no formalizado, por ejemplo), puede subir hasta 7.500 euros.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Y los contratos firmados después del 5 de octubre?</h3>
+            <p class="text-text-secondary">No necesitan solicitud: la información se entrega en el momento de la celebración del contrato. El plazo de 30 días hábiles solo aplica a las relaciones laborales vigentes cuando la norma entró en vigor.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">En resumen</h2>
+        <p>
+          Si has solicitado la información de tu contrato al amparo del RD 723/2026, cuenta 30 días hábiles desde el día siguiente: lunes a viernes, sin festivos de tu comunidad. Usa la calculadora de arriba para la fecha exacta, y si la empresa supera el plazo, reclama por escrito. El detalle completo de qué información debe incluir el contrato está en nuestro artículo sobre <a href="/condiciones-laborales-transparentes" class="text-primary hover:underline">condiciones laborales transparentes</a>.
+        </p>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-outline-variant">
+        <p class="text-sm text-text-secondary">
+          Última actualización: 28 de septiembre de 2026. Fuentes: BOE-A-2026-19200 (RD 723/2026), Ley 39/2015, artículo 5 del Código Civil y Real Decreto Legislativo 5/2000 (LISOS).
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">RD 723/2026</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">30 días hábiles</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Cómputo de plazos</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Derecho laboral</span>
+        </div>
+      </footer>
+    </article>
+
+    <section class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Calculadora de días laborables</h2>
+        <p class="text-sm text-text-secondary mb-4">Días laborables y hábiles entre dos fechas, con festivos de tu comunidad.</p>
+        <a href="/#calculadora" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">calculate</span>
+          Ir a la calculadora
+        </a>
+      </div>
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Más sobre el RD 723/2026</h2>
+        <p class="text-sm text-text-secondary mb-4">Qué información obligatoria debe incluir ahora tu contrato.</p>
+        <a href="/condiciones-laborales-transparentes" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">description</span>
+          Leer el artículo
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  import q4 from '../data/festivos-2026-q4.json';
+  import d27 from '../data/festivos-2027.json';
+
+  const DN = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+  function festivosMap(com: string): Map<string, string> {
+    const m = new Map<string, string>();
+    for (const e of (q4 as any).nacionales) m.set(e.fecha, e.nombre);
+    for (const e of (d27 as any).nacionales) m.set(e.fecha, e.nombre);
+    if (com) {
+      const a = (q4 as any).comunidades[com];
+      const b = (d27 as any).comunidades[com];
+      if (a) for (const e of a.festivos) m.set(e.fecha, e.nombre);
+      if (b) for (const e of b.festivos) m.set(e.fecha, e.nombre);
+    }
+    return m;
+  }
+
+  function fmt(d: Date): string {
+    return `${DN[d.getDay()]} ${d.getDate()} de ${MESES[d.getMonth()]} de ${d.getFullYear()}`;
+  }
+
+  function calcular() {
+    const input = document.getElementById('fecha-solicitud') as HTMLInputElement;
+    const sel = document.getElementById('ccaa-plazo') as HTMLSelectElement;
+    const out = document.getElementById('resultado-plazo')!;
+    const sol = input.value;
+    if (!sol || sol < '2026-10-05' || sol > '2027-12-31') {
+      out.classList.remove('hidden');
+      out.innerHTML = '<p class="text-sm text-text-secondary">Esta herramienta cubre solicitudes desde el 5 de octubre de 2026 hasta el 31 de diciembre de 2027.</p>';
+      return;
+    }
+    const festivos = festivosMap(sel.value);
+    const d = new Date(sol + 'T00:00:00');
+    let dias = 0;
+    const cruzados: string[] = [];
+    while (dias < 30) {
+      d.setDate(d.getDate() + 1);
+      const dow = d.getDay();
+      if (dow === 0 || dow === 6) continue;
+      const iso = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      if (festivos.has(iso)) {
+        cruzados.push(`${d.getDate()} de ${MESES[d.getMonth()]}: ${festivos.get(iso)}`);
+        continue;
+      }
+      dias++;
+    }
+    const naturales = Math.round((d.getTime() - new Date(sol + 'T00:00:00').getTime()) / 86400000);
+    out.classList.remove('hidden');
+    out.innerHTML = `
+      <p class="text-sm text-text-muted mb-1">Vencimiento del plazo</p>
+      <p class="text-2xl font-extrabold text-primary mb-3">${fmt(d)}</p>
+      <p class="text-sm text-on-surface-variant mb-2">${naturales} días naturales desde la solicitud (30 días hábiles)</p>
+      ${cruzados.length
+        ? `<p class="text-sm text-on-surface font-semibold mb-1">Festivos descontados en el camino:</p><ul class="text-sm text-on-surface-variant list-disc pl-5 space-y-1">${cruzados.map(c => `<li>${c}</li>`).join('')}</ul>`
+        : '<p class="text-sm text-on-surface-variant">No se cruza ningún festivo en el tramo.</p>'}
+    `;
+  }
+
+  document.getElementById('btn-plazo')?.addEventListener('click', calcular);
+  document.getElementById('fecha-solicitud')?.addEventListener('change', calcular);
+  document.getElementById('ccaa-plazo')?.addEventListener('change', calcular);
+</script>

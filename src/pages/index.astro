@@ -748,10 +748,10 @@ import { COMUNIDADES } from '../lib/calculadora';
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-space-md">
           {COMUNIDADES.map(c => {
             const siglas: Record<string, string> = {
-              andalucia: 'AN', aragon: 'AR', asturias: 'AS', baleares: 'IB', canarias: 'CN',
-              cantabria: 'CB', castillaleon: 'CL', castillamancha: 'CM', cataluna: 'CT',
+              andalucia: 'AN', aragon: 'AR', asturias: 'AS', islas_baleares: 'IB', baleares: 'IB', canarias: 'CN',
+              cantabria: 'CB', castilla_y_leon: 'CL', castillaleon: 'CL', castilla_la_mancha: 'CM', castillamancha: 'CM', cataluna: 'CT',
               ceuta: 'CE', extremadura: 'EX', galicia: 'GA', madrid: 'MD', melilla: 'ML',
-              murcia: 'MC', navarra: 'NC', paisvasco: 'PV', larioja: 'LR', valencia: 'VC',
+              murcia: 'MC', navarra: 'NC', pais_vasco: 'PV', paisvasco: 'PV', la_rioja: 'LR', larioja: 'LR', valencia: 'VC',
               nacional: 'NA', nacional_nodisponible: 'NA'
             };
             const sigla = siglas[c.id] || c.id.slice(0,2).toUpperCase();
@@ -1305,6 +1305,11 @@ import { COMUNIDADES } from '../lib/calculadora';
         <!-- Resources -->
         <div class="flex flex-col gap-space-xs">
           <span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold mb-space-xs">Recursos</span>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/calendario-laboral-2027">Calendario laboral 2027</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/festivos-perdidos-2027">Festivos perdidos 2027</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/30-dias-habiles-informar-trabajador">30 días hábiles (RD 723/2026)</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/condiciones-laborales-transparentes">Condiciones laborales transparentes</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/accesibilidad-cognitiva-empresa">Accesibilidad cognitiva</a>
           <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="https://boe.es" target="_blank" rel="noopener">Portal BOE</a>
         </div>
       </div>

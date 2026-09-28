@@ -1,0 +1,636 @@
+{
+  "_metadata": {
+    "rango": "2026-10-05 a 2026-12-31",
+    "motivo": "Plazos que arrancan tras la entrada en vigor del RD 723/2026 (5/10/2026); el sitio solo publica 2027 en adelante.",
+    "fuente": "BOE (Resolución de fiestas 2026, BOE-A-2025-21667)",
+    "actualizado": "2026-09-28",
+    "nota": "Solo se incluyen los días desde el 5 de octubre de 2026. Festivos locales (provincia/municipio) no incluidos."
+  },
+  "nacionales": [
+    {
+      "fecha": "2026-10-12",
+      "nombre": "Fiesta Nacional de España"
+    },
+    {
+      "fecha": "2026-11-01",
+      "nombre": "Día de Todos los Santos"
+    },
+    {
+      "fecha": "2026-12-06",
+      "nombre": "Día de la Constitución Española"
+    },
+    {
+      "fecha": "2026-12-08",
+      "nombre": "Inmaculada Concepción"
+    },
+    {
+      "fecha": "2026-12-25",
+      "nombre": "Natividad del Señor"
+    }
+  ],
+  "comunidades": {
+    "andalucia": {
+      "nombre": "Andalucía",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-11-02",
+          "nombre": "Día siguiente a Todos los Santos"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-07",
+          "nombre": "Día siguiente a la Constitución"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "aragon": {
+      "nombre": "Aragón",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-11-02",
+          "nombre": "Día siguiente a Todos los Santos"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-07",
+          "nombre": "Día siguiente a la Constitución"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "asturias": {
+      "nombre": "Asturias",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-11-02",
+          "nombre": "Día siguiente a Todos los Santos"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-07",
+          "nombre": "Día siguiente a la Constitución"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "islas_baleares": {
+      "nombre": "Illes Balears",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        },
+        {
+          "fecha": "2026-12-26",
+          "nombre": "San Esteban",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        }
+      ]
+    },
+    "canarias": {
+      "nombre": "Canarias",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-11-02",
+          "nombre": "Día siguiente a Todos los Santos"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "cantabria": {
+      "nombre": "Cantabria",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-07",
+          "nombre": "Día siguiente a la Constitución"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "castilla_la_mancha": {
+      "nombre": "Castilla-La Mancha",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-11-02",
+          "nombre": "Día siguiente a Todos los Santos"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "castilla_y_leon": {
+      "nombre": "Castilla y León",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-11-02",
+          "nombre": "Día siguiente a Todos los Santos"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-07",
+          "nombre": "Día siguiente a la Constitución"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "cataluna": {
+      "nombre": "Cataluña",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        },
+        {
+          "fecha": "2026-12-26",
+          "nombre": "San Esteban",
+          "nota": "Sábado: festivo perdido, sin traslado posible"
+        }
+      ]
+    },
+    "extremadura": {
+      "nombre": "Extremadura",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-11-02",
+          "nombre": "Día siguiente a Todos los Santos"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-07",
+          "nombre": "Día siguiente a la Constitución"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "galicia": {
+      "nombre": "Galicia",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "madrid": {
+      "nombre": "Comunidad de Madrid",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-11-02",
+          "nombre": "Día siguiente a Todos los Santos"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-07",
+          "nombre": "Día siguiente a la Constitución"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "murcia": {
+      "nombre": "Región de Murcia",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-07",
+          "nombre": "Día siguiente a la Constitución"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "navarra": {
+      "nombre": "Comunidad Foral de Navarra",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-11-02",
+          "nombre": "Día siguiente a Todos los Santos"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "pais_vasco": {
+      "nombre": "País Vasco",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "la_rioja": {
+      "nombre": "La Rioja",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-07",
+          "nombre": "Día siguiente a la Constitución"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "valencia": {
+      "nombre": "Comunitat Valenciana",
+      "festivos": [
+        {
+          "fecha": "2026-10-09",
+          "nombre": "Día de la Comunitat Valenciana"
+        },
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "ceuta": {
+      "nombre": "Ciudad Autónoma de Ceuta",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    },
+    "melilla": {
+      "nombre": "Ciudad Autónoma de Melilla",
+      "festivos": [
+        {
+          "fecha": "2026-10-12",
+          "nombre": "Fiesta Nacional de España"
+        },
+        {
+          "fecha": "2026-11-01",
+          "nombre": "Día de Todos los Santos",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-06",
+          "nombre": "Día de la Constitución Española",
+          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+        },
+        {
+          "fecha": "2026-12-07",
+          "nombre": "Día siguiente a la Constitución"
+        },
+        {
+          "fecha": "2026-12-08",
+          "nombre": "Inmaculada Concepción"
+        },
+        {
+          "fecha": "2026-12-25",
+          "nombre": "Natividad del Señor"
+        }
+      ]
+    }
+  }
+}
