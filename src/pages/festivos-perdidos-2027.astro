@@ -22,8 +22,13 @@ const filas: Fila[] = Object.entries((d27 as any).comunidades).map(([id, g]: [st
     const corto = `${fecha(e.fecha).getDate()} ${MES[fecha(e.fecha).getMonth()]} (${e.nombre})`;
     if (dw === 6) sabados.push(corto);
     else if (dw === 0) {
-      if ((e.nota || '').includes('trasladado al lunes')) trasladados.push(corto);
-      else pendientes.push(corto);
+      const n = (e.nota || '').toLowerCase();
+      const sinConfirmar = /pendiente|provisional|sin confirmar/.test(n);
+      const sinTraslado = /no se traslada|no traslada|sin traslado|no figura|no lo incluye|sustituid/.test(n);
+      const trasladado = /traslad\w* al lunes|se traslada al lunes/.test(n);
+      if (sinConfirmar) pendientes.push(corto);
+      else if (!sinTraslado && trasladado) trasladados.push(corto);
+      else if (!sinTraslado && !trasladado) pendientes.push(corto);
     }
   }
   return { id, nombre: g.nombre, sabados, pendientes, trasladados };
@@ -49,7 +54,7 @@ const mayo = [
       "description": "En 2027 el 1 de mayo y el 25 de diciembre caen en sábado: dos festivos perdidos en toda España. Análisis por comunidad autónoma.",
       "author": { "@type": "Person", "name": "Carlos Méndez" },
       "datePublished": "2026-09-28",
-      "dateModified": "2026-09-28",
+      "dateModified": "2026-10-05",
       "publisher": {
         "@type": "Organization",
         "name": "diashabiles.es",
@@ -96,7 +101,7 @@ const mayo = [
           "name": "¿Qué pasa si el festivo cae en domingo?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Los festivos nacionales que caen en domingo se trasladan al lunes siguiente salvo que la comunidad sustituya ese lunes por otra festividad propia. En 2027 el 15 de agosto cae en domingo: Aragón y Canarias ya han aprobado el lunes 16."
+            "text": "Los festivos nacionales que caen en domingo se trasladan al lunes siguiente, salvo que la comunidad sustituya ese lunes por una festividad propia (art. 45.3 del RD 2001/1983). En 2027 el 15 de agosto cae en domingo: Andalucía, Aragón, Canarias, Castilla y León y Madrid lo trasladan al lunes 16; Cantabria, Galicia, Castilla-La Mancha y Murcia lo sustituyen por un festivo propio; Extremadura lo mueve al lunes 11 de octubre; y en el resto no se traslada."
           }
         }
       ]
@@ -117,7 +122,7 @@ const mayo = [
       <header class="mb-10">
         <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
           <span class="material-symbols-outlined text-[16px]">calendar_today</span>
-          <time datetime="2026-09-28">28 de septiembre de 2026</time>
+          <time datetime="2026-10-05">5 de octubre de 2026</time>
           <span class="mx-1">·</span>
           <span>6 min de lectura</span>
         </div>
@@ -172,10 +177,10 @@ const mayo = [
 
         <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Diciembre, el otro cabezón</h2>
         <p>
-          El 25 de diciembre de 2027 es sábado. Además, el <strong>26 de diciembre (San Esteban) es festivo autonómico en Baleares y Cataluña</strong> y cae en domingo. San Esteban sí podría trasladarse (es festivo de comunidad, y las comunidades mueven sus fiestas cuando caen en domingo), pero de momento ninguna ha confirmado nada para 2027.
+          El 25 de diciembre de 2027 es sábado. Además, el <strong>26 de diciembre (San Esteban) cae en domingo</strong> y es festivo autonómico en Baleares y Cataluña. Ahí sí había margen para moverlo (las comunidades trasladan sus fiestas cuando caen en domingo), pero los calendarios de 2027 publicados no lo hacen: ni Baleares ni Cataluña llevan San Esteban al lunes 27 de diciembre. Domingo consumido.
         </p>
         <p>
-          Cataluña es quien peor lo tiene: pierde la Diada (11 de septiembre, sábado), el 1 de mayo y el 25 de diciembre, y tiene dos domingos pendientes de confirmar (15 de agosto y San Esteban). La Comunitat Valenciana también pierde uno propio: el 9 de octubre cae en sábado.
+          Cataluña es quien peor lo tiene: pierde la Diada (11 de septiembre, sábado), el 1 de mayo y el 25 de diciembre, y encima la Asunción (15 de agosto) y San Esteban caen en domingo sin que su calendario oficial los traslade. La Comunitat Valenciana también pierde uno propio: el 9 de octubre cae en sábado.
         </p>
 
         <div class="bg-surface-card rounded-2xl p-6 my-8 border border-border-subtle">
@@ -206,7 +211,7 @@ const mayo = [
             </table>
           </div>
           <p class="text-xs text-text-muted mt-3">
-            Los domingos trasladados (por ejemplo, la Asunción al lunes 16 en Aragón, Canarias, Andalucía y Castilla y León) no aparecen como pendientes.
+            Sólo aparecen como pendientes los domingos sin resolver. La Asunción ya está resuelta en todas partes: lunes 16 de agosto en Andalucía, Aragón, Canarias, Castilla y León y Madrid; festivo propio en Cantabria (15 de septiembre), Galicia (17 de mayo), Castilla-La Mancha (31 de mayo) y Murcia (9 de junio); y lunes 11 de octubre en Extremadura. Asturias, sin calendario publicado a 5 de octubre de 2026, es la única pendiente.
           </p>
         </div>
 
@@ -244,7 +249,7 @@ const mayo = [
           </div>
           <div>
             <h3 class="font-bold text-on-surface">¿Y si el festivo cae en domingo?</h3>
-            <p class="text-text-secondary">Ahí sí existe mecanismo: el descanso se traslada al lunes siguiente o la comunidad lo sustituye por una festividad propia (art. 45.3 del RD 2001/1983). En 2027, el 15 de agosto es el caso: Aragón y Canarias ya han aprobado el lunes 16 de agosto.</p>
+            <p class="text-text-secondary">Ahí sí existe mecanismo: el descanso se traslada al lunes siguiente o la comunidad lo sustituye por una festividad propia (art. 45.3 del RD 2001/1983). En 2027, el 15 de agosto es el caso: cinco comunidades dan el lunes 16, cuatro lo cambian por un festivo propio, Extremadura lo lleva al 11 de octubre y las demás no lo trasladan.</p>
           </div>
           <div>
             <h3 class="font-bold text-on-surface">¿Qué comunidades pierden más festivos en 2027?</h3>
@@ -259,7 +264,7 @@ const mayo = [
 
       <footer class="mt-12 pt-8 border-t border-outline-variant">
         <p class="text-sm text-text-secondary">
-          Última actualización: 28 de septiembre de 2026. Fuentes: art. 45 del Real Decreto 2001/1983, Resolución BOE-A-2025-21667 y calendarios autonómicos de 2027 (provisionales hasta la publicación del BOE).
+          Última actualización: 5 de octubre de 2026. Fuentes: art. 45 del Real Decreto 2001/1983, Resolución BOE-A-2025-21667 y calendarios autonómicos de 2027 publicados en los boletines oficiales (Asturias, pendiente; todos, hasta la resolución de la DGT en el BOE).
         </p>
         <div class="mt-6 flex flex-wrap gap-2">
           <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Festivos 2027 perdidos</span>
