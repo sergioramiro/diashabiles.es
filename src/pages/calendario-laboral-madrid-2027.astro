@@ -1,0 +1,276 @@
+---
+import Layout from '../layouts/Layout.astro';
+import d27 from '../data/festivos-2027.json';
+import { calcularDias } from '../lib/calculadora';
+
+const title = 'Festivos Madrid 2027: calendario laboral aprobado y puentes';
+const description = 'El calendario laboral de Madrid 2027, aprobado por el Consejo de Gobierno el 30 de septiembre: 12 festivos autonómicos, San José en viernes, Asunción al lunes 16 y el 2 de mayo sin traslado.';
+
+const DN = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+const MES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+function fecha(f: string) {
+  const [y, m, d] = f.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+function etiqueta(f: string) {
+  const dt = fecha(f);
+  return `${dt.getDate()} de ${MES[dt.getMonth()]}`;
+}
+function dia(f: string) {
+  return DN[fecha(f).getDay()];
+}
+
+const madrid = ((d27 as any).comunidades.madrid.festivos as { fecha: string; nombre: string; nota?: string }[]);
+const filas = madrid.map(f => ({ etiqueta: etiqueta(f.fecha), dia: dia(f.fecha), nombre: f.nombre, nota: f.nota || '' }));
+
+const res = calcularDias('2027-01-01', '2027-12-31', 'madrid');
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Calendario laboral de Madrid 2027 aprobado: los 12 festivos',
+    description: 'El calendario laboral de Madrid 2027 aprobado el 30 de septiembre de 2026: doce festivos autonómicos, San José el viernes 19 de marzo y la Asunción trasladada al lunes 16 de agosto.',
+    author: { '@type': 'Person', name: 'Carlos Méndez' },
+    datePublished: '2026-10-05',
+    dateModified: '2026-10-05',
+    publisher: {
+      '@type': 'Organization',
+      name: 'diashabiles.es',
+      url: 'https://diashabiles.es'
+    },
+    image: 'https://diashabiles.es/og-image.png',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://diashabiles.es/calendario-laboral-madrid-2027/'
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://diashabiles.es/' },
+      { '@type': 'ListItem', position: 2, name: 'Festivos Madrid 2027', item: 'https://diashabiles.es/calendario-laboral-madrid-2027/' }
+    ]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Cuándo se aprobó el calendario laboral de Madrid para 2027?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'El Consejo de Gobierno de la Comunidad de Madrid lo aprobó el 30 de septiembre de 2026 y se publicó en el BOCM del 1 de octubre de 2026. Son 12 festivos de ámbito autonómico, a los que cada municipio suma otros 2.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿El 2 de mayo de 2027 es festivo en Madrid?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No es un día no laborable en 2027. Sigue siendo la fiesta de la Comunidad de Madrid, pero cae en domingo y el decreto no lo incluye en el calendario: no se traslada al lunes 3 de mayo.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué festivos estrenó Madrid en 2027?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Dos: San José, el viernes 19 de marzo, que devuelve un puente a principios de primavera; y el lunes 16 de agosto, que es el descanso por la Asunción del domingo 15.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cuántos días laborables hay en Madrid en 2027?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Entre el 1 de enero y el 31 de diciembre de 2027 hay ${res.diasLaborables} días laborables en la Comunidad de Madrid (lunes a viernes no festivos) y los mismos ${res.diasHabiles} días hábiles para plazos administrativos.`
+        }
+      }
+    ]
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="json-ld">
+    {jsonLd.map(bloque => (
+      <script type="application/ld+json" set:html={JSON.stringify(bloque)} />
+    ))}
+  </Fragment>
+
+  <main class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">·</span>
+      <a href="/calendario-laboral-2027" class="hover:text-primary transition-colors">Calendario 2027</a>
+      <span class="mx-2">·</span>
+      <span class="text-on-surface">Festivos Madrid 2027</span>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+          <time datetime="2026-10-05">5 de octubre de 2026</time>
+          <span class="mx-1">·</span>
+          <span>5 min de lectura</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          Calendario laboral de Madrid 2027 aprobado: los 12 festivos
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          San José vuelve en viernes, la Asunción se disfruta el lunes 16 de agosto y el 2 de mayo no se traslada. Estos son los doce días no laborables que la Comunidad de Madrid ha fijado para 2027.
+        </p>
+      </header>
+
+      <div class="prose-custom space-y-6 text-on-surface leading-relaxed">
+        <p>
+          El Consejo de Gobierno de la Comunidad de Madrid aprobó el <strong>30 de septiembre de 2026</strong> el decreto del calendario laboral de 2027, y salió publicado en el <strong>BOCM del 1 de octubre</strong>. El resultado son <strong>doce festivos de ámbito autonómico</strong> más los dos que cada municipio añade a su manera, esos catorce días de descanso que marca el Estatuto de los Trabajadores.
+        </p>
+        <p>
+          El año se juega en dos fechas: <strong>San José se recupera como festivo</strong> y cae en viernes, y <strong>la Asunción del 15 de agosto se traslada al lunes 16</strong> porque ese día toca domingo. En la dirección contraria, el <strong>2 de mayo desaparece del calendario</strong>: la fiesta de la Comunidad sigue existiendo, pero en 2027 cae en domingo y no se mueve.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Los 12 festivos de Madrid en 2027</h2>
+        <p>Así quedan, con el día de la semana en el que toca cada uno:</p>
+
+        <div class="overflow-x-auto my-8">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-outline-variant">
+                <th class="text-left py-2 font-semibold">Fecha</th>
+                <th class="text-left py-2 font-semibold">Día</th>
+                <th class="text-left py-2 font-semibold">Festivo</th>
+                <th class="text-left py-2 font-semibold">Observaciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filas.map(f => (
+                <tr class="border-b border-outline-variant">
+                  <td class="py-2 font-semibold">{f.etiqueta}</td>
+                  <td class="py-2 capitalize">{f.dia}</td>
+                  <td class="py-2">{f.nombre}</td>
+                  <td class="py-2 text-text-secondary text-xs">{f.nota || '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Diez de los doce caen entre semana y se disfrutan completos. Dos caen en sábado (el 1 de mayo y el 25 de diciembre) y, como los sábados no admiten traslado, se pierden. El del 16 de agosto es el lunes que compensa el domingo 15.
+        </p>
+        <p>
+          En la ficha de <a href="/comunidad/madrid/" class="text-primary hover:underline">festivos de Madrid</a> verás trece fechas en lugar de doce: se añade el domingo 15 de agosto, festivo nacional que sigue siéndolo y que ya venía en el calendario del año.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Las tres novedades frente a 2026</h2>
+        <p>
+          <strong>San José, el viernes 19 de marzo.</strong> Madrid recupera esta festividad, hasta hace dos años ausente del calendario autonómico, y elige una caída imposible de mejorar: viernes, una semana antes de Semana Santa. Es el puente más cómodo de la primera mitad del año.
+        </p>
+        <p>
+          <strong>Asunción, del domingo 15 al lunes 16 de agosto.</strong> El artículo 45.3 del Real Decreto 2001/1983 permite trasladar al lunes siguiente el descanso de los festivos nacionales que caen en domingo, y Madrid así lo ha hecho. Quien trabaje el lunes 16 no tiene derecho a nada: es festivo; el domingo 15 lo era ya por ser domingo.
+        </p>
+        <p>
+          <strong>El 2 de mayo no aparece.</strong> Es la duda de todos los años. La fiesta de la Comunidad de Madrid está blindada por la Ley 8/1984, pero eso no la salva de su calendario: cae en domingo, el decreto solo lista días no laborables y, al no figurar, no hay nada que trasladar. El lunes 3 de mayo de 2027 es un día de trabajo normal.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Puentes y fines de semana largos</h2>
+        <p>Con el calendario encima, 2027 da seis fines de semana largos sin tocar vacaciones:</p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>1 al 3 de enero:</strong> Año Nuevo en viernes.</li>
+          <li><strong>19 al 21 de marzo:</strong> San José en viernes.</li>
+          <li><strong>25 al 28 de marzo:</strong> Jueves y Viernes Santo, cuatro días seguidos.</li>
+          <li><strong>15 al 17 de agosto:</strong> Asunción en domingo con el lunes 16 festivo.</li>
+          <li><strong>31 de octubre al 1 de noviembre:</strong> Todos los Santos en lunes.</li>
+          <li><strong>6 de diciembre en lunes:</strong> otro fin de semana largo, ya en diciembre.</li>
+        </ul>
+        <p>
+          El 12 de octubre, en martes, no regala puente: habría que pedir el lunes 11 para encadenarlo con el puente de la Constitución, que en 2027 sí es un lunes.
+        </p>
+
+        <div class="bg-surface-card rounded-2xl p-6 my-8 border border-border-subtle">
+          <h2 class="text-xl font-bold text-on-surface mb-2 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">calculate</span>
+            Días laborables en Madrid en 2027
+          </h2>
+          <p class="text-sm text-text-secondary mb-4">
+            {res.diasLaborables} días laborables entre el 1 de enero y el 31 de diciembre de 2027, y los mismos {res.diasHabiles} días hábiles para plazos administrativos: el artículo 30.2 de la Ley 39/2015 excluye sábados, domingos y festivos, así que las dos cifras coinciden.
+          </p>
+          <a href="/?comunidad=madrid" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+            <span class="material-symbols-outlined text-[16px]">calculate</span>
+            Calcular con fechas concretas
+          </a>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Las otras dos fiestas: las locales</h2>
+        <p>
+          A estos doce se suman los dos festivos que elige cada ayuntamiento. En el municipio de Madrid suelen ser el 15 de mayo, por San Isidro, y el 9 de noviembre, por la Virgen de la Almudena: son fechas que el Ayuntamiento decreta cada otoño y que no entran ni en esta lista ni en la <a href="/comunidad/madrid/" class="text-primary hover:underline">calculadora de días laborables de Madrid</a>. Si trabajas fuera del casco urbano, mira el bando de tu pueblo antes de planear el año.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">¿Y si necesito el calendario de otra comunidad?</h2>
+        <p>
+          Los decretos autonómicos van saliendo a lo largo de octubre, cuando las comunidades remiten sus listas al Ministerio de Trabajo (art. 45.4 del RD 2001/1983). La resolución de la Dirección General de Trabajo con los festivos de 2027 todavía no está en el BOE; la del ejercicio 2026 apareció el 28 de octubre de 2025. Hasta entonces, cada calendario autonómico publicado en su boletín oficial es lo mejor que hay.
+        </p>
+        <p>
+          Aquí tienes el resto: el <a href="/calendario-laboral-2027" class="text-primary hover:underline">calendario laboral general de 2027</a>, los <a href="/festivos-perdidos-2027" class="text-primary hover:underline">festivos que se pierden en sábado</a> y el <a href="/dias-habiles" class="text-primary hover:underline">funcionamiento de los días hábiles</a>.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
+        <div class="space-y-5">
+          <div>
+            <h3 class="font-bold text-on-surface">¿Cuándo se aprobó el calendario de Madrid para 2027?</h3>
+            <p class="text-text-secondary">El 30 de septiembre de 2026, en el Consejo de Gobierno, con publicación en el BOCM del 1 de octubre. Doce festivos autonómicos y dos locales por cada municipio.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿El 2 de mayo de 2027 es festivo en Madrid?</h3>
+            <p class="text-text-secondary">No es un día no laborable. Sigue siendo la fiesta de la Comunidad, pero cae en domingo y el decreto no lo traslada: el lunes 3 de mayo se trabaja.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Y si me cogen la baja el 16 de agosto?</h3>
+            <p class="text-text-secondary">Es festivo como cualquier otro, así que no consume días de baja ni cuenta como día de la misma. Si el 16 coincide con tu turno de descanso, la compensación la fija tu convenio.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Cuántos días laborables tiene 2027 en Madrid?</h3>
+            <p class="text-text-secondary">{res.diasLaborables} días laborables, y los mismos {res.diasHabiles} días hábiles para plazos administrativos.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-outline-variant">
+        <p class="text-sm text-text-secondary">
+          Última actualización: 5 de octubre de 2026. Fuentes: decreto del calendario laboral 2027 de la Comunidad de Madrid (Consejo de Gobierno, 30/09/2026), BOCM de 1 de octubre de 2026 y art. 45 del Real Decreto 2001/1983. Pendiente de la Resolución de festivos 2027 en el BOE.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Festivos Madrid 2027</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">San José 19 de marzo</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Asunción 16 de agosto</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Puentes 2027</span>
+        </div>
+      </footer>
+    </article>
+
+    <section class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Festivos de Madrid en la calculadora</h2>
+        <p class="text-sm text-text-secondary mb-4">Entre dos fechas, con estos doce festivos ya cargados: laborables y hábiles exactos.</p>
+        <a href="/?comunidad=madrid" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">calculate</span>
+          Calcular
+        </a>
+      </div>
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Calendario anual de Madrid</h2>
+        <p class="text-sm text-text-secondary mb-4">Los doce meses de 2027 en una vista, con nacionales y autonómicos por color.</p>
+        <a href="/comunidad/madrid" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">calendar_month</span>
+          Ver calendario
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

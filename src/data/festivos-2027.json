@@ -1,9 +1,9 @@
 {
   "_metadata": {
     "ano": 2027,
-    "fuente": "BOE (Resolución DGT de fiestas 2026, BOE-A-2025-21667) + calendarios autonómicos aprobados y prensa (provisional, pendiente de la Resolución de fiestas 2027, previsiblemente en el BOE de octubre-noviembre de 2026)",
-    "actualizado": "2026-09-28",
-    "nota": "Las comunidades tienen hasta el 30/09/2026 para comunicar sus fiestas. Los festivos que caen en sábado no se trasladan; los que caen en domingo dependen de cada comunidad."
+    "fuente": "BOE (Resolución DGT de fiestas 2026, BOE-A-2025-21667) + calendarios autonómicos aprobados y prensa (provisional, pendiente de la Resolución de fiestas 2027, previsiblemente en el BOE de octubre-noviembre de 2026). Comunidad de Madrid: DECRETO aprobado por el Consejo de Gobierno el 30/09/2026 y publicado en el BOCM de 01/10/2026.",
+    "actualizado": "2026-10-05",
+    "nota": "Las comunidades tienen hasta el 30/09/2026 para comunicar sus fiestas. Los festivos que caen en sábado no se trasladan; los que caen en domingo dependen de cada comunidad. En Madrid, el 2 de mayo de 2027 (domingo) NO aparece en el calendario aprobado: no se traslada."
   },
   "nacionales": [
     {
@@ -739,6 +739,11 @@
           "nombre": "Epifanía del Señor"
         },
         {
+          "fecha": "2027-03-19",
+          "nombre": "San José",
+          "nota": "Festivo propio: cae en viernes y genera puente. Recuperado por decreto de 30/09/2026."
+        },
+        {
           "fecha": "2027-03-25",
           "nombre": "Jueves Santo"
         },
@@ -752,14 +757,9 @@
           "nota": "Sábado: festivo perdido, sin traslado posible"
         },
         {
-          "fecha": "2027-05-02",
-          "nombre": "Fiesta de la Comunidad de Madrid",
-          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
-        },
-        {
-          "fecha": "2027-08-15",
-          "nombre": "Asunción de la Virgen",
-          "nota": "Domingo: la comunidad puede trasladarlo al lunes siguiente (pendiente)"
+          "fecha": "2027-08-16",
+          "nombre": "Asunción de la Virgen (traslado)",
+          "nota": "El 15 de agosto cae en domingo: descanso trasladado al lunes 16 de agosto (decreto BOCM 01/10/2026)"
         },
         {
           "fecha": "2027-10-12",
