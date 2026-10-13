@@ -109,7 +109,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               <span class="material-symbols-outlined text-status-warning-text text-[20px]">warning</span>
             </div>
             <p class="font-body-sm text-body-sm font-medium">
-              <strong class="font-bold">Datos provisionales 2027:</strong> El calendario del BOE de festivos 2027 se publica en octubre. Los festivos autonómicos se actualizan en tiempo real conforme aparezcan en los respectivos boletines oficiales.
+              <strong class="font-bold">Datos oficiales 2027:</strong> El calendario del BOE se publicó el 13 de octubre de 2026 (BOE-A-2026-21254) y confirma los festivos autonómicos recogidos aquí, publicados antes en los boletines oficiales de cada comunidad.
             </p>
           </div>
           <a class="shrink-0 inline-flex items-center gap-1 font-label-sm text-label-sm font-semibold underline hover:opacity-80 transition-opacity" href="#referencias-legales">
@@ -1318,7 +1318,7 @@ import { COMUNIDADES } from '../lib/calculadora';
           © 2027 diashabiles.es — Plataforma de referencia para el cómputo de plazos laborales y administrativos en España.
         </p>
         <p class="font-caption-legal text-caption-legal text-text-muted">
-          Los datos de festivos son provisionales hasta la publicación oficial en el BOE.
+          Los datos de festivos siguen la Resolución de la DGT publicada en el BOE (BOE-A-2026-21254) y los boletines oficiales autonómicos.
         </p>
       </div>
     </div>
@@ -1774,7 +1774,7 @@ import { COMUNIDADES } from '../lib/calculadora';
         tags.forEach(tag => {
           lines.push(`  - ${tag.textContent?.trim().replace(/\s+/g, ' ')}`);
         });
-        lines.push('', 'Generado por diashabiles.es — Datos provisionales BOE 2027');
+        lines.push('', 'Generado por diashabiles.es — Festivos 2027 (BOE-A-2026-21254)');
         const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');

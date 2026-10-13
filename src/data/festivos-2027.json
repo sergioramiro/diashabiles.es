@@ -1,9 +1,9 @@
 {
   "_metadata": {
     "ano": 2027,
-    "fuente": "Resolución de la DGT de festivos de 2027 (BOE, pendiente de publicación a 05/10/2026; la de 2026 fue BOE-A-2025-21667) y calendarios autonómicos 2027 aprobados y publicados en los boletines oficiales: BOJA, BOA, BOPA, BOC, BOC, DOCM, BOCyL, DOGC, DOE, DOG, BORM, BON, BOPV, BOB, DOGV, BOCM, Asambleas de Ceuta y Melilla. Asturias: el Principado aún no había publicado su calendario completo de 2027 a 05/10/2026.",
-    "actualizado": "2026-10-05",
-    "nota": "Auditoría completa de las 19 comunidades contra los decretos/resoluciones publicados en sus boletines oficiales. En 2027 el 1 de mayo y el 25 de diciembre caen en sábado: festivo perdido, sin traslado. El 15 de agosto cae en domingo: cada comunidad decide el descanso (traslado al lunes 16, sustitución por festivo propio o ninguno). Las fiestas locales municipales y provinciales no están incluidas."
+    "fuente": "Resolución de 8 de octubre de 2026, de la Dirección General de Trabajo, por la que se publica la relación de fiestas laborales para el año 2027 (BOE-A-2026-21254, BOE núm. 254, de 13/10/2026, págs. 136413-136417) y calendarios autonómicos 2027 aprobados y publicados en los boletines oficiales: BOJA, BOA, BOPA, BOC, BOC, DOCM, BOCyL, DOGC, DOE, DOG, BORM, BON, BOPV, BOB, DOGV, BOCM, Asambleas de Ceuta y Melilla.",
+    "actualizado": "2026-10-13",
+    "nota": "Auditoría completa de las 19 comunidades contra los decretos/resoluciones publicados en sus boletines oficiales y, desde el 13/10/2026, contra la relación incluida en la Resolución de la DGT (BOE-A-2026-21254): las fechas coinciden comunidad por comunidad. Únicas ausencias en el BOE, sin que afecten a la realidad de los descansos: no figura ningún festivo que caiga en domingo (así el Día de Canarias, 30/05/2027, domingo, que sigue siendo festivo según el Decreto 115/2026) ni las fiestas locales (3/12 San Francisco Javier en Navarra, 8 y 17/09 en Melilla, 10/03 y 02/09 en Ceuta). En 2027 el 1 de mayo y el 25 de diciembre caen en sábado: festivo perdido, sin traslado. El 15 de agosto cae en domingo: cada comunidad decide el descanso (traslado al lunes 16 en Andalucía, Aragón, Asturias, Canarias, Castilla y León y Madrid; sustitución en Cantabria, Galicia, Castilla-La Mancha y Murcia; Extremadura lo traslada al 11 de octubre; el resto no lo traslada). Las fiestas locales municipales y provinciales no están incluidas."
   },
   "comunidades": {
     "andalucia": {
@@ -125,7 +125,7 @@
           "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ],
-      "fuente": "Calendario de fiestas laborales de Aragón para 2027, aprobado por el Gobierno de Aragón y comunicado al Ministerio de Trabajo; recogido por RTVE (01/10/2026), elDiario.es (02/10/2026) y Heraldo de Aragón (29/09/2026). Pendiente de la Resolución de la DGT en el BOE.",
+      "fuente": "Calendario de fiestas laborales de Aragón para 2027, aprobado por el Gobierno de Aragón y comunicado al Ministerio de Trabajo; recogido por RTVE (01/10/2026), elDiario.es (02/10/2026) y Heraldo de Aragón (29/09/2026). Confirmadas por la Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026).",
       "confianza": "Media-alta: 12 festivos coherentes y coincidentes en varias fuentes de prensa fiable que recogen el calendario aprobado, pero no se ha leído el texto del BOA en esta auditoría.",
       "cambios_vs_actual": [
         "Se elimina 2027-08-15 (duplicado): en Aragón el descanso de la Asunción se disfruta únicamente el lunes 16 de agosto.",
@@ -157,9 +157,9 @@
           "nota": "Sábado: festivo perdido, sin traslado posible"
         },
         {
-          "fecha": "2027-08-15",
-          "nombre": "Asunción de la Virgen",
-          "nota": "PROVISIONAL: domingo; el Principado de Asturias no tenía publicado el calendario completo de 2027 a 05/10/2026 y no se ha confirmado el traslado al lunes 16 (fuentes contradictorias)."
+          "fecha": "2027-08-16",
+          "nombre": "Asunción de la Virgen (traslado)",
+          "nota": "El 15 de agosto de 2027 cae en domingo: descanso trasladado al lunes 16 de agosto (Resolución de la DGT, BOE-A-2026-21254)."
         },
         {
           "fecha": "2027-09-08",
@@ -187,11 +187,11 @@
           "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ],
-      "fuente": "Decreto 7/2026, de 16 de febrero (BOPA), por el que se sustituye para 2027 por el 8 de septiembre, Día de Asturias, la fiesta de ámbito nacional San José/Santiago; resto de fechas según RTVE (01/10/2026). elDiario.es (02/10/2026) indica que Asturias aún no ha publicado su calendario laboral completo de 2027.",
-      "confianza": "Baja/provisional: solo el Día de Asturias está publicado en boletín oficial; la fecha de la Asunción (15 o 16 de agosto) no está confirmada y conviene revisarla cuando se publique el BOPA y el BOE.",
+      "fuente": "Resolución de 8 de octubre de 2026, de la Dirección General de Trabajo, por la que se publica la relación de fiestas laborales de 2027 (BOE-A-2026-21254, BOE de 13/10/2026); Decreto 7/2026, de 16 de febrero (BOPA), por el que se sustituye para 2027 por el 8 de septiembre, Día de Asturias, la fiesta de ámbito nacional San José/Santiago; recogido por Cadena SER y La Voz de Asturias (13/10/2026).",
+      "confianza": "Alta: las doce fechas coinciden con la relación de la Resolución de la DGT publicada en el BOE (BOE-A-2026-21254, BOE de 13/10/2026), que además confirma el descanso de la Asunción trasladado al lunes 16 de agosto. Ya no hay ninguna fecha provisional en Asturias.",
       "cambios_vs_actual": [
-        "Sin cambios de fechas respecto al fichero actual: se mantiene 2027-08-15 como provisional.",
-        "Se actualiza la nota para reflejar que el calendario completo de Asturias seguía sin publicarse a 05/10/2026 y que hay fuentes contradictorias sobre un posible traslado al lunes 16 de agosto."
+        "Se sustituye 2027-08-15 (provisional) por 2027-08-16: la Resolución de la DGT confirma en el BOE el traslado del descanso de la Asunción al lunes 16 de agosto.",
+        "Se retira el carácter provisional de la entrada; el resto de fechas no cambian."
       ]
     },
     "islas_baleares": {
@@ -248,7 +248,7 @@
           "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ],
-      "fuente": "Calendario de fiestas laborales de 2027 aprobado por el Govern de les Illes Balears, según laSexta (06/08/2026), RTVE (01/10/2026), elDiario.es (02/10/2026) y Menorca Info (30/09/2026). Pendiente de publicación en el BOIB y de la Resolución de la DGT en el BOE.",
+      "fuente": "Calendario de fiestas laborales de 2027 aprobado por el Govern de les Illes Balears, según laSexta (06/08/2026), RTVE (01/10/2026), elDiario.es (02/10/2026) y Menorca Info (30/09/2026). Confirmadas por la Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026).",
       "confianza": "Media-alta: varios medios coinciden en los 12 festivos aprobados; no se ha leído el texto del BOIB en esta auditoría.",
       "cambios_vs_actual": [
         "Se elimina 2027-08-15: la Asunción no figura en el calendario balear de 2027.",
@@ -313,7 +313,7 @@
         }
       ],
       "fuente": "Decreto 115/2026, de 29 de junio, por el que se determina el calendario de fiestas laborales de la Comunidad Autónoma de Canarias para 2027 (BOC de 03/07/2026); Gobierno de Canarias (29/06/2026).",
-      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Pendiente de la Resolución de la DGT en el BOE y de las fiestas insulares y locales.",
+      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Confirmadas por la Resolución de la DGT (BOE-A-2026-21254); la relación del BOE no recoge las fiestas insulares ni el Día de Canarias (30/05/2027), que cae en domingo.",
       "cambios_vs_actual": [
         "Se elimina 2027-08-15 (duplicado): el descanso de la Asunción se disfruta solo el lunes 16 de agosto.",
         "Se actualiza la nota de 2027-05-30: el Día de Canarias se confirma como festivo en domingo sin traslado.",
@@ -376,7 +376,7 @@
         }
       ],
       "fuente": "Orden IND/29/2026, de 6 de julio, por la que se establece el calendario de fiestas laborales para el año 2027 en el ámbito de la Comunidad Autónoma de Cantabria (BOC de 15/07/2026); confirmado por Cadena SER (15/07/2026), CSIF y RTVE (01/10/2026).",
-      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Pendiente de la Resolución de la DGT en el BOE.",
+      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Confirmadas por la Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026).",
       "cambios_vs_actual": [
         "Se elimina 2027-08-15: la Asunción se sustituye por el 15 de septiembre, La Bien Aparecida.",
         "Se elimina la nota de Asunción \"pendiente\": la sustitución ya está decidida y publicada.",
@@ -440,7 +440,7 @@
         }
       ],
       "fuente": "Decreto 34/2026, de 23 de junio, por el que se fija el calendario laboral para el año 2027 en la Comunidad Autónoma de Castilla-La Mancha (DOCM núm. 131, de 13/07/2026); confirmado por RTVE (01/10/2026) y ABC (24/06/2026).",
-      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Pendiente de la Resolución de la DGT en el BOE.",
+      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Confirmadas por la Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026).",
       "cambios_vs_actual": [
         "Se añade 2027-05-31, Día de Castilla-La Mancha: faltaba en el fichero.",
         "Se elimina 2027-03-29, Lunes de Pascua: no figura en el Decreto 34/2026.",
@@ -502,7 +502,7 @@
           "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ],
-      "fuente": "Calendario de fiestas laborales de Castilla y León para 2027, aprobado y publicado en el BOCyL; recogido por RTVE (01/10/2026) y elDiario.es (02/10/2026). Pendiente de la Resolución de la DGT en el BOE.",
+      "fuente": "Calendario de fiestas laborales de Castilla y León para 2027, aprobado y publicado en el BOCyL; recogido por RTVE (01/10/2026) y elDiario.es (02/10/2026). Confirmadas por la Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026).",
       "confianza": "Media-alta: fuentes de prensa coincidentes con el calendario aprobado; no se ha leído el texto del BOCyL en esta auditoría.",
       "cambios_vs_actual": [
         "Se elimina 2027-08-15 (duplicado): el descanso de la Asunción se disfruta solo el lunes 16 de agosto.",
@@ -565,7 +565,7 @@
         }
       ],
       "fuente": "Orden EMT/52/2026, de 25 de marzo, por la que se establece el calendario oficial de fiestas laborales en Cataluña para el año 2027 (DOGC de 01/04/2026); confirmado por RTVE (01/10/2026) y NoticiasTrabajo (28/09/2026).",
-      "confianza": "Alta: calendario oficial publicado en boletín oficial autonómico. Pendiente de la Resolución de la DGT en el BOE y de las dos fiestas locales.",
+      "confianza": "Alta: calendario oficial publicado en boletín oficial autonómico. Confirmadas por la Resolución de la DGT (BOE-A-2026-21254); no figuran ahí las dos fiestas locales.",
       "cambios_vs_actual": [
         "Se elimina 2027-08-15: la Asunción no figura en el calendario oficial catalán de 2027 (se mantiene en domingo y no se traslada).",
         "Se elimina 2027-12-26 San Esteban: no figura en el calendario oficial de 2027 (se mantiene en domingo y no se traslada).",
@@ -628,7 +628,7 @@
         }
       ],
       "fuente": "Decreto 119/2026, de 2 de junio, por el que se fija el calendario de días festivos de la Comunidad Autónoma de Extremadura para el año 2027 (DOE núm. 108, de 08/06/2026); confirmado por RTVE (01/10/2026), Hoy.es y el Periódico de Extremadura.",
-      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Pendiente de la Resolución de la DGT en el BOE.",
+      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Confirmadas por la Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026).",
       "cambios_vs_actual": [
         "Se sustituye 2027-08-15 por 2027-10-11: el descanso de la Asunción se traslada al lunes 11 de octubre de 2027 (Decreto 119/2026).",
         "Sin cambios en el resto de fechas."
@@ -691,7 +691,7 @@
         }
       ],
       "fuente": "Decreto de la Consellería de Emprego, Comercio e Emigración por el que se determina el calendario laboral de Galicia para 2027 (DOG de 02/07/2026; aprobado en el Consello do 15/06/2026); nota de prensa de la Xunta de Galicia.",
-      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Pendiente de la Resolución de la DGT en el BOE.",
+      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Confirmadas por la Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026).",
       "cambios_vs_actual": [
         "Se añade 2027-05-17, Día das Letras Galegas: faltaba en el fichero.",
         "Se elimina 2027-06-24 San Juan: no figura en el calendario gallego de 2027.",
@@ -756,7 +756,7 @@
         }
       ],
       "fuente": "Decreto del Consejo de Gobierno de la Comunidad de Madrid por el que se establecen las fiestas laborales para 2027 (aprobado el 30/09/2026, publicado en el BOCM de 01/10/2026); confirmado por El Mundo (30/09/2026), MasVive (01/10/2026) y RTVE (01/10/2026).",
-      "confianza": "Alta-media: calendario aprobado por el Consejo de Gobierno y recogido de forma coincidente por varios medios; el 2 de mayo no es festivo en 2027 al caer en domingo y no trasladarse. Pendiente de la Resolución de la DGT en el BOE.",
+      "confianza": "Alta-media: calendario aprobado por el Consejo de Gobierno y recogido de forma coincidente por varios medios; el 2 de mayo no es festivo en 2027 al caer en domingo y no trasladarse. Confirmadas por la Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026).",
       "cambios_vs_actual": [
         "Sin cambios de fechas: la lista coincide con el calendario aprobado (San José el 19/03, Asunción el lunes 16/08, sin 2 de mayo).",
         "Se actualiza la nota de la Asunción con la referencia al decreto publicado en el BOCM de 01/10/2026."
@@ -818,7 +818,7 @@
         }
       ],
       "fuente": "Resolución de la Dirección General de Trabajo de la Región de Murcia por la que se publica el calendario de fiestas laborales para el año 2027 (BORM núm. 171, de 27/07/2026, tras el acuerdo del Consejo de Gobierno de 09/04/2026).",
-      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Pendiente de la Resolución de la DGT en el BOE.",
+      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Confirmadas por la Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026).",
       "cambios_vs_actual": [
         "Se elimina 2027-08-15: la Asunción se sustituye por el 9 de junio, Día de la Región de Murcia.",
         "Sin cambios en el resto de fechas."
@@ -884,7 +884,7 @@
         }
       ],
       "fuente": "Resolución 232/2026, de 13 de mayo, del director general de Economía Social y Trabajo, por la que se establece el calendario oficial de fiestas laborales para el año 2027 en la Comunidad Foral de Navarra (BON).",
-      "confianza": "Alta: calendario oficial publicado en boletín oficial autonómico. Pendiente de la Resolución de la DGT en el BOE y de las fiestas municipales.",
+      "confianza": "Alta: calendario oficial publicado en boletín oficial autonómico. Confirmadas por la Resolución de la DGT (BOE-A-2026-21254); la relación del BOE no recoge la fiesta local del 3 de diciembre, San Francisco Javier.",
       "cambios_vs_actual": [
         "Se añade 2027-12-03, San Francisco Javier / Día de Navarra: festivo local de toda la comunidad, faltaba en el fichero.",
         "Se elimina 2027-08-15: la Asunción no figura en el calendario oficial de Navarra para 2027.",
@@ -947,7 +947,7 @@
         }
       ],
       "fuente": "Decreto 90/2026, de 9 de junio, por el que se aprueba el Calendario Oficial de Fiestas Laborales de la Comunidad Autónoma de Euskadi para el año 2027 (BOPV); Gobierno Vasco (09/06/2026) y El Diario Vasco (09/06/2026).",
-      "confianza": "Alta: calendario oficial aprobado en el Consejo de Gobierno y publicado en boletín oficial. Pendiente de la Resolución de la DGT en el BOE y de los dos festivos municipales.",
+      "confianza": "Alta: calendario oficial aprobado en el Consejo de Gobierno y publicado en boletín oficial. Confirmadas por la Resolución de la DGT (BOE-A-2026-21254); no figuran ahí los dos festivos municipales.",
       "cambios_vs_actual": [
         "Se añade 2027-10-07, Aniversario del primer Gobierno de Euskadi: festivo nuevo, faltaba en el fichero.",
         "Se elimina 2027-03-19 San José: no es festivo en 2027; cede su sitio al 7 de octubre.",
@@ -1009,7 +1009,7 @@
           "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ],
-      "fuente": "Calendario de fiestas laborales de La Rioja para 2027, aprobado por el Gobierno de La Rioja; recogido por RTVE (01/10/2026) y elDiario.es (02/10/2026). Pendiente de publicación en el BOB y de la Resolución de la DGT en el BOE.",
+      "fuente": "Calendario de fiestas laborales de La Rioja para 2027, aprobado por el Gobierno de La Rioja; recogido por RTVE (01/10/2026) y elDiario.es (02/10/2026). Confirmadas por la Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026).",
       "confianza": "Media-alta: fuentes de prensa coincidentes con el calendario aprobado; no se ha leído el texto del BOB en esta auditoría.",
       "cambios_vs_actual": [
         "Se elimina 2027-08-15: la Asunción no figura en el calendario riojano de 2027.",
@@ -1072,7 +1072,7 @@
         }
       ],
       "fuente": "Decreto 42/2026, de 20 de marzo, del Consell, por el que se fija el calendario laboral de la Comunitat Valenciana para 2027 (DOGV de 25/03/2026); confirmado por RTVE (01/10/2026), elDiario.es (02/10/2026) y Wolters Kluwer (09/09/2026).",
-      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Pendiente de la Resolución de la DGT en el BOE.",
+      "confianza": "Alta: calendario aprobado y publicado en boletín oficial autonómico. Confirmadas por la Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026).",
       "cambios_vs_actual": [
         "Se elimina 2027-06-24 San Juan: no figura en el Decreto 42/2026 (San Juan no es festivo de ámbito autonómico en la Comunitat Valenciana).",
         "Se elimina 2027-08-15: la Asunción no figura en el calendario de 2027.",
@@ -1145,7 +1145,7 @@
         }
       ],
       "fuente": "Calendario de fiestas laborales de Ceuta para 2027, aprobado por la Asamblea de Ceuta el 29/09/2026 (Ceuta Ahora, 29/09/2026) y recogido por RTVE (01/10/2026) y elDiario.es (02/10/2026).",
-      "confianza": "Alta: calendario aprobado por la Asamblea de Ceuta y coincidente en varios medios; las dos fiestas de origen lunar mantienen fecha provisional hasta la visión de la luna. Pendiente de la Resolución de la DGT en el BOE.",
+      "confianza": "Alta: calendario aprobado por la Asamblea de Ceuta y coincidente en varios medios; las dos fiestas de origen lunar mantienen fecha provisional hasta la visión de la luna. La Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026) confirma las fechas nacionales y el Eidul Adha (17/05), pero no recoge el Eid al-Fitr (10/03) ni el Día de Ceuta (02/09): son fiestas locales en el calendario de la Asamblea.",
       "cambios_vs_actual": [
         "Se elimina 2027-06-13 San Antonio: la Asamblea de Ceuta no lo incluye en 2027 al caer en domingo.",
         "Se elimina 2027-08-15: la Asunción no se incluye en 2027 al caer en domingo.",
@@ -1219,7 +1219,7 @@
         }
       ],
       "fuente": "Calendario de fiestas laborales de Melilla para 2027, recogido por RTVE (01/10/2026) y elDiario.es (02/10/2026).",
-      "confianza": "Media-alta: fechas coincidentes en varios medios que recogen el calendario aprobado; las fiestas de origen lunar mantienen fecha provisional. Pendiente de la Resolución de la DGT en el BOE.",
+      "confianza": "Media-alta: fechas coincidentes en varios medios que recogen el calendario aprobado; las fiestas de origen lunar mantienen fecha provisional. La Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026) confirma las fechas nacionales y los dos de origen lunar, pero no recoge los dos festivos locales (8 y 17 de septiembre).",
       "cambios_vs_actual": [
         "Se elimina 2027-08-15: la Asunción no figura en el calendario de Melilla para 2027 (domingo, sin traslado).",
         "Se añade 2027-09-08, Nuestra Señora Virgen de la Victoria (festivo local): faltaba en el fichero.",
@@ -1248,7 +1248,7 @@
     {
       "fecha": "2027-08-15",
       "nombre": "Asunción de la Virgen",
-      "nota": "Domingo: cada comunidad fija el descanso. Se traslada al lunes 16 de agosto en Andalucía, Aragón, Canarias, Castilla y León, Madrid y (pendiente de publicación) Asturias; Extremadura lo traslada al lunes 11 de octubre; Cantabria lo sustituye por el 15 de septiembre, Galicia por el 17 de mayo, Castilla-La Mancha por el 31 de mayo y la Región de Murcia por el 9 de junio; en el resto no figura en los calendarios aprobados."
+      "nota": "Domingo: cada comunidad fija el descanso. Se traslada al lunes 16 de agosto en Andalucía, Aragón, Canarias, Castilla y León, Madrid y Asturias; Extremadura lo traslada al lunes 11 de octubre; Cantabria lo sustituye por el 15 de septiembre, Galicia por el 17 de mayo, Castilla-La Mancha por el 31 de mayo y la Región de Murcia por el 9 de junio; en el resto no figura en los calendarios aprobados."
     },
     {
       "fecha": "2027-10-12",
