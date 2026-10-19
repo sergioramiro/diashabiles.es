@@ -1,0 +1,281 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Calendario laboral 2028: fechas nacionales y cuándo será oficial';
+const description = 'El calendario laboral 2028 aún no es oficial. Estas son las diez fiestas nacionales que ya marca la ley, qué días caen y cuándo se publicará el calendario completo en el BOE.';
+
+const MES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const DN = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+
+function fecha(f: string) {
+  const [y, m, d] = f.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+function dia(f: string) {
+  return DN[fecha(f).getDay()];
+}
+function etiqueta(f: string) {
+  const dt = fecha(f);
+  return `${dt.getDate()} de ${MES[dt.getMonth()]}`;
+}
+
+// Fiestas nacionales fijas del art. 45 del RD 2001/1983, más el Viernes Santo
+const nacionales = [
+  { fecha: '2028-01-01', nombre: 'Año Nuevo', nota: 'Sábado: se pierde, los sábados no se trasladan' },
+  { fecha: '2028-01-06', nombre: 'Epifanía del Señor', nota: 'Jueves' },
+  { fecha: '2028-04-14', nombre: 'Viernes Santo', nota: 'Cae dentro de la Semana Santa del 9 al 16 de abril' },
+  { fecha: '2028-05-01', nombre: 'Fiesta del Trabajo', nota: 'Lunes: fin de semana de tres días' },
+  { fecha: '2028-08-15', nombre: 'Asunción de la Virgen', nota: 'Martes, sin traslado' },
+  { fecha: '2028-10-12', nombre: 'Fiesta Nacional de España', nota: 'Jueves' },
+  { fecha: '2028-11-01', nombre: 'Todos los Santos', nota: 'Miércoles' },
+  { fecha: '2028-12-06', nombre: 'Día de la Constitución', nota: 'Miércoles' },
+  { fecha: '2028-12-08', nombre: 'Inmaculada Concepción', nota: 'Viernes: puente de tres días' },
+  { fecha: '2028-12-25', nombre: 'Natividad del Señor', nota: 'Lunes: fin de semana de tres días' }
+];
+
+const enFinDeSemana = nacionales.filter(f => [0, 6].includes(fecha(f.fecha).getDay()));
+const enDomingo = nacionales.filter(f => fecha(f.fecha).getDay() === 0);
+
+// Días laborables teóricos: lunes a viernes que no sean fiesta nacional
+let laborablesTeoricos = 0;
+{
+  const festivos = new Set(nacionales.map(f => f.fecha));
+  const cursor = new Date(2028, 0, 1);
+  while (cursor.getFullYear() === 2028) {
+    const iso = `${cursor.getFullYear()}-${String(cursor.getMonth() + 1).padStart(2, '0')}-${String(cursor.getDate()).padStart(2, '0')}`;
+    if (cursor.getDay() !== 0 && cursor.getDay() !== 6 && !festivos.has(iso)) laborablesTeoricos++;
+    cursor.setDate(cursor.getDate() + 1);
+  }
+}
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Calendario laboral 2028: las fiestas nacionales y cuándo será oficial',
+    description: 'Las diez fiestas nacionales de 2028, con su día de la semana, y el calendario de publicación: comunidades antes del 30 de septiembre de 2027 y resolución de la Dirección General de Trabajo en octubre.',
+    author: { '@type': 'Person', name: 'Carlos Méndez' },
+    datePublished: '2026-10-19',
+    dateModified: '2026-10-19',
+    publisher: {
+      '@type': 'Organization',
+      name: 'diashabiles.es',
+      url: 'https://diashabiles.es'
+    },
+    image: 'https://diashabiles.es/og-image.png',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://diashabiles.es/calendario-laboral-2028/'
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://diashabiles.es/' },
+      { '@type': 'ListItem', position: 2, name: 'Calendario laboral 2028', item: 'https://diashabiles.es/calendario-laboral-2028/' }
+    ]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Existe ya el calendario laboral de 2028?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Solo están fijadas las diez fiestas nacionales del artículo 45 del Real Decreto 2001/1983. Las dos que cada comunidad decide, más sus dos locales, se conocerán entre junio y septiembre de 2027, y la resolución que las publica todas juntas en el BOE suele salir en octubre de 2027.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cuántos festivos tiene 2028 en total?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Catorce como máximo en cada comunidad: diez nacionales, dos que decide cada comunidad (Jueves Santo y San José o Santiago Apóstol, sustituibles por fiestas propias) y dos locales de cada municipio. El artículo 37.2 del Estatuto de los Trabajadores fija ese techo de catorce, de los cuales dos son siempre locales.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Alguna fiesta nacional de 2028 cae en domingo?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Ninguna. La única que cae en fin de semana es el 1 de enero, que es sábado, y los sábados no admiten traslado al lunes. Por eso en 2028 no habrá traslados obligatorios por la regla del domingo, aunque cada comunidad puede mover sus propias fiestas.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cuándo se sabrá el calendario laboral de 2028 completo?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Las comunidades deben remitir sus listas al Ministerio de Trabajo antes del 30 de septiembre de 2027 (art. 45.4 del RD 2001/1983). La Dirección General de Trabajo publica la relación completa en el BOE en octubre: la de 2026 salió el 28 de octubre de 2025 y la de 2027 el 13 de octubre de 2026.'
+        }
+      }
+    ]
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="json-ld">
+    {jsonLd.map(bloque => (
+      <script type="application/ld+json" set:html={JSON.stringify(bloque)} />
+    ))}
+  </Fragment>
+
+  <main class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">·</span>
+      <a href="/calendario-laboral-2027" class="hover:text-primary transition-colors">Calendario 2027</a>
+      <span class="mx-2">·</span>
+      <span class="text-on-surface">Calendario 2028</span>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+          <time datetime="2026-10-19">19 de octubre de 2026</time>
+          <span class="mx-1">·</span>
+          <span>7 min de lectura</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          Calendario laboral 2028: lo que ya se sabe y cuándo será oficial
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          El calendario de 2028 no está publicado. Nadie puede darte todavía las doce fiestas de tu comunidad, y quien lo haga está proyectando. Lo que sí está fijado por ley son las diez nacionales, y este es el mapa de fechas y de plazos.
+        </p>
+      </header>
+
+      <div class="prose-custom space-y-6 text-on-surface leading-relaxed">
+        <p>
+          Cada octubre, cuando sale la resolución de la Dirección General de Trabajo con los festivos del año siguiente, aparecen en Google decenas de páginas con el calendario de dos ejercicios vista. La mayoría son estimaciones: copian las nacionales, añaden las autonómicas del año en curso y las presentan como definitivas. Con 2028 pasa lo mismo desde hace meses. Conviene distinguir qué es norma y qué es cálculo.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Las diez fiestas nacionales que ya están fijadas</h2>
+        <p>
+          El artículo 45 del Real Decreto 2001/1983 enumera las fiestas laborales de ámbito nacional, retribuidas y no recuperables. Son estas, con el día de la semana que les toca en 2028:
+        </p>
+
+        <div class="overflow-x-auto my-8">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-outline-variant">
+                <th class="text-left py-2 font-semibold">Fecha</th>
+                <th class="text-left py-2 font-semibold">Día</th>
+                <th class="text-left py-2 font-semibold">Festivo</th>
+                <th class="text-left py-2 font-semibold">Observaciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {nacionales.map(f => (
+                <tr class="border-b border-outline-variant">
+                  <td class="py-2 font-semibold">{etiqueta(f.fecha)}</td>
+                  <td class="py-2 capitalize">{dia(f.fecha)}</td>
+                  <td class="py-2">{f.nombre}</td>
+                  <td class="py-2 text-text-secondary text-xs">{f.nota}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          El Jueves Santo no aparece en esta lista porque el artículo 45.1.d) lo incluye entre las fiestas que cada comunidad puede sustituir por otra de su tradición. En la práctica lo mantienen todas menos Cataluña y la Comunitat Valenciana, que lo cambian por el Lunes de Pascua y por San Vicente Ferrer o el 9 de octubre según el año. En 2028 cae el 13 de abril y lo más probable es que vuelva a ser festivo en la mayoría del país.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Qué año es 2028 en el calendario</h2>
+        <p>
+          Es bisiesto, con un 29 de febrero en martes, y la Semana Santa cae tardísima: el Domingo de Resurrección es el 16 de abril, con el Viernes Santo el 14. Eso deja los cuatro días de Pascua del 13 al 16 de abril, de jueves a domingo, que con el lunes de Pascua en las comunidades que lo celebran se convierte en la mejor escapada de la primavera.
+        </p>
+        <p>
+          El resto del año se reparte con bastante mala suerte para los puentes. {enFinDeSemana.length === 1 ? 'Solo una de las diez nacionales cae en fin de semana' : `${enFinDeSemana.length} de las diez nacionales caen en fin de semana`}: el 1 de enero, que es sábado y se pierde sin compensación, porque el traslado al lunes solo se aplica a las fiestas que coinciden con domingo. {enDomingo.length === 0 ? 'Ninguna cae en domingo, así que en 2028 no habrá ningún traslado obligatorio al lunes por esa regla.' : ''}
+        </p>
+        <p>
+          Los fines de semana largos sin gastar vacaciones son cuatro: el 1 de mayo en lunes, el 8 de diciembre en viernes, el 25 de diciembre en lunes y la Semana Santa. El 6 de enero cae en jueves y el 12 de octubre también, dos días que obligan a pedir el viernes o el lunes si quieres estirarlos. El 15 de agosto en martes y el 1 de noviembre en miércoles se quedan en mitad de la semana.
+        </p>
+
+        <div class="bg-surface-card rounded-2xl p-6 my-8 border border-border-subtle">
+          <h2 class="text-xl font-bold text-on-surface mb-2 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">info</span>
+            Cifra provisional, no oficial
+          </h2>
+          <p class="text-sm text-text-secondary">
+            Si solo se descontaran las diez nacionales, 2028 tendría {laborablesTeoricos} días laborables de lunes a viernes. Es un techo teórico: cada comunidad añade sus propias fiestas y cada municipio dos locales, así que la cifra real será menor. No la uses para una nómina ni para un plazo hasta que salga el calendario autonómico.
+          </p>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Lo que falta y depende de cada comunidad</h2>
+        <p>
+          De las catorce fiestas que permite el Estatuto, diez son las nacionales y dos son locales. Quedan dos por comunidad, y las dos son sustituibles: el Jueves Santo y la elección entre San José y Santiago Apóstol. Ahí es donde el calendario cambia de una región a otra:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>San José (19 de marzo) o Santiago Apóstol (25 de julio).</strong> Cada comunidad elige una de las dos. En 2028 San José cae en domingo y Santiago en martes. Si una comunidad opta por San José, el descanso se traslada al lunes 20 de marzo; si opta por Santiago, se disfruta el martes 25 de julio. Madrid, por ejemplo, ya eligió San José para 2027 y lo previsible es que repita.</li>
+          <li><strong>El Jueves Santo del 13 de abril.</strong> Lo mantienen la mayoría de comunidades, pero no todas. Cataluña y la Comunitat Valenciana lo sustituyen por otras fiestas propias —el Lunes de Pascua en ambos casos—, así que en esas dos el 13 de abril será un jueves laborable normal.</li>
+          <li><strong>Los dos festivos locales.</strong> Los decide cada ayuntamiento y se publican en el boletín provincial o autonómico. En un municipio grande suelen ser dos fechas patronales; en uno pequeño, las fiestas del pueblo. Cambian de un pueblo a otro del mismo término.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cuándo será oficial el calendario de 2028</h2>
+        <p>
+          El procedimiento lleva veinte años igual y tiene dos fechas. Las comunidades autónomas deben remitir su relación de fiestas al Ministerio de Trabajo <strong>antes del 30 de septiembre de 2027</strong>, como marca el artículo 45.4 del RD 2001/1983. A partir de ahí, la Dirección General de Trabajo publica la relación completa de las 19 comunidades en el BOE, y esa publicación es la que convierte el calendario en oficial para todo el país.
+        </p>
+        <p>
+          El margen real de la resolución estatal ha sido de unas semanas en los últimos ejercicios: la de 2026 se firmó el 17 de octubre de 2025 y salió en el BOE el 28 de octubre; la de 2027 se firmó el 8 de octubre de 2026 y se publicó el 13 de octubre. Si el patrón se repite, el calendario completo de 2028 estará en el BOE entre mediados y finales de octubre de 2027.
+        </p>
+        <p>
+          Antes de esa fecha, cada comunidad publica su propio decreto en su boletín entre junio y septiembre de 2027. Es habitual que Madrid, Andalucía o Cataluña se adelanten y que las listas lleguen a los medios antes que la resolución estatal. Cuando eso pase, esta página se actualizará con las fechas confirmadas y con los días laborables de cada comunidad.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cómo distinguir un calendario oficial de una proyección</h2>
+        <p>
+          Hay tres señales que delatan una página inventada. La primera es que dé por cerradas las doce fiestas autonómicas antes de octubre de 2027. La segunda, que no cite la resolución del BOE ni el decreto de la comunidad. La tercera, que mezcle el calendario laboral con el de días inhábiles de la Administración, que es otro distinto y se publica por separado.
+        </p>
+        <p>
+          Mientras tanto, para 2027 sí hay calendario oficial: está en la <a href="/calendario-laboral-2027" class="text-primary hover:underline">página del calendario laboral 2027</a>, con las 19 comunidades y la resolución del BOE de octubre de 2026. Y si lo que necesitas es contar un plazo, la diferencia entre <a href="/dias-habiles" class="text-primary hover:underline">días hábiles y laborables</a> importa más que el calendario en sí.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
+        <div class="space-y-5">
+          <div>
+            <h3 class="font-bold text-on-surface">¿Puedo planificar mis vacaciones de 2028 con estas fechas?</h3>
+            <p class="text-text-secondary">Con las diez nacionales sí, son las mismas todos los años y no dependen de ninguna administración. Para las autonómicas y locales tendrás que esperar: las primeras se conocen entre junio y septiembre de 2027, y las locales dependen de tu ayuntamiento.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿El 1 de enero de 2028 se recupera al caer en sábado?</h3>
+            <p class="text-text-secondary">No. El traslado al lunes del artículo 45.2 solo se aplica cuando la fiesta coincide con domingo. Un festivo en sábado se pierde, y ninguna comunidad está obligada a compensarlo.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Cuántos días laborables tendrá 2028?</h3>
+            <p class="text-text-secondary">Depende de la comunidad y del municipio. Con solo las nacionales serían {laborablesTeoricos}, pero cada comunidad descuenta entre diez y doce fiestas propias y cada ayuntamiento dos más. La cifra definitiva se publica con el calendario de cada región.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Y los días inhábiles para trámites con la Administración?</h3>
+            <p class="text-text-secondary">Son otro calendario. Lo fija cada administración antes del 1 de enero y se publica en el BOE o en el boletín autonómico. Para 2028 se conocerá a finales de 2027, y no tiene por qué coincidir con el laboral: incluye los sábados y excluye las fiestas locales que no afecten a la sede del órgano.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-outline-variant">
+        <p class="text-sm text-text-secondary">
+          Última actualización: 19 de octubre de 2026. Fuentes: artículo 45 del Real Decreto 2001/1983, de 28 de julio (BOE-A-1983-20906); artículo 37.2 del Estatuto de los Trabajadores (BOE-A-2015-11430); Resolución de 8 de octubre de 2026 de la Dirección General de Trabajo (BOE-A-2026-21254) y Resolución de 17 de octubre de 2025 (BOE-A-2025-21667), para el calendario de publicación.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Calendario laboral 2028</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Festivos nacionales 2028</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Puentes 2028</span>
+        </div>
+      </footer>
+    </article>
+
+    <section class="mt-12 bg-surface-secondary rounded-2xl p-6">
+      <h2 class="text-lg font-bold text-on-surface mb-2">Mientras llega 2028, calcula con 2027</h2>
+      <p class="text-sm text-text-secondary mb-4">La calculadora ya tiene las 19 comunidades con el calendario oficial del BOE.</p>
+      <a href="/#calculadora" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+        <span class="material-symbols-outlined text-[16px]">calculate</span>
+        Ir a la calculadora
+      </a>
+    </section>
+  </main>
+</Layout>

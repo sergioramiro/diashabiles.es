@@ -1,0 +1,299 @@
+---
+import Layout from '../layouts/Layout.astro';
+import d27 from '../data/festivos-2027.json';
+
+const title = 'Días inhábiles 2027 para plazos administrativos: calendario y cómputo';
+const description = 'Cómo se cuentan los plazos administrativos: art. 30 de la Ley 39/2015, calendario de días inhábiles de la AGE para 2027 y cuándo sale la resolución que lo fija.';
+
+const MES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const DN = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+
+function fecha(f: string) {
+  const [y, m, d] = f.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+function dia(f: string) {
+  return DN[fecha(f).getDay()];
+}
+function etiqueta(f: string) {
+  const dt = fecha(f);
+  return `${dt.getDate()} de ${MES[dt.getMonth()]}`;
+}
+
+// Nacionales 2027: los días que serán inhábiles en todo el territorio
+const nacionales = (d27 as any).nacionales as { fecha: string; nombre: string; nota?: string }[];
+const nacionalesEntreSemana = nacionales.filter(f => {
+  const d = fecha(f.fecha).getDay();
+  return d !== 0 && d !== 6;
+});
+
+// Ejemplo práctico: 10 días hábiles desde una notificación el 8 de enero de 2027 (Madrid)
+const festivosMadrid = new Set<string>([
+  ...nacionales.map(f => f.fecha),
+  ...((d27 as any).comunidades.madrid.festivos as { fecha: string }[]).map(f => f.fecha)
+]);
+function sumarHabiles(inicio: string, n: number) {
+  const cursor = fecha(inicio);
+  cursor.setDate(cursor.getDate() + 1);
+  let cuenta = 0;
+  while (true) {
+    const iso = `${cursor.getFullYear()}-${String(cursor.getMonth() + 1).padStart(2, '0')}-${String(cursor.getDate()).padStart(2, '0')}`;
+    const d = cursor.getDay();
+    if (d !== 0 && d !== 6 && !festivosMadrid.has(iso)) {
+      cuenta++;
+      if (cuenta === n) return { iso, texto: `${cursor.getDate()} de ${MES[cursor.getMonth()]} de ${cursor.getFullYear()}`, dia: DN[d] };
+    }
+    cursor.setDate(cursor.getDate() + 1);
+  }
+}
+const ejemplo10 = sumarHabiles('2027-01-08', 10);
+const ejemplo5 = sumarHabiles('2027-03-18', 5);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Días inhábiles 2027: cómo se cuentan los plazos administrativos',
+    description: 'El calendario de días inhábiles de la Administración General del Estado para 2027, el cómputo del artículo 30 de la Ley 39/2015 y la diferencia con los días festivos laborales.',
+    author: { '@type': 'Person', name: 'Carlos Méndez' },
+    datePublished: '2026-10-19',
+    dateModified: '2026-10-19',
+    publisher: {
+      '@type': 'Organization',
+      name: 'diashabiles.es',
+      url: 'https://diashabiles.es'
+    },
+    image: 'https://diashabiles.es/og-image.png',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://diashabiles.es/dias-inhabiles-2027/'
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://diashabiles.es/' },
+      { '@type': 'ListItem', position: 2, name: 'Días inhábiles 2027', item: 'https://diashabiles.es/dias-inhabiles-2027/' }
+    ]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Cuándo sale el calendario de días inhábiles de 2027?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'El artículo 30.7 de la Ley 39/2015 obliga a publicarlo antes del 1 de enero. En los últimos años la resolución se ha firmado entre mediados de noviembre y mediados de diciembre: la de 2026 el 18 de noviembre de 2025 y la de 2025 el 16 de diciembre de 2024. Para 2027 lo esperable es que aparezca en el BOE entre noviembre y diciembre de 2026.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Los sábados cuentan como días inhábiles?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí, para los plazos administrativos. El artículo 30.2 de la Ley 39/2015 excluye del cómputo los sábados, los domingos y los declarados festivos. Los sábados solo fueron hábiles en el procedimiento administrativo antes de 2016.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué pasa si el último día del plazo cae en inhábil?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Se prorroga al primer día hábil siguiente, según el artículo 30.5 de la Ley 39/2015. No se pierde el plazo ni hay que presentar antes: el cómputo se desplaza al lunes o al día posterior al festivo.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cuentan los festivos locales en un trámite con la Administración General del Estado?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí, en los términos del artículo 30.6: si un día es hábil en el municipio donde resides el interesado e inhábil en la sede del órgano, o al contrario, se considera inhábil en todo caso. Por eso una fiesta local de tu pueblo puede alargarte un plazo estatal.'
+        }
+      }
+    ]
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="json-ld">
+    {jsonLd.map(bloque => (
+      <script type="application/ld+json" set:html={JSON.stringify(bloque)} />
+    ))}
+  </Fragment>
+
+  <main class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">·</span>
+      <a href="/dias-habiles" class="hover:text-primary transition-colors">Días hábiles</a>
+      <span class="mx-2">·</span>
+      <span class="text-on-surface">Días inhábiles 2027</span>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+          <time datetime="2026-10-19">19 de octubre de 2026</time>
+          <span class="mx-1">·</span>
+          <span>8 min de lectura</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          Días inhábiles 2027: cómo se cuentan los plazos administrativos
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          El calendario laboral y el de días inhábiles no son el mismo documento. Uno organiza la jornada y las nóminas; el otro decide cuándo vence un plazo ante la Administración. Para 2027 el segundo todavía no está publicado, y estas son las reglas con las que se calculará.
+        </p>
+      </header>
+
+      <div class="prose-custom space-y-6 text-on-surface leading-relaxed">
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">La norma que manda: el artículo 30 de la Ley 39/2015</h2>
+        <p>
+          Todo el cómputo de plazos administrativos sale del artículo 30 de la Ley 39/2015, del Procedimiento Administrativo Común. Su apartado 2 dice que, salvo que una ley disponga otro cómputo, los plazos señalados por días se entienden hábiles, «excluyéndose del cómputo los sábados, los domingos y los declarados festivos». Es la regla general y la que se aplica en la inmensa mayoría de trámites.
+        </p>
+        <p>
+          Hay tres matices que la gente confunde a menudo. El primero: el plazo empieza a contar <strong>el día siguiente</strong> a la notificación o publicación, no el mismo día (art. 30.3). El segundo: si el último día cae en inhábil, el plazo se prorroga al primer día hábil siguiente (art. 30.5). Y el tercero: si un día es hábil en tu municipio e inhábil en la sede del órgano que tramita, o al revés, se considera inhábil en todo caso (art. 30.6). Ese último detalle es el que explica por qué una fiesta local de tu pueblo puede darte un día más en un procedimiento estatal.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Calendario laboral y calendario de inhábiles: dos documentos distintos</h2>
+        <p>
+          El calendario laboral lo fija la Dirección General de Trabajo con las comunidades y sale en el BOE en octubre. Establece las catorce fiestas retribuidas y no recuperables de cada territorio. El calendario de días inhábiles lo fija cada administración para sus propios procedimientos, con sujeción al laboral, y se publica antes del 1 de enero del año que regula. El artículo 30.7 de la Ley 39/2015 es el que impone esa obligación y el artículo 30.8 aclara algo importante: declarar un día inhábil a efectos de plazos no significa que las oficinas cierren ni que se altere la jornada de los empleados públicos.
+        </p>
+        <p>
+          En la práctica los dos calendarios se parecen mucho, porque el de inhábiles se construye sobre el laboral. Las diferencias están en tres puntos: el de inhábiles incluye todos los sábados y domingos por definición, incorpora las fiestas locales de cada ámbito territorial y no recoge las fiestas que caen en domingo porque ya están cubiertas por el descanso semanal.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Qué sabemos ya de 2027</h2>
+        <p>
+          La resolución de la Secretaría de Estado de Función Pública con el calendario de 2027 aún no se ha publicado. Lo que sí está cerrado es el calendario laboral, gracias a la Resolución de la Dirección General de Trabajo de 8 de octubre de 2026 (BOE-A-2026-21254, BOE del 13 de octubre). De ahí salen los días que serán inhábiles en todo el territorio nacional:
+        </p>
+
+        <div class="overflow-x-auto my-8">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-outline-variant">
+                <th class="text-left py-2 font-semibold">Fecha</th>
+                <th class="text-left py-2 font-semibold">Día</th>
+                <th class="text-left py-2 font-semibold">Festivo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {nacionalesEntreSemana.map(f => (
+                <tr class="border-b border-outline-variant">
+                  <td class="py-2 font-semibold">{etiqueta(f.fecha)}</td>
+                  <td class="py-2 capitalize">{dia(f.fecha)}</td>
+                  <td class="py-2">{f.nombre}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Son {nacionalesEntreSemana.length} días nacionales entre semana. Los otros dos festivos nacionales de 2027 —el 1 de mayo y el 25 de diciembre— caen en sábado, así que no alteran ningún cómputo: el sábado ya es inhábil por sí mismo. A estos días hay que sumarles, en cada comunidad, los festivos autonómicos y los dos locales de cada municipio, que son los que de verdad cambian el calendario de una oficina a otra.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cuándo se publica el calendario de 2027</h2>
+        <p>
+          El artículo 30.7 obliga a publicarlo antes del comienzo del año, así que la resolución de 2027 tiene que estar en el BOE antes del 1 de enero. El histórico de los últimos ejercicios da un margen bastante estrecho:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>2024:</strong> Resolución de 16 de noviembre de 2023 (BOE-A-2023-23637), publicada el 22 de noviembre.</li>
+          <li><strong>2025:</strong> Resolución de 16 de diciembre de 2024 (BOE-A-2024-26935), publicada el 24 de diciembre.</li>
+          <li><strong>2026:</strong> Resolución de 18 de noviembre de 2025 (BOE-A-2025-23702), publicada el 24 de noviembre.</li>
+        </ul>
+        <p>
+          Si se repite el patrón, la de 2027 aparecerá entre mediados de noviembre y mediados de diciembre de 2026. Es un documento corto —tres páginas, con un anexo mes a mes— y se publica en la sección I del BOE, la de disposiciones generales. Cuando salga, esta página se actualizará con el calendario completo por comunidad y con los días inhábiles que añade cada una.
+        </p>
+
+        <div class="bg-surface-card rounded-2xl p-6 my-8 border border-border-subtle">
+          <h2 class="text-xl font-bold text-on-surface mb-2 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">calculate</span>
+            Dos ejemplos con fechas reales
+          </h2>
+          <p class="text-sm text-text-secondary mb-3">
+            Notificación el <strong>8 de enero de 2027</strong> (viernes) con un plazo de 10 días hábiles en Madrid. El cómputo empieza el lunes 11 y vence el <strong>{ejemplo10.texto}</strong>, {ejemplo10.dia}.
+          </p>
+          <p class="text-sm text-text-secondary">
+            Notificación el <strong>18 de marzo de 2027</strong> (jueves) con 5 días hábiles. San José cae el viernes 19, la Semana Santa ocupa el 25 y el 26, y el plazo no vence hasta el <strong>{ejemplo5.texto}</strong>, {ejemplo5.dia}: los festivos de en medio regalan seis días naturales.
+          </p>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">El caso especial de los juzgados</h2>
+        <p>
+          Los plazos procesales no siguen la Ley 39/2015. La Ley Orgánica del Poder Judicial fija en su artículo 182 que son inhábiles los sábados, domingos, festivos nacionales y los festivos laborales de la comunidad o localidad correspondiente. Y añade algo que no existe en el ámbito administrativo: el artículo 183 declara inhábiles <strong>todo el mes de agosto</strong> y los días del 24 de diciembre al 6 de enero, ambos inclusive, salvo actuaciones urgentes.
+        </p>
+        <p>
+          Es decir, un plazo de 20 días hábiles judiciales que empiece en julio se va a septiembre sin remisión. Y una notificación del 23 de diciembre no empieza a contar hasta el 7 de enero. Si tu asunto está en un juzgado y no en una administración, el calendario que te interesa es ese, no el de la AGE.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Los errores que cuestan un plazo</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>Contar el día de la notificación.</strong> El art. 30.3 lo excluye expresamente. Si te notifican un viernes, el primer día del plazo es el lunes siguiente, no el viernes.</li>
+          <li><strong>Contar los sábados.</strong> Venían del régimen anterior a 2016 y siguen circulando en foros y en alguna gestoría. El art. 30.2 los excluye sin matices.</li>
+          <li><strong>Olvidar el festivo local.</strong> Es el más traicionero: no está en el calendario nacional, no sale en las noticias y depende de tu ayuntamiento. Si presentas en la sede del órgano, mira también los festivos de esa ciudad.</li>
+          <li><strong>Dar por hecho que el plazo vence el último día hábil anterior.</strong> No: si el último día cae en inhábil, se prorroga al siguiente hábil (art. 30.5). Presentar antes es correcto, pero no es obligatorio.</li>
+          <li><strong>Mezclar días naturales y hábiles.</strong> Cuando una ley impone días naturales lo hace constar en la notificación. Si no lo dice, son hábiles.</li>
+        </ul>
+
+        <p>
+          Para el calendario laboral completo de 2027, con las 19 comunidades, está la <a href="/calendario-laboral-2027" class="text-primary hover:underline">página del calendario laboral 2027</a>. Y si la duda es solo terminológica, la diferencia entre <a href="/dias-habiles" class="text-primary hover:underline">día hábil y día laborable</a> está explicada aparte.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
+        <div class="space-y-5">
+          <div>
+            <h3 class="font-bold text-on-surface">¿Los días inhábiles de la AGE valen para las comunidades autónomas?</h3>
+            <p class="text-text-secondary">No. Cada comunidad publica su propio calendario de días inhábiles para sus procedimientos, y puede incluir fiestas locales distintas. El de la AGE solo se aplica a los órganos de la Administración General del Estado y sus organismos públicos.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Los sábados son inhábiles en el cómputo de plazos?</h3>
+            <p class="text-text-secondary">Sí. Desde la Ley 39/2015 el sábado no cuenta como día hábil en el procedimiento administrativo. Antes de octubre de 2016 sí computaba, y de ahí viene la confusión que todavía se repite.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Qué pasa si el último día cae en domingo?</h3>
+            <p class="text-text-secondary">El plazo se prorroga al lunes, o al día hábil siguiente si el lunes también es festivo. El artículo 30.5 lo dice sin excepciones: no hay que presentar antes por miedo a perder el plazo.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Y si me notifican en agosto?</h3>
+            <p class="text-text-secondary">En el procedimiento administrativo agosto es un mes hábil normal: los plazos corren. Solo es inhábil en el ámbito judicial, por el artículo 183 de la Ley Orgánica del Poder Judicial.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-outline-variant">
+        <p class="text-sm text-text-secondary">
+          Última actualización: 19 de octubre de 2026. Fuentes: artículo 30 de la Ley 39/2015 (BOE-A-2015-10565); artículos 182 y 183 de la Ley Orgánica 6/1985 del Poder Judicial (BOE-A-1985-12666); Resolución de 18 de noviembre de 2025, calendario de días inhábiles 2026 (BOE-A-2025-23702); Resolución de 8 de octubre de 2026, fiestas laborales 2027 (BOE-A-2026-21254).
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Días inhábiles 2027</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Plazos administrativos</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Ley 39/2015</span>
+        </div>
+      </footer>
+    </article>
+
+    <section class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Calcula tu plazo</h2>
+        <p class="text-sm text-text-secondary mb-4">Entre dos fechas, con los festivos de tu comunidad descontados.</p>
+        <a href="/#calculadora" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">calculate</span>
+          Ir a la calculadora
+        </a>
+      </div>
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Calendario laboral 2027</h2>
+        <p class="text-sm text-text-secondary mb-4">Las 19 comunidades con el BOE ya publicado.</p>
+        <a href="/calendario-laboral-2027" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">calendar_month</span>
+          Ver calendario
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

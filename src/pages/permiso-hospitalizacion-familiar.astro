@@ -1,0 +1,210 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Permiso por hospitalización de familiar: 5 días, sin tope anual';
+const description = 'El Supremo confirma que los cinco días por hospitalización de un familiar no tienen tope anual: cada hecho causante genera un permiso nuevo. Qué dice el art. 37.3.b) del ET y cómo se cuentan.';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Permiso por hospitalización de familiar: cinco días por cada hecho causante',
+    description: 'La sentencia del Tribunal Supremo de 25 de septiembre de 2026 confirma que el permiso de cinco días del artículo 37.3.b) del Estatuto no tiene límite anual: cada hospitalización, accidente o enfermedad grave genera un permiso nuevo.',
+    author: { '@type': 'Person', name: 'Carlos Méndez' },
+    datePublished: '2026-10-19',
+    dateModified: '2026-10-19',
+    publisher: {
+      '@type': 'Organization',
+      name: 'diashabiles.es',
+      url: 'https://diashabiles.es'
+    },
+    image: 'https://diashabiles.es/og-image.png',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://diashabiles.es/permiso-hospitalizacion-familiar/'
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://diashabiles.es/' },
+      { '@type': 'ListItem', position: 2, name: 'Permiso por hospitalización', item: 'https://diashabiles.es/permiso-hospitalizacion-familiar/' }
+    ]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Cuántos días de permiso hay por hospitalización de un familiar?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Cinco días, según el artículo 37.3.b) del Estatuto de los Trabajadores. Se cuentan como días laborables del trabajador, no naturales: si en medio caen un fin de semana o un festivo, no consumen permiso.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Se pueden pedir cinco días por cada hospitalización en el mismo año?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí. La sentencia del Tribunal Supremo de 25 de septiembre de 2026 (rec. 135/2025) rechaza el tope anual: el permiso nace de forma independiente cada vez que se produce un nuevo hecho causante, aunque sea el mismo familiar y en el mismo año natural.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿El permiso termina cuando le dan el alta al familiar?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No necesariamente. El Tribunal Supremo ha señalado que el alta hospitalaria no extingue el permiso si el familiar no tiene alta médica y sigue necesitando reposo domiciliario y cuidados: en ese caso se pueden agotar los cinco días.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿A qué familiares cubre el permiso?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Al cónyuge o pareja de hecho, a los parientes hasta el segundo grado por consanguinidad o afinidad —padres, hijos, abuelos, hermanos y sus parejas—, al familiar consanguíneo de la pareja de hecho y a cualquier otra persona que conviva en el mismo domicilio y necesite cuidado efectivo.'
+        }
+      }
+    ]
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="json-ld">
+    {jsonLd.map(bloque => (
+      <script type="application/ld+json" set:html={JSON.stringify(bloque)} />
+    ))}
+  </Fragment>
+
+  <main class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">·</span>
+      <a href="/condiciones-laborales-transparentes" class="hover:text-primary transition-colors">Derechos laborales</a>
+      <span class="mx-2">·</span>
+      <span class="text-on-surface">Permiso por hospitalización</span>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+          <time datetime="2026-10-19">19 de octubre de 2026</time>
+          <span class="mx-1">·</span>
+          <span>7 min de lectura</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          Permiso por hospitalización de familiar: cinco días, sin tope anual
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          El Supremo ha cerrado la duda que usaban muchas empresas para recortar el derecho: el permiso de cinco días no es una bolsa anual. Cada hospitalización, cada accidente grave, cada enfermedad grave genera un permiso nuevo, aunque sea el mismo familiar y el mismo año.
+        </p>
+      </header>
+
+      <div class="prose-custom space-y-6 text-on-surface leading-relaxed">
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Qué dice exactamente la ley</h2>
+        <p>
+          El artículo 37.3.b) del Estatuto de los Trabajadores reconoce a la persona trabajadora el derecho a ausentarse del trabajo, con remuneración, durante <strong>cinco días</strong> por «accidente o enfermedad graves, hospitalización o intervención quirúrgica sin hospitalización que precise reposo domiciliario» del cónyuge, pareja de hecho o parientes hasta el segundo grado por consanguinidad o afinidad. Incluye también al familiar consanguíneo de la pareja de hecho y a cualquier otra persona que conviva en el mismo domicilio y requiera cuidado efectivo.
+        </p>
+        <p>
+          Antes del Real Decreto-ley 5/2023 eran dos días. La reforma, que traspuso la Directiva europea de conciliación, los subió a cinco y de paso añadió el supuesto de la intervención quirúrgica sin hospitalización con reposo domiciliario. El texto no dice «al año» en ningún sitio, y ahí está el origen del conflicto: la directiva europea habla de «cinco días laborables al año por trabajador», y muchas empresas leyeron esa expresión como un techo.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">La sentencia que cierra el debate</h2>
+        <p>
+          La Sala de lo Social del Tribunal Supremo, en sentencia de <strong>25 de septiembre de 2026</strong> (recurso 135/2025), rechaza la tesis empresarial. Su argumento es que la directiva europea fija un suelo de protección mínima, no un techo: los artículos 16.1 y el considerando 46 permiten expresamente a los Estados mantener o introducir condiciones más favorables. La obligación de interpretar la ley interna conforme a la directiva exige respetar el mínimo, pero no autoriza a rebajar lo que ya estaba reconocido.
+        </p>
+        <p>
+          Y añade el argumento de sistema: el Estatuto no concibe este permiso como una bolsa anual sin causa, sino como un derecho que se activa ante cada contingencia médica justificada. Cuando el legislador quiere cerrar un permiso a un cómputo anual lo dice, como hace con las cuatro jornadas por fuerza mayor del artículo 37.9. Aquí no lo dijo. La reforma de 2023 solo amplió la duración de dos a cinco días y dejó intacto el devengo por cada hecho causante.
+        </p>
+        <p>
+          El resultado práctico: si tu madre ingresa en marzo, agota los cinco días y vuelve a ingresar en septiembre, tienes otros cinco. Y si en el mismo ingreso se produce una complicación que constituye un hecho causante distinto, también.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Días laborables, no naturales</h2>
+        <p>
+          La segunda cuestión que llegó al Supremo fue cómo se cuentan esos cinco días. En sentencia de <strong>13 de noviembre de 2025</strong> el tribunal confirmó la doctrina de la Audiencia Nacional y anuló los artículos del convenio de <em>contact center</em> que obligaban a disfrutar los permisos en días naturales. El razonamiento es sencillo: un permiso solo tiene sentido sobre días en los que existe obligación de trabajar, y la directiva habla expresamente de días laborables.
+        </p>
+        <p>
+          En la práctica, si te hospitalizan a un familiar un jueves y libras el fin de semana, los cinco días se disfrutan de jueves a miércoles siguiente, no de jueves a lunes. Y si en medio cae un festivo, tampoco consume permiso. El matiz importante: «laborable» se refiere a tu jornada, no al calendario general. Si trabajas de martes a sábado, el sábado cuenta como día laborable para ti y sí consume permiso.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cuándo empieza a contar</h2>
+        <p>
+          Aquí también ha habido doctrina reciente. La sentencia de <strong>4 de febrero de 2026</strong> (rec. 251/2024) rechaza que el permiso tenga que iniciarse obligatoriamente el primer día laborable siguiente al hecho causante. El trabajador puede elegir cuándo empieza a disfrutarlo, siempre que lo avise y lo justifique, y que el disfrute guarde relación con la necesidad de cuidado.
+        </p>
+        <p>
+          Esa flexibilidad tiene un límite lógico: el permiso existe para atender al familiar, no para acumular días. Si el hecho causante se produjo en marzo y pides los cinco días en junio sin ninguna relación con el cuidado, la empresa puede discutirlo. La doctrina protege el margen razonable, no un derecho ilimitado a elegir la fecha.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">El alta hospitalaria no siempre cierra el permiso</h2>
+        <p>
+          Es la duda más habitual en recursos humanos. El Supremo ya había aclarado en 2025 que el alta hospitalaria y el alta médica son cosas distintas. Si el familiar recibe el alta del hospital pero sigue de baja médica, con reposo domiciliario prescrito y necesidad de cuidados, el permiso no se extingue: se puede seguir disfrutando hasta agotar los cinco días.
+        </p>
+        <p>
+          Lo que no ampara la ley es inventarse un permiso autónomo de cuidados posteriores cuando ya no hay hospitalización, ni enfermedad grave, ni intervención con reposo. Ahí el derecho se acaba. La frontera es la prescripción médica, y por eso conviene guardar el parte de alta con el reposo indicado.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cómo se pide sin fricción</h2>
+        <p>
+          La ley exige «previo aviso y justificación». En la práctica eso significa comunicarlo cuanto antes —no hace falta esperar al día siguiente, pero sí avisar antes de ausentarse— y aportar el documento que acredite el hecho: parte de ingreso, informe de urgencias, parte de baja del familiar o justificante de la intervención. La empresa no puede exigir que se justifique día a día la continuidad del permiso, como ha recordado la doctrina: basta con acreditar el hecho causante inicial.
+        </p>
+        <p>
+          Tampoco puede condicionarlo a que el familiar conviva contigo si es pariente hasta segundo grado: la convivencia solo se exige para las personas que no tienen ese vínculo. Y si la empresa niega el permiso o lo recorta, la vía es la reclamación por vulneración de derechos fundamentales cuando hay indicios de discriminación por cuidado, o la demanda ordinaria por el importe de los días no abonados.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Los cinco días en el calendario de 2027</h2>
+        <p>
+          Puesto en fechas, un permiso que empiece el jueves 18 de marzo de 2027 se alarga hasta el martes 30: el viernes 19 es San José en Madrid, el 25 y el 26 son Jueves y Viernes Santo, y el fin de semana no consume. Son cinco días laborables que ocupan casi dos semanas de calendario. Con el calendario oficial de tu comunidad en la mano, el permiso cunde bastante más de lo que parece.
+        </p>
+        <p>
+          Si necesitas contar un plazo o comprobar cuántos días laborables hay entre dos fechas, la <a href="/#calculadora" class="text-primary hover:underline">calculadora de días laborables</a> ya tiene los festivos de las 19 comunidades. Y para saber qué días caen mal en 2027, el <a href="/calendario-laboral-2027" class="text-primary hover:underline">calendario laboral 2027</a> está actualizado con el BOE de octubre.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
+        <div class="space-y-5">
+          <div>
+            <h3 class="font-bold text-on-surface">¿Los cinco días se pagan?</h3>
+            <p class="text-text-secondary">Sí. Es un permiso retribuido: se cobra el salario correspondiente a esos días como si se hubieran trabajado, sin que la empresa pueda descontarlos ni obligarte a recuperarlos.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Y si el ingreso es de un día?</h3>
+            <p class="text-text-secondary">El derecho nace con la hospitalización, no con su duración. Un ingreso de 24 horas genera el permiso completo de cinco días si hay necesidad de atención, aunque en la práctica lo habitual es disfrutar solo los que hagan falta.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Cuenta el día del hecho causante?</h3>
+            <p class="text-text-secondary">Depende de cuándo empieces a disfrutarlo. Si el ingreso es por la mañana y te ausentas ese mismo día, ese día es el primero de los cinco. Si empiezas al día siguiente, el cómputo arranca ahí.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Puede la empresa pedir el parte de baja del familiar?</h3>
+            <p class="text-text-secondary">Puede pedir justificación del hecho causante, y el parte es el documento habitual. Lo que no puede es exigir el diagnóstico ni revisar día a día si el familiar sigue hospitalizado.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-outline-variant">
+        <p class="text-sm text-text-secondary">
+          Última actualización: 19 de octubre de 2026. Fuentes: artículo 37.3.b) del Estatuto de los Trabajadores (BOE-A-2015-11430); STS de 25 de septiembre de 2026, rec. 135/2025; STS de 13 de noviembre de 2025, rec. 128/2024; STS 126/2026, de 4 de febrero, rec. 251/2024; Directiva (UE) 2019/1158.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Permiso por hospitalización</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Art. 37.3.b) ET</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Jurisprudencia 2026</span>
+        </div>
+      </footer>
+    </article>
+
+    <section class="mt-12 bg-surface-secondary rounded-2xl p-6">
+      <h2 class="text-lg font-bold text-on-surface mb-2">Calcula cuántos días laborables te cubre</h2>
+      <p class="text-sm text-text-secondary mb-4">Elige la fecha del ingreso y mira hasta dónde llegan los cinco días con los festivos de tu comunidad.</p>
+      <a href="/#calculadora" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+        <span class="material-symbols-outlined text-[16px]">calculate</span>
+        Ir a la calculadora
+      </a>
+    </section>
+  </main>
+</Layout>
