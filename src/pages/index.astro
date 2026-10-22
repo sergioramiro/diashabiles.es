@@ -1352,9 +1352,10 @@ import { COMUNIDADES } from '../lib/calculadora';
       const tabBtnCarousel = document.getElementById('tab-btn-carousel')!;
       const tabBtnGrid = document.getElementById('tab-btn-grid')!;
 
-      // Check URL params for community
+      // Comunidad preseleccionada: por hash (#comunidad=ceuta) o por query (?comunidad=ceuta)
       const urlParams = new URLSearchParams(window.location.search);
-      const comunidadParam = urlParams.get('comunidad');
+      const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+      const comunidadParam = urlParams.get('comunidad') || hashParams.get('comunidad');
       if (comunidadParam && selectCcaa) {
         selectCcaa.value = comunidadParam;
       }
