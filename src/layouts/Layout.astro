@@ -102,9 +102,6 @@ const canonicalUrl = canonical || `https://diashabiles.es${Astro.url.pathname}`;
         track('cta-calculadora', { articulo: pagina });
       }, true);
 
-      var cont = document.getElementById('calculadora');
-      if (!cont) return;
-
       var interactuo = false;
       var enviado = false;
       var inicial = null;
@@ -144,30 +141,41 @@ const canonicalUrl = canonical || `https://diashabiles.es${Astro.url.pathname}`;
         track('interaccion-calculadora', { origen: origen() });
       }
 
-      ['input', 'change'].forEach(function (ev) {
-        cont.addEventListener(ev, function (e) {
-          if (!e.target || e.target.id === 'btn-calcular') return;
+      function init() {
+        var cont = document.getElementById('calculadora');
+        if (!cont) return;
+
+        ['input', 'change'].forEach(function (ev) {
+          cont.addEventListener(ev, function (e) {
+            if (!e.target || e.target.id === 'btn-calcular') return;
+            primeraInteraccion();
+            clearTimeout(t);
+            t = setTimeout(comprobar, 600);
+          }, true);
+        });
+
+        cont.addEventListener('click', function (e) {
+          var b = e.target && e.target.closest ? e.target.closest('button') : null;
+          if (!b) return;
           primeraInteraccion();
           clearTimeout(t);
           t = setTimeout(comprobar, 600);
         }, true);
-      });
 
-      cont.addEventListener('click', function (e) {
-        var b = e.target && e.target.closest ? e.target.closest('button') : null;
-        if (!b) return;
-        primeraInteraccion();
-        clearTimeout(t);
-        t = setTimeout(comprobar, 600);
-      }, true);
+        var kpi = document.getElementById('kpi-laborables');
+        if (kpi && window.MutationObserver) {
+          new MutationObserver(function () {
+            if (!interactuo) return;
+            clearTimeout(t);
+            t = setTimeout(comprobar, 300);
+          }).observe(kpi, { childList: true, characterData: true, subtree: true });
+        }
+      }
 
-      var kpi = document.getElementById('kpi-laborables');
-      if (kpi && window.MutationObserver) {
-        new MutationObserver(function () {
-          if (!interactuo) return;
-          clearTimeout(t);
-          t = setTimeout(comprobar, 300);
-        }).observe(kpi, { childList: true, characterData: true, subtree: true });
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
       }
     })();
   </script>
