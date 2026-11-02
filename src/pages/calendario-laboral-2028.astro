@@ -147,6 +147,12 @@ const jsonLd = [
         <p class="text-lg text-text-secondary leading-relaxed">
           El calendario de 2028 no está publicado. Nadie puede darte todavía las doce fiestas de tu comunidad, y quien lo haga está proyectando. Lo que sí está fijado por ley son las diez nacionales, y este es el mapa de fechas y de plazos.
         </p>
+              <p class="mt-4 text-sm">
+          <a href="/#calculadora" class="inline-flex items-center gap-1.5 text-primary font-semibold hover:underline">
+            <span class="material-symbols-outlined text-[16px]">calculate</span>
+            Calcula los días laborables con los festivos de tu comunidad
+          </a>
+        </p>
       </header>
 
       <div class="prose-custom space-y-6 text-on-surface leading-relaxed">
@@ -191,7 +197,7 @@ const jsonLd = [
           Es bisiesto, con un 29 de febrero en martes, y la Semana Santa cae tardísima: el Domingo de Resurrección es el 16 de abril, con el Viernes Santo el 14. Eso deja los cuatro días de Pascua del 13 al 16 de abril, de jueves a domingo, que con el lunes de Pascua en las comunidades que lo celebran se convierte en la mejor escapada de la primavera.
         </p>
         <p>
-          El resto del año se reparte con bastante mala suerte para los puentes. {enFinDeSemana.length === 1 ? 'Solo una de las diez nacionales cae en fin de semana' : `${enFinDeSemana.length} de las diez nacionales caen en fin de semana`}: el 1 de enero, que es sábado y se pierde sin compensación, porque el traslado al lunes solo se aplica a las fiestas que coinciden con domingo. {enDomingo.length === 0 ? 'Ninguna cae en domingo, así que en 2028 no habrá ningún traslado obligatorio al lunes por esa regla.' : ''}
+          El resto del año se reparte con bastante mala suerte para los puentes. {enFinDeSemana.length === 1 ? 'Solo una de las diez nacionales cae en fin de semana' : `${enFinDeSemana.length} de las diez nacionales caen en fin de semana`}: el 1 de enero, que es sábado y se pierde sin compensación, porque el traslado al lunes solo se aplica a las fiestas que coinciden con domingo. {enDomingo.length === 0 ? 'Ninguna cae en domingo, así que en 2028 no habrá ningún traslado obligatorio al lunes por esa regla.' : ''} El detalle, festivo a festivo, está en <a href="/festivos-perdidos-2028" class="text-primary hover:underline">festivos perdidos 2028</a>.
         </p>
         <p>
           Los fines de semana largos sin gastar vacaciones son cuatro: el 1 de mayo en lunes, el 8 de diciembre en viernes, el 25 de diciembre en lunes y la Semana Santa. El 6 de enero cae en jueves y el 12 de octubre también, dos días que obligan a pedir el viernes o el lunes si quieres estirarlos. El 15 de agosto en martes y el 1 de noviembre en miércoles se quedan en mitad de la semana.

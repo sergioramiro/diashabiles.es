@@ -1,0 +1,274 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Festivos perdidos 2028: solo el 1 de enero cae en fin de semana';
+const description = 'De las diez fiestas nacionales de 2028, solo el 1 de enero cae en sábado y se pierde. Ninguna cae en domingo, así que no habrá traslados obligatorios. Qué pasa con las autonómicas y por qué no se recuperan.';
+
+const MES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const DN = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+
+function fecha(f: string) {
+  const [y, m, d] = f.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+function dia(f: string) {
+  return DN[fecha(f).getDay()];
+}
+function etiqueta(f: string) {
+  const dt = fecha(f);
+  return `${dt.getDate()} de ${MES[dt.getMonth()]}`;
+}
+
+const nacionales = [
+  { fecha: '2028-01-01', nombre: 'Año Nuevo' },
+  { fecha: '2028-01-06', nombre: 'Epifanía del Señor' },
+  { fecha: '2028-04-14', nombre: 'Viernes Santo' },
+  { fecha: '2028-05-01', nombre: 'Fiesta del Trabajo' },
+  { fecha: '2028-08-15', nombre: 'Asunción de la Virgen' },
+  { fecha: '2028-10-12', nombre: 'Fiesta Nacional de España' },
+  { fecha: '2028-11-01', nombre: 'Todos los Santos' },
+  { fecha: '2028-12-06', nombre: 'Día de la Constitución' },
+  { fecha: '2028-12-08', nombre: 'Inmaculada Concepción' },
+  { fecha: '2028-12-25', nombre: 'Natividad del Señor' }
+].map(f => {
+  const d = fecha(f.fecha).getDay();
+  return {
+    ...f,
+    dia: DN[d],
+    estado: d === 6 ? 'Se pierde' : d === 0 ? 'Se traslada al lunes' : 'Se libra',
+    esFinde: d === 0 || d === 6
+  };
+});
+
+const perdidos = nacionales.filter(f => fecha(f.fecha).getDay() === 6);
+const enDomingo = nacionales.filter(f => fecha(f.fecha).getDay() === 0);
+const entreSemana = nacionales.filter(f => !f.esFinde);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Festivos perdidos 2028: solo el 1 de enero cae en fin de semana',
+    description: 'De las diez fiestas nacionales de 2028 solo el Año Nuevo cae en sábado. Ninguna cae en domingo, así que no hay traslados obligatorios y el año se queda en una sola pérdida.',
+    author: { '@type': 'Person', name: 'Carlos Méndez' },
+    datePublished: '2026-11-02',
+    dateModified: '2026-11-02',
+    publisher: {
+      '@type': 'Organization',
+      name: 'diashabiles.es',
+      url: 'https://diashabiles.es'
+    },
+    image: 'https://diashabiles.es/og-image.png',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://diashabiles.es/festivos-perdidos-2028/'
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://diashabiles.es/' },
+      { '@type': 'ListItem', position: 2, name: 'Festivos perdidos 2028', item: 'https://diashabiles.es/festivos-perdidos-2028/' }
+    ]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Cuántos festivos se pierden en 2028?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'De las diez fiestas nacionales, solo una: el 1 de enero, que cae en sábado. Ninguna cae en domingo, así que no hay traslados obligatorios al lunes. A esa cifra hay que sumar las fiestas autonómicas y locales que caigan en fin de semana, que se conocerán con el calendario de cada comunidad.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Se recupera el 1 de enero de 2028 por caer en sábado?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. El traslado al lunes del artículo 45.2 del Real Decreto 2001/1983 solo se aplica a las fiestas que coinciden con domingo. Un festivo en sábado se pierde, salvo que el convenio colectivo o un acuerdo de empresa digan otra cosa.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué fiesta autonómica cae mal en 2028?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'San Juan, el 24 de junio, cae en sábado y no admite traslado: Cataluña la perderá si mantiene esa fiesta. San José, el 19 de marzo, cae en domingo, así que las comunidades que la elijan tendrán que trasladarla al lunes 20. La Diada (11 de septiembre) y el 9 de octubre caen en lunes.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cuántos días laborables tiene 2028?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Con solo las fiestas nacionales descontadas serían 251 días laborables de lunes a viernes. La cifra real baja en cada comunidad al restar sus dos o tres fiestas propias y los dos festivos locales del municipio.'
+        }
+      }
+    ]
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="json-ld">
+    {jsonLd.map(bloque => (
+      <script type="application/ld+json" set:html={JSON.stringify(bloque)} />
+    ))}
+  </Fragment>
+
+  <main class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">·</span>
+      <a href="/calendario-laboral-2028" class="hover:text-primary transition-colors">Calendario 2028</a>
+      <span class="mx-2">·</span>
+      <span class="text-on-surface">Festivos perdidos 2028</span>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+          <time datetime="2026-11-02">2 de noviembre de 2026</time>
+          <span class="mx-1">·</span>
+          <span>6 min de lectura</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          Festivos perdidos 2028: solo el 1 de enero se queda sin disfrutar
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          2028 es un año raro. De las diez fiestas nacionales, solo una cae en fin de semana, y ninguna en domingo, así que no habrá ni un traslado obligatorio al lunes. Después de un 2027 en el que se pierden dos días en toda España, el calendario respira.
+        </p>
+        <p class="mt-4 text-sm">
+          <a href="/#calculadora" class="inline-flex items-center gap-1.5 text-primary font-semibold hover:underline">
+            <span class="material-symbols-outlined text-[16px]">calculate</span>
+            Calcula los días laborables con los festivos de tu comunidad
+          </a>
+        </p>
+      </header>
+
+      <div class="prose-custom space-y-6 text-on-surface leading-relaxed">
+        <p>
+          Un festivo se pierde cuando cae en sábado o en domingo y la ley no lo compensa. El artículo 45.2 del Real Decreto 2001/1983 permite pasar al lunes las fiestas que coincidan con domingo, pero no dice nada de las que caen en sábado: esas se disfrutan igual, solo que sin dejar de trabajar. En 2028 el calendario nacional se porta bien.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Las diez fiestas nacionales, una por una</h2>
+
+        <div class="overflow-x-auto my-8">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-outline-variant">
+                <th class="text-left py-2 font-semibold">Fecha</th>
+                <th class="text-left py-2 font-semibold">Día</th>
+                <th class="text-left py-2 font-semibold">Festivo</th>
+                <th class="text-left py-2 font-semibold">Qué pasa</th>
+              </tr>
+            </thead>
+            <tbody>
+              {nacionales.map(f => (
+                <tr class="border-b border-outline-variant">
+                  <td class="py-2 font-semibold">{etiqueta(f.fecha)}</td>
+                  <td class="py-2 capitalize">{f.dia}</td>
+                  <td class="py-2">{f.nombre}</td>
+                  <td class={`py-2 ${f.estado === 'Se pierde' ? 'text-primary font-semibold' : 'text-text-secondary'}`}>{f.estado}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          El balance es de {perdidos.length === 1 ? 'una sola pérdida' : `${perdidos.length} pérdidas`}: el 1 de enero, que cae en sábado. {enDomingo.length === 0 ? 'Ninguna de las diez cae en domingo, así que en 2028 no habrá ningún traslado al lunes por la regla del artículo 45.2.' : ''} En 2026 y 2027 sí hubo que mover alguna: en 2026 el 1 de noviembre y el 6 de diciembre, en 2027 el 15 de agosto. En 2028, ninguna.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Por qué Año Nuevo no se recupera</h2>
+        <p>
+          El 1 de enero de 2028 es sábado. La ley no obliga a compensarlo y la mayoría de convenios tampoco lo hacen. Hay empresas que lo cambian por otro día, pero eso depende de la negociación colectiva, no del calendario oficial: si tu convenio no lo recoge, ese día se ha perdido.
+        </p>
+        <p>
+          La comparación con los dos años anteriores deja claro el cambio. En 2026 se perdió uno, el 15 de agosto. En 2027 se pierden dos en toda España —el 1 de mayo y el 25 de diciembre, ambos en sábado— y tres en Cataluña y la Comunitat Valenciana, que además pierden la Diada y el 9 de octubre. En 2028, con las nacionales, solo cae uno.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Las autonómicas: lo que ya se puede anticipar</h2>
+        <p>
+          Las fiestas de cada comunidad no se conocerán hasta 2027, pero las fechas ya están fijadas en el calendario y algunas caen mal. Estas son las que hay que vigilar:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><strong>San Juan, 24 de junio, sábado.</strong> En el calendario de 2027 la mantiene Cataluña. Al caer en sábado no admite traslado, así que si sigue en su lista será un festivo perdido más.</li>
+          <li><strong>San José, 19 de marzo, domingo.</strong> En 2027 la eligen Galicia, Madrid, Murcia, Navarra y la Comunitat Valenciana. Como cae en domingo, esas comunidades pueden trasladarla al lunes 20 y no perderla, pero depende de lo que decidan en su decreto.</li>
+          <li><strong>Diada Nacional de Cataluña, 11 de septiembre, lunes.</strong> Cae en lunes, así que regala fin de semana largo sin gastar vacaciones.</li>
+          <li><strong>9 de octubre, Comunitat Valenciana, lunes.</strong> Mismo caso: fin de semana de tres días.</li>
+          <li><strong>Jueves Santo, 13 de abril, y Lunes de Pascua, 17 de abril.</strong> Caen en jueves y lunes respectivamente, así que las comunidades que los celebran se llevan dos bloques largos en la misma semana.</li>
+          <li><strong>Santiago Apóstol, 25 de julio, martes.</strong> Si alguna comunidad lo elige en lugar de San José, tendrá un puente de cuatro días pidiendo solo el lunes.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Los dos festivos locales</h2>
+        <p>
+          A la cuenta hay que sumarle los dos días de fiesta local de cada municipio, que decide el ayuntamiento y que se publican en el boletín provincial. Ahí no hay regla general: hay pueblos que pierden uno de los dos porque cae en domingo y otros que lo trasladan. Es el dato que cambia el calendario de una persona a otra dentro de la misma provincia, y el único que no se puede anticipar desde aquí.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Qué hacer con el día perdido</h2>
+        <p>
+          Poco, y conviene saberlo antes de enfadarse. El festivo en sábado no genera derecho a otro día, ni a compensación económica, ni a reducción de jornada. Lo único que puede cambiarlo es el convenio colectivo, un acuerdo de empresa o una decisión unilateral del empleador. Si tu convenio tiene una cláusula de compensación de festivos en fin de semana, ese es el documento que hay que mirar, no el BOE.
+        </p>
+        <p>
+          Para planificar las vacaciones, la clave está en otro sitio: 2028 tiene cuatro fines de semana largos sin gastar días —el 1 de mayo, el 8 de diciembre, el 25 de diciembre y la Semana Santa del 13 al 16 de abril—, y el resto de los festivos cae entre semana. El detalle completo está en el <a href="/calendario-laboral-2028" class="text-primary hover:underline">calendario laboral 2028</a>.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
+        <div class="space-y-5">
+          <div>
+            <h3 class="font-bold text-on-surface">¿Cuántos festivos hay en 2028 en total?</h3>
+            <p class="text-text-secondary">Catorce como máximo en cada comunidad: diez nacionales, dos que decide la comunidad y dos locales del municipio. El techo lo fija el artículo 37.2 del Estatuto de los Trabajadores.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Se puede trasladar un festivo que cae en sábado?</h3>
+            <p class="text-text-secondary">No por ley. El traslado del artículo 45.2 solo cubre las fiestas que coinciden con domingo. Para el sábado hace falta que lo recoja el convenio colectivo o un acuerdo con la empresa.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿2028 es bisiesto?</h3>
+            <p class="text-text-secondary">Sí. El 29 de febrero cae en martes y no es festivo en ninguna comunidad, así que es un día laborable más.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Cuándo se sabrá el calendario completo de 2028?</h3>
+            <p class="text-text-secondary">Las comunidades remiten sus listas antes del 30 de septiembre de 2027 y la Dirección General de Trabajo publica la relación completa en el BOE en octubre de 2027. Hasta entonces, las autonómicas son una previsión.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-outline-variant">
+        <p class="text-sm text-text-secondary">
+          Última actualización: 2 de noviembre de 2026. Fuentes: artículo 45 del Real Decreto 2001/1983 (BOE-A-1983-20906); artículo 37.2 del Estatuto de los Trabajadores (BOE-A-2015-11430); Resolución de 8 de octubre de 2026, fiestas laborales 2027 (BOE-A-2026-21254). Los días de la semana están calculados sobre el calendario gregoriano.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Festivos perdidos 2028</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Sábados y domingos</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Traslado de festivos</span>
+        </div>
+      </footer>
+    </article>
+
+    <section class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Los que se pierden en 2027</h2>
+        <p class="text-sm text-text-secondary mb-4">Dos en toda España y tres en Cataluña y la Comunitat Valenciana.</p>
+        <a href="/festivos-perdidos-2027" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">event_busy</span>
+          Ver 2027
+        </a>
+      </div>
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Calendario 2028</h2>
+        <p class="text-sm text-text-secondary mb-4">Las diez nacionales, los puentes y cuándo será oficial.</p>
+        <a href="/calendario-laboral-2028" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">calendar_month</span>
+          Ver calendario
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>
