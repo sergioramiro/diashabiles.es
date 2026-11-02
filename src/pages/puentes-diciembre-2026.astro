@@ -1,0 +1,283 @@
+---
+import Layout from '../layouts/Layout.astro';
+import d26 from '../data/festivos-2026-q4.json';
+
+const title = 'Puentes de diciembre 2026: cuatro días seguidos en diez comunidades';
+const description = 'El 6 de diciembre cae en domingo y se traslada al lunes 7 en diez comunidades: del sábado 5 al martes 8 son cuatro días seguidos. Calendario por comunidad y cómo estirarlo con vacaciones.';
+
+const MES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const DN = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+
+function fecha(f: string) {
+  const [y, m, d] = f.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+function dia(f: string) {
+  return DN[fecha(f).getDay()];
+}
+function etiqueta(f: string) {
+  const dt = fecha(f);
+  return `${dt.getDate()} de ${MES[dt.getMonth()]}`;
+}
+
+const NOMBRES: Record<string, string> = {
+  andalucia: 'Andalucía',
+  aragon: 'Aragón',
+  asturias: 'Asturias',
+  islas_baleares: 'Islas Baleares',
+  canarias: 'Canarias',
+  cantabria: 'Cantabria',
+  castilla_la_mancha: 'Castilla-La Mancha',
+  castilla_y_leon: 'Castilla y León',
+  cataluna: 'Cataluña',
+  extremadura: 'Extremadura',
+  galicia: 'Galicia',
+  madrid: 'Comunidad de Madrid',
+  murcia: 'Región de Murcia',
+  navarra: 'Navarra',
+  pais_vasco: 'País Vasco',
+  la_rioja: 'La Rioja',
+  valencia: 'Comunitat Valenciana',
+  ceuta: 'Ceuta',
+  melilla: 'Melilla'
+};
+
+const comunidades = Object.entries((d26 as any).comunidades as Record<string, { festivos: { fecha: string; nombre: string }[] }>)
+  .map(([id, data]) => {
+    const diciembre = data.festivos.filter(f => f.fecha.startsWith('2026-12'));
+    const traslado = diciembre.some(f => f.fecha === '2026-12-07');
+    const sanEsteban = diciembre.some(f => f.fecha === '2026-12-26');
+    return {
+      id,
+      nombre: NOMBRES[id] || id,
+      traslado,
+      sanEsteban,
+      diasSeguidos: traslado ? '4 días (5, 6, 7 y 8)' : '3 días (5, 6 y 8)',
+      detalle: diciembre
+        .filter(f => f.fecha !== '2026-12-25' && f.fecha !== '2026-12-06' && f.fecha !== '2026-12-08')
+        .map(f => `${etiqueta(f.fecha)}: ${f.nombre}`)
+        .join(' · ') || '—'
+    };
+  })
+  .sort((a, b) => Number(b.traslado) - Number(a.traslado) || a.nombre.localeCompare(b.nombre, 'es'));
+
+const conTraslado = comunidades.filter(c => c.traslado);
+const sinTraslado = comunidades.filter(c => !c.traslado);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Puentes de diciembre de 2026: cuatro días seguidos en diez comunidades',
+    description: 'Del sábado 5 al martes 8 de diciembre de 2026 hay cuatro días seguidos en diez comunidades que trasladan la Constitución al lunes 7. En las otras nueve quedan tres días.',
+    author: { '@type': 'Person', name: 'Carlos Méndez' },
+    datePublished: '2026-11-02',
+    dateModified: '2026-11-02',
+    publisher: {
+      '@type': 'Organization',
+      name: 'diashabiles.es',
+      url: 'https://diashabiles.es'
+    },
+    image: 'https://diashabiles.es/og-image.png',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://diashabiles.es/puentes-diciembre-2026/'
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://diashabiles.es/' },
+      { '@type': 'ListItem', position: 2, name: 'Puentes de diciembre 2026', item: 'https://diashabiles.es/puentes-diciembre-2026/' }
+    ]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿El 7 de diciembre de 2026 es festivo en toda España?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Solo en las diez comunidades que trasladan al lunes la fiesta del 6 de diciembre, que cae en domingo: Andalucía, Aragón, Asturias, Cantabria, Castilla y León, Extremadura, Madrid, Murcia, La Rioja y Melilla. En las otras nueve el lunes 7 es día laborable.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cuántos días seguidos se libran en el puente de diciembre de 2026?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Cuatro días donde el 7 es festivo: sábado 5, domingo 6, lunes 7 y martes 8. En el resto de comunidades son tres días, porque el lunes se trabaja y el martes 8 es la Inmaculada.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Se puede estirar el puente de diciembre con vacaciones?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí. Con tres días de vacaciones, el miércoles 9, el jueves 10 y el viernes 11, se enlaza el puente con el fin de semana siguiente y salen nueve días seguidos, del sábado 5 al domingo 13 de diciembre.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cuándo cae la Navidad en 2026?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'El 25 de diciembre de 2026 cae en viernes, así que el fin de semana de Navidad es de tres días. El 24, Nochebuena, es jueves y no es festivo nacional; el 1 de enero de 2027 cae en viernes.'
+        }
+      }
+    ]
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="json-ld">
+    {jsonLd.map(bloque => (
+      <script type="application/ld+json" set:html={JSON.stringify(bloque)} />
+    ))}
+  </Fragment>
+
+  <main class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">·</span>
+      <a href="/calendario-laboral-2027" class="hover:text-primary transition-colors">Calendario 2027</a>
+      <span class="mx-2">·</span>
+      <span class="text-on-surface">Puentes de diciembre 2026</span>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+          <time datetime="2026-11-02">2 de noviembre de 2026</time>
+          <span class="mx-1">·</span>
+          <span>6 min de lectura</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          Puentes de diciembre de 2026: cuatro días seguidos en diez comunidades
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          El 6 de diciembre, Día de la Constitución, cae en domingo. Diez comunidades trasladan la fiesta al lunes 7 y se quedan con un bloque de cuatro días, del sábado 5 al martes 8. Las otras nueve trabajan el lunes y libran tres. Esta es la lista, comunidad por comunidad.
+        </p>
+      </header>
+
+      <div class="prose-custom space-y-6 text-on-surface leading-relaxed">
+        <div class="bg-surface-card rounded-2xl p-6 my-8 border border-border-subtle">
+          <p class="text-sm text-text-secondary mb-2">
+            <strong class="text-on-surface">Cuatro días seguidos</strong> (sábado 5, domingo 6, lunes 7 y martes 8) en {conTraslado.length} comunidades: {conTraslado.map(c => c.nombre).join(', ')}.
+          </p>
+          <p class="text-sm text-text-secondary">
+            <strong class="text-on-surface">Tres días</strong> (sábado 5, domingo 6 y martes 8) en {sinTraslado.length}: {sinTraslado.map(c => c.nombre).join(', ')}. Allí el lunes 7 es laborable.
+          </p>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Por qué el lunes 7 es festivo solo en algunas comunidades</h2>
+        <p>
+          El artículo 45.2 del Real Decreto 2001/1983 permite trasladar al lunes las fiestas nacionales que coincidan con domingo. No es una regla automática: cada comunidad decide si aplica el traslado y con qué fiesta. Cuando el 6 de diciembre cae en domingo, la mayoría lo mueve al lunes, pero no todas, y de ahí que el calendario se parta en dos.
+        </p>
+        <p>
+          Este año la división es de diez contra nueve. En las comunidades sin traslado, el lunes 7 es un día laborable normal y la semana queda cortada: dos días de trabajo, el festivo del martes y vuelta al trabajo el miércoles.
+        </p>
+
+        <div class="overflow-x-auto my-8">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-outline-variant">
+                <th class="text-left py-2 font-semibold">Comunidad</th>
+                <th class="text-left py-2 font-semibold">Lunes 7</th>
+                <th class="text-left py-2 font-semibold">Días seguidos</th>
+                <th class="text-left py-2 font-semibold">Otras fiestas de diciembre</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comunidades.map(c => (
+                <tr class="border-b border-outline-variant">
+                  <td class="py-2 font-semibold">{c.nombre}</td>
+                  <td class="py-2">{c.traslado ? 'Festivo' : 'Laborable'}</td>
+                  <td class="py-2">{c.diasSeguidos}</td>
+                  <td class="py-2 text-text-secondary text-xs">{c.detalle}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cómo estirarlo: nueve días con tres de vacaciones</h2>
+        <p>
+          El bloque del 5 al 8 invita a enlazarlo con el fin de semana siguiente. Pidiendo vacaciones el miércoles 9, el jueves 10 y el viernes 11, se sale el sábado 5 y no se vuelve hasta el lunes 14: nueve días seguidos con tres días de vacaciones. Es la forma más eficiente de gastar días en todo el año, porque cada día de permiso rinde tres de descanso.
+        </p>
+        <p>
+          Si en tu comunidad el lunes 7 se trabaja, la jugada cambia: pides solo ese día y consigues los mismos cuatro días seguidos. Un día de vacaciones en lugar de tres, pero con la misma semana larga.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">La Navidad: el 25 cae en viernes</h2>
+        <p>
+          El 25 de diciembre es viernes, así que el fin de semana navideño es de tres días en toda España. El 24, Nochebuena, es jueves y no es festivo nacional: muchas empresas lo dan como permiso, pero por ley es un día laborable salvo que tu convenio o tu comunidad digan lo contrario.
+        </p>
+        <p>
+          La combinación más rentable del año está ahí: con cinco días de vacaciones —el 24 y del 28 al 31— se enlaza Nochebuena con el Año Nuevo, que en 2027 cae en viernes, y salen once días seguidos, del 24 de diciembre al 3 de enero. Es el mismo truco que en el puente, pero a lo grande.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Lo que se queda fuera</h2>
+        <p>
+          Cataluña e Islas Baleares celebran San Esteban el 26 de diciembre, pero en 2026 cae en sábado y no compensa nada: un festivo en sábado se pierde, porque el traslado al lunes solo se aplica a los que caen en domingo. Es el mismo motivo por el que el 6 de diciembre, que sí cae en domingo, se mueve en diez comunidades y no en todas.
+        </p>
+        <p>
+          Quedan además los dos festivos locales de cada municipio, que decide el ayuntamiento y que en diciembre suelen caer en fiestas patronales de pueblo. No están en esta tabla porque cambian de un municipio a otro, incluso dentro de la misma provincia. Si tu empresa te da uno, súmalo al bloque.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Y después de diciembre, 2027</h2>
+        <p>
+          El calendario de 2027 ya es oficial: salió en el BOE el 13 de octubre con las diecinueve comunidades. Tiene menos puentes de los que gustaría —el 1 de mayo y el 25 de diciembre caen en sábado— y una Semana Santa temprana, con el Viernes Santo el 26 de marzo. El detalle está en el <a href="/calendario-laboral-2027" class="text-primary hover:underline">calendario laboral 2027</a>, y si lo que quieres es ver cuántos festivos se pierden en fin de semana, en <a href="/festivos-perdidos-2027" class="text-primary hover:underline">festivos perdidos 2027</a>.
+        </p>
+        <p>
+          Para contar días laborables entre dos fechas de 2027, la <a href="/#calculadora" class="text-primary hover:underline">calculadora</a> descuenta los fines de semana y los festivos de tu comunidad.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
+        <div class="space-y-5">
+          <div>
+            <h3 class="font-bold text-on-surface">¿El 8 de diciembre es festivo en toda España?</h3>
+            <p class="text-text-secondary">Sí. La Inmaculada Concepción es fiesta nacional y en 2026 cae en martes, así que se libra en las diecinueve comunidades sin necesidad de traslado.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Se puede trasladar el 8 de diciembre si cae en domingo?</h3>
+            <p class="text-text-secondary">Podría, con la misma regla del artículo 45.2, pero no es el caso en 2026. La próxima vez que la Inmaculada caiga en domingo será en 2030.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Cuántos días laborables tiene diciembre de 2026?</h3>
+            <p class="text-text-secondary">Depende de la comunidad. Descontando fines de semana, el 8 y el 25, quedan 21 días laborables; en las diez comunidades que trasladan la Constitución al lunes, 20.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Los festivos locales se suman a estos días?</h3>
+            <p class="text-text-secondary">Sí, cada municipio tiene dos al año y se disfrutan además de los autonómicos. Si el tuyo cae en diciembre, tendrás un día más que los del municipio de al lado.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-outline-variant">
+        <p class="text-sm text-text-secondary">
+          Última actualización: 2 de noviembre de 2026. Fuentes: artículo 45 del Real Decreto 2001/1983 (BOE-A-1983-20906); calendario laboral 2026 y decretos autonómicos recogidos en la base de datos del sitio. Los traslados se han comprobado comunidad por comunidad.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Puente de diciembre 2026</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">4 días</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Traslado de festivos</span>
+        </div>
+      </footer>
+    </article>
+
+    <section class="mt-12 bg-surface-secondary rounded-2xl p-6">
+      <h2 class="text-lg font-bold text-on-surface mb-2">Planifica el año que viene</h2>
+      <p class="text-sm text-text-secondary mb-4">El calendario de 2027 ya está publicado en el BOE, con las 19 comunidades.</p>
+      <a href="/calendario-laboral-2027" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+        <span class="material-symbols-outlined text-[16px]">calendar_month</span>
+        Ver calendario 2027
+      </a>
+    </section>
+  </main>
+</Layout>
