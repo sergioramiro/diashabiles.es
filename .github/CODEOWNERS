@@ -1,0 +1,12 @@
+# Dueño por defecto de todo el repositorio
+* @sergioramiro
+
+# Contenido de festivos: un cambio aquí afecta a los cálculos de todas las páginas
+/src/data/ @sergioramiro
+
+# La lógica de cómputo es la pieza crítica del sitio
+/src/lib/ @sergioramiro
+
+# Configuración de despliegue y build
+/astro.config.mjs @sergioramiro
+/package.json @sergioramiro
