@@ -1,3 +1,15 @@
+## Verificación obligatoria
+
+Antes de dar una tarea por terminada, y siempre antes de un push:
+
+```bash
+npm run check
+```
+
+Ejecuta los tests (Vitest) y el build de Astro. El hook `.githooks/pre-push` y el CI usan ese mismo comando, así que si pasa en local pasa en los dos sitios. Nunca commitees con `--no-verify`.
+
+Antes de tocar la calculadora, lee `ARCHITECTURE.md` y `DECISIONS.md`: los invariantes del cómputo (hábiles = laborables, festivo en sábado no resta día) están allí y tienen base legal.
+
 ## Development
 
 When starting the dev server, use background mode:
