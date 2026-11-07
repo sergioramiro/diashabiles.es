@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# informes de cobertura (se generan con npm run coverage)
+coverage/
