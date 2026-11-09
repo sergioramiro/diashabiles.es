@@ -16,8 +16,10 @@ function iso(d: Date) {
 const nacionales: Record<string, string> = {};
 for (const f of (festivosData as any).nacionales) nacionales[f.fecha] = f.nombre;
 
+// Cada lista autonómica ya trae las nacionales que se libran en esa comunidad;
+// el 15 de agosto de 2027 no aparece porque cae en domingo y se traslada al 16.
 const comunidades = Object.entries((festivosData as any).comunidades).map(([id, data]: [string, any]) => {
-  const festivos: Record<string, string> = { ...nacionales };
+  const festivos: Record<string, string> = {};
   for (const f of data.festivos) festivos[f.fecha] = f.nombre;
   return { id, nombre: data.nombre as string, festivos };
 }).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
