@@ -11,6 +11,8 @@ function fecha(f: string) {
 }
 const DN = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
 const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+// 2027 tiene 365 días y empieza en viernes: 52 semanas completas (260 laborables) + el viernes 31 de diciembre.
+const DIAS_ENTRE_SEMANA_2027 = 261;
 
 const nacionales = (d27 as any).nacionales.map((e: any) => ({
   fecha: e.fecha,
@@ -22,7 +24,7 @@ const nacionales = (d27 as any).nacionales.map((e: any) => ({
 
 type Fila = {
   id: string; nombre: string; total: number; efectivos: number;
-  sabados: string[]; pendientes: string[];
+  sabados: string[]; pendientes: string[]; laborables: number;
 };
 const filas: Fila[] = Object.entries((d27 as any).comunidades).map(([id, g]: [string, any]) => {
   const unicas = new Map<string, any>();
@@ -42,7 +44,7 @@ const filas: Fila[] = Object.entries((d27 as any).comunidades).map(([id, g]: [st
       if (sinConfirmar || (!sinTraslado && !trasladado)) pendientes.push(etiqueta);
     } else efectivos++;
   }
-  return { id, nombre: g.nombre, total: unicas.size, efectivos, sabados, pendientes };
+  return { id, nombre: g.nombre, total: unicas.size, efectivos, sabados, pendientes, laborables: DIAS_ENTRE_SEMANA_2027 - efectivos };
 });
 filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 ---
@@ -57,7 +59,7 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
       "description": "Los 10 festivos nacionales de 2027 con su día de la semana, el estado de la resolución del BOE y el calendario de cada comunidad autónoma.",
       "author": { "@type": "Person", "name": "Carlos Méndez" },
       "datePublished": "2026-09-28",
-      "dateModified": "2026-10-13",
+      "dateModified": "2026-11-09",
       "publisher": {
         "@type": "Organization",
         "name": "diashabiles.es",
@@ -206,6 +208,10 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
           Diecinueve calendarios (diecisiete comunidades y Ceuta y Melilla), con el recuento de festivos de 2027 y cuántos caen en fin de semana. Los de <em>sábado</em> están perdidos; en <em>domingo</em> no queda ninguno por confirmar: la Asunción del 15 de agosto ya está resuelta en las diecinueve, según la resolución del BOE.
         </p>
 
+        <p>
+          La cifra que más se consulta es la de <strong>días laborables</strong>, que es lo que añade esta tabla: se obtiene restando de los 261 días de lunes a viernes que hay en 2027 —365 días que empiezan en viernes, es decir 52 semanas completas más el viernes 31 de diciembre— los festivos que caen entre semana. Los sábados y domingos no son laborables de partida, y un festivo que cae en fin de semana no resta nada más. El resultado va de <strong>249 días en Ceuta y Melilla</strong> (las dos con 14 festivos, 12 de ellos entre semana) a <strong>252 en Canarias, Cataluña y la Comunitat Valenciana</strong>; Madrid, con diez festivos de lunes a viernes, se queda en 251. Son días laborables a efectos de calendario: las fiestas locales de cada municipio y los convenios con jornada reducida no están incluidos.
+        </p>
+
         <div class="overflow-x-auto my-8">
           <table class="w-full text-sm">
             <thead>
@@ -213,6 +219,7 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
                 <th class="text-left py-2 font-semibold">Comunidad</th>
                 <th class="text-right py-2 font-semibold">Festivos</th>
                 <th class="text-right py-2 font-semibold">De lunes a viernes</th>
+                <th class="text-right py-2 font-semibold">Días laborables</th>
                 <th class="text-right py-2 font-semibold">En sábado (perdidos)</th>
                 <th class="text-right py-2 font-semibold">En domingo (sin resolver)</th>
               </tr>
@@ -225,6 +232,7 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
                   </td>
                   <td class="py-2 text-right">{f.total}</td>
                   <td class="py-2 text-right">{f.efectivos}</td>
+                  <td class="py-2 text-right font-semibold">{f.laborables}</td>
                   <td class="py-2 text-right">{f.sabados.length}</td>
                   <td class="py-2 text-right">{f.pendientes.length}</td>
                 </tr>
@@ -274,7 +282,7 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 
       <footer class="mt-12 pt-8 border-t border-outline-variant">
         <p class="text-sm text-text-secondary">
-          Última actualización: 13 de octubre de 2026. Fuentes: Estatuto de los Trabajadores (art. 37.4), Real Decreto 2001/1983 (art. 45), Resolución BOE-A-2026-21254 (BOE de 13/10/2026) y calendarios autonómicos de 2027 publicados en los boletines oficiales.
+          Última actualización: 9 de noviembre de 2026 (tabla de días laborables por comunidad). Fuentes: Estatuto de los Trabajadores (art. 37.4), Real Decreto 2001/1983 (art. 45), Resolución BOE-A-2026-21254 (BOE de 13/10/2026) y calendarios autonómicos de 2027 publicados en los boletines oficiales.
         </p>
         <div class="mt-6 flex flex-wrap gap-2">
           <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Calendario laboral 2027</span>
