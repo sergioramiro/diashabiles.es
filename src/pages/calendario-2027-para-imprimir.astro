@@ -1,0 +1,344 @@
+---
+import Layout from '../layouts/Layout.astro';
+import festivosData from '../data/festivos-2027.json';
+
+const title = 'Calendario 2027 para imprimir: 12 meses con festivos';
+const description = 'Los doce meses de 2027 listos para imprimir en A4, con los festivos nacionales y los de tu comunidad marcados. Gratis, sin registro y también en PDF desde el navegador.';
+
+const MES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+const DIAS = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+
+function iso(d: Date) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+// Mapa de festivos por comunidad, con las nacionales incluidas
+const nacionales: Record<string, string> = {};
+for (const f of (festivosData as any).nacionales) nacionales[f.fecha] = f.nombre;
+
+const comunidades = Object.entries((festivosData as any).comunidades).map(([id, data]: [string, any]) => {
+  const festivos: Record<string, string> = { ...nacionales };
+  for (const f of data.festivos) festivos[f.fecha] = f.nombre;
+  return { id, nombre: data.nombre as string, festivos };
+}).sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+
+const datosJS = {
+  nacionales,
+  comunidades: Object.fromEntries(comunidades.map(c => [c.id, { nombre: c.nombre, festivos: c.festivos }]))
+};
+
+function construirAnio(festivos: Record<string, string>) {
+  const meses = [];
+  for (let m = 0; m < 12; m++) {
+    const primero = new Date(2027, m, 1);
+    const diasMes = new Date(2027, m + 1, 0).getDate();
+    const desplazamiento = (primero.getDay() + 6) % 7; // lunes = 0
+    const celdas: ({ d: number; iso: string; finde: boolean; festivo: string | null } | null)[] = [];
+    for (let i = 0; i < desplazamiento; i++) celdas.push(null);
+    for (let d = 1; d <= diasMes; d++) {
+      const dt = new Date(2027, m, d);
+      const clave = iso(dt);
+      celdas.push({ d, iso: clave, finde: dt.getDay() === 0 || dt.getDay() === 6, festivo: festivos[clave] || null });
+    }
+    while (celdas.length % 7 !== 0) celdas.push(null);
+    const semanas = [];
+    for (let i = 0; i < celdas.length; i += 7) semanas.push(celdas.slice(i, i + 7));
+    const lista = celdas.filter(c => c && c.festivo).map(c => `${c!.d}: ${c!.festivo}`);
+    meses.push({ nombre: MES[m], semanas, lista });
+  }
+  return meses;
+}
+
+const meses = construirAnio(nacionales);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Calendario 2027 para imprimir: los 12 meses con festivos',
+    description: 'Calendario de 2027 en A4 para imprimir, con los festivos nacionales y los de cada comunidad marcados. Los doce meses generados del calendario oficial del BOE.',
+    author: { '@type': 'Person', name: 'Carlos Méndez' },
+    datePublished: '2026-11-09',
+    dateModified: '2026-11-09',
+    publisher: {
+      '@type': 'Organization',
+      name: 'diashabiles.es',
+      url: 'https://diashabiles.es'
+    },
+    image: 'https://diashabiles.es/og-image.png',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://diashabiles.es/calendario-2027-para-imprimir/'
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://diashabiles.es/' },
+      { '@type': 'ListItem', position: 2, name: 'Calendario 2027 para imprimir', item: 'https://diashabiles.es/calendario-2027-para-imprimir/' }
+    ]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Cómo se imprime el calendario de 2027?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Pulsa el botón Imprimir y elige el tamaño A4 en vertical, escala 100 % y márgenes predeterminados. Salen tres hojas con cuatro meses cada una. Si prefieres un archivo, en el mismo diálogo elige Guardar como PDF.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Incluye los festivos de mi comunidad?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí. En el selector puedes elegir entre los festivos nacionales o los de cualquiera de las 19 comunidades y ciudades autónomas. El calendario se redibuja al instante con esas fechas marcadas en rojo.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Aparecen los festivos locales de mi municipio?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No, porque cambian en cada ayuntamiento y son dos al año. El calendario marca los nacionales y los autonómicos; los locales hay que añadirlos a mano o consultarlos en el boletín de tu provincia.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Es gratis y se puede usar en la empresa?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí, es gratuito y se puede imprimir y repartir sin pedir permiso. Los datos vienen de la Resolución de 8 de octubre de 2026 de la Dirección General de Trabajo, publicada en el BOE del 13 de octubre.'
+        }
+      }
+    ]
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="json-ld">
+    {jsonLd.map(bloque => (
+      <script type="application/ld+json" set:html={JSON.stringify(bloque)} />
+    ))}
+  </Fragment>
+
+  <script type="application/json" id="datos-festivos" set:html={JSON.stringify(datosJS)}></script>
+
+  <main class="max-w-5xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary no-print">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">·</span>
+      <a href="/calendario-laboral-2027" class="hover:text-primary transition-colors">Calendario laboral 2027</a>
+      <span class="mx-2">·</span>
+      <span class="text-on-surface">Para imprimir</span>
+    </nav>
+
+    <article>
+      <header class="mb-8 no-print">
+        <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-[16px]">print</span>
+          <time datetime="2026-11-09">9 de noviembre de 2026</time>
+          <span class="mx-1">·</span>
+          <span>4 min de lectura</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          Calendario 2027 para imprimir: los doce meses con festivos
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          Doce meses en A4, con los festivos marcados y la opción de añadir los de tu comunidad. Elige abajo qué festivos quieres ver, pulsa imprimir y salen tres hojas de cuatro meses. Si lo prefieres en archivo, el mismo diálogo permite guardarlo como PDF.
+        </p>
+      </header>
+
+      <section class="no-print mb-8 p-5 bg-surface-card border border-border-subtle rounded-2xl">
+        <div class="flex flex-col sm:flex-row sm:items-end gap-4">
+          <div class="flex-1">
+            <label for="selector-festivos" class="block text-sm font-semibold text-on-surface mb-2">Festivos a marcar</label>
+            <select id="selector-festivos" class="w-full h-11 px-3 rounded-lg bg-surface-base border border-border-strong text-on-surface text-sm focus:outline-none focus:border-primary">
+              <option value="nacional">Solo nacionales (10 festivos)</option>
+              {comunidades.map(c => (
+                <option value={c.id}>{c.nombre}</option>
+              ))}
+            </select>
+          </div>
+          <button id="btn-imprimir" type="button" class="h-11 px-6 rounded-lg bg-primary text-on-primary font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+            <span class="material-symbols-outlined text-[18px]">print</span>
+            Imprimir o guardar PDF
+          </button>
+        </div>
+        <p class="text-xs text-text-secondary mt-3">
+          En el diálogo de impresión: A4 vertical, escala 100 % y márgenes predeterminados. Se imprimen cuatro meses por hoja, con salto de página automático.
+        </p>
+      </section>
+
+      <div class="hidden print:block mb-4 text-sm font-bold">Calendario 2027 — diashabiles.es</div>
+
+      <div id="meses" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {meses.map(mes => (
+          <section class="mes bg-surface-card border border-border-subtle rounded-xl p-4">
+            <h2 class="text-base font-bold text-on-surface mb-3">{mes.nombre} 2027</h2>
+            <div class="grid grid-cols-7 gap-y-1 text-center text-[11px] text-text-secondary mb-1">
+              {DIAS.map(d => <span class="font-semibold">{d}</span>)}
+            </div>
+            <div class="grid grid-cols-7 gap-y-1 text-center text-xs">
+              {mes.semanas.map(semana => (
+                semana.map(celda => celda === null
+                  ? <span class="py-1">&nbsp;</span>
+                  : <span class={`py-1 rounded ${celda.festivo ? 'bg-primary-container text-on-primary-container font-bold' : celda.finde ? 'text-text-secondary' : 'text-on-surface'}`} title={celda.festivo || ''}>{celda.d}</span>
+                )
+              ))}
+            </div>
+            {mes.lista.length > 0 && (
+              <ul class="mt-3 pt-3 border-t border-outline-variant space-y-1">
+                {mes.lista.map(l => (
+                  <li class="text-[11px] text-text-secondary"><span class="font-semibold text-on-surface">{l.split(':')[0]}</span>: {l.split(':').slice(1).join(':').trim()}</li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ))}
+      </div>
+
+      <div class="prose-custom space-y-6 text-on-surface leading-relaxed mt-12 max-w-3xl">
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4 no-print">Cómo imprimirlo bien a la primera</h2>
+        <p class="no-print">
+          El calendario está pensado para A4 vertical. Con la escala al 100 % cada mes ocupa un cuarto de hoja y caben cuatro por página, así que salen tres hojas en total. Si tu navegador reduce la escala por su cuenta, las líneas salen más finas y los nombres de los festivos se cortan; conviene comprobar en la vista previa que el texto se lee.
+        </p>
+        <p class="no-print">
+          Para colgarlo en la pared lo habitual es imprimir en blanco y negro: los festivos quedan con fondo gris y el resto de días en blanco. Si lo quieres en color, el festivo va en el tono de acento del sitio y se distingue a un metro de distancia.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4 no-print">Qué incluye y qué no</h2>
+        <p class="no-print">
+          Los doce meses se generan del calendario oficial publicado en el BOE el 13 de octubre de 2026 (BOE-A-2026-21254). Con la opción «solo nacionales» aparecen las diez fiestas comunes a toda España; al elegir una comunidad se añaden sus dos o tres fiestas propias, que son las que cambian el calendario de una región a otra.
+        </p>
+        <p class="no-print">
+          No incluye los dos festivos locales de cada municipio. No es un olvido: cambian en cada ayuntamiento, se publican en el boletín provincial y no hay una fuente única que los recoja todos. Si los necesitas para una empresa, lo más rápido es consultarlos en el boletín de tu provincia y añadirlos a mano en la hoja impresa.
+        </p>
+        <p class="no-print">
+          Tampoco es un calendario de días inhábiles: para plazos administrativos hay un calendario distinto, el que publica cada administración antes del 1 de enero, que incluye todos los sábados y las fiestas locales de su ámbito. Está explicado en <a href="/dias-inhabiles-2027" class="text-primary hover:underline">días inhábiles 2027</a>.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4 no-print">Los festivos que más se buscan</h2>
+        <p class="no-print">
+          En 2027 el calendario tiene dos pérdidas claras: el 1 de mayo y el 25 de diciembre caen en sábado, así que no se libran. Las comunidades que pierden un tercero son Cataluña, con la Diada el 11 de septiembre, y la Comunitat Valenciana, con el 9 de octubre. El resto de puentes se concentra en Semana Santa —Jueves y Viernes Santo, 25 y 26 de marzo— y en el 1 de noviembre, que cae en lunes.
+        </p>
+        <p class="no-print">
+          Si lo que quieres es planificar vacaciones con el calendario delante, el <a href="/calendario-laboral-2027" class="text-primary hover:underline">calendario laboral 2027</a> tiene las 19 comunidades con sus traslados, y <a href="/festivos-perdidos-2027" class="text-primary hover:underline">festivos perdidos 2027</a> explica cuáles no se recuperan y por qué.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4 no-print">Preguntas frecuentes</h2>
+        <div class="space-y-5 no-print">
+          <div>
+            <h3 class="font-bold text-on-surface">¿Sale en una sola hoja?</h3>
+            <p class="text-text-secondary">No. Con cuatro meses por hoja salen tres. Si lo necesitas todo en una, en el diálogo de impresión elige «2 páginas por hoja» y reduce la escala al 70 %, aunque el texto de los festivos se vuelve difícil de leer.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Puedo imprimir solo un trimestre?</h3>
+            <p class="text-text-secondary">Sí. En las opciones de impresión, elige el rango de páginas: la primera hoja lleva enero a abril, la segunda mayo a agosto y la tercera septiembre a diciembre.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Se actualiza si cambia algún festivo?</h3>
+            <p class="text-text-secondary">El calendario de 2027 ya es definitivo desde el 13 de octubre de 2026, así que no habrá cambios. Si alguna comunidad modificara su decreto, esta página se actualizaría el mismo día.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-outline-variant no-print">
+        <p class="text-sm text-text-secondary">
+          Última actualización: 9 de noviembre de 2026. Fuente: Resolución de 8 de octubre de 2026, de la Dirección General de Trabajo (BOE-A-2026-21254), publicada en el BOE del 13 de octubre de 2026.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Calendario 2027 para imprimir</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">PDF gratis</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">A4</span>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <style is:inline>
+    @media print {
+      @page { size: A4 portrait; margin: 10mm; }
+      html, body { background: #fff !important; }
+      .no-print, header, nav, footer { display: none !important; }
+      main { max-width: none !important; padding: 0 !important; margin: 0 !important; }
+      #meses { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 6mm !important; }
+      .mes { break-inside: avoid; page-break-inside: avoid; border: 1px solid #999 !important; border-radius: 0 !important; padding: 3mm !important; background: #fff !important; }
+      .mes:nth-child(4n) { break-after: page; page-break-after: always; }
+      .mes h2 { font-size: 12pt !important; margin-bottom: 2mm !important; }
+      .mes span { font-size: 8pt !important; }
+      .mes li { font-size: 7pt !important; }
+    }
+  </style>
+
+  <script is:inline>
+    (function () {
+      var datos = JSON.parse(document.getElementById('datos-festivos').textContent);
+      var MES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+      var DIAS = ['L','M','X','J','V','S','D'];
+      var cont = document.getElementById('meses');
+      var sel = document.getElementById('selector-festivos');
+      var btn = document.getElementById('btn-imprimir');
+
+      function iso(d) {
+        var m = d.getMonth() + 1, dia = d.getDate();
+        return d.getFullYear() + '-' + (m < 10 ? '0' + m : m) + '-' + (dia < 10 ? '0' + dia : dia);
+      }
+
+      function render(festivos) {
+        var html = '';
+        for (var m = 0; m < 12; m++) {
+          var primero = new Date(2027, m, 1);
+          var diasMes = new Date(2027, m + 1, 0).getDate();
+          var offset = (primero.getDay() + 6) % 7;
+          var celdas = [];
+          for (var i = 0; i < offset; i++) celdas.push(null);
+          for (var d = 1; d <= diasMes; d++) {
+            var dt = new Date(2027, m, d);
+            celdas.push({ d: d, iso: iso(dt), finde: dt.getDay() === 0 || dt.getDay() === 6, festivo: festivos[iso(dt)] || null });
+          }
+          while (celdas.length % 7 !== 0) celdas.push(null);
+
+          var grid = '';
+          for (var j = 0; j < celdas.length; j++) {
+            var c = celdas[j];
+            if (!c) { grid += '<span class="py-1">&nbsp;</span>'; continue; }
+            var clase = c.festivo ? 'bg-primary-container text-on-primary-container font-bold' : (c.finde ? 'text-text-secondary' : 'text-on-surface');
+            grid += '<span class="py-1 rounded ' + clase + '" title="' + (c.festivo || '') + '">' + c.d + '</span>';
+          }
+
+          var lista = '';
+          for (var k = 0; k < celdas.length; k++) {
+            var cc = celdas[k];
+            if (cc && cc.festivo) {
+              lista += '<li class="text-[11px] text-text-secondary"><span class="font-semibold text-on-surface">' + cc.d + '</span>: ' + cc.festivo + '</li>';
+            }
+          }
+
+          html += '<section class="mes bg-surface-card border border-border-subtle rounded-xl p-4">' +
+            '<h2 class="text-base font-bold text-on-surface mb-3">' + MES[m] + ' 2027</h2>' +
+            '<div class="grid grid-cols-7 gap-y-1 text-center text-[11px] text-text-secondary mb-1">' +
+            DIAS.map(function (x) { return '<span class="font-semibold">' + x + '</span>'; }).join('') + '</div>' +
+            '<div class="grid grid-cols-7 gap-y-1 text-center text-xs">' + grid + '</div>' +
+            (lista ? '<ul class="mt-3 pt-3 border-t border-outline-variant space-y-1">' + lista + '</ul>' : '') +
+            '</section>';
+        }
+        cont.innerHTML = html;
+      }
+
+      function actual() {
+        var v = sel.value;
+        if (v === 'nacional') return datos.nacionales;
+        return (datos.comunidades[v] && datos.comunidades[v].festivos) || datos.nacionales;
+      }
+
+      sel.addEventListener('change', function () { render(actual()); });
+      btn.addEventListener('click', function () { window.print(); });
+    })();
+  </script>
+</Layout>
