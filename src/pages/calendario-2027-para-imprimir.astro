@@ -339,8 +339,14 @@ const jsonLd = [
         return (datos.comunidades[v] && datos.comunidades[v].festivos) || datos.nacionales;
       }
 
-      sel.addEventListener('change', function () { render(actual()); });
-      btn.addEventListener('click', function () { window.print(); });
+      sel.addEventListener('change', function () {
+        render(actual());
+        try { if (window.umami) window.umami.track('calendario-comunidad', { comunidad: sel.value }); } catch (e) {}
+      });
+      btn.addEventListener('click', function () {
+        try { if (window.umami) window.umami.track('imprimir-calendario', { festivos: sel.value }); } catch (e) {}
+        window.print();
+      });
     })();
   </script>
 </Layout>
