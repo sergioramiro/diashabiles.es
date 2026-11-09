@@ -1,0 +1,301 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = '20 días hábiles en una convocatoria: cómo se cuentan hasta el último día';
+const description = 'Veinte días hábiles no son veinte días: son casi cinco semanas. Lo explico con una convocatoria real publicada en el BOE el 6 de noviembre de 2026, día a día y con los festivos que se cruzan.';
+
+const MES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const DN = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+
+// Festivos que caen dentro del plazo del ejemplo (Madrid, 2026)
+const festivos: Record<string, string> = {
+  '2026-11-09': 'La Almudena (fiesta local de Madrid capital)',
+  '2026-12-07': 'Lunes siguiente al Día de la Constitución',
+  '2026-12-08': 'Inmaculada Concepción',
+  '2026-12-25': 'Navidad'
+};
+
+const publicacion = new Date(2026, 10, 6); // viernes 6 de noviembre de 2026
+const dias: { n: number; f: Date; festivo: string | null }[] = [];
+const cursor = new Date(publicacion);
+cursor.setDate(cursor.getDate() + 1); // el plazo empieza al día siguiente
+while (dias.length < 20) {
+  const iso = `${cursor.getFullYear()}-${String(cursor.getMonth() + 1).padStart(2, '0')}-${String(cursor.getDate()).padStart(2, '0')}`;
+  const esFinde = cursor.getDay() === 0 || cursor.getDay() === 6;
+  if (!esFinde && !festivos[iso]) {
+    dias.push({ n: dias.length + 1, f: new Date(cursor), festivo: null });
+  }
+  cursor.setDate(cursor.getDate() + 1);
+}
+const vencimiento = dias[dias.length - 1].f;
+const etiqueta = (d: Date) => `${d.getDate()} de ${MES[d.getMonth()]}`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: '20 días hábiles en una convocatoria: cómo se cuentan hasta el último día',
+    description: 'Ejemplo real: la convocatoria del Ayuntamiento de Madrid publicada en el BOE el 6 de noviembre de 2026. El plazo de 20 días hábiles vence el 9 de diciembre, no el 4, por la Almudena y por el puente de diciembre.',
+    author: { '@type': 'Person', name: 'Carlos Méndez' },
+    datePublished: '2026-11-09',
+    dateModified: '2026-11-09',
+    publisher: {
+      '@type': 'Organization',
+      name: 'diashabiles.es',
+      url: 'https://diashabiles.es'
+    },
+    image: 'https://diashabiles.es/og-image.png',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://diashabiles.es/20-dias-habiles-convocatoria/'
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://diashabiles.es/' },
+      { '@type': 'ListItem', position: 2, name: '20 días hábiles', item: 'https://diashabiles.es/20-dias-habiles-convocatoria/' }
+    ]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Cómo contar 20 días hábiles desde la publicación de una convocatoria',
+    description: 'Cómputo de un plazo de veinte días hábiles conforme al artículo 30 de la Ley 39/2015, con un ejemplo real.',
+    totalTime: 'PT5M',
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Empieza al día siguiente de la publicación',
+        text: 'El plazo no cuenta el día en que se publica la convocatoria. El primer día del cómputo es el siguiente, aunque sea sábado o domingo.'
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Descarta sábados, domingos y festivos',
+        text: 'Solo cuentan los días hábiles: de lunes a viernes, salvo los festivos del calendario de la sede del órgano que convoca.'
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Cuenta veinte días hábiles',
+        text: 'Avanza día a día descartando los inhábiles hasta llegar al vigésimo. Ese es el último día para presentar.'
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: 'Si el último día es inhábil, pasa al siguiente hábil',
+        text: 'El artículo 30.5 de la Ley 39/2015 prorroga el vencimiento al primer día hábil siguiente.'
+      }
+    ]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Los 20 días hábiles cuentan desde la publicación o desde el día siguiente?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Desde el día siguiente. El artículo 30.3 de la Ley 39/2015 dice que los plazos expresados en días se cuentan a partir del día siguiente al de la publicación. El día de publicación nunca cuenta.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cuántos días naturales son 20 días hábiles?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Depende de los festivos que se crucen, pero suelen ser entre 27 y 34 días naturales. En el ejemplo del Ayuntamiento de Madrid son 33: del 6 de noviembre al 9 de diciembre de 2026.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué calendario de festivos se aplica a una convocatoria del Ayuntamiento de Madrid?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'El de la sede del órgano que convoca, en este caso el municipal de Madrid: nacionales, de la Comunidad de Madrid y las dos fiestas locales de la capital. Por eso el 9 de noviembre, la Almudena, no cuenta aunque sea laborable en el resto de la comunidad.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Se puede presentar el último día a las 23:59?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Si el registro es electrónico, sí. El artículo 31.2 de la Ley 39/2015 obliga a que el registro acepte documentos todos los días del año durante las veinticuatro horas, y la fecha y hora que vale es la oficial de la sede electrónica.'
+        }
+      }
+    ]
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="json-ld">
+    {jsonLd.map(bloque => (
+      <script type="application/ld+json" set:html={JSON.stringify(bloque)} />
+    ))}
+  </Fragment>
+
+  <main class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">·</span>
+      <a href="/dias-habiles" class="hover:text-primary transition-colors">Días hábiles</a>
+      <span class="mx-2">·</span>
+      <span class="text-on-surface">20 días hábiles</span>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-[16px]">timer</span>
+          <time datetime="2026-11-09">9 de noviembre de 2026</time>
+          <span class="mx-1">·</span>
+          <span>6 min de lectura</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          Cómo se cuentan 20 días hábiles: ejemplo real con una convocatoria del BOE
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          El viernes 6 de noviembre se publicaron en el BOE dos convocatorias del Ayuntamiento de Madrid con el mismo plazo: veinte días hábiles desde el día siguiente. Quien cuente desde la fecha del BOE se equivoca en cinco días. Este es el cálculo correcto, paso a paso.
+        </p>
+        <p class="mt-4 text-sm">
+          <a href="/#calculadora" class="inline-flex items-center gap-1.5 text-primary font-semibold hover:underline">
+            <span class="material-symbols-outlined text-[16px]">calculate</span>
+            Calcula los días laborables de tu comunidad
+          </a>
+        </p>
+      </header>
+
+      <div class="prose-custom space-y-6 text-on-surface leading-relaxed">
+        <p>
+          El caso es real y está en el BOE del 6 de noviembre de 2026: la Resolución de 22 de octubre del Ayuntamiento de Madrid convoca veinte plazas de Técnico/a Superior de la Rama Social, turno libre (BOE-A-2026-23305), y ese mismo día publica otra de cuarenta plazas por promoción interna (BOE-A-2026-23304). Las dos fijan «veinte días hábiles a contar desde el siguiente al de la publicación de esta resolución en el Boletín Oficial del Estado».
+        </p>
+        <p>
+          La fórmula parece clara y no lo es, porque en esos veinte días se cruzan la Almudena, el puente de diciembre y la Navidad. He hecho la cuenta con el calendario municipal delante; el resultado es el <strong>9 de diciembre de 2026</strong>, no el 4 de diciembre, que es lo que sale si uno se salta un festivo.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">La regla, en tres frases</h2>
+        <p>
+          Primero: el plazo empieza al día siguiente de la publicación, no el día de la publicación (artículo 30.3 de la Ley 39/2015). Segundo: solo cuentan los días hábiles, y son inhábiles los sábados, los domingos y los declarados festivos (artículo 30.2). Tercero: si el último día cae en inhábil, el plazo se prorroga al primer día hábil siguiente (artículo 30.5).
+        </p>
+        <p>
+          La cuarta regla, la que más se olvida, es qué calendario se usa. No es el del municipio donde vives ni el de la comunidad en abstracto: es el de la sede del órgano que convoca, en este caso el Ayuntamiento de Madrid. Eso incluye las dos fiestas locales de la capital, y la primera de ellas —la Almudena, el 9 de noviembre— cae justo al principio del plazo.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">El cálculo, día a día</h2>
+        <p>
+          Publicación: viernes 6 de noviembre. El sábado 7 no cuenta porque es sábado. El lunes 9 tampoco, porque en Madrid capital es la Almudena. El primer día del plazo es el martes 10 de noviembre.
+        </p>
+
+        <div class="overflow-x-auto my-8">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-outline-variant">
+                <th class="text-left py-2 font-semibold">Día</th>
+                <th class="text-left py-2 font-semibold">Fecha</th>
+                <th class="text-left py-2 font-semibold">Qué pasa</th>
+              </tr>
+            </thead>
+            <tbody>
+              {dias.map(d => (
+                <tr class={`border-b border-outline-variant ${d.n === 20 ? 'bg-primary-container' : ''}`}>
+                  <td class="py-2 font-semibold">{d.n}</td>
+                  <td class="py-2">{etiqueta(d.f)}, {DN[d.f.getDay()]}</td>
+                  <td class="py-2 text-text-secondary">{d.n === 1 ? 'Primer día: el lunes 9 es la Almudena en Madrid' : d.n === 20 ? 'Último día para presentar' : ''}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Los saltos que explican la diferencia: del 4 al 9 de diciembre hay cinco días naturales pero solo uno hábil. El 7 es el lunes siguiente a la Constitución, que en 2026 cae en domingo y se traslada; el 8 es la Inmaculada; el 5 y el 6 son sábado y domingo. Por eso el vigésimo día hábil es el miércoles 9.
+        </p>
+        <p>
+          En total, veinte días hábiles son <strong>33 días naturales</strong> en este caso: del 6 de noviembre al 9 de diciembre. Y no hay margen de interpretación: si el último día fuese inhábil, el plazo pasaría al siguiente hábil, pero aquí cae en miércoles.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Los tres errores que cuestan el plazo</h2>
+        <p>
+          <strong>Contar desde el día de publicación.</strong> Es el más habitual y el más caro. Si empiezas a contar el 6 de noviembre y te saltas la Almudena, el día 20 te sale el viernes 4 de diciembre: cinco días antes del vencimiento real. Presentas con margen y, sin embargo, llegas tarde en el cálculo de otros. En este caso el error va en la dirección segura —te hace presentar antes—, pero con plazos más cortos o con un festivo local a favor, la misma equivocación te deja fuera.
+        </p>
+        <p>
+          <strong>Contar los sábados como hábiles.</strong> Un plazo de veinte días naturales desde el 6 de noviembre termina el 26 de noviembre. Casi dos semanas de diferencia. Los sábados no son hábiles para el cómputo administrativo desde la Ley 39/2015, aunque sean laborables en muchas empresas.
+        </p>
+        <p>
+          <strong>Usar el calendario de tu pueblo.</strong> Si vives en un municipio que no celebra la Almudena, el 9 de noviembre te parecerá hábil; si vives en Madrid capital y el trámite es con la Comunidad, al revés. La regla del artículo 30.6 mezcla los dos calendarios: si el día es hábil en tu municipio e inhábil en la sede, o al contrario, no cuenta. Para saber qué días tienes, hay que mirar los dos.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cuándo se presenta el último día</h2>
+        <p>
+          Si el trámite es electrónico, el registro acepta documentos las veinticuatro horas de todos los días del año (artículo 31.2 de la Ley 39/2015). La hora que cuenta es la oficial de la sede electrónica, no la de tu reloj. Presentar a las 23:58 del 9 de diciembre es válido; presentar a las 00:02 del 10 es fuera de plazo, y no hay margen de gracia.
+        </p>
+        <p>
+          Si el registro es presencial, el límite es el horario de la oficina, que cada administración publica. Y si presentas en un día inhábil —por ejemplo, un sábado—, el escrito se entiende presentado en la primera hora del primer día hábil siguiente.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cómo hacer esta cuenta con cualquier plazo</h2>
+        <p>
+          La estructura es siempre la misma: fecha de publicación, primer día hábil siguiente, veinte días hábiles descontando festivos y, si el último cae mal, prórroga al siguiente. Lo que cambia es el calendario: cada administración tiene el suyo, y las locales añaden dos días que no aparecen en el BOE.
+        </p>
+        <p>
+          Si quieres comprobar un plazo concreto, la <a href="/#calculadora" class="text-primary hover:underline">calculadora de la portada</a> resta los festivos de tu comunidad, y en <a href="/dias-inhabiles-2027" class="text-primary hover:underline">días inhábiles 2027</a> están los que aplica la Administración General del Estado, incluidos los que cada comunidad añade a su calendario.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
+        <div class="space-y-5">
+          <div>
+            <h3 class="font-bold text-on-surface">¿Y si la convocatoria dice «días naturales»?</h3>
+            <p class="text-text-secondary">Entonces cuentan todos, incluidos sábados, domingos y festivos. La ley obliga a que la convocatoria lo diga expresamente; si no lo dice, se entienden hábiles.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿El plazo se amplía si hay un festivo local?</h3>
+            <p class="text-text-secondary">Sí, en la práctica: cada festivo que se cruce retrasa un día el vencimiento, porque ese día no se cuenta. No es una ampliación formal, es el efecto del cómputo.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Sirve esta cuenta para una notificación, no para una convocatoria?</h3>
+            <p class="text-text-secondary">Sí. La regla del artículo 30 es la misma: el plazo empieza el día siguiente a la notificación o publicación y se cuentan solo los días hábiles.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Cuántos días hábiles tiene un mes normal?</h3>
+            <p class="text-text-secondary">Entre 20 y 23, según el mes y los festivos. Noviembre de 2026 tiene 20 días hábiles en Madrid capital; diciembre del mismo año, otros 20.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-outline-variant">
+        <p class="text-sm text-text-secondary">
+          Última actualización: 9 de noviembre de 2026. Ejemplo: Resolución de 22 de octubre de 2026, del Ayuntamiento de Madrid (BOE-A-2026-23305), publicada en el BOE del 6 de noviembre de 2026. Fuentes: artículos 30 y 31 de la Ley 39/2015 (BOE-A-2015-10565); Resolución de 17 de octubre de 2025, fiestas laborales 2026 (BOE-A-2025-21667).
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">20 días hábiles</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Cómputo de plazos</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Convocatorias</span>
+        </div>
+      </footer>
+    </article>
+
+    <section class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Festivos locales</h2>
+        <p class="text-sm text-text-secondary mb-4">Las dos fiestas que decide cada ayuntamiento y cómo entran en los plazos.</p>
+        <a href="/festivos-locales-espana" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">location_city</span>
+          Ver festivos locales
+        </a>
+      </div>
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Días inhábiles 2027</h2>
+        <p class="text-sm text-text-secondary mb-4">El calendario que aplica la Administración General del Estado.</p>
+        <a href="/dias-inhabiles-2027" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">event_busy</span>
+          Ver inhábiles
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

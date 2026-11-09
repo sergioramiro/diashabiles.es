@@ -1,0 +1,217 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Festivos locales en España: las dos fiestas de cada ayuntamiento';
+const description = 'Cada municipio elige dos fiestas locales al año, además de las diez nacionales y las dos autonómicas. Quién las decide, dónde se publican y cómo pueden cambiar un plazo administrativo, incluso cuando el trámite no es con tu ayuntamiento.';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Festivos locales en España: las dos fiestas de cada ayuntamiento',
+    description: 'Las dos fiestas locales de cada municipio: quién las decide, dónde se publican, por qué no se trasladan al lunes y cómo afectan al cómputo de plazos administrativos.',
+    author: { '@type': 'Person', name: 'Carlos Méndez' },
+    datePublished: '2026-11-09',
+    dateModified: '2026-11-09',
+    publisher: {
+      '@type': 'Organization',
+      name: 'diashabiles.es',
+      url: 'https://diashabiles.es'
+    },
+    image: 'https://diashabiles.es/og-image.png',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://diashabiles.es/festivos-locales-espana/'
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://diashabiles.es/' },
+      { '@type': 'ListItem', position: 2, name: 'Festivos locales', item: 'https://diashabiles.es/festivos-locales-espana/' }
+    ]
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Cuántas fiestas locales tiene cada municipio?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Dos. El artículo 37.2 del Estatuto de los Trabajadores fija un máximo de catorce fiestas laborales al año, de las cuales dos son locales. Las otras doce se reparten entre las diez que comparten todas las comunidades y las dos propias de cada una.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Quién decide las fiestas locales?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'El pleno del ayuntamiento elige las dos fechas dentro del procedimiento que fija su comunidad autónoma. Después las recoge el calendario laboral autonómico, que las publica municipio a municipio en el boletín oficial de la comunidad. El BOE no las publica: solo recoge las nacionales y las autonómicas.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Una fiesta local que cae en domingo se pasa al lunes?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No, no hay un traslado automático. La regla del lunes siguiente está pensada para las fiestas de ámbito nacional. En las locales, si la fecha cae en domingo se pierde, salvo que el ayuntamiento elija otra para ese año.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Una fiesta local cuenta para un plazo ante la Administración General del Estado?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Puede contar. El artículo 30.6 de la Ley 39/2015 dice que si un día es hábil en el municipio donde reside el interesado e inhábil en la sede del órgano, o al revés, se considera inhábil en todo caso. Es decir, que un festivo de tu pueblo puede quitarte un día del cómputo aunque la sede esté en otra provincia.'
+        }
+      }
+    ]
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="json-ld">
+    {jsonLd.map(bloque => (
+      <script type="application/ld+json" set:html={JSON.stringify(bloque)} />
+    ))}
+  </Fragment>
+
+  <main class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2">·</span>
+      <a href="/calendario-laboral-2027" class="hover:text-primary transition-colors">Calendario laboral 2027</a>
+      <span class="mx-2">·</span>
+      <span class="text-on-surface">Festivos locales</span>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
+          <span class="material-symbols-outlined text-[16px]">location_city</span>
+          <time datetime="2026-11-09">9 de noviembre de 2026</time>
+          <span class="mx-1">·</span>
+          <span>6 min de lectura</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          Festivos locales: las dos fiestas que decide cada ayuntamiento
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">
+          Hoy, 9 de noviembre, Madrid capital celebra la Almudena y el resto de la Comunidad de Madrid trabaja. No es un error de nadie: es la fiesta local, el único tramo del calendario que no viene del BOE. Cada municipio tiene dos, las elige su pleno y cambian según dónde estés.
+        </p>
+        <p class="mt-4 text-sm">
+          <a href="/#calculadora" class="inline-flex items-center gap-1.5 text-primary font-semibold hover:underline">
+            <span class="material-symbols-outlined text-[16px]">calculate</span>
+            Calcula los días laborables con los festivos de tu comunidad
+          </a>
+        </p>
+      </header>
+
+      <div class="prose-custom space-y-6 text-on-surface leading-relaxed">
+        <p>
+          El calendario laboral español tiene tres capas y solo una se decide en tu ayuntamiento. La primera son las diez fiestas que comparten todas las comunidades; la segunda, las dos que cada comunidad añade por tradición —el 2 de mayo en Madrid, el 25 de julio en Galicia, el 9 de octubre en la Comunitat Valenciana—; y la tercera son los dos días de fiesta local. En total, catorce como máximo, tal como fija el artículo 37.2 del Estatuto de los Trabajadores.
+        </p>
+        <p>
+          Esas dos últimas son las que rompen la uniformidad. Dos personas que trabajan en la misma empresa, una en Madrid capital y otra en Alcalá de Henares, no tienen el mismo calendario: la primera libra la Almudena y la segunda no. Y no hay una regla que diga cuáles deben ser: la ley solo pone el límite de dos y deja que cada municipio elija sus tradiciones.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Quién las decide y dónde se publican</h2>
+        <p>
+          El pleno del ayuntamiento aprueba las dos fechas, normalmente por acuerdo de la corporación a propuesta de la concejalía de personal o de recursos humanos. Después, la comunidad autónoma las recoge en su calendario laboral anual, que las publica municipio a municipio en el boletín oficial autonómico: el BOCM en Madrid, el DOG en Galicia, el DOGV en la Comunitat Valenciana, el BOJA en Andalucía. En algunas provincias aparecen además en el boletín provincial.
+        </p>
+        <p>
+          Conviene tener claro qué publica cada boletín, porque es la fuente de la mayoría de los errores. El BOE publica la relación de fiestas laborales de ámbito nacional y autonómico, más las de Ceuta y Melilla: ahí no están las locales. Cuando alguien dice «lo he mirado en el BOE y no sale», casi siempre es porque buscaba una fiesta municipal en el sitio equivocado.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Por qué no se trasladan al lunes</h2>
+        <p>
+          Las fiestas nacionales que caen en domingo se trasladan al lunes siguiente; es una regla que viene del Real Decreto 2001/1983 y que el Estatuto recoge. Las locales no tienen ese derecho automático. Si la fecha elegida cae en domingo, se pierde, y por eso los ayuntamientos suelen escoger fiestas que caigan entre semana o cambiar de fecha según el año.
+        </p>
+        <p>
+          El resultado práctico es que la fiesta local se decide con el calendario delante. Un municipio que celebra su patrón el 8 de septiembre no puede moverlo por decreto, así que cuando cae en domingo asume la pérdida; otro, con dos candidatas, elige la que cae en martes. Es la parte del calendario donde la tradición y la aritmética negocian cada año.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cómo afectan a un plazo administrativo</h2>
+        <p>
+          Aquí está lo que casi nadie mira y sí importa. El artículo 30.2 de la Ley 39/2015 establece que, cuando un plazo se fija en días, se entienden hábiles y se excluyen del cómputo los sábados, los domingos y los días declarados festivos. La pregunta es qué calendario se aplica, y la respuesta no siempre es el de tu ciudad.
+        </p>
+        <p>
+          La regla general es que manda el calendario de la sede del órgano que tramita: si presentas ante la Administración General del Estado, su resolución anual de días inhábiles; si presentas ante la comunidad autónoma, el suyo; si presentas ante un ayuntamiento, el calendario de entidades locales de esa comunidad. Pero encima de eso está el artículo 30.6, que es el que sorprende: cuando un día es hábil en el municipio o la comunidad donde reside el interesado e inhábil en la sede del órgano, o al revés, se considera inhábil en todo caso.
+        </p>
+        <p>
+          Dicho de otra forma: un festivo local puede quitarte un día del plazo aunque el trámite no sea con tu ayuntamiento. Si vives en Madrid capital y presentas un escrito ante un organismo estatal, el 9 de noviembre no cuenta para ti, porque en tu municipio es inhábil, aunque la sede lo tenga por hábil. Y al contrario: si vives en un pueblo que no celebra ese día y presentas ante el Ayuntamiento de Madrid, tampoco cuenta, porque en la sede es inhábil.
+        </p>
+        <p>
+          Ese doble filtro explica por qué dos personas con el mismo trámite y la misma fecha de publicación pueden tener vencimientos distintos. No es un capricho del registro: es lo que dice la ley para que nadie pierda un día por vivir donde vive.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">En la empresa, manda el centro de trabajo</h2>
+        <p>
+          Para las vacaciones y los cuadrantes, lo que cuenta es el municipio del centro de trabajo, no el de la residencia del empleado. Una empresa con dos naves, una en Getafe y otra en Madrid capital, tiene dos calendarios distintos y debe aplicar el de cada centro. Si el convenio colectivo mejora el mínimo legal —por ejemplo, añadiendo una fiesta o compensando las que caen en sábado—, se aplica el convenio, pero eso ya es negociación colectiva y no calendario oficial.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cómo saber las tuyas</h2>
+        <p>
+          La vía fiable es el calendario laboral de tu comunidad, que publica la lista por municipios, y la web de tu ayuntamiento, que suele anunciarlas en diciembre para el año siguiente. No existe una base de datos estatal de festivos locales: son más de ocho mil municipios y cada uno tiene las suyas, así que cualquier web que prometa el dato completo está reconstruyéndolo, no citándolo.
+        </p>
+        <p>
+          Para el cómputo de días laborables y hábiles de tu comunidad, la <a href="/#calculadora" class="text-primary hover:underline">calculadora de la portada</a> resta las nacionales y las autonómicas; los dos días locales hay que añadirlos a mano. Y si lo que necesitas es el calendario en papel, está en <a href="/calendario-2027-para-imprimir" class="text-primary hover:underline">calendario 2027 para imprimir</a>.
+        </p>
+
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
+        <div class="space-y-5">
+          <div>
+            <h3 class="font-bold text-on-surface">¿Puede un ayuntamiento poner tres fiestas locales?</h3>
+            <p class="text-text-secondary">No. El artículo 37.2 del Estatuto pone el techo en dos, y las comunidades no pueden ampliarlo. Lo que sí puede pasar es que una comunidad añada una fiesta recuperable en un año concreto, pero eso no es una fiesta local.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Las fiestas locales se recuperan si caen en sábado?</h3>
+            <p class="text-text-secondary">No por ley. Como en las nacionales, un festivo en sábado no genera derecho a otro día ni a compensación económica, salvo que el convenio colectivo o un acuerdo de empresa lo establezcan.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Cuándo se conocen las del año que viene?</h3>
+            <p class="text-text-secondary">Cada comunidad publica su calendario laboral entre octubre y diciembre del año anterior, con la lista de municipios. Hasta esa publicación, cualquier fecha local que veas es una previsión.</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿El 9 de noviembre es festivo en toda España?</h3>
+            <p class="text-text-secondary">No. La Almudena es fiesta local de la ciudad de Madrid. En el resto de la Comunidad de Madrid y en el resto del país es un día laborable normal, salvo en los municipios que hayan elegido esa fecha como una de sus dos locales.</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-outline-variant">
+        <p class="text-sm text-text-secondary">
+          Última actualización: 9 de noviembre de 2026. Fuentes: artículo 37.2 del Estatuto de los Trabajadores (BOE-A-2015-11430); artículos 30 y 31 de la Ley 39/2015 (BOE-A-2015-10565); Real Decreto 2001/1983, sobre regulación de la jornada de trabajo (BOE-A-1983-20906).
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Festivos locales</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Cómputo de plazos</span>
+          <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Ley 39/2015</span>
+        </div>
+      </footer>
+    </article>
+
+    <section class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">Días inhábiles 2027</h2>
+        <p class="text-sm text-text-secondary mb-4">Qué días no cuentan para un plazo y cuándo se publica el calendario de la AGE.</p>
+        <a href="/dias-inhabiles-2027" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">event_busy</span>
+          Ver inhábiles
+        </a>
+      </div>
+      <div class="bg-surface-secondary rounded-2xl p-6">
+        <h2 class="text-lg font-bold text-on-surface mb-2">20 días hábiles</h2>
+        <p class="text-sm text-text-secondary mb-4">Cómo se cuentan con un ejemplo real de una convocatoria publicada en el BOE.</p>
+        <a href="/20-dias-habiles-convocatoria" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-[16px]">timer</span>
+          Ver el ejemplo
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>
