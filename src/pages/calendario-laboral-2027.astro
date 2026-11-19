@@ -228,7 +228,7 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
               {filas.map(f => (
                 <tr class="border-b border-outline-variant">
                   <td class="py-2">
-                    <a href={`/comunidad/${f.id}`} class="text-primary hover:underline font-semibold">{f.nombre}</a>
+                    <a href={`/comunidad/${f.id}/`} class="text-primary hover:underline font-semibold">{f.nombre}</a>
                   </td>
                   <td class="py-2 text-right">{f.total}</td>
                   <td class="py-2 text-right">{f.efectivos}</td>
@@ -242,7 +242,7 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
         </div>
 
         <p>
-          El detalle de cada comunidad (con el calendario mes a mes) está en las páginas de cada territorio, por ejemplo <a href="/comunidad/madrid" class="text-primary hover:underline">Madrid</a>, <a href="/comunidad/cataluna" class="text-primary hover:underline">Cataluña</a>, <a href="/comunidad/andalucia" class="text-primary hover:underline">Andalucía</a>, <a href="/comunidad/valencia" class="text-primary hover:underline">Comunitat Valenciana</a> o <a href="/comunidad/pais_vasco" class="text-primary hover:underline">País Vasco</a>.
+          El detalle de cada comunidad (con el calendario mes a mes) está en las páginas de cada territorio, por ejemplo <a href="/comunidad/madrid/" class="text-primary hover:underline">Madrid</a>, <a href="/comunidad/cataluna/" class="text-primary hover:underline">Cataluña</a>, <a href="/comunidad/andalucia/" class="text-primary hover:underline">Andalucía</a>, <a href="/comunidad/valencia/" class="text-primary hover:underline">Comunitat Valenciana</a> o <a href="/comunidad/pais_vasco/" class="text-primary hover:underline">País Vasco</a>.
         </p>
 
         <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Qué queda por confirmar</h2>
@@ -253,13 +253,13 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
         </ul>
 
         <p>
-          Si te interesa el efecto de los festivos de fin de semana, el análisis completo —incluido el 11 de septiembre en Cataluña y el 26 de diciembre en Baleares y Cataluña— está en <a href="/festivos-perdidos-2027" class="text-primary hover:underline">festivos perdidos 2027</a>.
+          Si te interesa el efecto de los festivos de fin de semana, el análisis completo —incluido el 11 de septiembre en Cataluña y el 26 de diciembre en Baleares y Cataluña— está en <a href="/festivos-perdidos-2027/" class="text-primary hover:underline">festivos perdidos 2027</a>.
         </p>
         <p>
-          Si lo que quieres es el calendario en papel, está en <a href="/calendario-2027-para-imprimir" class="text-primary hover:underline">calendario 2027 para imprimir</a>: doce meses en A4 con los festivos de tu comunidad marcados.
+          Si lo que quieres es el calendario en papel, está en <a href="/calendario-2027-para-imprimir/" class="text-primary hover:underline">calendario 2027 para imprimir</a>: doce meses en A4 con los festivos de tu comunidad marcados.
         </p>
         <p>
-          Este calendario es el laboral, el que ordena jornadas y nóminas. Para contar plazos ante la Administración hay un documento aparte, el calendario de días inhábiles, que se publica antes de que empiece el año: lo explico en <a href="/dias-inhabiles-2027" class="text-primary hover:underline">días inhábiles 2027 y cómputo de plazos</a>. Y si lo que buscas es planificar el año siguiente, el <a href="/calendario-laboral-2028" class="text-primary hover:underline">calendario laboral 2028</a> ya tiene fijadas las diez fiestas nacionales y las fechas en las que se sabrá el resto.
+          Este calendario es el laboral, el que ordena jornadas y nóminas. Para contar plazos ante la Administración hay un documento aparte, el calendario de días inhábiles, que se publica antes de que empiece el año: lo explico en <a href="/dias-inhabiles-2027/" class="text-primary hover:underline">días inhábiles 2027 y cómputo de plazos</a>. Y si lo que buscas es planificar el año siguiente, el <a href="/calendario-laboral-2028/" class="text-primary hover:underline">calendario laboral 2028</a> ya tiene fijadas las diez fiestas nacionales y las fechas en las que se sabrá el resto.
         </p>
 
         <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
@@ -300,7 +300,7 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
       <div class="bg-surface-secondary rounded-2xl p-6">
         <h2 class="text-lg font-bold text-on-surface mb-2">Festivos perdidos 2027</h2>
         <p class="text-sm text-text-secondary mb-4">Por qué 1 de mayo y Navidad caen en sábado y qué comunidades pierden más días.</p>
-        <a href="/festivos-perdidos-2027" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
+        <a href="/festivos-perdidos-2027/" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">
           <span class="material-symbols-outlined text-[16px]">event_busy</span>
           Leer el análisis
         </a>
