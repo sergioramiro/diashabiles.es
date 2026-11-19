@@ -1,0 +1,119 @@
+---
+import PaginaLegal from '../components/PaginaLegal.astro';
+import DatosTitular from '../components/DatosTitular.astro';
+import EmailContacto from '../components/EmailContacto.astro';
+import { sitio } from '../data/titular';
+
+const title = 'Política de privacidad — diashabiles.es';
+const description = 'Responsable, finalidades, base jurídica, conservación y derechos sobre los datos de diashabiles.es, incluida la analítica sin cookies y la publicidad.';
+---
+
+<PaginaLegal
+  title={title}
+  description={description}
+  canonical="https://diashabiles.es/politica-privacidad/"
+  heading="Política de privacidad"
+  lead="Información sobre el tratamiento de datos personales, conforme al Reglamento (UE) 2016/679 (RGPD) y a la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD)."
+  actual="/politica-privacidad/"
+>
+  <h2>Responsable del tratamiento</h2>
+  <DatosTitular />
+  <p>
+    Para ejercer un derecho o hacer una consulta sobre privacidad, escribe a <EmailContacto /> e indica en el asunto «Protección de datos». También puedes usar el formulario de <a href="/contacto/">contacto</a>.
+  </p>
+
+  <h2>Formulario de contacto</h2>
+  <p>
+    Si nos escribes, tratamos el nombre, el correo electrónico, el mensaje y la constancia de que aceptaste esta información.
+  </p>
+  <ul>
+    <li><strong>Finalidad:</strong> responder a tu consulta y, si hace falta, seguir esa conversación.</li>
+    <li><strong>Base jurídica:</strong> tu consentimiento (artículo 6.1.a del RGPD), que prestas al marcar la casilla del formulario. Puedes retirarlo cuando quieras. Retirarlo no afecta a la licitud del tratamiento anterior.</li>
+    <li><strong>Conservación:</strong> el tiempo necesario para atender la consulta y, como máximo, doce meses desde el último mensaje. Si hubiera una reclamación, se conservarán durante el plazo de prescripción aplicable.</li>
+    <li><strong>Destinatario:</strong> Netlify, Inc., que recibe el formulario por cuenta del responsable. No se ceden a nadie más, salvo obligación legal.</li>
+  </ul>
+  <p>
+    No hace falta que incluyas datos de salud, de ideología, de menores ni documentos oficiales. Si llegan en el mensaje, no se usarán para otra finalidad y se suprimirán cuando se borre la consulta.
+  </p>
+
+  <h2>Analítica con Umami, sin cookies</h2>
+  <p>
+    El sitio mide las visitas con Umami, una herramienta alojada por el propio responsable en <a href={sitio.analitica}>{sitio.analitica}</a>. El código se carga desde <a href={`${sitio.analitica}/script.js`}>{sitio.analitica}/script.js</a>.
+  </p>
+  <p>
+    Umami no instala cookies ni guarda un identificador en el navegador. Recoge datos agregados de uso: la página vista, el origen de la visita, el tipo de dispositivo y un país aproximado. Sirven para saber qué contenidos se leen y mejorar el sitio. No se usan para identificarte ni para publicidad.
+  </p>
+  <ul>
+    <li><strong>Base jurídica:</strong> interés legítimo del responsable (artículo 6.1.f del RGPD). El efecto sobre las personas es reducido: no hay cookie, no hay identificador en el dispositivo y los datos no se asocian a una persona identificada. Puedes oponerte escribiendo al responsable.</li>
+    <li><strong>Conservación:</strong> en esa instancia, de forma agregada, el tiempo necesario para la medición. No se cruzan con el formulario de contacto.</li>
+  </ul>
+  <p>
+    No usamos Google Analytics ni otra analítica que deposite cookies.
+  </p>
+
+  <h2>Publicidad</h2>
+  <p>
+    Está previsto mostrar anuncios de Google AdSense. El código de anuncios y el gestor de consentimiento de Google (Privacidad y mensajes, compatible con el marco de transparencia y consentimiento de la IAB, TCF) todavía no están instalados. Hasta entonces el sitio no instala cookies publicitarias.
+  </p>
+  <p>Cuando esa publicidad esté activa, se aplicará lo siguiente:</p>
+  <ul>
+    <li>Terceros, incluido Google, usan cookies para mostrar anuncios basados en las visitas previas de una persona a este sitio web o a otros sitios web.</li>
+    <li>El uso de cookies publicitarias permite a Google y a sus socios mostrar anuncios basados en las visitas a este sitio y a otros sitios de Internet.</li>
+    <li>
+      Puedes inhabilitar la publicidad personalizada en <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">https://adssettings.google.com</a>.
+      También puedes hacerlo en <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>.
+    </li>
+  </ul>
+  <p>
+    <a href="https://business.safety.google/privacy/" target="_blank" rel="noopener noreferrer">Cómo usa Google los datos cuando utilizas sitios o aplicaciones de nuestros socios</a>.
+  </p>
+  <p>
+    La base jurídica de las cookies de publicidad personalizada será tu consentimiento (artículo 6.1.a del RGPD y artículo 22 de la LSSI), recogido en ese gestor antes de instalarlas. Si no consientes, esas cookies no se activarán. Google decide, con su propia política, el uso que hace de los datos obtenidos a través de los anuncios: en esa actividad actúa como responsable independiente. El detalle de las cookies está en la <a href="/cookies/">política de cookies</a>.
+  </p>
+
+  <h2>Funcionamiento del sitio</h2>
+  <p>
+    El servidor puede registrar de forma transitoria datos técnicos de la petición (como la dirección IP, la fecha y la página solicitada) para prestar el sitio, impedir abusos y diagnosticar fallos. La base jurídica es el interés legítimo del responsable (artículo 6.1.f del RGPD) en mantener el servicio seguro y disponible. El alojamiento lo presta Netlify, Inc.
+  </p>
+
+  <h2>Encargados y transferencias</h2>
+  <p>
+    Netlify, Inc., con sede en Estados Unidos, trata por cuenta del responsable los datos del alojamiento y del formulario. Si ese tratamiento supone una transferencia fuera del Espacio Económico Europeo, se ampara en las cláusulas contractuales tipo aprobadas por la Comisión Europea o en una decisión de adecuación, según el mecanismo vigente en el contrato con ese encargado.
+  </p>
+  <p>
+    Cuando la publicidad esté activa, Google puede tratar datos en Estados Unidos. El enlace de la sección de publicidad describe ese uso. No vendemos datos personales ni elaboramos perfiles propios con ellos.
+  </p>
+
+  <h2>Menores</h2>
+  <p>
+    El sitio no se dirige a menores de 14 años. El artículo 7 de la LOPDGDD fija esa edad para consentir el tratamiento en los servicios de la sociedad de la información. No recabamos a sabiendas datos de menores de esa edad. Si un padre, una madre o quien ejerza la tutela cree que un menor nos ha escrito, puede pedir la supresión en <EmailContacto />.
+  </p>
+
+  <h2>Tus derechos</h2>
+  <p>Puedes solicitar, ante el responsable:</p>
+  <ul>
+    <li>acceso a tus datos;</li>
+    <li>rectificación de los inexactos;</li>
+    <li>supresión;</li>
+    <li>limitación del tratamiento;</li>
+    <li>oposición, incluida la oposición a la medición agregada;</li>
+    <li>portabilidad de los datos que nos hayas facilitado;</li>
+    <li>retirada del consentimiento, en cualquier momento.</li>
+  </ul>
+  <p>
+    Para ejercerlos, escribe a <EmailContacto /> e indica qué derecho pides. Si hace falta para asegurarnos de que eres tú, pediremos solo el dato mínimo necesario para comprobarlo. También puedes reclamar ante la Agencia Española de Protección de Datos (AEPD), calle Jorge Juan 6, 28001 Madrid, <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>.
+  </p>
+  <p>
+    No tomamos decisiones automatizadas que produzcan efectos jurídicos o te afecten de modo significativo (artículo 22 del RGPD).
+  </p>
+
+  <h2>Seguridad</h2>
+  <p>
+    El sitio se sirve por HTTPS y el acceso a los mensajes del formulario está limitado al responsable y a su encargado. Ningún envío por internet es completamente seguro.
+  </p>
+
+  <h2>Cambios</h2>
+  <p>
+    Si esta política cambia, la versión nueva se publicará en esta misma dirección, con la fecha de actualización al pie.
+  </p>
+</PaginaLegal>

@@ -18,6 +18,8 @@ export default defineConfig({
         if (page.includes('/404')) return false;
         // Excluir páginas de API
         if (page.includes('/api/')) return false;
+        // Confirmación del formulario: noindex, fuera del sitemap
+        if (page.includes('/contacto/gracias')) return false;
         return true;
       },
       // Personalizar prioridades por URL

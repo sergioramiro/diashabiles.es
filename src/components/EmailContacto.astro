@@ -1,0 +1,11 @@
+---
+import { emailDeContactoEsValido, titular } from '../data/titular';
+
+const valido = emailDeContactoEsValido();
+---
+
+{valido ? (
+  <a href={`mailto:${titular.email}`}>{titular.email}</a>
+) : (
+  <strong style="white-space:nowrap">{titular.email}</strong>
+)}

@@ -1,0 +1,23 @@
+---
+import PaginaLegal from '../../components/PaginaLegal.astro';
+
+const title = 'Mensaje enviado — diashabiles.es';
+const description = 'Confirmación de envío del formulario de contacto de diashabiles.es.';
+---
+
+<PaginaLegal
+  title={title}
+  description={description}
+  canonical="https://diashabiles.es/contacto/gracias/"
+  heading="Mensaje enviado"
+  lead="Hemos recibido tu consulta. No hace falta que la envíes otra vez."
+  actual="/contacto/gracias/"
+  noindex={true}
+>
+  <p>
+    Responderemos a la dirección de correo que has indicado. Si quieres añadir algo, puedes volver al <a href="/contacto/">formulario de contacto</a>.
+  </p>
+  <p>
+    <a href="/">Volver a la calculadora</a>
+  </p>
+</PaginaLegal>

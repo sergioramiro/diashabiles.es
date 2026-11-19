@@ -1,0 +1,25 @@
+---
+interface Props {
+  actual?: string;
+  subrayar?: boolean;
+}
+
+const { actual, subrayar = false } = Astro.props;
+
+const enlaces = [
+  { href: '/aviso-legal/', texto: 'Aviso legal' },
+  { href: '/politica-privacidad/', texto: 'Política de privacidad' },
+  { href: '/cookies/', texto: 'Cookies' },
+  { href: '/contacto/', texto: 'Contacto' },
+];
+---
+
+<Fragment>
+  {enlaces.map(({ href, texto }) => (
+    <a
+      class:list={['font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors', subrayar && 'underline']}
+      href={href}
+      aria-current={actual === href ? 'page' : undefined}
+    >{texto}</a>
+  ))}
+</Fragment>

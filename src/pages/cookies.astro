@@ -1,0 +1,103 @@
+---
+import PaginaLegal from '../components/PaginaLegal.astro';
+import { sitio } from '../data/titular';
+
+const title = 'Política de cookies — diashabiles.es';
+const description = 'Cookies técnicas, medición con Umami sin cookies y publicidad de Google cuando se active, y cómo gestionar el consentimiento en diashabiles.es.';
+---
+
+<PaginaLegal
+  title={title}
+  description={description}
+  canonical="https://diashabiles.es/cookies/"
+  heading="Política de cookies"
+  lead="Qué almacena este sitio en tu dispositivo y cómo puedes aceptarlo, rechazarlo o borrarlo. Se informa conforme al artículo 22 de la Ley 34/2002 (LSSI) y a las directrices de la Agencia Española de Protección de Datos."
+  actual="/cookies/"
+>
+  <h2>Qué es una cookie</h2>
+  <p>
+    Una cookie es un pequeño archivo que un sitio guarda en tu dispositivo y puede volver a leer después. Hay técnicas parecidas, como el almacenamiento local o las balizas. En esta página, «cookies» incluye esas técnicas cuando sirven para el mismo fin.
+  </p>
+
+  <h2>Qué usa este sitio</h2>
+  <div class="tabla">
+    <table>
+      <caption>Cookies y técnicas de medición</caption>
+      <thead>
+        <tr>
+          <th scope="col">Tipo</th>
+          <th scope="col">Para qué</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Técnicas</th>
+          <td>Hacer que la página se muestre y que el formulario se envíe. No sirven para analítica ni para publicidad.</td>
+          <td>El sitio no instala cookies propias para funcionar, recordar una sesión o guardar preferencias.</td>
+        </tr>
+        <tr>
+          <th scope="row">Analítica</th>
+          <td>Saber, de forma agregada, qué páginas se leen. La herramienta es Umami, en <a href={sitio.analitica}>{sitio.analitica}</a>, y no usa cookies.</td>
+          <td>Activa, sin cookies y sin identificador en el navegador.</td>
+        </tr>
+        <tr>
+          <th scope="row">Publicidad</th>
+          <td>Mostrar anuncios de Google y, si consientes, anuncios basados en visitas anteriores.</td>
+          <td>No instaladas. Solo se activarán con Google AdSense y tras la elección en el gestor de consentimiento.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Cookies técnicas</h2>
+  <p>
+    No hace falta una cookie para leer las páginas ni para enviar el formulario de contacto: el envío es una petición normal. El artículo 22.2 de la LSSI exceptúa del consentimiento lo que sea estrictamente necesario para prestar un servicio que la persona ha pedido de forma expresa. Hoy el sitio no deposita esa clase de cookie. Si el alojamiento tuviera que usar alguna solo por seguridad de la petición, no se emplearía para medir la audiencia ni para anuncios.
+  </p>
+
+  <h2>Umami, sin cookies</h2>
+  <p>
+    La medición se hace con Umami, servido desde <a href={sitio.analitica}>{sitio.analitica}</a>. No deposita cookies ni lee un identificador guardado en tu dispositivo, así que no entra en el deber de consentimiento del artículo 22.2 de la LSSI. Los datos que trata y la base jurídica (interés legítimo) están explicados en la <a href="/politica-privacidad/">política de privacidad</a>.
+  </p>
+
+  <h2>Publicidad de Google, cuando se active</h2>
+  <p>
+    Hoy no hay anuncios ni está instalado el gestor de consentimiento. Cuando se active Google AdSense, y solo a partir de ese momento:
+  </p>
+  <ul>
+    <li>Terceros, incluido Google, usan cookies para mostrar anuncios basados en las visitas previas de una persona a este sitio web o a otros sitios web.</li>
+    <li>El uso de cookies publicitarias permite a Google y a sus socios mostrar anuncios basados en las visitas a este sitio y a otros sitios de Internet.</li>
+    <li>
+      Puedes inhabilitar la publicidad personalizada en <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">https://adssettings.google.com</a>.
+      También puedes hacerlo en <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>.
+    </li>
+  </ul>
+  <p>
+    <a href="https://business.safety.google/privacy/" target="_blank" rel="noopener noreferrer">Cómo usa Google los datos cuando utilizas sitios o aplicaciones de nuestros socios</a>.
+  </p>
+  <p>
+    Esas cookies no se instalarán hasta que elijas una opción en el gestor de consentimiento. La duración la fija Google; puedes verla en la información de cookies de tu navegador. No las listamos aquí con un plazo inventado.
+  </p>
+
+  <h2>Cómo gestionar el consentimiento</h2>
+  <h3>Gestor de consentimiento</h3>
+  <p>
+    Cuando la publicidad esté activa, el consentimiento se pedirá con el gestor de Google «Privacidad y mensajes», compatible con el marco IAB TCF. Desde ese panel podrás aceptar, rechazar o configurar las cookies que no sean necesarias, y cambiar de opinión más adelante. El acceso al panel quedará a la vista en el sitio. Mientras el gestor no esté instalado, no se cargan cookies publicitarias y no hay un panel que abrir.
+  </p>
+  <h3>Navegador</h3>
+  <p>
+    Puedes bloquear o borrar las cookies desde la configuración de privacidad de tu navegador, en la sección de cookies y datos de sitios. La ruta habitual es esta:
+  </p>
+  <ul>
+    <li>Chrome: Configuración, Privacidad y seguridad, Cookies y otros datos de sitios.</li>
+    <li>Firefox: Ajustes, Privacidad y seguridad, Cookies y datos del sitio.</li>
+    <li>Safari: Ajustes, Privacidad, Gestionar datos de sitios web.</li>
+    <li>Edge: Configuración, Cookies y permisos del sitio.</li>
+  </ul>
+  <p>
+    Si bloqueas todas las cookies, las páginas informativas se pueden seguir leyendo. Si borras las cookies, la elección guardada por el gestor puede volver a preguntarse.
+  </p>
+  <p>
+    Además de la configuración de anuncios de Google y de www.aboutads.info, en la Unión Europea puedes usar <a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener noreferrer">www.youronlinechoices.eu</a>. La Agencia Española de Protección de Datos explica el marco general en <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>.
+  </p>
+</PaginaLegal>

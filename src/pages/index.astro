@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import EnlacesLegales from '../components/EnlacesLegales.astro';
 import { COMUNIDADES } from '../lib/calculadora';
 ---
 
@@ -1302,8 +1303,7 @@ import { COMUNIDADES } from '../lib/calculadora';
         <div class="flex flex-col gap-space-xs">
           <span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold mb-space-xs">Legal</span>
           <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#referencias-legales">Referencias normativas</a>
-          <span class="font-body-sm text-body-sm text-on-surface-variant">Aviso legal</span>
-          <span class="font-body-sm text-body-sm text-on-surface-variant">Política de privacidad</span>
+          <EnlacesLegales />
         </div>
         <!-- Resources -->
         <div class="flex flex-col gap-space-xs">

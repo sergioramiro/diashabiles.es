@@ -1,0 +1,60 @@
+---
+import PaginaLegal from '../components/PaginaLegal.astro';
+import DatosTitular from '../components/DatosTitular.astro';
+import EmailContacto from '../components/EmailContacto.astro';
+
+const title = 'Aviso legal — diashabiles.es';
+const description = 'Datos del titular de diashabiles.es, condiciones de uso y propiedad intelectual, según el artículo 10 de la LSSI.';
+---
+
+<PaginaLegal
+  title={title}
+  description={description}
+  canonical="https://diashabiles.es/aviso-legal/"
+  heading="Aviso legal"
+  lead="Información del prestador de este sitio, exigida por el artículo 10 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico (LSSI)."
+  actual="/aviso-legal/"
+>
+  <h2>Datos identificativos</h2>
+  <p>
+    El artículo 10 de la LSSI obliga a ofrecer, de forma permanente, fácil, directa y gratuita, los datos que permiten identificar al prestador y comunicarse con él. Son estos:
+  </p>
+  <DatosTitular />
+  <p>
+    Para una comunicación directa puedes usar el formulario de <a href="/contacto/">contacto</a> o escribir a <EmailContacto />.
+  </p>
+  <p>
+    El mismo artículo pide, cuando existen, la inscripción en un registro público, los datos de la autorización administrativa previa y, si la actividad es una profesión regulada, el colegio profesional, el título y el Estado de la Unión Europea en el que se expidió. Esos datos no se consignan aquí porque no constan. Si resultan exigibles al titular, se publicarán en este apartado.
+  </p>
+  <p>
+    diashabiles.es es un sitio gratuito de información y de cálculo de días laborables y hábiles. No vende productos, no formaliza contratos por vía electrónica y no muestra precios. Puede financiarse con publicidad de terceros cuando esa publicidad esté activa. El detalle está en la <a href="/politica-privacidad/">política de privacidad</a> y en la <a href="/cookies/">política de cookies</a>.
+  </p>
+
+  <h2>Objeto</h2>
+  <p>
+    El sitio explica festivos y el cómputo de plazos en España y ofrece una calculadora. El resultado es orientativo. La fuente oficial de las fiestas y de las normas es el Boletín Oficial del Estado y, en su caso, el boletín autonómico o provincial. Usar la calculadora no sustituye la comprobación en el boletín que corresponda al procedimiento ni un asesoramiento jurídico.
+  </p>
+
+  <h2>Condiciones de uso</h2>
+  <p>
+    El acceso al sitio implica el uso conforme a la ley española, a este aviso y a las políticas de privacidad y de cookies. Queda fuera de ese uso dañar el servicio, intentar acceder a zonas o datos que no sean públicos, o emplear la información para una finalidad ilícita.
+  </p>
+  <p>
+    El titular puede interrumpir el sitio por mantenimiento, por un fallo técnico o para actualizar contenidos, sin que ello genere por sí solo una obligación de indemnizar.
+  </p>
+
+  <h2>Propiedad intelectual e industrial</h2>
+  <p>
+    Los textos propios, el diseño y el código de esta web corresponden a su titular, salvo que se indique otra cosa. Las normas, los calendarios publicados en boletines oficiales y las marcas de terceros siguen siendo de sus titulares. Puedes consultar la información para un uso personal y enlazar a estas páginas. La reproducción con fines comerciales o la copia sistemática necesitan autorización previa del titular, por escrito a <EmailContacto />.
+  </p>
+
+  <h2>Responsabilidad</h2>
+  <p>
+    El titular procura que la información esté al día, pero puede haber errores, un retraso respecto de la publicación oficial o fiestas locales que la calculadora no reste. Las decisiones que tomes a partir solo del resultado de la herramienta son tuyas. El titular tampoco responde del contenido de los sitios enlazados, entre ellos el BOE, la Agencia Española de Protección de Datos y Google.
+  </p>
+
+  <h2>Legislación aplicable</h2>
+  <p>
+    Este aviso se rige por la ley española. Para cualquier controversia intervienen los juzgados y tribunales del domicilio del titular, salvo que una norma de protección de las personas consumidoras imponga otro fuero.
+  </p>
+</PaginaLegal>

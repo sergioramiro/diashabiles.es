@@ -1,0 +1,128 @@
+---
+import PaginaLegal from '../components/PaginaLegal.astro';
+import EmailContacto from '../components/EmailContacto.astro';
+import { titular } from '../data/titular';
+
+const title = 'Contacto — diashabiles.es';
+const description = 'Formulario para escribir al titular de diashabiles.es. Los datos solo se usan para responder a la consulta.';
+---
+
+<PaginaLegal
+  title={title}
+  description={description}
+  canonical="https://diashabiles.es/contacto/"
+  heading="Contacto"
+  lead="Escríbenos si tienes una consulta sobre el sitio. No envíes datos de salud, de menores ni documentos oficiales."
+  actual="/contacto/"
+>
+  <p>
+    También puedes escribir a <EmailContacto />. El tratamiento es el mismo que se describe en la <a href="/politica-privacidad/">política de privacidad</a>.
+  </p>
+
+  <form
+    name="contacto"
+    method="POST"
+    action="/contacto/gracias/"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    accept-charset="UTF-8"
+    aria-labelledby="titulo-pagina"
+    class="formulario mt-2 flex flex-col gap-5 bg-surface-card border border-border-subtle rounded-xl p-6 shadow-sm"
+  >
+    <input type="hidden" name="form-name" value="contacto" />
+    <p class="hidden" aria-hidden="true">
+      <label>
+        No rellenes este campo si eres una persona
+        <input name="bot-field" type="text" tabindex="-1" autocomplete="off" />
+      </label>
+    </p>
+
+    <p class="text-sm text-text-secondary" id="nota-obligatorios">Los campos con asterisco son obligatorios.</p>
+
+    <div class="flex flex-col gap-1">
+      <label class="font-label-md text-label-md text-on-surface" for="nombre">
+        Nombre <span class="text-primary" aria-hidden="true">*</span>
+        <span class="solo-lector"> (obligatorio)</span>
+      </label>
+      <input
+        class="w-full h-11 px-space-sm rounded-lg bg-surface-base border border-border-strong text-on-surface font-label-md text-label-md focus:outline-none focus:border-primary focus:bg-surface-card transition-all"
+        id="nombre"
+        name="nombre"
+        type="text"
+        autocomplete="name"
+        maxlength="200"
+        required
+        placeholder="Tu nombre"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label class="font-label-md text-label-md text-on-surface" for="email">
+        Correo electrónico <span class="text-primary" aria-hidden="true">*</span>
+        <span class="solo-lector"> (obligatorio)</span>
+      </label>
+      <input
+        class="w-full h-11 px-space-sm rounded-lg bg-surface-base border border-border-strong text-on-surface font-label-md text-label-md focus:outline-none focus:border-primary focus:bg-surface-card transition-all"
+        id="email"
+        name="email"
+        type="email"
+        autocomplete="email"
+        maxlength="200"
+        required
+        placeholder="tu@correo.es"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <label class="font-label-md text-label-md text-on-surface" for="mensaje">
+        Mensaje <span class="text-primary" aria-hidden="true">*</span>
+        <span class="solo-lector"> (obligatorio)</span>
+      </label>
+      <textarea
+        class="w-full px-space-sm py-space-sm rounded-lg bg-surface-base border border-border-strong text-on-surface font-label-md text-label-md focus:outline-none focus:border-primary focus:bg-surface-card transition-all"
+        id="mensaje"
+        name="mensaje"
+        rows="6"
+        maxlength="5000"
+        required
+        placeholder="Escribe aquí tu consulta"
+      ></textarea>
+    </div>
+
+    <div class="rounded-xl border border-border-subtle bg-surface-container-low p-4" id="aviso-rgpd">
+      <p class="font-label-md text-label-md text-on-surface mb-2">Información básica sobre protección de datos</p>
+      <ul>
+        <li><strong>Responsable:</strong> <strong>{titular.nombre}</strong> (<EmailContacto />).</li>
+        <li><strong>Finalidad:</strong> responder a tu consulta.</li>
+        <li><strong>Base jurídica:</strong> tu consentimiento.</li>
+        <li><strong>Derechos:</strong> acceso, rectificación, supresión, oposición, limitación y portabilidad, y a retirar el consentimiento, escribiendo al responsable. El detalle está en la <a href="/politica-privacidad/">política de privacidad</a>.</li>
+      </ul>
+    </div>
+
+    <div class="flex items-start gap-3">
+      <input
+        class="mt-1 h-6 w-6 shrink-0"
+        style="accent-color: #004ac6"
+        id="aceptacion"
+        name="aceptacion"
+        type="checkbox"
+        value="acepto"
+        required
+      />
+      <label class="text-sm text-on-surface leading-relaxed" for="aceptacion">
+        Acepto el tratamiento de mis datos para responder a esta consulta. <span class="text-primary" aria-hidden="true">*</span>
+        <span class="solo-lector"> (obligatorio)</span>
+      </label>
+    </div>
+
+    <div>
+      <button
+        class="px-space-xl h-11 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md shadow-md hover:shadow-lg transition-all"
+        type="submit"
+        aria-describedby="aviso-rgpd"
+      >
+        Enviar mensaje
+      </button>
+    </div>
+  </form>
+</PaginaLegal>

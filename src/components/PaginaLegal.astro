@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EnlacesLegales from './EnlacesLegales.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  heading: string;
+  lead: string;
+  actual: string;
+  noindex?: boolean;
+}
+
+const { title, description, canonical, heading, lead, actual, noindex = false } = Astro.props;
+---
+
+<Layout title={title} description={description} canonical={canonical} noindex={noindex}>
+  <main class="max-w-3xl mx-auto px-4 py-12 sm:py-16">
+    <nav class="mb-8 text-sm text-text-secondary" aria-label="Migas de pan">
+      <a href="/" class="hover:text-primary transition-colors">Inicio</a>
+      <span class="mx-2" aria-hidden="true">·</span>
+      <span class="text-on-surface">{heading}</span>
+    </nav>
+
+    <article>
+      <header class="mb-10">
+        <h1 id="titulo-pagina" class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
+          {heading}
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed">{lead}</p>
+      </header>
+      <div class="cuerpo text-on-surface leading-relaxed">
+        <slot />
+      </div>
+    </article>
+  </main>
+
+  <footer class="w-full bg-surface-container-low mt-space-3xl py-space-2xl">
+    <div class="max-w-3xl mx-auto px-4 flex flex-col gap-4">
+      <p class="font-caption-legal text-caption-legal text-text-muted">
+        Última actualización: <time datetime="2026-11-19">19 de noviembre de 2026</time>.
+      </p>
+      <nav aria-label="Información legal" class="flex flex-col gap-2">
+        <EnlacesLegales actual={actual} subrayar />
+      </nav>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .cuerpo :global(h2) {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    color: #0b1c30;
+    margin: 2.5rem 0 1rem;
+  }
+  .cuerpo :global(h2:first-child) {
+    margin-top: 0;
+  }
+  .cuerpo :global(h3) {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    color: #0b1c30;
+    margin: 1.5rem 0 0.5rem;
+  }
+  .cuerpo :global(p) {
+    margin: 0 0 1rem;
+  }
+  .cuerpo :global(a) {
+    color: #004ac6;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    overflow-wrap: anywhere;
+  }
+  .cuerpo :global(ul),
+  .cuerpo :global(ol) {
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+  }
+  .cuerpo :global(ul) {
+    list-style: disc;
+  }
+  .cuerpo :global(ol) {
+    list-style: decimal;
+  }
+  .cuerpo :global(li + li) {
+    margin-top: 0.5rem;
+  }
+  .cuerpo :global(dl) {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0 0 1rem;
+  }
+  .cuerpo :global(dl > div) {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 0.25rem 1rem;
+  }
+  .cuerpo :global(dt) {
+    font-weight: 700;
+    color: #0b1c30;
+  }
+  .cuerpo :global(dd) {
+    margin: 0;
+  }
+  .cuerpo :global(.tabla) {
+    overflow-x: auto;
+    margin: 0 0 1rem;
+  }
+  .cuerpo :global(.solo-lector) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  .cuerpo :global(table) {
+    width: 100%;
+    border-spacing: 0;
+    font-size: 0.9375rem;
+  }
+  .cuerpo :global(caption) {
+    text-align: left;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .cuerpo :global(th),
+  .cuerpo :global(td) {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .cuerpo :global(th) {
+    background: #eff4ff;
+    font-weight: 700;
+  }
+  @media (max-width: 640px) {
+    .cuerpo :global(dl > div) {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
