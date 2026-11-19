@@ -6,9 +6,10 @@ export interface Props {
   title: string;
   description: string;
   canonical?: string;
+  noindex?: boolean;
 }
 
-const { title, description, canonical } = Astro.props;
+const { title, description, canonical, noindex = false } = Astro.props;
 const canonicalUrl = canonical || `https://diashabiles.es${Astro.url.pathname}`;
 ---
 
@@ -19,8 +20,14 @@ const canonicalUrl = canonical || `https://diashabiles.es${Astro.url.pathname}`;
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <link rel="canonical" href={canonicalUrl} />
-  <meta name="robots" content="index, follow" />
+  {noindex ? (
+    <meta name="robots" content="noindex,follow" />
+  ) : (
+    <>
+      <link rel="canonical" href={canonicalUrl} />
+      <meta name="robots" content="index, follow" />
+    </>
+  )}
 
   <!-- Open Graph -->
   <meta property="og:title" content={title} />
