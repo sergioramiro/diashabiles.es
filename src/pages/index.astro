@@ -569,7 +569,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             Visualiza de un vistazo cuántos días laborables, hábiles y naturales tiene cada mes del año 2027 en la Comunidad de Madrid (con festivos nacionales y autonómicos incluidos).
           </p>
           <p class="font-body-md text-body-md mt-3">
-            <a href="/calendario-2027-para-imprimir" class="text-primary font-semibold hover:underline">Calendario 2027 para imprimir en A4, con los festivos marcados →</a>
+            <a href="/calendario-2027-para-imprimir/" class="text-primary font-semibold hover:underline">Calendario 2027 para imprimir en A4, con los festivos marcados →</a>
           </p>
         </div>
 
@@ -741,7 +741,7 @@ import { COMUNIDADES } from '../lib/calculadora';
               Festivos por comunidad y ciudad autónoma 2027
             </h2>
             <p class="font-body-md text-body-md text-on-surface-variant mt-1">
-              Consulta los festivos autonómicos oficiales de cada región española para planificar tus vacaciones y plazos, o abre el <a href="/calendario-laboral-2027" class="text-primary hover:underline font-semibold">calendario laboral 2027</a> completo con los diez festivos nacionales y las reglas de traslado.
+              Consulta los festivos autonómicos oficiales de cada región española para planificar tus vacaciones y plazos, o abre el <a href="/calendario-laboral-2027/" class="text-primary hover:underline font-semibold">calendario laboral 2027</a> completo con los diez festivos nacionales y las reglas de traslado.
             </p>
           </div>
           <span class="shrink-0 px-space-sm py-1 rounded-full bg-surface-card border border-border-subtle text-on-surface-variant text-label-sm font-semibold">
@@ -760,7 +760,7 @@ import { COMUNIDADES } from '../lib/calculadora';
             const sigla = siglas[c.id] || c.id.slice(0,2).toUpperCase();
             return (
               <a class="group bg-surface-card p-space-md rounded-xl border border-border-subtle hover:border-primary transition-all hover:shadow-md flex flex-col justify-between"
-                 href={`/comunidad/${c.id}`}>
+                 href={`/comunidad/${c.id}/`}>
                 <div class="flex items-center justify-between mb-space-sm">
                   <span class="w-7 h-7 rounded-md bg-surface-container flex items-center justify-center font-bold text-xs text-primary">{sigla}</span>
                   <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-status-valid-bg text-status-valid-text">Festivos</span>
@@ -1308,19 +1308,19 @@ import { COMUNIDADES } from '../lib/calculadora';
         <!-- Resources -->
         <div class="flex flex-col gap-space-xs">
           <span class="font-label-md text-label-md text-on-surface uppercase tracking-wider font-bold mb-space-xs">Recursos</span>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/calendario-laboral-2027">Calendario laboral 2027</a>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/calendario-laboral-2028">Calendario laboral 2028</a>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/calendario-2027-para-imprimir">Calendario 2027 para imprimir</a>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/festivos-locales-espana">Festivos locales</a>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/20-dias-habiles-convocatoria">20 días hábiles</a>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/puentes-diciembre-2026">Puentes diciembre 2026</a>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/festivos-perdidos-2027">Festivos perdidos 2027</a>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/festivos-perdidos-2028">Festivos perdidos 2028</a>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/dias-inhabiles-2027">Días inhábiles 2027</a>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/permiso-hospitalizacion-familiar">Permiso por hospitalización</a>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/30-dias-habiles-informar-trabajador">30 días hábiles (RD 723/2026)</a>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/condiciones-laborales-transparentes">Condiciones laborales transparentes</a>
-          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/accesibilidad-cognitiva-empresa">Accesibilidad cognitiva</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/calendario-laboral-2027/">Calendario laboral 2027</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/calendario-laboral-2028/">Calendario laboral 2028</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/calendario-2027-para-imprimir/">Calendario 2027 para imprimir</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/festivos-locales-espana/">Festivos locales</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/20-dias-habiles-convocatoria/">20 días hábiles</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/puentes-diciembre-2026/">Puentes diciembre 2026</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/festivos-perdidos-2027/">Festivos perdidos 2027</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/festivos-perdidos-2028/">Festivos perdidos 2028</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/dias-inhabiles-2027/">Días inhábiles 2027</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/permiso-hospitalizacion-familiar/">Permiso por hospitalización</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/30-dias-habiles-informar-trabajador/">30 días hábiles (RD 723/2026)</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/condiciones-laborales-transparentes/">Condiciones laborales transparentes</a>
+          <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="/accesibilidad-cognitiva-empresa/">Accesibilidad cognitiva</a>
           <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" href="https://boe.es" target="_blank" rel="noopener">Portal BOE</a>
         </div>
       </div>
