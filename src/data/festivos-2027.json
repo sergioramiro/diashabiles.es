@@ -1093,7 +1093,7 @@
         {
           "fecha": "2027-03-10",
           "nombre": "Eid al-Fitr (culminación del Ramadán)",
-          "nota": "Festivo local; fecha lunar provisional fijada en el calendario de la Asamblea de Ceuta."
+          "nota": "Festivo local (Resolución de 28/10/2026 de la Delegación del Gobierno en Ceuta, BOCCE n.º 6.666 de 03/11/2026)."
         },
         {
           "fecha": "2027-03-25",
@@ -1144,7 +1144,7 @@
           "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ],
-      "fuente": "Calendario de fiestas laborales de Ceuta para 2027, aprobado por la Asamblea de Ceuta el 29/09/2026 (Ceuta Ahora, 29/09/2026) y recogido por RTVE (01/10/2026) y elDiario.es (02/10/2026).",
+      "fuente": "BOCCE n.º 6.666 (03/11/2026), fiestas locales 2027. Calendario de fiestas laborales de Ceuta para 2027, aprobado por la Asamblea de Ceuta el 29/09/2026 (Ceuta Ahora, 29/09/2026) y recogido por RTVE (01/10/2026) y elDiario.es (02/10/2026).",
       "confianza": "Alta: calendario aprobado por la Asamblea de Ceuta y coincidente en varios medios; las dos fiestas de origen lunar mantienen fecha provisional hasta la visión de la luna. La Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026) confirma las fechas nacionales y el Eidul Adha (17/05), pero no recoge el Eid al-Fitr (10/03) ni el Día de Ceuta (02/09): son fiestas locales en el calendario de la Asamblea.",
       "cambios_vs_actual": [
         "Se elimina 2027-06-13 San Antonio: la Asamblea de Ceuta no lo incluye en 2027 al caer en domingo.",
@@ -1218,7 +1218,7 @@
           "nota": "Sábado: festivo perdido, sin traslado posible"
         }
       ],
-      "fuente": "Calendario de fiestas laborales de Melilla para 2027, recogido por RTVE (01/10/2026) y elDiario.es (02/10/2026).",
+      "fuente": "BOME extraordinario n.º 43 (30/09/2026), art. 108. Calendario de fiestas laborales de Melilla para 2027, recogido por RTVE (01/10/2026) y elDiario.es (02/10/2026).",
       "confianza": "Media-alta: fechas coincidentes en varios medios que recogen el calendario aprobado; las fiestas de origen lunar mantienen fecha provisional. La Resolución de la DGT (BOE-A-2026-21254, BOE de 13/10/2026) confirma las fechas nacionales y los dos de origen lunar, pero no recoge los dos festivos locales (8 y 17 de septiembre).",
       "cambios_vs_actual": [
         "Se elimina 2027-08-15: la Asunción no figura en el calendario de Melilla para 2027 (domingo, sin traslado).",
