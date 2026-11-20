@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import d27 from '../data/festivos-2027.json';
 
-const title = 'Días inhábiles 2027 para plazos administrativos: calendario y cómputo';
-const description = 'Cómo se cuentan los plazos administrativos: art. 30 de la Ley 39/2015, calendario de días inhábiles de la AGE para 2027 y cuándo sale la resolución que lo fija.';
+const title = 'Días inhábiles 2027: calendario oficial del BOE y cómputo de plazos';
+const description = 'Calendario de días inhábiles 2027 de la AGE, publicado en el BOE el 14 de noviembre de 2026 (BOE-A-2026-23826): días por comunidad, mes a mes, y cómo contar plazos.';
 
 const MES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 const DN = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
@@ -12,20 +12,8 @@ function fecha(f: string) {
   const [y, m, d] = f.split('-').map(Number);
   return new Date(y, m - 1, d);
 }
-function dia(f: string) {
-  return DN[fecha(f).getDay()];
-}
-function etiqueta(f: string) {
-  const dt = fecha(f);
-  return `${dt.getDate()} de ${MES[dt.getMonth()]}`;
-}
-
-// Nacionales 2027: los días que serán inhábiles en todo el territorio
+// Nacionales 2027: entran en el ejemplo de cómputo. La tabla por comunidad sale del anexo de BOE-A-2026-23826.
 const nacionales = (d27 as any).nacionales as { fecha: string; nombre: string; nota?: string }[];
-const nacionalesEntreSemana = nacionales.filter(f => {
-  const d = fecha(f.fecha).getDay();
-  return d !== 0 && d !== 6;
-});
 
 // Ejemplo práctico: 10 días hábiles desde una notificación el 8 de enero de 2027 (Madrid)
 const festivosMadrid = new Set<string>([
@@ -57,7 +45,7 @@ const jsonLd = [
     description: 'El calendario de días inhábiles de la Administración General del Estado para 2027, el cómputo del artículo 30 de la Ley 39/2015 y la diferencia con los días festivos laborales.',
     author: { '@type': 'Person', name: 'Carlos Méndez' },
     datePublished: '2026-10-19',
-    dateModified: '2026-11-09',
+    dateModified: '2026-11-20',
     publisher: {
       '@type': 'Organization',
       name: 'diashabiles.es',
@@ -83,10 +71,18 @@ const jsonLd = [
     mainEntity: [
       {
         '@type': 'Question',
-        name: '¿Cuándo sale el calendario de días inhábiles de 2027?',
+        name: '¿Ya está publicado el calendario de días inhábiles de 2027?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'El artículo 30.7 de la Ley 39/2015 obliga a publicarlo antes del 1 de enero. En los últimos años la resolución se ha firmado entre mediados de noviembre y mediados de diciembre: la de 2026 el 18 de noviembre de 2025 y la de 2025 el 16 de diciembre de 2024. Para 2027 lo esperable es que aparezca en el BOE entre noviembre y diciembre de 2026.'
+          text: 'Sí. Se publicó en el BOE el 14 de noviembre de 2026 (Resolución de 5 de noviembre de 2026, BOE-A-2026-23826).'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué días son inhábiles en Madrid en 2027?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Todos los sábados y domingos; el 1 y el 6 de enero; el 19, el 25 y el 26 de marzo; el 16 de agosto; el 12 de octubre; el 1 de noviembre, y el 6 y el 8 de diciembre. En Madrid capital, además, las fiestas locales.'
         }
       },
       {
@@ -140,13 +136,15 @@ const jsonLd = [
           <span class="material-symbols-outlined text-[16px]">calendar_today</span>
           <time datetime="2026-10-19">19 de octubre de 2026</time>
           <span class="mx-1">·</span>
+          <span>Actualizado el <time datetime="2026-11-20">20 de noviembre de 2026</time></span>
+          <span class="mx-1">·</span>
           <span>8 min de lectura</span>
         </div>
         <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
           Días inhábiles 2027: cómo se cuentan los plazos administrativos
         </h1>
         <p class="text-lg text-text-secondary leading-relaxed">
-          El calendario laboral y el de días inhábiles no son el mismo documento. Uno organiza la jornada y las nóminas; el otro decide cuándo vence un plazo ante la Administración. Para 2027 el segundo todavía no está publicado, y estas son las reglas con las que se calculará.
+          El calendario laboral y el de días inhábiles no son el mismo documento. Uno organiza la jornada y las nóminas; el otro decide cuándo vence un plazo ante la Administración. Para 2027 los dos están ya publicados en el BOE.
         </p>
               <p class="mt-4 text-sm">
           <a href="/#calculadora" class="inline-flex items-center gap-1.5 text-primary font-semibold hover:underline">
@@ -173,9 +171,9 @@ const jsonLd = [
           En la práctica los dos calendarios se parecen mucho, porque el de inhábiles se construye sobre el laboral. Las diferencias están en tres puntos: el de inhábiles incluye todos los sábados y domingos por definición, incorpora las fiestas locales de cada ámbito territorial y no recoge las fiestas que caen en domingo porque ya están cubiertas por el descanso semanal.
         </p>
 
-        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Qué sabemos ya de 2027</h2>
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Calendario oficial de días inhábiles 2027</h2>
         <p>
-          La resolución de la Secretaría de Estado de Función Pública con el calendario de 2027 aún no se ha publicado. Lo que sí está cerrado es el calendario laboral, gracias a la Resolución de la Dirección General de Trabajo de 8 de octubre de 2026 (BOE-A-2026-21254, BOE del 13 de octubre). De ahí salen los días que serán inhábiles en todo el territorio nacional:
+          El calendario de 2027 ya es oficial. La Resolución de 5 de noviembre de 2026, de la Secretaría de Estado de Función Pública, se publicó en el BOE el 14 de noviembre de 2026 (<a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-23826" class="text-primary hover:underline" target="_blank" rel="noopener">BOE-A-2026-23826</a>) y fija los días inhábiles para la Administración General del Estado y sus organismos públicos a efectos de cómputo de plazos. Son inhábiles en todo el territorio todos los sábados y domingos y estos días: 1 y 6 de enero, 26 de marzo, 12 de octubre, 1 de noviembre y 6 y 8 de diciembre. A ellos se suman los festivos de cada comunidad autónoma:
         </p>
 
         <div class="overflow-x-auto my-8">
@@ -183,41 +181,46 @@ const jsonLd = [
             <thead>
               <tr class="border-b-2 border-outline-variant">
                 <th class="text-left py-2 font-semibold">Fecha</th>
-                <th class="text-left py-2 font-semibold">Día</th>
-                <th class="text-left py-2 font-semibold">Festivo</th>
+                <th class="text-left py-2 font-semibold">Inhábil en</th>
               </tr>
             </thead>
             <tbody>
-              {nacionalesEntreSemana.map(f => (
-                <tr class="border-b border-outline-variant">
-                  <td class="py-2 font-semibold">{etiqueta(f.fecha)}</td>
-                  <td class="py-2 capitalize">{dia(f.fecha)}</td>
-                  <td class="py-2">{f.nombre}</td>
-                </tr>
-              ))}
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">1 de marzo</td><td class="py-2">Andalucía, Illes Balears</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">10 de marzo</td><td class="py-2">Melilla</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">19 de marzo</td><td class="py-2">Galicia, Comunidad de Madrid, Región de Murcia, Comunitat Valenciana, Navarra</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">25 de marzo</td><td class="py-2">Todas salvo Cataluña y la Comunitat Valenciana</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">29 de marzo</td><td class="py-2">Illes Balears, Cataluña, País Vasco, La Rioja, Navarra, Comunitat Valenciana</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">23 de abril</td><td class="py-2">Aragón, Castilla y León</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">17 de mayo</td><td class="py-2">Galicia, Ceuta, Melilla</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">27 de mayo</td><td class="py-2">Castilla-La Mancha</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">31 de mayo</td><td class="py-2">Castilla-La Mancha</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">9 de junio</td><td class="py-2">La Rioja, Región de Murcia</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">24 de junio</td><td class="py-2">Cataluña</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">28 de julio</td><td class="py-2">Cantabria</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">5 de agosto</td><td class="py-2">Ceuta</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">16 de agosto</td><td class="py-2">Andalucía, Aragón, Asturias, Canarias, Castilla y León, Comunidad de Madrid</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">8 de septiembre</td><td class="py-2">Asturias, Extremadura</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">15 de septiembre</td><td class="py-2">Cantabria</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">7 de octubre</td><td class="py-2">País Vasco</td></tr>
+              <tr class="border-b border-outline-variant"><td class="py-2 font-semibold">11 de octubre</td><td class="py-2">Extremadura</td></tr>
             </tbody>
           </table>
         </div>
 
         <p>
-          Son {nacionalesEntreSemana.length} días nacionales entre semana. Los otros dos festivos nacionales de 2027 —el 1 de mayo y el 25 de diciembre— caen en sábado, así que no alteran ningún cómputo: el sábado ya es inhábil por sí mismo. A estos días hay que sumarles, en cada comunidad, los festivos autonómicos y los dos locales de cada municipio, que son los que de verdad cambian el calendario de una oficina a otra.
+          En Canarias, cada isla tiene además su fiesta insular, y en el Arán el 29 de marzo se sustituye por el 17 de junio, como recogen las notas del propio anexo. Las fiestas locales de cada municipio no están en esta resolución: las fija cada comunidad en su calendario de inhábiles. En Madrid capital son el 15 de mayo y el 9 de noviembre (Ayuntamiento de Madrid). Para el calendario laboral completo de Madrid, mira los <a href="/calendario-laboral-madrid-2027/" class="text-primary hover:underline">festivos de Madrid en 2027</a>.
         </p>
 
-        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cuándo se publica el calendario de 2027</h2>
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Cuándo se publicó</h2>
         <p>
-          El artículo 30.7 obliga a publicarlo antes del comienzo del año, así que la resolución de 2027 tiene que estar en el BOE antes del 1 de enero. El histórico de los últimos ejercicios da un margen bastante estrecho:
+          El artículo 30.7 de la Ley 39/2015 obliga a publicar el calendario antes de que empiece el año. El de 2027 salió el 14 de noviembre de 2026, una de las fechas más tempranas de los últimos ejercicios:
         </p>
         <ul class="list-disc pl-6 space-y-2">
-          <li><strong>2024:</strong> Resolución de 16 de noviembre de 2023 (BOE-A-2023-23637), publicada el 22 de noviembre.</li>
-          <li><strong>2025:</strong> Resolución de 16 de diciembre de 2024 (BOE-A-2024-26935), publicada el 24 de diciembre.</li>
-          <li><strong>2026:</strong> Resolución de 18 de noviembre de 2025 (BOE-A-2025-23702), publicada el 24 de noviembre.</li>
+          <li>2024: Resolución de 16 de noviembre de 2023 (BOE-A-2023-23637), publicada el 22 de noviembre.</li>
+          <li>2025: Resolución de 16 de diciembre de 2024 (BOE-A-2024-26935), publicada el 24 de diciembre.</li>
+          <li>2026: Resolución de 18 de noviembre de 2025 (BOE-A-2025-23702), publicada el 24 de noviembre.</li>
+          <li><strong>2027: Resolución de 5 de noviembre de 2026 (<a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-23826" class="text-primary hover:underline" target="_blank" rel="noopener">BOE-A-2026-23826</a>), publicada el 14 de noviembre.</strong></li>
         </ul>
-        <p>
-          Si se repite el patrón, la de 2027 aparecerá entre mediados de noviembre y mediados de diciembre de 2026. Es un documento corto —tres páginas, con un anexo mes a mes— y se publica en la sección I del BOE, la de disposiciones generales. Cuando salga, esta página se actualizará con el calendario completo por comunidad y con los días inhábiles que añade cada una.
-        </p>
-        <p>
-          Lo que cambia el día que se publique es menos de lo que parece. Las fiestas de 2027 ya están cerradas desde el 13 de octubre, así que la resolución no descubre fechas nuevas: lo que hace es fijar por escrito qué días son inhábiles en cada comunidad para los trámites de la Administración General del Estado, con el anexo mes a mes del que tiran las sedes electrónicas para calcular sus plazos. Hasta entonces, la referencia sigue siendo el calendario laboral más el de cada comunidad.
-        </p>
         <p>
           Los dos días que no salen en esa resolución son las fiestas locales de cada municipio, que se publican en el boletín de la comunidad y que también cuentan para el cómputo, incluso cuando el trámite no es con tu ayuntamiento. Lo explico en <a href="/festivos-locales-espana/" class="text-primary hover:underline">festivos locales en España</a>, y hay un ejemplo completo de cómputo en <a href="/20-dias-habiles-convocatoria/" class="text-primary hover:underline">20 días hábiles en una convocatoria</a>.
         </p>
@@ -259,6 +262,14 @@ const jsonLd = [
         <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
         <div class="space-y-5">
           <div>
+            <h3 class="font-bold text-on-surface">¿Ya está publicado el calendario de días inhábiles de 2027?</h3>
+            <p class="text-text-secondary">Sí. Se publicó en el BOE el 14 de noviembre de 2026 (Resolución de 5 de noviembre de 2026, BOE-A-2026-23826).</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface">¿Qué días son inhábiles en Madrid en 2027?</h3>
+            <p class="text-text-secondary">Todos los sábados y domingos; el 1 y el 6 de enero; el 19, el 25 y el 26 de marzo; el 16 de agosto; el 12 de octubre; el 1 de noviembre, y el 6 y el 8 de diciembre. En Madrid capital, además, las fiestas locales.</p>
+          </div>
+          <div>
             <h3 class="font-bold text-on-surface">¿Los días inhábiles de la AGE valen para las comunidades autónomas?</h3>
             <p class="text-text-secondary">No. Cada comunidad publica su propio calendario de días inhábiles para sus procedimientos, y puede incluir fiestas locales distintas. El de la AGE solo se aplica a los órganos de la Administración General del Estado y sus organismos públicos.</p>
           </div>
@@ -279,7 +290,7 @@ const jsonLd = [
 
       <footer class="mt-12 pt-8 border-t border-outline-variant">
         <p class="text-sm text-text-secondary">
-          Última actualización: 19 de octubre de 2026. Fuentes: artículo 30 de la Ley 39/2015 (BOE-A-2015-10565); artículos 182 y 183 de la Ley Orgánica 6/1985 del Poder Judicial (BOE-A-1985-12666); Resolución de 18 de noviembre de 2025, calendario de días inhábiles 2026 (BOE-A-2025-23702); Resolución de 8 de octubre de 2026, fiestas laborales 2027 (BOE-A-2026-21254).
+          Última actualización: 20 de noviembre de 2026. Fuentes: artículo 30 de la Ley 39/2015 (BOE-A-2015-10565); artículos 182 y 183 de la Ley Orgánica 6/1985 del Poder Judicial (BOE-A-1985-12666); Resolución de 18 de noviembre de 2025, calendario de días inhábiles 2026 (BOE-A-2025-23702); Resolución de 8 de octubre de 2026, fiestas laborales 2027 (BOE-A-2026-21254).
         </p>
         <div class="mt-6 flex flex-wrap gap-2">
           <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Días inhábiles 2027</span>

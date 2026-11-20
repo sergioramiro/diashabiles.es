@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import d27 from '../data/festivos-2027.json';
 
 const title = "Calendario laboral 2027: festivos nacionales, estado del BOE y por comunidad — diashabiles.es";
-const description = "Festivos nacionales de 2027 con su día de la semana, estado de la resolución del BOE y calendario por comunidad autónoma. Actualizado el 13 de octubre de 2026 con la resolución del BOE (BOE-A-2026-21254) y los calendarios autonómicos publicados.";
+const description = "Los festivos de 2027 en España según el BOE: las 9 fiestas comunes, las de cada comunidad con su día de la semana, puentes y festivos en sábado. Con calendario para imprimir.";
 
 function fecha(f: string) {
   const [y, m, d] = f.split('-').map(Number);
@@ -59,7 +59,7 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
       "description": "Los 10 festivos nacionales de 2027 con su día de la semana, el estado de la resolución del BOE y el calendario de cada comunidad autónoma.",
       "author": { "@type": "Person", "name": "Carlos Méndez" },
       "datePublished": "2026-09-28",
-      "dateModified": "2026-11-09",
+      "dateModified": "2026-11-20",
       "publisher": {
         "@type": "Organization",
         "name": "diashabiles.es",
@@ -132,6 +132,9 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
         <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
           Calendario laboral 2027: festivos nacionales, estado del BOE y por comunidad
         </h1>
+        <p class="text-sm text-text-secondary mb-4">
+          Actualizado el <time datetime="2026-11-20">20 de noviembre de 2026</time>
+        </p>
         <p class="text-lg text-text-secondary leading-relaxed">
           Los diez festivos nacionales de 2027, qué día de la semana caen, cuáles se pierden y qué ha confirmado la resolución oficial del BOE.
         </p>
@@ -142,18 +145,12 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
           Este calendario sigue la resolución oficial de festivos de 2027, publicada en el BOE el <strong>13 de octubre de 2026</strong> (BOE-A-2026-21254). Los festivos nacionales están fijados por el Estatuto de los Trabajadores y no cambian; los calendarios de cada comunidad autónoma ya estaban publicados en sus boletines oficiales y así aparecen recogidos aquí. La resolución confirma los diecinueve calendarios, incluido el de Asturias, que se incorpora con el descanso de la Asunción trasladado al lunes 16 de agosto.
         </p>
 
-        <div class="bg-surface-secondary rounded-2xl p-6 my-8 border-l-4 border-primary">
-          <h2 class="text-lg font-bold text-on-surface mb-2 flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary">info</span>
-            Estado del BOE
-          </h2>
-          <p class="text-sm text-on-surface-variant leading-relaxed">
-            La resolución de la Dirección General de Trabajo con los festivos de 2027 <strong>está publicada en el BOE desde el 13 de octubre de 2026</strong> (Resolución de 8 de octubre de 2026, BOE-A-2026-21254, núm. 254, págs. 136413-136417). Traslada al BOE la relación que cada comunidad remitió al Ministerio de Trabajo (art. 45.4 del RD 2001/1983) y confirma las fechas que recoge esta página; la del ejercicio 2026 fue BOE-A-2025-21667, publicada el 28 de octubre de 2025. Dos matizes de la relación oficial: no figura ningún festivo que caiga en domingo (por eso no aparece el 15 de agosto, ni el Día de Canarias del 30 de mayo, que sigue siendo festivo en Canarias según su decreto) y tampoco las fiestas locales, como el 3 de diciembre en Navarra o el 2 de septiembre, Día de Ceuta.
-          </p>
-        </div>
+        <p>
+          <strong>En resumen.</strong> El BOE del 13 de octubre de 2026 (<a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21254" class="text-primary hover:underline" target="_blank" rel="noopener">BOE-A-2026-21254</a>) fija los festivos de 2027. Nueve son comunes a toda España: 1 y 6 de enero, Viernes Santo (26 de marzo), 1 de mayo, 12 de octubre, 1 de noviembre, 6 y 8 de diciembre y 25 de diciembre. El Jueves Santo (25 de marzo) es festivo en todas las comunidades salvo Cataluña y la Comunitat Valenciana. El 15 de agosto cae en domingo: Andalucía, Aragón, Asturias, Canarias, Castilla y León y Madrid trasladan el descanso al lunes 16. El 1 de mayo y el 25 de diciembre caen en sábado.
+        </p>
 
         <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Festivos nacionales 2027</h2>
-        <p>Estos diez días son festivos en toda España, independientemente de la comunidad:</p>
+        <p>Estas son las fiestas nacionales de 2027. Nueve se celebran en toda España en el día que les corresponde; la Asunción cae en domingo y cada comunidad decide si traslada su descanso.</p>
 
         <div class="overflow-x-auto my-8">
           <table class="w-full text-sm">
@@ -229,6 +226,12 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
                 <tr class="border-b border-outline-variant">
                   <td class="py-2">
                     <a href={`/comunidad/${f.id}/`} class="text-primary hover:underline font-semibold">{f.nombre}</a>
+                    {f.id === 'madrid' && (
+                      <>
+                        {' · '}
+                        <a href="/calendario-laboral-madrid-2027/" class="text-primary hover:underline">Festivos Madrid 2027</a>
+                      </>
+                    )}
                   </td>
                   <td class="py-2 text-right">{f.total}</td>
                   <td class="py-2 text-right">{f.efectivos}</td>
@@ -245,12 +248,15 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
           El detalle de cada comunidad (con el calendario mes a mes) está en las páginas de cada territorio, por ejemplo <a href="/comunidad/madrid/" class="text-primary hover:underline">Madrid</a>, <a href="/comunidad/cataluna/" class="text-primary hover:underline">Cataluña</a>, <a href="/comunidad/andalucia/" class="text-primary hover:underline">Andalucía</a>, <a href="/comunidad/valencia/" class="text-primary hover:underline">Comunitat Valenciana</a> o <a href="/comunidad/pais_vasco/" class="text-primary hover:underline">País Vasco</a>.
         </p>
 
-        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Qué queda por confirmar</h2>
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Fuentes oficiales</h2>
         <ul class="list-disc pl-6 space-y-2">
-          <li><strong>Resolución del BOE</strong>: publicada el 13 de octubre de 2026 (BOE-A-2026-21254), con la lista de festivos de 2027 de las diecinueve comunidades. Confirma los calendarios de esta página.</li>
-          <li><strong>Traslados del 15 de agosto</strong>: resueltos en las diecinueve. Andalucía, Aragón, Asturias, Canarias, Castilla y León y Madrid dan el lunes 16; Cantabria (15 de septiembre), Galicia (17 de mayo), Castilla-La Mancha (31 de mayo) y Murcia (9 de junio) lo sustituyen por un festivo propio; Extremadura lo traslada al lunes 11 de octubre; el resto no lo traslada.</li>
-          <li><strong>Fiestas locales</strong>: cada provincia y municipio suma de dos a cuatro fiestas propias que no aparecen aquí. No están incluidas en la calculadora.</li>
+          <li><a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21254" class="text-primary hover:underline" target="_blank" rel="noopener">Resolución de 8 de octubre de 2026, de la Dirección General de Trabajo, por la que se publica la relación de fiestas laborales para el año 2027 (BOE-A-2026-21254, BOE del 13 de octubre de 2026).</a></li>
+          <li><a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-23826" class="text-primary hover:underline" target="_blank" rel="noopener">Resolución de 5 de noviembre de 2026, de la Secretaría de Estado de Función Pública: calendario de días inhábiles de la AGE para 2027 (BOE-A-2026-23826, BOE del 14 de noviembre de 2026).</a></li>
+          <li>Las fiestas locales (dos por municipio) las publica cada comunidad en su boletín oficial y no están en esta página.</li>
         </ul>
+        <p>
+          Los traslados del 15 de agosto están resueltos en las diecinueve. Andalucía, Aragón, Asturias, Canarias, Castilla y León y Madrid dan el lunes 16; Cantabria (15 de septiembre), Galicia (17 de mayo), Castilla-La Mancha (31 de mayo) y Murcia (9 de junio) lo sustituyen por un festivo propio; Extremadura lo traslada al lunes 11 de octubre; el resto no lo traslada.
+        </p>
 
         <p>
           Si te interesa el efecto de los festivos de fin de semana, el análisis completo —incluido el 11 de septiembre en Cataluña y el 26 de diciembre en Baleares y Cataluña— está en <a href="/festivos-perdidos-2027/" class="text-primary hover:underline">festivos perdidos 2027</a>.
@@ -259,7 +265,7 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
           Si lo que quieres es el calendario en papel, está en <a href="/calendario-2027-para-imprimir/" class="text-primary hover:underline">calendario 2027 para imprimir</a>: doce meses en A4 con los festivos de tu comunidad marcados.
         </p>
         <p>
-          Este calendario es el laboral, el que ordena jornadas y nóminas. Para contar plazos ante la Administración hay un documento aparte, el calendario de días inhábiles, que se publica antes de que empiece el año: lo explico en <a href="/dias-inhabiles-2027/" class="text-primary hover:underline">días inhábiles 2027 y cómputo de plazos</a>. Y si lo que buscas es planificar el año siguiente, el <a href="/calendario-laboral-2028/" class="text-primary hover:underline">calendario laboral 2028</a> ya tiene fijadas las diez fiestas nacionales y las fechas en las que se sabrá el resto.
+          Este calendario es el laboral, el que ordena jornadas y nóminas. Para contar plazos ante la Administración hay un documento aparte, el calendario de días inhábiles, que ya está publicado (BOE del 14 de noviembre de 2026): lo explico en <a href="/dias-inhabiles-2027/" class="text-primary hover:underline">calendario de días inhábiles 2027</a>. Y si lo que buscas es planificar el año siguiente, el <a href="/calendario-laboral-2028/" class="text-primary hover:underline">calendario laboral 2028</a> ya tiene fijadas las diez fiestas nacionales y las fechas en las que se sabrá el resto.
         </p>
 
         <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
@@ -285,7 +291,7 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 
       <footer class="mt-12 pt-8 border-t border-outline-variant">
         <p class="text-sm text-text-secondary">
-          Última actualización: 9 de noviembre de 2026 (tabla de días laborables por comunidad). Fuentes: Estatuto de los Trabajadores (art. 37.4), Real Decreto 2001/1983 (art. 45), Resolución BOE-A-2026-21254 (BOE de 13/10/2026) y calendarios autonómicos de 2027 publicados en los boletines oficiales.
+          Última actualización: 20 de noviembre de 2026. Fuentes: Estatuto de los Trabajadores (art. 37.4), Real Decreto 2001/1983 (art. 45), Resolución BOE-A-2026-21254 (BOE de 13/10/2026) y calendarios autonómicos de 2027 publicados en los boletines oficiales.
         </p>
         <div class="mt-6 flex flex-wrap gap-2">
           <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Calendario laboral 2027</span>
