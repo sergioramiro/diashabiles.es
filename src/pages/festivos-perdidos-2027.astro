@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import d27 from '../data/festivos-2027.json';
 
-const title = "Festivos perdidos 2027: 1 de mayo cae en sábado, ¿pierdo un festivo? — diashabiles.es";
-const description = "El 1 de mayo de 2027 cae en sábado y el 25 de diciembre también: son festivos perdidos en toda España. Qué festivos se pierden en cada comunidad y por qué no se recuperan.";
+const title = "Festivos perdidos 2027: 1 de mayo cae en sábado, ¿pierdo un festivo?";
+const description = "En 2027 se pierden dos festivos nacionales porque caen en sábado: el 1 de mayo y el 25 de diciembre. No se recorren. Qué pierde cada comunidad y por qué.";
 
 function fecha(f: string) {
   const [y, m, d] = f.split('-').map(Number);
@@ -54,7 +54,7 @@ const mayo = [
       "description": "En 2027 el 1 de mayo y el 25 de diciembre caen en sábado: dos festivos perdidos en toda España. Análisis por comunidad autónoma.",
       "author": { "@type": "Person", "name": "Carlos Méndez" },
       "datePublished": "2026-09-28",
-      "dateModified": "2026-10-13",
+      "dateModified": "2026-11-21",
       "publisher": {
         "@type": "Organization",
         "name": "diashabiles.es",
@@ -63,7 +63,7 @@ const mayo = [
       "image": "https://diashabiles.es/og-image.png",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://diashabiles.es/festivos-perdidos-2027"
+        "@id": "https://diashabiles.es/festivos-perdidos-2027/"
       }
     }
     </script>
@@ -72,6 +72,14 @@ const mayo = [
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿El 1 de mayo de 2027 se recorre?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. El 1 de mayo de 2027 cae en sábado y los festivos nacionales que caen en sábado no se recorren ni se trasladan al lunes. El artículo 45 del Real Decreto 2001/1983 solo contempla el traslado cuando el festivo nacional cae en domingo. Lo mismo vale para el 25 de diciembre de 2027, que también es sábado."
+          }
+        },
         {
           "@type": "Question",
           "name": "¿El 1 de mayo de 2027 cae en sábado?",
@@ -122,7 +130,7 @@ const mayo = [
       <header class="mb-10">
         <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
           <span class="material-symbols-outlined text-[16px]">calendar_today</span>
-          <time datetime="2026-10-13">13 de octubre de 2026</time>
+          <time datetime="2026-11-21">21 de noviembre de 2026</time>
           <span class="mx-1">·</span>
           <span>6 min de lectura</span>
         </div>
@@ -131,6 +139,17 @@ const mayo = [
         </h1>
         <p class="text-lg text-text-secondary leading-relaxed">
           Sí: se pierde. Y no es el único. En 2027 el Día del Trabajo y Navidad caen en sábado, y algunas comunidades pierden uno más. Te contamos por qué no se recuperan y qué opciones quedan.
+        </p>
+        <div class="bg-surface-secondary rounded-2xl p-6 my-6">
+          <p class="text-on-surface leading-relaxed mb-0">
+            En 2027 se pierden dos festivos nacionales porque caen en sábado: el 1 de mayo (Fiesta del Trabajo) y el 25 de diciembre (Natividad del Señor).
+            La norma no los traslada ni los recorre. Todas las comunidades los pierden. Cataluña pierde además la Diada (11 de septiembre, sábado) y no mueve
+            el 15 de agosto ni San Esteban (26 de diciembre), que caen en domingo. La Comunitat Valenciana pierde también el 9 de octubre, que cae en sábado.
+          </p>
+        </div>
+        <p>
+          Si quieres el año en papel, con esas fechas ya marcadas, está en el
+          <a href="/calendario-2027-para-imprimir/" class="text-primary hover:underline">calendario 2027 para imprimir</a>.
         </p>
               <p class="mt-4 text-sm">
           <a href="/#calculadora" class="inline-flex items-center gap-1.5 text-primary font-semibold hover:underline">
@@ -250,6 +269,10 @@ const mayo = [
         <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Preguntas frecuentes</h2>
         <div class="space-y-5">
           <div>
+            <h3 class="font-bold text-on-surface">¿El 1 de mayo de 2027 se recorre?</h3>
+            <p class="text-text-secondary">No. El 1 de mayo de 2027 cae en sábado y los festivos nacionales que caen en sábado no se recorren ni se trasladan al lunes. El artículo 45 del Real Decreto 2001/1983 solo contempla el traslado cuando el festivo nacional cae en domingo. Lo mismo vale para el 25 de diciembre de 2027, que también es sábado.</p>
+          </div>
+          <div>
             <h3 class="font-bold text-on-surface">¿Se pueden recuperar los festivos que caen en sábado?</h3>
             <p class="text-text-secondary">No por norma general. El traslado al lunes solo aplica a festivos nacionales en domingo, y de forma facultativa para cada comunidad. Los sábados no admiten traslado.</p>
           </div>
@@ -270,7 +293,7 @@ const mayo = [
 
       <footer class="mt-12 pt-8 border-t border-outline-variant">
         <p class="text-sm text-text-secondary">
-          Última actualización: 13 de octubre de 2026. Fuentes: art. 45 del Real Decreto 2001/1983, Resolución BOE-A-2026-21254 (BOE de 13/10/2026) y calendarios autonómicos de 2027 publicados en los boletines oficiales.
+          Última actualización: 21 de noviembre de 2026. Fuentes: art. 45 del Real Decreto 2001/1983, Resolución BOE-A-2026-21254 (BOE de 13/10/2026) y calendarios autonómicos de 2027 publicados en los boletines oficiales.
         </p>
         <div class="mt-6 flex flex-wrap gap-2">
           <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Festivos 2027 perdidos</span>

@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import festivosData from '../data/festivos-2027.json';
 
-const title = 'Calendario 2027 para imprimir: 12 meses con festivos';
-const description = 'Los doce meses de 2027 listos para imprimir en A4, con los festivos nacionales y los de tu comunidad marcados. Gratis, sin registro y también en PDF desde el navegador.';
+const title = 'Calendario 2027 para imprimir: A4 y PDF con festivos del BOE';
+const description = 'Calendario 2027 para imprimir en A4 y guardar en PDF, con los festivos del BOE de tu comunidad. Gratis y sin registro: tres hojas de cuatro meses.';
 
 const MES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 const DIAS = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
@@ -57,11 +57,11 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: 'Calendario 2027 para imprimir: los 12 meses con festivos',
+    headline: 'Calendario 2027 para imprimir: los doce meses en A4 o PDF',
     description: 'Calendario de 2027 en A4 para imprimir, con los festivos nacionales y los de cada comunidad marcados. Los doce meses generados del calendario oficial del BOE.',
     author: { '@type': 'Person', name: 'Carlos Méndez' },
     datePublished: '2026-11-09',
-    dateModified: '2026-11-09',
+    dateModified: '2026-11-21',
     publisher: {
       '@type': 'Organization',
       name: 'diashabiles.es',
@@ -85,6 +85,14 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿Puedo descargar el calendario 2027 en PDF?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí. Pulsa «Imprimir o guardar PDF», y en el diálogo del navegador elige «Guardar como PDF» en lugar de una impresora. El archivo sale en A4 vertical, con los festivos de la comunidad que hayas elegido. Es gratis y no pide registro.'
+        }
+      },
       {
         '@type': 'Question',
         name: '¿Cómo se imprime el calendario de 2027?',
@@ -144,15 +152,17 @@ const jsonLd = [
       <header class="mb-8 no-print">
         <div class="flex items-center gap-2 mb-3 text-sm text-text-secondary">
           <span class="material-symbols-outlined text-[16px]">print</span>
-          <time datetime="2026-11-09">9 de noviembre de 2026</time>
+          <time datetime="2026-11-21">21 de noviembre de 2026</time>
           <span class="mx-1">·</span>
           <span>4 min de lectura</span>
         </div>
         <h1 class="text-3xl sm:text-4xl font-extrabold text-on-surface leading-tight mb-4">
-          Calendario 2027 para imprimir: los doce meses con festivos
+          Calendario 2027 para imprimir: los doce meses en A4 o PDF
         </h1>
         <p class="text-lg text-text-secondary leading-relaxed">
-          Doce meses en A4, con los festivos marcados y la opción de añadir los de tu comunidad. Elige abajo qué festivos quieres ver, pulsa imprimir y salen tres hojas de cuatro meses. Si lo prefieres en archivo, el mismo diálogo permite guardarlo como PDF.
+          Calendario 2027 para imprimir en A4, con los festivos del BOE marcados y la opción de añadir los de tu comunidad.
+          Elige abajo la comunidad, pulsa «Imprimir o guardar PDF» y salen tres hojas de cuatro meses. En el diálogo del
+          navegador puedes imprimir o guardar el archivo en PDF, sin registro.
         </p>
       </header>
 
@@ -240,6 +250,10 @@ const jsonLd = [
             <p class="text-text-secondary">No. Con cuatro meses por hoja salen tres. Si lo necesitas todo en una, en el diálogo de impresión elige «2 páginas por hoja» y reduce la escala al 70 %, aunque el texto de los festivos se vuelve difícil de leer.</p>
           </div>
           <div>
+            <h3 class="font-bold text-on-surface">¿Puedo descargar el calendario 2027 en PDF?</h3>
+            <p class="text-text-secondary">Sí. Pulsa «Imprimir o guardar PDF», y en el diálogo del navegador elige «Guardar como PDF» en lugar de una impresora. El archivo sale en A4 vertical, con los festivos de la comunidad que hayas elegido. Es gratis y no pide registro.</p>
+          </div>
+          <div>
             <h3 class="font-bold text-on-surface">¿Puedo imprimir solo un trimestre?</h3>
             <p class="text-text-secondary">Sí. En las opciones de impresión, elige el rango de páginas: la primera hoja lleva enero a abril, la segunda mayo a agosto y la tercera septiembre a diciembre.</p>
           </div>
@@ -252,7 +266,7 @@ const jsonLd = [
 
       <footer class="mt-12 pt-8 border-t border-outline-variant no-print">
         <p class="text-sm text-text-secondary">
-          Última actualización: 9 de noviembre de 2026. Fuente: Resolución de 8 de octubre de 2026, de la Dirección General de Trabajo (BOE-A-2026-21254), publicada en el BOE del 13 de octubre de 2026.
+          Última actualización: 21 de noviembre de 2026. Fuente: Resolución de 8 de octubre de 2026, de la Dirección General de Trabajo (BOE-A-2026-21254), publicada en el BOE del 13 de octubre de 2026.
         </p>
         <div class="mt-6 flex flex-wrap gap-2">
           <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Calendario 2027 para imprimir</span>
