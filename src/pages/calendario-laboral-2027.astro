@@ -47,6 +47,50 @@ const filas: Fila[] = Object.entries((d27 as any).comunidades).map(([id, g]: [st
   return { id, nombre: g.nombre, total: unicas.size, efectivos, sabados, pendientes, laborables: DIAS_ENTRE_SEMANA_2027 - efectivos };
 });
 filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
+
+// --- Puentes 2027: se calculan del mismo JSON de festivos, sin datos externos ---
+const MESL = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const DNL = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+const clave = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+const etiquetaDia = (d: Date) => `${d.getDate()} ${MESL[d.getMonth()]}`;
+
+function puentesDe(g: any) {
+  const unicas = new Map<string, string>();
+  for (const e of g.festivos) if (!unicas.has(e.fecha)) unicas.set(e.fecha, e.nombre);
+
+  // 1) Tramos de cuatro días o más sin trabajar: festivos + fin de semana, sin gastar vacaciones.
+  const libres: string[] = [];
+  let tramo: Date[] = [];
+  const cierra = () => {
+    if (tramo.length >= 4 && tramo.some((d) => unicas.has(clave(d)))) {
+      libres.push(`${etiquetaDia(tramo[0])} – ${etiquetaDia(tramo[tramo.length - 1])} (${tramo.length} días)`);
+    }
+    tramo = [];
+  };
+  for (let d = new Date(2027, 0, 1, 12); d.getFullYear() === 2027; d.setDate(d.getDate() + 1)) {
+    if (d.getDay() === 0 || d.getDay() === 6 || unicas.has(clave(d))) tramo.push(new Date(d));
+    else cierra();
+  }
+  cierra();
+
+  // 2) Festivos en martes o jueves con el día de al lado laborable: puente de cuatro días gastando uno de vacaciones.
+  const conDia: string[] = [];
+  for (const [f, nombre] of [...unicas.entries()].sort()) {
+    const [y, m, dd] = f.split('-').map(Number);
+    const d = new Date(y, m - 1, dd, 12);
+    const vecino = new Date(d);
+    if (d.getDay() === 2) vecino.setDate(vecino.getDate() - 1);
+    else if (d.getDay() === 4) vecino.setDate(vecino.getDate() + 1);
+    else continue;
+    if (vecino.getDay() === 0 || vecino.getDay() === 6 || unicas.has(clave(vecino))) continue;
+    conDia.push(`${etiquetaDia(d)} (${nombre.split('(')[0].trim()}, cogiendo el ${DNL[vecino.getDay()]} ${vecino.getDate()})`);
+  }
+  return { libres, conDia };
+}
+
+const puentes = Object.entries((d27 as any).comunidades)
+  .map(([id, g]: [string, any]) => ({ id, nombre: g.nombre, ...puentesDe(g) }))
+  .sort((a: any, b: any) => a.nombre.localeCompare(b.nombre, 'es'));
 ---
 
 <Layout title={title} description={description}>
@@ -59,7 +103,7 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
       "description": "Las fiestas nacionales de 2027 con su día de la semana, las nueve comunes a toda España según el BOE y el calendario de cada comunidad autónoma.",
       "author": { "@type": "Person", "name": "Carlos Méndez" },
       "datePublished": "2026-09-28",
-      "dateModified": "2026-11-20",
+      "dateModified": "2026-11-23",
       "publisher": {
         "@type": "Organization",
         "name": "diashabiles.es",
@@ -248,6 +292,43 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
           El detalle de cada comunidad (con el calendario mes a mes) está en las páginas de cada territorio, por ejemplo <a href="/comunidad/madrid/" class="text-primary hover:underline">Madrid</a>, <a href="/comunidad/cataluna/" class="text-primary hover:underline">Cataluña</a>, <a href="/comunidad/andalucia/" class="text-primary hover:underline">Andalucía</a>, <a href="/comunidad/valencia/" class="text-primary hover:underline">Comunitat Valenciana</a> o <a href="/comunidad/pais_vasco/" class="text-primary hover:underline">País Vasco</a>.
         </p>
 
+        <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Puentes de 2027: dónde salen cuatro días seguidos</h2>
+        <p>
+          Un puente no es un derecho laboral: es lo que sale de juntar un festivo con el fin de semana y, si hace falta, con un día de vacaciones. En 2027 hay dos que se repiten en toda España y unos cuantos que solo existen en algunas comunidades. La tabla de abajo está calculada del mismo calendario de festivos que el resto de la página, sin añadir datos de ningún otro sitio.
+        </p>
+        <p>
+          El más rentable no cuesta ni un día: <strong>la Semana Santa</strong>. El Jueves Santo (25 de marzo) y el Viernes Santo (26) son festivos en diecisiete de las diecinueve comunidades —no en Cataluña ni en la Comunitat Valenciana, donde el Viernes Santo sí es festivo y el Lunes de Pascua (29) cierra el tramo por el otro lado—, así que donde aplica salen cuatro días seguidos de jueves a domingo. Cuatro comunidades lo estiran a cinco con el Lunes de Pascua. El segundo es el <strong>12 de octubre</strong>, que en 2027 cae en martes en las diecinueve: cogiendo el lunes 11 sale un puente de cuatro días. En Extremadura ni eso hace falta, porque el lunes 11 ya es festivo por el traslado de la Asunción, y el tramo va del sábado 9 al martes 12.
+        </p>
+
+        <div class="overflow-x-auto my-8">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-outline-variant">
+                <th class="text-left py-2 font-semibold">Comunidad</th>
+                <th class="text-left py-2 font-semibold">Cuatro días o más sin gastar vacaciones</th>
+                <th class="text-left py-2 font-semibold">Festivo que abre puente gastando un día</th>
+              </tr>
+            </thead>
+            <tbody>
+              {puentes.map((p: any) => (
+                <tr class="border-b border-outline-variant">
+                  <td class="py-2 align-top">
+                    <a href={`/comunidad/${p.id}/`} class="text-primary hover:underline font-semibold">{p.nombre}</a>
+                  </td>
+                  <td class="py-2 align-top text-text-secondary text-xs">{p.libres.length ? p.libres.join(' · ') : '—'}</td>
+                  <td class="py-2 align-top text-text-secondary text-xs">{p.conDia.length ? p.conDia.join(' · ') : '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Los puentes que no son de todos: Ceuta suma tres festivos en jueves (5 de agosto, 2 de septiembre y el 12 de octubre), País Vasco tiene el 7 de octubre y Castilla-La Mancha el Corpus del 27 de mayo, y Cataluña el 24 de junio. Los que ya vienen con cuatro días o más sin tocar vacaciones son la Semana Santa de cada comunidad y, en Navarra, el tramo del 3 al 6 de diciembre, que junta San Francisco Javier con la Constitución.
+        </p>
+        <p>
+          Ojo con dos cosas al pedir el día: el calendario laboral fija los festivos, pero no obliga a la empresa a conceder la vacación en la fecha que quieras, y las fiestas locales de tu municipio pueden alargar o romper cualquiera de estos tramos. Si lo que te interesa son los puentes que llegan antes, los de <a href="/puentes-diciembre-2026/" class="text-primary hover:underline">diciembre de 2026</a> están contados día a día.
+        </p>
         <h2 class="text-2xl font-bold text-on-surface mt-10 mb-4">Fuentes oficiales</h2>
         <ul class="list-disc pl-6 space-y-2">
           <li><a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21254" class="text-primary hover:underline" target="_blank" rel="noopener">Resolución de 8 de octubre de 2026, de la Dirección General de Trabajo, por la que se publica la relación de fiestas laborales para el año 2027 (BOE-A-2026-21254, BOE del 13 de octubre de 2026).</a></li>
@@ -291,7 +372,7 @@ filas.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 
       <footer class="mt-12 pt-8 border-t border-outline-variant">
         <p class="text-sm text-text-secondary">
-          Última actualización: 20 de noviembre de 2026. Fuentes: Estatuto de los Trabajadores (art. 37.4), Real Decreto 2001/1983 (art. 45), Resolución BOE-A-2026-21254 (BOE de 13/10/2026) y calendarios autonómicos de 2027 publicados en los boletines oficiales.
+          Última actualización: 23 de noviembre de 2026 (tablas de días laborables y de puentes de 2027 por comunidad). Fuentes: Estatuto de los Trabajadores (art. 37.4), Real Decreto 2001/1983 (art. 45), Resolución BOE-A-2026-21254 (BOE de 13/10/2026) y calendarios autonómicos de 2027 publicados en los boletines oficiales.
         </p>
         <div class="mt-6 flex flex-wrap gap-2">
           <span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs font-semibold rounded-full">Calendario laboral 2027</span>
